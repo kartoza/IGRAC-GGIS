@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   frontend:
@@ -6,18 +6,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    # ports:
-    #   - '8081:8081'
-    # networks:
-    #     - backbone
-
-  # backend:
-  #   container_name: mapstore-backend
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile-backend
-  #   ports:
-  #     - '8080:8080'
 
   nginx:
     container_name: mapstore-nginx
@@ -30,10 +18,4 @@ services:
     ports:
       - "80:8081"
       - "4430:443"
-    # networks:
-    #     - backbone
     restart: unless-stopped
-
-# networks:
-#   backbone:
-#     driver: bridge

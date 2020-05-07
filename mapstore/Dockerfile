@@ -16,9 +16,6 @@ WORKDIR /webapp
 # add `/webapp/node_modules/.bin` to $PATH
 ENV PATH /webapp/node_modules/.bin:$PATH
 
-# add app
-# COPY . ./
-
 # set server to run in 0.0.0.0
 RUN sed -i 's/--progress --colors --port 8081/--progress --colors --host 0.0.0.0 --port 8081/g' package.json
 
