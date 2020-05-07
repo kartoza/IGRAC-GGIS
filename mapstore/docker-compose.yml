@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: mapstore-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # ports:
+    #   - '8081:8081'
+    # networks:
+    #     - backbone
+
+  # backend:
+  #   container_name: mapstore-backend
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile-backend
+  #   ports:
+  #     - '8080:8080'
+
+  nginx:
+    container_name: mapstore-nginx
+    image: nginx
+    hostname: nginx
+    volumes:
+      - ./sites-enabled:/etc/nginx/conf.d:ro
+    links:
+      - frontend:frontend
+    ports:
+      - "80:8081"
+      - "4430:443"
+    # networks:
+    #     - backbone
+    restart: unless-stopped
+
+# networks:
+#   backbone:
+#     driver: bridge
