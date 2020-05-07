@@ -1,20 +1,18 @@
 version: '2'
 
 services:
-  frontend:
-    container_name: mapstore-frontend
-    build:
-      context: .
-      dockerfile: Dockerfile
+  mapstore-frontend:
+    container_name: igrac-mapstore-frontend
+    build: docker-mapstore
 
   nginx:
-    container_name: mapstore-nginx
+    container_name: igrac-mapstore-nginx
     image: nginx
     hostname: nginx
     volumes:
       - ./sites-enabled:/etc/nginx/conf.d:ro
     links:
-      - frontend:frontend
+      - mapstore-frontend:frontend
     ports:
       - "80:8081"
       - "4430:443"
