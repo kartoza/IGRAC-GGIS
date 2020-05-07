@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  frontend:
+    container_name: mapstore-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+  nginx:
+    container_name: mapstore-nginx
+    image: nginx
+    hostname: nginx
+    volumes:
+      - ./sites-enabled:/etc/nginx/conf.d:ro
+    links:
+      - frontend:frontend
+    ports:
+      - "80:8081"
+      - "4430:443"
+    restart: unless-stopped
