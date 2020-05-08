@@ -6,7 +6,7 @@ SHELL := /bin/bash
 #    P R O D U C T I O N     C O M M A N D S
 # ----------------------------------------------------------------------------
 default: mapstore-frontend
-run: build mapstore-frontend nginx
+run: build mapstore-frontend nginx mapstore-backend
 
 build:
 	@echo
@@ -22,6 +22,13 @@ mapstore-frontend:
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) up -d mapstore-frontend
 
+mapstore-backend:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Running in production mode"
+	@echo "------------------------------------------------------------------"
+	@docker-compose -p $(PROJECT_ID) up -d mapstore-backend
+
 nginx:
 	@echo
 	@echo "------------------------------------------------------------------"
@@ -33,7 +40,21 @@ nginx:
 	@docker-compose -p $(PROJECT_ID) up -d nginx
 	@echo "Site should now be available at http://localhost"
 
-up: mapstore-frontend nginx
+up: mapstore-frontend nginx mapstore-backend 
+
+shell-backend:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Entering Mapstore Backend Shell"
+	@echo "------------------------------------------------------------------"
+	@docker exec -t -i $(PROJECT_ID)-mapstore-backend sh
+
+shell-frontend:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Entering Mapstore Frontend Shell"
+	@echo "------------------------------------------------------------------"
+	@docker exec -t -i $(PROJECT_ID)-mapstore-frontend sh
 
 status:
 	@echo
@@ -66,4 +87,5 @@ help:
 	@echo "* **nginx** - builds and runs the nginx container."
 	@echo "* **permissions** - Update the permissions of shared volumes. Note this will destroy any existing permissions you have in place."
 	@echo "* **rm** - remove all containers."
-	@echo "* **shell-frontend-mapstore** - open a bash shell in the frontend mapstore (where django runs) container."
+	@echo "* **shell-frontend** - open a bash shell in the frontend mapstore (where django runs) container."
+	@echo "* **shell-backend** - open a bash shell in the backend mapstore (where django runs) container."

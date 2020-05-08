@@ -1,0 +1,43 @@
+FROM zenika/alpine-maven as maven_builder
+
+# Install utilities
+RUN  apk update \
+     && apk add nano \
+     && apk add curl \
+     && apk add git \
+     && rm -rf /var/cache/apk/*
+
+RUN git clone https://github.com/geosolutions-it/MapStore2
+
+# set working directory
+RUN mv MapStore2 webapp
+WORKDIR /webapp
+
+#build war file
+RUN cd web/ && mvn install
+
+
+# ================
+
+
+FROM tomcat:7.0.92-jre7-alpine
+
+# Install utilities
+RUN  apk update \
+     && apk add nano \
+     && apk add curl \
+     && apk add git \
+     && rm -rf /var/cache/apk/*
+
+# Tomcat specific options
+ENV CATALINA_BASE "$CATALINA_HOME"
+ENV JAVA_OPTS="${JAVA_OPTS}  -Xms512m -Xmx512m -XX:MaxPermSize=128m"
+
+
+# Add war files to be deployed
+COPY --from=maven_builder /webapp/web/target/*.war "${CATALINA_BASE}/webapps/"
+
+# Set variable to better handle terminal commands
+ENV TERM xterm
+
+EXPOSE 8080

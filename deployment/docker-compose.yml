@@ -1,9 +1,27 @@
 version: '2'
 
 services:
+  mapstore-backend:
+    # use online mapstore image
+    # to use locally compiled image, use
+    # Dockerfile-backend
+    container_name: igrac-mapstore-backend
+    image: geosolutionsit/mapstore2
+    # Uncomment to open ports
+    # ports:
+      # - '8080:8080'
+
   mapstore-frontend:
     container_name: igrac-mapstore-frontend
-    build: docker-mapstore
+    build: 
+      context: docker-mapstore  
+    environment:
+      - REACT_APP_BACKEND=backend
+    links:
+      - mapstore-backend:backend
+    # Uncomment to open ports
+    # ports:
+      # - '8081:8081'
 
   nginx:
     container_name: igrac-mapstore-nginx
