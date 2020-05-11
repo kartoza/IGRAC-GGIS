@@ -1,15 +1,31 @@
 version: '2'
 
 services:
+  db:
+    container_name: igrac-mapstore-db
+    image: kartoza/postgis:12.0
+    volumes:
+     - "./docker-mapstore/setup/db:/docker-entrypoint-initdb.d"
+    environment:
+     - POSTGRES_USER=geostore
+     - POSTGRES_PASS=geostore
+     - POSTGRES_DB=geostore
+    ports:
+     - '25432:5432'
+
   mapstore-backend:
     # use online mapstore image
     # to use locally compiled image, use
     # Dockerfile-backend
     container_name: igrac-mapstore-backend
-    image: geosolutionsit/mapstore2
+    build:
+     context: docker-mapstore
+     dockerfile: Dockerfile-backend
+    links:
+     - db:db
     # Uncomment to open ports
-    # ports:
-      # - '8080:8080'
+    ports:
+     - '8080:8080'
 
   mapstore-frontend:
     container_name: igrac-mapstore-frontend
@@ -20,8 +36,8 @@ services:
     links:
       - mapstore-backend:backend
     # Uncomment to open ports
-    # ports:
-      # - '8081:8081'
+    ports:
+     - '8081:8081'
 
   nginx:
     container_name: igrac-mapstore-nginx

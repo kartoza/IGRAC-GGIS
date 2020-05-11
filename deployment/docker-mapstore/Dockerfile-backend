@@ -13,9 +13,19 @@ RUN git clone https://github.com/geosolutions-it/MapStore2
 RUN mv MapStore2 webapp
 WORKDIR /webapp
 
-#build war file
-RUN cd web/ && mvn install
+#WORKDIR /webapp/docker
+#RUN sed -i 's/localhost:5432/db/g' geostore-datasource-ovr.properties
+COPY ./setup/backend/geostore-datasource-ovr.properties ./docker/
+COPY ./setup/backend/pom.xml ./web/
 
+#build war file
+WORKDIR /webapp/web
+RUN mvn install
+
+# Use generated .war file for local development because building war takes so much time.
+#COPY mapstore.war /webapp/web/target/
+
+WORKDIR /webapp
 
 # ================
 
@@ -36,6 +46,12 @@ ENV JAVA_OPTS="${JAVA_OPTS}  -Xms512m -Xmx512m -XX:MaxPermSize=128m"
 
 # Add war files to be deployed
 COPY --from=maven_builder /webapp/web/target/*.war "${CATALINA_BASE}/webapps/"
+
+# Geostore externalization template. Disabled by default
+COPY --from=maven_builder /webapp/docker/geostore-datasource-ovr.properties "${CATALINA_BASE}/conf/"
+ARG GEOSTORE_OVR_OPT="file://${CATALINA_BASE}/conf/geostore-datasource-ovr.properties"
+ENV JAVA_OPTS="-Dgeostore-ovr=$GEOSTORE_OVR_FILE"
+#ENV JAVA_OPTS="${JAVA_OPTS} ${GEOSTORE_OVR_OPT}"
 
 # Set variable to better handle terminal commands
 ENV TERM xterm

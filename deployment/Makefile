@@ -6,7 +6,7 @@ SHELL := /bin/bash
 #    P R O D U C T I O N     C O M M A N D S
 # ----------------------------------------------------------------------------
 default: mapstore-frontend
-run: build mapstore-frontend nginx mapstore-backend
+run: build mapstore-frontend nginx mapstore-backend db
 
 build:
 	@echo
@@ -40,7 +40,14 @@ nginx:
 	@docker-compose -p $(PROJECT_ID) up -d nginx
 	@echo "Site should now be available at http://localhost"
 
-up: mapstore-frontend nginx mapstore-backend 
+db:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Running in production mode"
+	@echo "------------------------------------------------------------------"
+	@docker-compose -p $(PROJECT_ID) up -d db
+
+up: mapstore-frontend nginx mapstore-backend db
 
 shell-backend:
 	@echo
@@ -55,6 +62,13 @@ shell-frontend:
 	@echo "Entering Mapstore Frontend Shell"
 	@echo "------------------------------------------------------------------"
 	@docker exec -t -i $(PROJECT_ID)-mapstore-frontend sh
+
+shell-db:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Entering Mapstore DB Shell"
+	@echo "------------------------------------------------------------------"
+	@docker exec -t -i $(PROJECT_ID)-mapstore-db sh
 
 status:
 	@echo
