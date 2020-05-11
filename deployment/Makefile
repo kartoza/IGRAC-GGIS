@@ -6,7 +6,7 @@ SHELL := /bin/bash
 #    P R O D U C T I O N     C O M M A N D S
 # ----------------------------------------------------------------------------
 default: mapstore-frontend
-run: build mapstore-frontend nginx mapstore-backend db
+run: build mapstore-frontend nginx mapstore-backend db db-setup
 
 build:
 	@echo
@@ -46,6 +46,22 @@ db:
 	@echo "Running in production mode"
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) up -d db
+
+db-setup:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Initializing DB"
+	@echo "------------------------------------------------------------------"
+	@docker exec -it $(PROJECT_ID)-mapstore-db su - postgres -c "psql -c \"DROP DATABASE IF EXISTS geostore;\""
+	@docker exec -it $(PROJECT_ID)-mapstore-db su - postgres -c "psql < /docker-entrypoint-initdb.d/001_setup_db.sql"
+	@docker exec -it $(PROJECT_ID)-mapstore-db su - postgres -c "psql geostore < /docker-entrypoint-initdb.d/002_create_schema_postgres.sql"
+
+db-restore: db-setup
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Adding Rows"
+	@echo "------------------------------------------------------------------"
+	@docker exec -it $(PROJECT_ID)-mapstore-db su - postgres -c "psql geostore < /docker-entrypoint-initdb.d/003_restore_db.sql"
 
 up: mapstore-frontend nginx mapstore-backend db
 

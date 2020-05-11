@@ -7,11 +7,12 @@ services:
     volumes:
      - "./docker-mapstore/setup/db:/docker-entrypoint-initdb.d"
     environment:
-     - POSTGRES_USER=geostore
-     - POSTGRES_PASS=geostore
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASS=postgres
      - POSTGRES_DB=geostore
-    ports:
-     - '25432:5432'
+    # Uncomment to open ports
+    #ports:
+     #- '25432:5432'
 
   mapstore-backend:
     # use online mapstore image
@@ -24,8 +25,8 @@ services:
     links:
      - db:db
     # Uncomment to open ports
-    ports:
-     - '8080:8080'
+    # ports:
+     # - '8080:8080'
 
   mapstore-frontend:
     container_name: igrac-mapstore-frontend
@@ -36,8 +37,8 @@ services:
     links:
       - mapstore-backend:backend
     # Uncomment to open ports
-    ports:
-     - '8081:8081'
+    # ports:
+     # - '8081:8081'
 
   nginx:
     container_name: igrac-mapstore-nginx

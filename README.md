@@ -8,6 +8,11 @@ make build
 make up
 ```
 
+For first time usage, add this command:
+```
+make db-restore
+```
+
 The mapstore frontend will be available at `http://localhost/`
 
 To stop containers:

@@ -13,16 +13,18 @@ RUN git clone https://github.com/geosolutions-it/MapStore2
 RUN mv MapStore2 webapp
 WORKDIR /webapp
 
-#WORKDIR /webapp/docker
-#RUN sed -i 's/localhost:5432/db/g' geostore-datasource-ovr.properties
+# Copy setup files
 COPY ./setup/backend/geostore-datasource-ovr.properties ./docker/
+COPY ./setup/backend/sample_users.xml ./docker/
+COPY ./setup/backend/sample_categories.xml ./docker/
 COPY ./setup/backend/pom.xml ./web/
 
-#build war file
+# build war file
 WORKDIR /webapp/web
 RUN mvn install
 
-# Use generated .war file for local development because building war takes so much time.
+# Uncomment to use generated .war file for local development because building war takes so much time.
+#WORKDIR /webapp/web/target
 #COPY mapstore.war /webapp/web/target/
 
 WORKDIR /webapp
@@ -49,6 +51,8 @@ COPY --from=maven_builder /webapp/web/target/*.war "${CATALINA_BASE}/webapps/"
 
 # Geostore externalization template. Disabled by default
 COPY --from=maven_builder /webapp/docker/geostore-datasource-ovr.properties "${CATALINA_BASE}/conf/"
+COPY --from=maven_builder /webapp/docker/sample_users.xml "${CATALINA_BASE}/conf/"
+COPY --from=maven_builder /webapp/docker/sample_categories.xml "${CATALINA_BASE}/conf/"
 ARG GEOSTORE_OVR_OPT="file://${CATALINA_BASE}/conf/geostore-datasource-ovr.properties"
 ENV JAVA_OPTS="-Dgeostore-ovr=$GEOSTORE_OVR_FILE"
 #ENV JAVA_OPTS="${JAVA_OPTS} ${GEOSTORE_OVR_OPT}"
