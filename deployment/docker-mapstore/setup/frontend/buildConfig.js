@@ -189,7 +189,7 @@ module.exports = (bundles, themeEntries, paths, extractThemesPlugin, prod, publi
 		// pass env var to React app. Define "target"
 		// manually for now .
                 //target: process.env.REACT_APP_BACKEND + "mapstore/rest/",
-		target: "http://localhost:8080/mapstore",
+		target: "http://backend:8080/mapstore",
 		secure: false,
             },
             '/proxy': {
@@ -198,7 +198,7 @@ module.exports = (bundles, themeEntries, paths, extractThemesPlugin, prod, publi
 		// pass env var to React app. Define "target"
 		// manually for now .
                 //target: process.env.REACT_APP_BACKEND + "mapstore/rest/",
-		target: "http://localhost:8080/mapstore",
+		target: "http://backend:8080/mapstore",
                 secure: false
             },
             '/docs': { // this can be used when you run npm run doctest
