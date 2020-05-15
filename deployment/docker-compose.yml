@@ -194,7 +194,7 @@ services:
     links:
       - uwsgi:uwsgi
     ports:
-    - "80:8000"
+    - "80:8080"
     restart: unless-stopped
 
   # Gets and installs letsencrypt certificates
