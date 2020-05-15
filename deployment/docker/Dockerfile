@@ -2,11 +2,11 @@
 FROM geonode/spcgeonode:django-3.0
 MAINTAINER Anita Hapsari<anita@kartoza.com>
 
-#RUN mkdir -p /usr/share/man/man1
-#RUN apt-get update -y && apt-get -y --allow-downgrades --allow-remove-essential --allow-unauthenticated install yui-compressor rpl mdbtools git
-#
-#ADD REQUIREMENTS.txt /REQUIREMENTS.txt
-#RUN pip install -r /REQUIREMENTS.txt
+RUN mkdir -p /usr/share/man/man1
+RUN apt-get update -y && apt-get -y --allow-downgrades --allow-remove-essential --allow-unauthenticated install yui-compressor rpl mdbtools git
+
+ADD REQUIREMENTS.txt /REQUIREMENTS.txt
+RUN pip install -r /REQUIREMENTS.txt
 #
 #USER www-data
 WORKDIR /home/web/django_project

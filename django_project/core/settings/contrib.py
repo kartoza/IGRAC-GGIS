@@ -5,7 +5,7 @@ core.settings.contrib
 from core.settings.utils import ensure_unique_app_labels
 from .base import *  # noqa
 # Override base settings from geonode
-from geonode_generic.settings import *  # noqa
+from geonode.settings import *  # noqa
 from .celery_settings import *  # noqa
 import os
 import raven
@@ -48,12 +48,10 @@ INSTALLED_APPS += (
     # 'core.config_hook',
     'allauth',
     'allauth.account',
-    'rolepermissions',
+    # 'rolepermissions',
     'rest_framework',
     'celery',
     'pipeline',
-    'crispy_forms',
-    'igrac'
 )
 
 if os.environ.get('RAVEN_CONFIG_DSN'):
@@ -115,13 +113,13 @@ STATICFILES_DIRS = [
 ] + STATICFILES_DIRS
 
 TESTING = sys.argv[1:2] == ['test']
-if not TESTING and not on_travis:
-    INSTALLED_APPS += (
-        'easyaudit',
-    )
-    MIDDLEWARE_CLASSES += (
-        'easyaudit.middleware.easyaudit.EasyAuditMiddleware',
-    )
+# if not TESTING and not on_travis:
+    # INSTALLED_APPS += (
+    #     'easyaudit',
+    # )
+    # MIDDLEWARE += (
+    #     'easyaudit.middleware.easyaudit.EasyAuditMiddleware',
+    # )
 # for middleware in MIDDLEWARE_CLASSES:
 #     if middleware not in MIDDLEWARE:
 #         MIDDLEWARE += (middleware,)

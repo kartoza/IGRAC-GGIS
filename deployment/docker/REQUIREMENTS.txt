@@ -1,5 +1,4 @@
 psycopg2-binary
-django>=1.11.22
 django-braces==1.9.0
 django-model-utils==1.4.0
 django-pipeline==1.6.14
@@ -8,7 +7,6 @@ markdown==2.6.11
 
 raven==6.10.0
 django-sentry==1.13.5
-requests>=2.20.0
 pytz
 # support special characters
 
@@ -16,8 +14,9 @@ django-allauth==0.35.0
 
 # Django Easy Audit
 # https://github.com/soynatan/django-easy-audit
-git+https://github.com/soynatan/django-easy-audit.git
+# git+https://github.com/soynatan/django-easy-audit.git
 django-grappelli==2.11.1
 
 djangorestframework==3.9.1
 djangorestframework-gis==0.13
+service_identity

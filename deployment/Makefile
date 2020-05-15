@@ -56,6 +56,13 @@ rm: kill
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) down
 
+shell:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Shelling in in production mode"
+	@echo "------------------------------------------------------------------"
+	@docker-compose -p $(PROJECT_ID) exec uwsgi /bin/bash
+
 # --------------- help --------------------------------
 
 help:

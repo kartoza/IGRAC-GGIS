@@ -12,9 +12,7 @@ from .contrib import *  # noqa
 
 # Project apps
 INSTALLED_APPS += (
-    'bims',
-    'td_biblio',
-    'scripts'
+    'igrac',
 )
 
 # Set languages which want to be translated

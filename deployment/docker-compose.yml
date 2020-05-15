@@ -33,7 +33,7 @@ services:
     hostname: uwsgi
     entrypoint: []
     environment:
-      - DATABASE_NAME=gis
+      - DATABASE_NAME=postgres
       - DATABASE_USERNAME=${POSTGRES_USER}
       - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
       - DATABASE_HOST=db
@@ -103,7 +103,7 @@ services:
     command: celery worker --app=geonode.celery_app:app -l info -E
     entrypoint: []
     environment:
-      - DATABASE_NAME=gis
+      - DATABASE_NAME=postgres
       - DATABASE_USERNAME=${POSTGRES_USER}
       - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
       - DATABASE_HOST=db
