@@ -98,8 +98,8 @@ body {
 .main-navigation li a {
 	color: #24619d;
 	display: inline-block;
-	height: 56px;
-	line-height: 56px;
+	height: 56px !important;
+	line-height: 56px !important;
 	text-decoration: none;
 	background: #fff;
 	padding: 0 10px;
@@ -109,15 +109,15 @@ body {
 	background: #ff6c0e !important;
 }
 .navbar .user {
-	padding-right: 30px;
+	padding-right: 30px !important;
 }
 .navbar .user .action {
-	color: #24619d;
-	font-size: 17px;
-	display: inline-block;
-	height: 56px;
-	line-height: 56px;
-	padding: 0 5px;
+	color: #24619d !important;
+	font-size: 17px !important;
+	display: inline-block !important;
+	height: 56px !important;
+	line-height: 56px !important;
+	padding: 0 5px !important;
 }
 
 .navbar-nav {
