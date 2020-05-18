@@ -26,10 +26,8 @@ from bims.views.documents import document_metadata, BimsDocumentUploadView
 # It cannot be included in include() function because it contains i18n urls
 urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
-    url(r'^accounts/', include('allauth.urls')),
-    url(r'^contact/', include('contactus.urls')),
-    url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^', include('geonode.urls')),
+    url(r'^', include('igrac.urls')),
 ]
 
 for geonode_pattern in geonode_urlpatterns:

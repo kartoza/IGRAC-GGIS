@@ -16,6 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-urlpatterns = [
+from geonode.maps.urls import new_map_view
+homepage = register_url_event()(new_map_view)
 
+urlpatterns = [
+    url(r'^$',
+        homepage,
+        name='home'),
 ]

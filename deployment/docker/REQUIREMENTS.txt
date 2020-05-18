@@ -10,12 +10,10 @@ django-sentry==1.13.5
 pytz
 # support special characters
 
-django-allauth==0.35.0
-
 # Django Easy Audit
 # https://github.com/soynatan/django-easy-audit
 # git+https://github.com/soynatan/django-easy-audit.git
-django-grappelli==2.11.1
+django-grappelli==2.14.2
 
 djangorestframework==3.9.1
 djangorestframework-gis==0.13

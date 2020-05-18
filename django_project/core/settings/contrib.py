@@ -37,9 +37,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Django grappelli need to be added before django.contrib.admin
-INSTALLED_APPS = (
-    'grappelli',
-) + INSTALLED_APPS
+# INSTALLED_APPS = (
+#     'grappelli',
+# ) + INSTALLED_APPS
 
 # Grapelli settings
 GRAPPELLI_ADMIN_TITLE = 'IGRAC Admin Page'
@@ -84,6 +84,7 @@ except KeyError:
             'DIRS': [
                 # project level templates
                 absolute_path('core', 'base_templates'),
+                absolute_path('igrac', 'templates'),
             ],
             'APP_DIRS': True,
             'OPTIONS': {

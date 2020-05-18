@@ -80,6 +80,8 @@ services:
       - C_FORCE_ROOT=True
       # We get an exception after migrations on startup (it seems the monitoring app tries to resolve the geoserver domain name after it's migration, which can happen before oauth migrations on which geoserver startup depends...)
       - MONITORING_ENABLED=False
+      - GEOSERVER_PUBLIC_LOCATION=http://$HTTP_HOST/geoserver/
+      - SITEURL=http://$HTTP_HOST/
     links:
       - smtp:smtp
       - db:db
