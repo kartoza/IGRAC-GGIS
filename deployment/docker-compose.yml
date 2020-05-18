@@ -188,6 +188,8 @@ services:
       - geodatadir:/spcgeonode-geodatadir/
     depends_on:
       - db
+    ports:
+    - "8000:8080"
     restart: unless-stopped
 
   web:
