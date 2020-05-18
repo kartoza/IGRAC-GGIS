@@ -2,7 +2,7 @@
 """
 core.settings.base
 """
-# Django settings for projecta project.
+# Django settings for igrac project.
 
 from .utils import absolute_path  # noqa
 

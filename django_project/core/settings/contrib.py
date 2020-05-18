@@ -2,6 +2,7 @@
 """
 core.settings.contrib
 """
+import ast
 from core.settings.utils import ensure_unique_app_labels
 from .base import *  # noqa
 # Override base settings from geonode
@@ -74,6 +75,7 @@ INSTALLED_APPS += (
 try:
     TEMPLATES[0]['DIRS'] = [
         absolute_path('core', 'base_templates'),
+        absolute_path('igrac', 'templates'),
     ] + TEMPLATES[0]['DIRS']
 except KeyError:
     TEMPLATES = [

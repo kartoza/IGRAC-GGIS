@@ -5,8 +5,26 @@ SHELL := /bin/bash
 # ----------------------------------------------------------------------------
 #    P R O D U C T I O N     C O M M A N D S
 # ----------------------------------------------------------------------------
-default: mapstore-frontend
-run: build mapstore-frontend nginx
+default: web
+run: build web migrate collectstatic
+
+deploy: run
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Bringing up fresh instance "
+	@echo "You can access it on http://localhost"
+	@echo "------------------------------------------------------------------"
+
+web:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Running in production mode"
+	@echo "------------------------------------------------------------------"
+	@docker-compose ${ARGS} up -d web
+	@# Dont confuse this with the dbbackup make command below
+	@# This one runs the postgis-backup cron container
+	@# We add --no-recreate so that it does not destroy & recreate the db container
+	@docker-compose ${ARGS} up --no-recreate --no-deps -d
 
 build:
 	@echo
@@ -15,12 +33,12 @@ build:
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) build
 
-mapstore-frontend:
-	@echo
-	@echo "------------------------------------------------------------------"
-	@echo "Running in production mode"
-	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) up -d mapstore-frontend
+# mapstore-frontend:
+#	@echo
+#	@echo "------------------------------------------------------------------"
+#	@echo "Running in production mode"
+#	@echo "------------------------------------------------------------------"
+#	@docker-compose -p $(PROJECT_ID) up -d mapstore-frontend
 
 nginx:
 	@echo
@@ -33,7 +51,7 @@ nginx:
 	@docker-compose -p $(PROJECT_ID) up -d nginx
 	@echo "Site should now be available at http://localhost"
 
-up: mapstore-frontend nginx
+up: web
 
 status:
 	@echo
@@ -62,6 +80,25 @@ shell:
 	@echo "Shelling in in production mode"
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) exec uwsgi /bin/bash
+
+collectstatic:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Collecting static in production mode"
+	@echo "------------------------------------------------------------------"
+	#@docker-compose -p $(PROJECT_ID) run uwsgi python manage.py collectstatic --noinput
+	#We need to run collect static in the same context as the running
+	# uwsgi container it seems so I use docker exec here
+	# no -it flag so we can run over remote shell
+	@docker exec $(PROJECT_ID)_uwsgi_1 python manage.py collectstatic --noinput
+
+reload:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Reload django project in production mode"
+	@echo "------------------------------------------------------------------"
+	# no -it flag so we can run over remote shell
+	@docker exec $(PROJECT_ID)_uwsgi_1 uwsgi --reload  /tmp/django.pid
 
 # --------------- help --------------------------------
 

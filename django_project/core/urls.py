@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^contact/', include('contactus.urls')),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
-    url(r'^', include('igrac.urls')),
+    url(r'^', include('geonode.urls')),
 ]
 
 for geonode_pattern in geonode_urlpatterns:
