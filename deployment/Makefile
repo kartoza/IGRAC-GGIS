@@ -6,7 +6,7 @@ SHELL := /bin/bash
 #    P R O D U C T I O N     C O M M A N D S
 # ----------------------------------------------------------------------------
 default: web
-run: build web migrate collectstatic
+run: build web collectstatic
 
 deploy: run
 	@echo

@@ -23,7 +23,7 @@ PIPELINE_DISABLE_WRAPPER = True
 USE_X_FORWARDED_HOST = True
 
 # Set debug to false for production
-DEBUG = TEMPLATE_DEBUG = False
+DEBUG = TEMPLATE_DEBUG = True
 
 SERVER_EMAIL = os.environ.get('ADMIN_EMAILS', 'admin@kartoza.com')
 EMAIL_HOST = 'kartoza.com'
