@@ -18,8 +18,8 @@ services:
       - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
       - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
       - GEONODE_GEODATABASE_PASSWORD=${GEONODE_GEODATABASE_PASSWORD}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
-      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
+      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@db:5432/${GEONODE_DATABASE}
+      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@db:5432/${GEONODE_GEODATABASE}
     volumes:
       - database:/var/lib/postgresql/data/
     restart: unless-stopped
@@ -33,7 +33,7 @@ services:
     hostname: uwsgi
     entrypoint: []
     environment:
-      - DATABASE_NAME=postgres
+      - DATABASE_NAME=${GEONODE_DATABASE}
       - DATABASE_USERNAME=${POSTGRES_USER}
       - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
       - DATABASE_HOST=db
@@ -63,8 +63,8 @@ services:
       - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
       - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
       - GEONODE_GEODATABASE_PASSWORD=${GEONODE_GEODATABASE_PASSWORD}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
-      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
+      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@db:5432/${GEONODE_DATABASE}
+      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@db:5432/${GEONODE_GEODATABASE}
       # hardcoded
       - DEBUG=False
 #      - DJANGO_SETTINGS_MODULE=geonode.settings
@@ -87,6 +87,11 @@ services:
       - db:db
       - geoserver:geoserver
       - worker:worker
+    depends_on:
+      - smtp
+      - db
+      - geoserver
+      - worker
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
       - ../django_project:/home/web/django_project
@@ -105,7 +110,7 @@ services:
     command: celery worker --app=geonode.celery_app:app -l info -E
     entrypoint: []
     environment:
-      - DATABASE_NAME=postgres
+      - DATABASE_NAME=${GEONODE_DATABASE}
       - DATABASE_USERNAME=${POSTGRES_USER}
       - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
       - DATABASE_HOST=db
@@ -136,8 +141,8 @@ services:
       - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
       - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
       - GEONODE_GEODATABASE_PASSWORD=${GEONODE_GEODATABASE_PASSWORD}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
-      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
+      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@db:5432/${GEONODE_DATABASE}
+      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@db:5432/${GEONODE_GEODATABASE}
       # hardcoded
       - DEBUG=False
 #      - DJANGO_SETTINGS_MODULE=geonode.settings
@@ -177,8 +182,8 @@ services:
       - SITEURL=${HTTPS_HOST}
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
-      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
+      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@db:5432/${GEONODE_DATABASE}
+      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@db:5432/${GEONODE_GEODATABASE}
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
     depends_on:
@@ -220,7 +225,7 @@ services:
     restart: on-failure
     environment:
       - DATABASE=${GEONODE_DATABASE}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
+      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@db:5432/${GEONODE_DATABASE}
 
   # dumps the geodata db
   pgdumper_geo:
@@ -232,7 +237,7 @@ services:
     environment:
       - DATABASE=${GEONODE_GEODATABASE}
       # pgdumper needs postgres:// as connection string for the geodatabase
-      - DATABASE_URL=postgres://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
+      - DATABASE_URL=postgres://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@db:5432/${GEONODE_GEODATABASE}
 
   # Vanilla RabbitMQ service. This is needed by celery
   rabbitmq:
