@@ -73,13 +73,13 @@ services:
       - MEDIA_ROOT=/spcgeonode-media/
       - STATIC_URL=/static/
       - MEDIA_URL=/uploaded/
-      - GEOSERVER_LOCATION=http://nginx/geoserver/
       - ASYNC_SIGNALS=True
       - SESSION_EXPIRED_CONTROL_ENABLED=False
       # TODO : we should probably remove this and set Celery to use JSON serialization instead of pickle
       - C_FORCE_ROOT=True
       # We get an exception after migrations on startup (it seems the monitoring app tries to resolve the geoserver domain name after it's migration, which can happen before oauth migrations on which geoserver startup depends...)
       - MONITORING_ENABLED=False
+      - GEOSERVER_LOCATION=http://geoserver:8080/geoserver/
       - GEOSERVER_PUBLIC_LOCATION=http://$HTTP_HOST/geoserver/
       - SITEURL=http://$HTTP_HOST/
     links:
@@ -151,7 +151,10 @@ services:
       - MEDIA_ROOT=/spcgeonode-media/
       - STATIC_URL=/static/
       - MEDIA_URL=/uploaded/
-      - GEOSERVER_LOCATION=http://nginx/geoserver/
+#      - GEOSERVER_PUBLIC_HOST:nginx
+#      - GEOSERVER_PUBLIC_PORT:8000
+      - GEOSERVER_LOCATION=http://geoserver:8080/geoserver/
+      - GEOSERVER_PUBLIC_LOCATION=http://$HTTP_HOST/geoserver/
       - ASYNC_SIGNALS=True
       - SESSION_EXPIRED_CONTROL_ENABLED=False
       # TODO : we should probably remove this and set Celery to use JSON serialization instead of pickle

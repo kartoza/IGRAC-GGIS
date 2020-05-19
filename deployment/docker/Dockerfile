@@ -2,6 +2,9 @@
 FROM geonode/spcgeonode:django-3.0
 MAINTAINER Anita Hapsari<anita@kartoza.com>
 
+ENV HTTP_HOST 0.0.0.0
+ENV HTTPS_HOST 0.0.0.0
+
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update -y && apt-get -y --allow-downgrades --allow-remove-essential --allow-unauthenticated install yui-compressor rpl mdbtools git
 

@@ -31,7 +31,7 @@ build:
 	@echo "------------------------------------------------------------------"
 	@echo "Building in production mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) build --no-cache
+	@docker-compose -p $(PROJECT_ID) build
 
 # mapstore-frontend:
 #	@echo
