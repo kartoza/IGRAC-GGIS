@@ -1,19 +1,275 @@
 version: '2'
 
 services:
-  mapstore-frontend:
-    container_name: igrac-mapstore-frontend
-    build: docker-mapstore
+  smtp:
+      image: catatnight/postfix
+      environment:
+        maildomain: kartoza.com
+        smtp_user: noreply:docker
+      restart: unless-stopped
 
-  nginx:
-    container_name: igrac-mapstore-nginx
+  # PostGIS database.
+  db:
+    # use geonode official postgis 10 image
+    image: geonode/postgis:10
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - GEONODE_DATABASE=${GEONODE_DATABASE}
+      - GEONODE_DATABASE_PASSWORD=postgres
+      - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
+      - GEONODE_GEODATABASE_PASSWORD=postgres
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/${GEONODE_DATABASE}
+      - GEODATABASE_URL=postgis://postgres:postgres@db:5432/${GEONODE_GEODATABASE}
+    volumes:
+      - database:/var/lib/postgresql/data/
+    restart: unless-stopped
+    # uncomment to enable remote connections to postgres
+    #ports:
+    #  - "5432:5432"
+
+  uwsgi:
+    build:
+      context: docker
+    hostname: uwsgi
+    entrypoint: []
+    environment:
+      - DATABASE_NAME=${GEONODE_DATABASE}
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_HOST=db
+      - DJANGO_SETTINGS_MODULE=core.settings.prod_docker
+      - RABBITMQ_HOST=rabbitmq
+      - APP_NAME=igrac
+      - HTTPS_HOST=${HTTPS_HOST}
+      - HTTPS_PORT=${HTTPS_PORT}
+      - HTTP_HOST=${HTTP_HOST}
+      - HTTP_PORT=${HTTP_PORT}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - GEOSERVER_ADMIN_USER=${ADMIN_USERNAME}
+      - GEOSERVER_ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - REGISTRATION_OPEN=${REGISTRATION_OPEN}
+      - TIME_ZONE=${TIME_ZONE}
+      - ALLOWED_HOSTS=['nginx','127.0.0.1','localhost','$HTTPS_HOST','$HTTP_HOST']
+      - SECRET_KEY=${SECRET_KEY}
+      # data
+      ## -- comment to disable postgis ingestion of uploaded shapefiles
+      - DEFAULT_BACKEND_UPLOADER=geonode.importer
+      - DEFAULT_BACKEND_DATASTORE=datastore
+      # database info, ${variables} are read from .env
+      - POSTGRES_PASSWORD=postgres
+      - GEONODE_DATABASE=${GEONODE_DATABASE}
+      - GEONODE_DATABASE_PASSWORD=postgres
+      - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
+      - GEONODE_GEODATABASE_PASSWORD=postgres
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/${GEONODE_DATABASE}
+      - GEODATABASE_URL=postgis://postgres:postgres@db:5432/${GEONODE_GEODATABASE}
+      # hardcoded
+      - DEBUG=False
+#      - DJANGO_SETTINGS_MODULE=geonode.settings
+      - BROKER_URL=amqp://rabbitmq:5672
+      - STATIC_ROOT=/spcgeonode-static/
+      - MEDIA_ROOT=/spcgeonode-media/
+      - STATIC_URL=/static/
+      - MEDIA_URL=/uploaded/
+      - GEOSERVER_LOCATION=http://nginx/geoserver/
+      - ASYNC_SIGNALS=True
+      - SESSION_EXPIRED_CONTROL_ENABLED=False
+      # TODO : we should probably remove this and set Celery to use JSON serialization instead of pickle
+      - C_FORCE_ROOT=True
+      # We get an exception after migrations on startup (it seems the monitoring app tries to resolve the geoserver domain name after it's migration, which can happen before oauth migrations on which geoserver startup depends...)
+      - MONITORING_ENABLED=False
+      - GEOSERVER_PUBLIC_LOCATION=http://$HTTP_HOST/geoserver/
+      - SITEURL=http://$HTTP_HOST/
+    links:
+      - smtp:smtp
+      - db:db
+      - geoserver:geoserver
+      - worker:worker
+    depends_on:
+      - smtp
+      - db
+      - geoserver
+      - worker
+    volumes:
+      - geodatadir:/spcgeonode-geodatadir/
+      - ../django_project:/home/web/django_project
+      - ./static:/home/web/static:rw
+      - ./media:/home/web/media:rw
+      - ./reports:/home/web/reports
+      - ./logs:/var/log/
+    restart: unless-stopped
+    user: root
+
+  worker:
+    build:
+      context: docker
+    hostname: worker
+    working_dir: /home/web/django_project
+    command: celery worker --app=geonode.celery_app:app -l info -E
+    entrypoint: []
+    environment:
+      - DATABASE_NAME=${GEONODE_DATABASE}
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_HOST=db
+      - DJANGO_SETTINGS_MODULE=core.settings.dev_docker
+      - RABBITMQ_HOST=rabbitmq
+      - APP_NAME=igrac
+#      - ASYNC_SIGNALS_GEONODE=True
+      - HTTPS_HOST=${HTTPS_HOST}
+      - HTTPS_PORT=${HTTPS_PORT}
+      - HTTP_HOST=${HTTP_HOST}
+      - HTTP_PORT=${HTTP_PORT}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - GEOSERVER_ADMIN_USER=${ADMIN_USERNAME}
+      - GEOSERVER_ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - REGISTRATION_OPEN=${REGISTRATION_OPEN}
+      - TIME_ZONE=${TIME_ZONE}
+      - ALLOWED_HOSTS=['nginx','127.0.0.1','localhost','$HTTPS_HOST','$HTTP_HOST']
+      - SECRET_KEY=${SECRET_KEY}
+      # data
+      ## -- comment to disable postgis ingestion of uploaded shapefiles
+      - DEFAULT_BACKEND_UPLOADER=geonode.importer
+      - DEFAULT_BACKEND_DATASTORE=datastore
+      # database info, ${variables} are read from .env
+      - POSTGRES_PASSWORD=postgres
+      - GEONODE_DATABASE=${GEONODE_DATABASE}
+      - GEONODE_DATABASE_PASSWORD=postgres
+      - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
+      - GEONODE_GEODATABASE_PASSWORD=postgres
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/${GEONODE_DATABASE}
+      - GEODATABASE_URL=postgis://postgres:postgres@db:5432/${GEONODE_GEODATABASE}
+      # hardcoded
+      - DEBUG=False
+#      - DJANGO_SETTINGS_MODULE=geonode.settings
+      - BROKER_URL=amqp://rabbitmq:5672
+      - STATIC_ROOT=/spcgeonode-static/
+      - MEDIA_ROOT=/spcgeonode-media/
+      - STATIC_URL=/static/
+      - MEDIA_URL=/uploaded/
+      - GEOSERVER_LOCATION=http://nginx/geoserver/
+      - ASYNC_SIGNALS=True
+      - SESSION_EXPIRED_CONTROL_ENABLED=False
+      # TODO : we should probably remove this and set Celery to use JSON serialization instead of pickle
+      - C_FORCE_ROOT=True
+      # We get an exception after migrations on startup (it seems the monitoring app tries to resolve the geoserver domain name after it's migration, which can happen before oauth migrations on which geoserver startup depends...)
+      - MONITORING_ENABLED=False
+    links:
+      - smtp:smtp
+      - db:db
+      - geoserver:geoserver
+      - rabbitmq:rabbitmq
+    volumes:
+      - ../django_project:/home/web/django_project
+      - ./static:/home/web/static:rw
+      - ./media:/home/web/media:rw
+      - ./reports:/home/web/reports
+      - ./logs:/var/log/
+    restart: unless-stopped
+    user: root
+
+  geoserver:
+    image: geonode/spcgeonode:geoserver-3.0
+    environment:
+      - HTTPS_HOST=${HTTPS_HOST}
+      - HTTPS_PORT=${HTTPS_PORT}
+      - HTTP_HOST=${HTTP_HOST}
+      - HTTP_PORT=${HTTP_PORT}
+      - SITEURL=${HTTPS_HOST}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/${GEONODE_DATABASE}
+      - GEODATABASE_URL=postgis://postgres:postgres@db:5432/${GEONODE_GEODATABASE}
+    volumes:
+      - geodatadir:/spcgeonode-geodatadir/
+    depends_on:
+      - db
+    ports:
+    - "8000:8080"
+    restart: unless-stopped
+
+  web:
     image: nginx
     hostname: nginx
     volumes:
-      - ./sites-enabled:/etc/nginx/conf.d:ro
+    - ./sites-enabled:/etc/nginx/conf.d:ro
+    - ./static:/home/web/static:ro
+    - ./media:/home/web/media:ro
+    - ./logs:/var/log/nginx
     links:
-      - mapstore-frontend:frontend
+      - uwsgi:uwsgi
     ports:
-      - "80:8081"
-      - "4430:443"
+    - "80:8080"
     restart: unless-stopped
+
+  # Gets and installs letsencrypt certificates
+  letsencrypt:
+    image: geonode/spcgeonode:letsencrypt-3.0
+    environment:
+      - HTTPS_HOST=${HTTPS_HOST}
+      - HTTP_HOST=${HTTP_HOST}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - LETSENCRYPT_MODE=${LETSENCRYPT_MODE}
+    volumes:
+      - certificates:/spcgeonode-certificates/
+    restart: on-failure
+
+  # dumps the non geodata db
+  pgdumper_nogeo:
+    container_name: dumper_${GEONODE_DATABASE}_${COMPOSE_PROJECT_NAME}
+    image: geonode/spcgeonode:pgdumper-3.0
+    volumes:
+      - pgdumps:/spcgeonode-pgdumps/
+    restart: on-failure
+    environment:
+      - DATABASE=${GEONODE_DATABASE}
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/${GEONODE_DATABASE}
+
+  # dumps the geodata db
+  pgdumper_geo:
+    container_name: dumper_${GEONODE_GEODATABASE}_${COMPOSE_PROJECT_NAME}
+    image: geonode/spcgeonode:pgdumper-3.0
+    volumes:
+      - pgdumps:/spcgeonode-pgdumps/
+    restart: on-failure
+    environment:
+      - DATABASE=${GEONODE_GEODATABASE}
+      # pgdumper needs postgres:// as connection string for the geodatabase
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/${GEONODE_GEODATABASE}
+
+  # Vanilla RabbitMQ service. This is needed by celery
+  rabbitmq:
+    image: rabbitmq:3.7-alpine
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+    restart: on-failure
+
+#  mapstore-frontend:
+#    container_name: igrac-mapstore-frontend
+#    build: docker-mapstore
+#
+#  nginx:
+#    container_name: igrac-mapstore-nginx
+#    image: nginx
+#    hostname: nginx
+#    volumes:
+#      - ./sites-enabled:/etc/nginx/conf.d:ro
+#    links:
+#      - mapstore-frontend:frontend
+#    ports:
+#      - "80:8081"
+#      - "4430:443"
+#    restart: unless-stopped
+
+volumes:
+  static:
+  media:
+  database:
+  geodatadir:
+  certificates:
+  pgdumps:
+  rabbitmq:
