@@ -31,7 +31,7 @@ build:
 	@echo "------------------------------------------------------------------"
 	@echo "Building in production mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) build
+	@docker-compose -p $(PROJECT_ID) build --no-cache
 
 # mapstore-frontend:
 #	@echo
@@ -80,6 +80,27 @@ shell:
 	@echo "Shelling in in production mode"
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) exec uwsgi /bin/bash
+
+db-bash:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Entering DB Bash in production mode"
+	@echo "------------------------------------------------------------------"
+	@docker-compose -p $(PROJECT_ID) exec db sh
+
+db-shell:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Entering PostgreSQL Shell in production mode"
+	@echo "------------------------------------------------------------------"
+	docker-compose -p $(PROJECT_ID) exec db su - postgres -c "psql"
+
+geoserver-shell:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Entering Geoserver Shell in in production mode"
+	@echo "------------------------------------------------------------------"
+	@docker-compose -p $(PROJECT_ID) exec geoserver sh
 
 collectstatic:
 	@echo
