@@ -46,7 +46,7 @@ GRAPPELLI_ADMIN_TITLE = 'IGRAC Admin Page'
 
 INSTALLED_APPS += (
     # AppConfig Hook to fix issue from geonode
-    # 'core.config_hook',
+    'core.config_hook',
     'allauth',
     'allauth.account',
     # 'rolepermissions',
