@@ -25,9 +25,7 @@ from bims.views.documents import document_metadata, BimsDocumentUploadView
 # GeoNode has to be in root url conf.
 # It cannot be included in include() function because it contains i18n urls
 urlpatterns = [
-    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^', include('geonode.urls')),
-    url(r'^', include('igrac.urls')),
 ]
 
 for geonode_pattern in geonode_urlpatterns:

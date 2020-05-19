@@ -37,7 +37,7 @@ PIPELINE = {
                 'css/base.css',
                 'css/default.css'
             },
-            'output_filename': 'css/healthyriver-base.css',
+            'output_filename': 'css/project.css',
             'extra_content': {
                 'media': 'screen, projection',
             }
