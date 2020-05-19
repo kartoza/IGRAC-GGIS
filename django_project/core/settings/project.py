@@ -12,7 +12,6 @@ from .contrib import *  # noqa
 
 # Project apps
 INSTALLED_APPS += (
-    'core',
 )
 
 # Set languages which want to be translated
