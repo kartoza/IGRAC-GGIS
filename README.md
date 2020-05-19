@@ -6,9 +6,10 @@ git clone https://github.com/kartoza/IGRAC-GGIS.git
 cd IGRAC-GGIS/deployment
 make build
 make up
+make collectstatic
 ```
 
-The mapstore frontend will be available at `http://localhost/`
+The web will be available at `http://localhost/`
 
 To stop containers:
 ```
