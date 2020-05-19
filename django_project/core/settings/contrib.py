@@ -67,7 +67,6 @@ if os.environ.get('RAVEN_CONFIG_DSN'):
 
 # workaround to get flatpages picked up in installed apps.
 INSTALLED_APPS += (
-    'django.contrib.flatpages',
     'django.contrib.sites',
 )
 
@@ -75,7 +74,6 @@ INSTALLED_APPS += (
 try:
     TEMPLATES[0]['DIRS'] = [
         absolute_path('core', 'base_templates'),
-        absolute_path('igrac', 'templates'),
     ] + TEMPLATES[0]['DIRS']
 except KeyError:
     TEMPLATES = [
@@ -84,7 +82,6 @@ except KeyError:
             'DIRS': [
                 # project level templates
                 absolute_path('core', 'base_templates'),
-                absolute_path('igrac', 'templates'),
             ],
             'APP_DIRS': True,
             'OPTIONS': {
