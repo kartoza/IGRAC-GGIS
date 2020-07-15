@@ -17,16 +17,23 @@ LOGGING_LOG_SQL = DEBUG
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'gis',
-        'USER': 'docker',
-        'PASSWORD': 'docker',
+        'NAME': 'geonode',
+        'USER': 'geonode',
+        'PASSWORD': 'postgres',
         'HOST': 'db',
         'PORT': 5432,
-        'TEST': {
-            'NAME': 'gis_test'
-        },
-    }
+        'CONN_MAX_AGE': 5,
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'OPTIONS': {'options': '-c search_path=groundwater,public', 'connect_timeout': 5}},
+    'datastore': {
+        'NAME': 'geonode_data',
+        'USER': 'geonode_data',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
+        'CONN_MAX_AGE': 5,
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'OPTIONS': {'options': '-c search_path=groundwater,public', 'connect_timeout': 5}}
 }
 
 CACHES = {

@@ -26,6 +26,17 @@ web:
 	@# We add --no-recreate so that it does not destroy & recreate the db container
 	@docker-compose ${ARGS} up --no-recreate --no-deps -d
 
+dev:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Running in dev mode"
+	@echo "------------------------------------------------------------------"
+	@docker-compose ${ARGS} up -d dev
+	@# Dont confuse this with the dbbackup make command below
+	@# This one runs the postgis-backup cron container
+	@# We add --no-recreate so that it does not destroy & recreate the db container
+	@docker-compose ${ARGS} up --no-recreate --no-deps -d
+
 build:
 	@echo
 	@echo "------------------------------------------------------------------"
@@ -120,6 +131,13 @@ reload:
 	@echo "------------------------------------------------------------------"
 	# no -it flag so we can run over remote shell
 	@docker exec $(PROJECT_ID)_uwsgi_1 uwsgi --reload  /tmp/django.pid
+
+migrate:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Running migrate static in production mode"
+	@echo "------------------------------------------------------------------"
+	@docker-compose exec uwsgi python manage.py migrate
 
 # --------------- help --------------------------------
 

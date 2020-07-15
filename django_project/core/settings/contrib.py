@@ -6,8 +6,7 @@ import ast
 from core.settings.utils import ensure_unique_app_labels
 from .base import *  # noqa
 # Override base settings from geonode
-from geonode.settings import *  # noqa
-from .celery_settings import *  # noqa
+from core.settings.geonode_generic import *  # noqa
 import os
 import raven
 try:
@@ -53,6 +52,22 @@ INSTALLED_APPS += (
     'rest_framework',
     'celery',
     'pipeline',
+
+    # Wagtail
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
+    'wagtail.contrib.modeladmin',
+    'wagtailmenus',
+
 )
 
 if os.environ.get('RAVEN_CONFIG_DSN'):
@@ -75,7 +90,7 @@ try:
     TEMPLATES[0]['DIRS'] = [
         absolute_path('core', 'base_templates'),
     ] + TEMPLATES[0]['DIRS']
-except KeyError:
+except (KeyError, NameError):
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -98,6 +113,15 @@ except KeyError:
         },
     ]
 
+TEMPLATES[0]['OPTIONS']['context_processors'] += [
+    # IGRAC context processor
+    'igrac.context_processors.resource_urls',
+
+    # WAGTAIL
+    'wagtail.contrib.settings.context_processors.settings',
+    'wagtailmenus.context_processors.wagtailmenus',
+]
+
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
@@ -113,6 +137,12 @@ STATICFILES_DIRS = [
 ] + STATICFILES_DIRS
 
 TESTING = sys.argv[1:2] == ['test']
+
+MIDDLEWARE += (
+    # Wagtail middleware
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+)
 # if not TESTING and not on_travis:
     # INSTALLED_APPS += (
     #     'easyaudit',
@@ -257,17 +287,6 @@ LOGGING = {
     },
 }
 
-ASYNC_SIGNALS_GEONODE = ast.literal_eval(os.environ.get(
-        'ASYNC_SIGNALS_GEONODE', 'False'))
-CELERY_TASK_ALWAYS_EAGER = False if ASYNC_SIGNALS_GEONODE else True
-
-if ASYNC_SIGNALS_GEONODE and USE_GEOSERVER:
-    BROKER_URL = 'amqp://guest:guest@%s:5672//' % os.environ['RABBITMQ_HOST']
-    CELERY_BROKER_URL = BROKER_URL
-    CELERY_RESULT_BACKEND = CELERY_BROKER_URL
-    from .geonode_queue_settings import *  # noqa
-    CELERY_TASK_QUEUES += GEONODE_QUEUES
-
 ACCOUNT_APPROVAL_REQUIRED = True
 SOCIALACCOUNT_AUTO_SIGNUP = True
 # ACCOUNT_ADAPTER = ''
@@ -281,3 +300,8 @@ OGC_SERVER['default']['DATASTORE'] = os.environ.get(
 #         'rest_framework.pagination.PageNumberPagination',
 #     'PAGE_SIZE': 100
 # }
+
+# Wagtail Settings
+WAGTAIL_SITE_NAME = 'My Example Site'
+WAGTAILMENUS_SITE_SPECIFIC_TEMPLATE_DIRS = True
+# -- END Settings for Wagtail

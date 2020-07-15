@@ -13,19 +13,16 @@ Including another URLconf
     1. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.decorators import login_required
 from geonode.urls import urlpatterns as geonode_urlpatterns
-from bims.views.documents import document_metadata, BimsDocumentUploadView
 
 
 # GeoNode has to be in root url conf.
 # It cannot be included in include() function because it contains i18n urls
 urlpatterns = [
-    url(r'^', include('geonode.urls')),
+    url(r'^', include('igrac.urls')),
 ]
 
 for geonode_pattern in geonode_urlpatterns:
@@ -38,8 +35,9 @@ for geonode_pattern in geonode_urlpatterns:
 urlpatterns += geonode_urlpatterns
 
 urlpatterns += [
-    url('^admin/', include(admin.site.urls)),
+    url('^admin/', admin.site.urls),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(

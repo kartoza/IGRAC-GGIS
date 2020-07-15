@@ -12,6 +12,7 @@ from .contrib import *  # noqa
 
 # Project apps
 INSTALLED_APPS += (
+    'igrac',
 )
 
 # Set languages which want to be translated
@@ -50,3 +51,13 @@ TEMP_FOLDER = MEDIA_ROOT + '/temp'
 # If it is not used, geometry that saved is just municipals
 # Because of calculating cluster is just for municipals
 USE_GEOMETRY_BOUNDARY = False
+
+# Additional locations of static files
+STATICFILES_DIRS = [
+    absolute_path('igrac', 'static'),
+] + STATICFILES_DIRS
+
+# Additional locations of templates
+TEMPLATES[0]['DIRS'] = [
+    absolute_path('igrac', 'templates')
+] + TEMPLATES[0]['DIRS']

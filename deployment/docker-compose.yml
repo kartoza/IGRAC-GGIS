@@ -15,10 +15,10 @@ services:
     environment:
       - POSTGRES_PASSWORD=postgres
       - GEONODE_DATABASE=${GEONODE_DATABASE}
-      - GEONODE_DATABASE_PASSWORD=postgres
+      - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
       - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
-      - GEONODE_GEODATABASE_PASSWORD=postgres
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/${GEONODE_DATABASE}
+      - GEONODE_GEODATABASE_PASSWORD=${GEONODE_GEODATABASE_PASSWORD}
+      - DATABASE_URL=postgis://postgres:postgres@db:5432/${GEONODE_DATABASE}
       - GEODATABASE_URL=postgis://postgres:postgres@db:5432/${GEONODE_GEODATABASE}
     volumes:
       - database:/var/lib/postgresql/data/
@@ -43,6 +43,7 @@ services:
       - HTTPS_HOST=${HTTPS_HOST}
       - HTTPS_PORT=${HTTPS_PORT}
       - HTTP_HOST=${HTTP_HOST}
+      - ROOT_URLCONF=core.urls
       - HTTP_PORT=${HTTP_PORT}
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
@@ -51,6 +52,7 @@ services:
       - GEOSERVER_ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - REGISTRATION_OPEN=${REGISTRATION_OPEN}
       - TIME_ZONE=${TIME_ZONE}
+      - PYTHONPATH=/home/web/django_project:/spcgeonode
       - ALLOWED_HOSTS=['nginx','127.0.0.1','localhost','$HTTPS_HOST','$HTTP_HOST']
       - SECRET_KEY=${SECRET_KEY}
       # data
@@ -129,6 +131,7 @@ services:
       - GEOSERVER_ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - REGISTRATION_OPEN=${REGISTRATION_OPEN}
       - TIME_ZONE=${TIME_ZONE}
+      - PYTHONPATH=/home/web/django_project:/spcgeonode
       - ALLOWED_HOSTS=['nginx','127.0.0.1','localhost','$HTTPS_HOST','$HTTP_HOST']
       - SECRET_KEY=${SECRET_KEY}
       # data
@@ -138,6 +141,7 @@ services:
       # database info, ${variables} are read from .env
       - POSTGRES_PASSWORD=postgres
       - GEONODE_DATABASE=${GEONODE_DATABASE}
+      - ROOT_URLCONF=core.urls
       - GEONODE_DATABASE_PASSWORD=postgres
       - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
       - GEONODE_GEODATABASE_PASSWORD=postgres
@@ -206,7 +210,7 @@ services:
     links:
       - uwsgi:uwsgi
     ports:
-    - "80:8080"
+    - "61101:8080"
     restart: unless-stopped
 
   # Gets and installs letsencrypt certificates
@@ -250,6 +254,88 @@ services:
     volumes:
       - rabbitmq:/var/lib/rabbitmq
     restart: on-failure
+
+  dev:
+    build:
+      context: docker
+      dockerfile: Dockerfile-dev
+    hostname: dev
+    entrypoint: []
+    environment:
+      - DATABASE_NAME=${GEONODE_DATABASE}
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_HOST=db
+      - DJANGO_SETTINGS_MODULE=core.settings.dev_docker
+      - RABBITMQ_HOST=rabbitmq
+      - APP_NAME=igrac
+      - HTTPS_HOST=${HTTPS_HOST}
+      - HTTPS_PORT=${HTTPS_PORT}
+      - HTTP_HOST=${HTTP_HOST}
+      - HTTP_PORT=${HTTP_PORT}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - GEOSERVER_ADMIN_USER=${ADMIN_USERNAME}
+      - GEOSERVER_ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - REGISTRATION_OPEN=${REGISTRATION_OPEN}
+      - TIME_ZONE=${TIME_ZONE}
+      - ROOT_URLCONF=core.urls
+      - PYTHONPATH=/home/web/django_project:/spcgeonode
+      - ALLOWED_HOSTS=['nginx','127.0.0.1','localhost','$HTTPS_HOST','$HTTP_HOST']
+      - SECRET_KEY=${SECRET_KEY}
+      # data
+      ## -- comment to disable postgis ingestion of uploaded shapefiles
+      - DEFAULT_BACKEND_UPLOADER=geonode.importer
+      - DEFAULT_BACKEND_DATASTORE=datastore
+      # database info, ${variables} are read from .env
+      - POSTGRES_PASSWORD=postgres
+      - GEONODE_DATABASE=${GEONODE_DATABASE}
+      - GEONODE_DATABASE_PASSWORD=postgres
+      - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
+      - GEONODE_GEODATABASE_PASSWORD=postgres
+      # hardcoded
+      - DEBUG=False
+      #      - DJANGO_SETTINGS_MODULE=geonode.settings
+      - BROKER_URL=amqp://rabbitmq:5672
+      - STATIC_ROOT=/spcgeonode-static/
+      - MEDIA_ROOT=/spcgeonode-media/
+      - STATIC_URL=/static/
+      - MEDIA_URL=/uploaded/
+      - ASYNC_SIGNALS=True
+      - SESSION_EXPIRED_CONTROL_ENABLED=False
+      # TODO : we should probably remove this and set Celery to use JSON serialization instead of pickle
+      - C_FORCE_ROOT=True
+      # We get an exception after migrations on startup (it seems the monitoring app tries to resolve the geoserver domain name after it's migration, which can happen before oauth migrations on which geoserver startup depends...)
+      - MONITORING_ENABLED=False
+      - GEOSERVER_LOCATION=http://geoserver:8080/geoserver/
+      - GEOSERVER_PUBLIC_LOCATION=http://$HTTP_HOST/geoserver/
+      - SITEURL=http://$HTTP_HOST/
+    links:
+      - smtp:smtp
+      - db:db
+      - geoserver:geoserver
+      - worker:worker
+    depends_on:
+      - smtp
+      - db
+      - geoserver
+      - worker
+    volumes:
+      - geodatadir:/spcgeonode-geodatadir/
+      - ../django_project:/home/web/django_project
+      - ./static:/home/web/static:rw
+      - ./media:/home/web/media:rw
+      - ./reports:/home/web/reports
+      - ./logs:/var/log/
+    restart: unless-stopped
+    user: root
+    ports:
+      # for django test server
+      - "3002:8080"
+      # for ssh
+      - "3003:22"
+
 
 #  mapstore-frontend:
 #    container_name: igrac-mapstore-frontend
