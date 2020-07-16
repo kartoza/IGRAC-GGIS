@@ -90,7 +90,7 @@ shell:
 	@echo "------------------------------------------------------------------"
 	@echo "Shelling in in production mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) exec uwsgi /bin/bash
+	@docker-compose -p $(PROJECT_ID) exec django /bin/bash
 
 db-bash:
 	@echo
@@ -118,11 +118,11 @@ collectstatic:
 	@echo "------------------------------------------------------------------"
 	@echo "Collecting static in production mode"
 	@echo "------------------------------------------------------------------"
-	#@docker-compose -p $(PROJECT_ID) run uwsgi python manage.py collectstatic --noinput
+	#@docker-compose -p $(PROJECT_ID) run django python manage.py collectstatic --noinput
 	#We need to run collect static in the same context as the running
-	# uwsgi container it seems so I use docker exec here
+	# django container it seems so I use docker exec here
 	# no -it flag so we can run over remote shell
-	@docker exec $(PROJECT_ID)_uwsgi_1 python manage.py collectstatic --noinput
+	@docker exec $(PROJECT_ID)_django_1 python manage.py collectstatic --noinput
 
 reload:
 	@echo
@@ -130,14 +130,14 @@ reload:
 	@echo "Reload django project in production mode"
 	@echo "------------------------------------------------------------------"
 	# no -it flag so we can run over remote shell
-	@docker exec $(PROJECT_ID)_uwsgi_1 uwsgi --reload  /tmp/django.pid
+	@docker exec $(PROJECT_ID)_django_1 django --reload  /tmp/django.pid
 
 migrate:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Running migrate static in production mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose exec uwsgi python manage.py migrate
+	@docker-compose exec django python manage.py migrate
 
 # --------------- help --------------------------------
 

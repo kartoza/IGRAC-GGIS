@@ -1,7 +1,6 @@
 # coding=utf-8
 from geonode.groups.models import Group, GroupProfile
 
-
 STOP_WORDS = (
     'a', 'an', 'and', 'if', 'is', 'the', 'in', 'i', 'you', 'other',
     'this', 'that', 'to',
@@ -24,6 +23,7 @@ def check_slug(queryset, slug):
         new_slug = slug[:num_char] + '-' + str(num)
 
     return new_slug
+
 
 def get_default_filter_by_group(user):
     """

@@ -3,7 +3,7 @@
 
 from django.conf.urls import url
 from django.urls import include
-from igrac.views import HomeView, map_view_with_slug
+from .views import HomeView, map_view_with_slug
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls

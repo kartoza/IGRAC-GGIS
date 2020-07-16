@@ -1,0 +1,3 @@
+[submodule "django_project/gwml2"]
+	path = django_project/gwml2
+	url = https://github.com/kartoza/gwml2.git

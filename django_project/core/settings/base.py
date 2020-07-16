@@ -1,85 +1,101 @@
-# coding=utf-8
-"""
-core.settings.base
-"""
-# Django settings for igrac project.
-
+import copy
+from geonode.settings import *
 from .utils import absolute_path  # noqa
 
-ADMINS = (
-    ('Anita Hapsari', 'anita@kartoza.com'),
-    ('Tim Sutton', 'tim@kartoza.com'),
+INSTALLED_APPS += (
+    'igrac',
+    'gwml2',
+
+    # Wagtail
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
+    'wagtail.contrib.modeladmin',
+    'wagtailmenus',
+    'modelcluster',
 )
 
-MANAGERS = ADMINS
+MIDDLEWARE = (
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
+    'dj_pagination.middleware.PaginationMiddleware',
+    # The setting below makes it possible to serve different languages per
+    # user depending on things like headers in HTTP requests.
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
+    'geonode.base.middleware.MaintenanceMiddleware',
+    'geonode.base.middleware.ReadOnlyMiddleware',  # a Middleware enabling Read Only mode of Geonode
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'Africa/Johannesburg'
-
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
-
-SITE_ID = 1
-
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
-USE_I18N = True
-
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale.
-USE_L10N = True
-
-# If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
-
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/home/web/media'
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://example.com/media/", "http://media.example.com/"
-# MEDIA_URL = '/media/'
-# setting full MEDIA_URL to be able to use it for the feeds
-MEDIA_URL = '/media/'
-
-# URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
-
-# List of finder classes that know how to find static files in
-# various locations.
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # Wagtail moddleware
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
-# import SECRET_KEY into current namespace
-# noinspection PyUnresolvedReferences
-from .secret import SECRET_KEY  # noqa
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+TEMPLATES = [
+    {
+        'NAME': 'GeoNode Project Templates',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(PROJECT_ROOT, "templates")],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'django.contrib.auth.context_processors.auth',
+                'geonode.context_processors.resource_urls',
+                'geonode.geoserver.context_processors.geoserver_urls',
+                'geonode.themes.context_processors.custom_theme',
 
-INSTALLED_APPS = (
-    # Django apps
-    'django.contrib.admin',
-    'django.contrib.admindocs',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.humanize',
-    'django.contrib.sitemaps',
-    'django.contrib.syndication',
-    'django.contrib.staticfiles',
-    'django.contrib.gis',
-)
+                # IGRAC context processor
+                'igrac.context_processors.resource_urls',
 
+                # WAGTAIL
+                'wagtail.contrib.settings.context_processors.settings',
+                'wagtailmenus.context_processors.wagtailmenus',
+            ],
+            'debug': DEBUG,
+        },
+    },
+]
+
+# Additional locations of static files
+STATICFILES_DIRS = [absolute_path('igrac', 'static'), ] + STATICFILES_DIRS
+
+# Additional locations of templates
+TEMPLATES[0]['DIRS'] = [absolute_path('igrac', 'templates')] + TEMPLATES[0]['DIRS']
+
+# Wagtail Settings
+WAGTAIL_SITE_NAME = 'My Example Site'
+WAGTAILMENUS_SITE_SPECIFIC_TEMPLATE_DIRS = True
+# -- END Settings for Wagtail
+
+# gwml2 database conf
+gwml2_database_conf = copy.copy(DATABASES['default'])
+gwml2_database_conf['NAME'] = 'groundwater'
+
+GWML2_DATABASE_CONFIG = 'gwml2'
+DATABASES[GWML2_DATABASE_CONFIG] = gwml2_database_conf
+DATABASE_ROUTERS = ['gwml2.router.GWML2Router']
 ROOT_URLCONF = 'core.urls'
-
-# Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'core.wsgi.application'

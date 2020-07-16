@@ -24,3 +24,6 @@ wagtail==2.9
 wagtailmenus
 pyexcel-xls
 pyexcel-xlsx
+
+git+https://github.com/kartoza/django-mapstore-adapter
+git+https://github.com/kartoza/geonode-mapstore-client.git@develop

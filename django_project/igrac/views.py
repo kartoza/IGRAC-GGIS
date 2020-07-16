@@ -1,6 +1,5 @@
 from django.http import Http404
-from django.views.generic import TemplateView, ListView
-from geonode.maps.models import Map
+from django.views.generic import ListView
 from geonode.maps.views import map_view
 from .models.map_slug import MapSlugMapping
 
