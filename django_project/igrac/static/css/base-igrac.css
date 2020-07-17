@@ -1,0 +1,233 @@
+html {
+	height: 100%;
+}
+body.igrac-home {
+	padding-top: 51px;
+	background: #fff;
+	color: #797979;
+	line-height: 1.3;
+	min-height: 100%;
+}
+.igrac-home #wrap {
+	margin-top: 0;
+	height: 100%;
+	background: #f6f6f6;
+	padding-bottom: 80px !important;
+}
+.igrac-home #wrap a:link, .igrac-home #wrap a:visited {
+	color: #005198;
+	font-style: normal;
+	font-weight: 300;
+	text-decoration: none;
+}
+#content a:link, #content a:visited {
+	font-weight: 700;
+}
+.igrac-home #wrap a:hover, .igrac-home #wrap a:focus {
+	text-decoration: underline;
+}
+#branding {
+	margin: 0;
+	padding-left: 15px;
+	padding-right: 10px;
+	min-width: auto;
+}
+#branding .logo {
+	display: block;
+	height: 50px;
+	line-height: 50px;
+}
+#branding .logo i {
+	color: #005198;
+	font-size: 24px;
+	line-height: 50px;
+}
+#branding .logo:hover i {
+	color: #ff6b0d;
+}
+.navbar-nav > li > a {
+	padding-top: 14px !important;
+	padding-bottom: 14px !important;
+}
+.navbar-nav .search {
+	top: 10px;
+}
+.navbar-nav .search input {
+	color: #005198;
+	border: 1px solid #005198;
+}
+.navbar-nav .search .fa-search {
+	color: #005198;
+}
+.igrac-wagtail #wrap {
+	margin-top: 10px;
+	min-height: 100vh;
+	height: auto;
+}
+.igrac-wagtail #wrap * {
+	list-style-type: disc;
+}
+.banner {
+	position: relative;
+	background-image: url(img/coverfoto.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top center;
+}
+.banner-text {
+	padding: 80px 0 20px 0;
+	color: #fff;
+	font-size: 18px;
+	line-height: 1.4;
+	position: relative;
+	z-index: 20;
+}
+.banner-text h2 {
+	font-size: 36px;
+	margin-bottom: 20px;
+}
+.banner-text a {
+	color: #fff;
+	text-decoration: underline;
+}
+.banner-text a:hover {
+	color: #f18903;
+	text-decoration: underline;
+}
+.banner .background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	background: rgba(39,39,39,0.7);
+	background: linear-gradient(90deg, rgba(39,39,39,0.87) 0%, rgba(39,39,39,0.66) 42%, rgba(39,39,39,0) 100%);
+}
+.banner .cta {
+	position: relative;
+	z-index: 20;
+	margin-bottom: 90px;
+}
+.banner .cta .justify {
+	display: flex;
+	justify-content: space-between;
+}
+.btn {
+	font-weight: 300 !important;
+	padding: 10px 20px;
+	color: #005198;
+	border: 1px solid #005198;
+	border-radius: 0;
+	transition: 0.25s;
+}
+.btn.btn-orange {
+	color: #fff;
+	border: 1px solid #ff6b0d;
+	background: #ff6b0d;
+}
+.btn.btn-orange:hover, .btn.btn-orange:focus {
+	color: #ff6b0d;
+	box-shadow: inset 12em 0 0 0 #fff;
+}
+.btn.btn-blue {
+	color: #fff;
+	border: 1px solid #005198;
+	background: #005198;
+}
+.btn.btn-blue:hover, .btn.btn-blue:focus {
+	color: #005198;
+	box-shadow: inset 12em 0 0 0 #fff;
+}
+.btn.btn-white {
+	color: #fff;
+	border-color: #fff;
+}
+.btn.btn-white:hover, .btn.btn-white:focus {
+	color: #005198;
+	box-shadow: inset 12em 0 0 0 #fff;
+}
+.btn.btn-grey {
+	color: lightgrey;
+	border: 1px solid lightgrey;
+	background: transparent;
+}
+.btn.btn-grey:hover, .btn.btn-grey:focus {
+	color: grey;
+	box-shadow: inset 12em 0 0 0 #fff;
+	text-decoration: none !important;
+}
+#content h1 {
+	font-size: 30px;
+	font-weight: 700;
+	margin: 70px 0 15px;
+	color: #005198;
+}
+.map-wrapper {
+	margin-top: 0;
+}
+.map-item {
+	display: block;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.map-item-wrappper {
+	display: flex;
+	height: 180px;
+	box-shadow: 0 0 28px -5px rgba(0, 0, 0, 0.24);
+	transition: all 0.2s;
+	background: #fff;
+}
+.viewer-thumb {
+	width: 45%;
+	overflow: hidden;
+}
+.viewer-thumb img {
+	min-height: 180px;
+	min-width: 100%;
+	width: auto;
+	height: auto;
+	object-fit: cover;
+	filter: grayscale(100%);
+	opacity: 0.5;
+}
+.viewer-desc {
+	width: 55%;
+	padding: 17px;
+}
+.viewer-title {
+	font-weight: bold;
+	margin-bottom: 8px;
+    color: #24619d
+}
+.tooltip-inner {
+	color: #fff;
+	background-color: #797979;
+}
+.tooltip.top .tooltip-arrow {
+	border-top-color: #797979;
+}
+.map-item-wrappper .map-abstract {
+	font-size: smaller;
+	color: #797979;
+}
+.igrac-home #wrap .map-item-wrappper:hover {
+	text-decoration: none;
+	 box-shadow: 0 0 36px -2px rgba(0, 0, 0, 0.30);
+}
+.map-item-wrappper img {
+	max-width: 100%;
+}
+.igrac-home #wrap .map-item-wrappper:hover img {
+	filter: grayscale(0%);
+	opacity: 1;
+}
+.map-item:hover {
+	transform: translate(3px, -3px);
+	transition-duration: 0.2s;
+}
+
+.open-banner {
+	float: right;
+	margin-top: -10px !important;
+	display: none;
+}

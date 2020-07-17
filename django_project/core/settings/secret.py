@@ -1,4 +1,1 @@
-SECRET_KEY = 'qibmwv%7l=%edox!tnod*gdp#%wqwf&!u9!o%1i@b+&0zzx&_d'
-RECAPTCHA_SITE_KEY = '6LfuEF0UAAAAAPfKni-Wm7i95P3pxHMPINfGW64a'
-BING_MAP_KEY = 'AkgNFJR-X5y5PQAuFebJ0Vme7QVH69AR4333gPTjX2tzhXBPGuyEsXDHox8Bazvy'
-MAP_TILER_KEY = 'YIjY7rAacvW6PLxNyprU'
+SECRET_KEY = '#vdoy$8tv)5k06)o(+@hyjbvhw^4$q=ub0whn*@k*1s9wwnv9i'

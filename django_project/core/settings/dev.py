@@ -1,23 +1,28 @@
-from .project import *  # noqa
+from .base import *  # noqa
 
-# Set debug to True for development
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-LOGGING_OUTPUT_ENABLED = DEBUG
-LOGGING_LOG_SQL = DEBUG
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-# Disable caching while in development
-CACHES = {
+DATABASES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-    }
+        'NAME': 'geonode',
+        'USER': 'geonode',
+        'PASSWORD': 'geonode',
+        'HOST': 'postgres',
+        'PORT': 5432,
+        'CONN_MAX_AGE': 5,
+        'ENGINE': 'django.contrib.gis.db.backends.postgis'},
+    'datastore': {
+        'NAME': 'geonode_data',
+        'USER': 'geonode_data',
+        'PASSWORD': 'geonode',
+        'HOST': 'postgres',
+        'PORT': 5432,
+        'CONN_MAX_AGE': 5,
+        'ENGINE': 'django.contrib.gis.db.backends.postgis'},
+    'gwml2': {
+        'NAME': 'groundwater',
+        'USER': 'geonode',
+        'PASSWORD': 'geonode',
+        'HOST': 'postgres',
+        'PORT': 5432,
+        'CONN_MAX_AGE': 5,
+        'ENGINE': 'django.contrib.gis.db.backends.postgis'}
 }
-
-# Make sure static files storage is set to default
-STATIC_FILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-
-PIPELINE['PIPELINE_ENABLED'] = False
-
-PROXY_ALLOWED_HOSTS = ('*', )

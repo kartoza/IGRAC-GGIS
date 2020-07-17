@@ -18,3 +18,12 @@ django-grappelli==2.14.2
 djangorestframework==3.9.1
 djangorestframework-gis==0.13
 service_identity
+
+# igrac
+wagtail==2.9
+wagtailmenus
+pyexcel-xls
+pyexcel-xlsx
+
+git+https://github.com/kartoza/django-mapstore-adapter
+git+https://github.com/kartoza/geonode-mapstore-client.git@develop

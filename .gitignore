@@ -1,3 +1,8 @@
 *.idea/
 *__pycache__/
 *logs/
+deployment/static/
+deployment/media/
+deployment/volumes/
+celery.log
+django_project/celerybeat-schedule
