@@ -294,7 +294,7 @@
                                 {% endif %}
                                 {% if user.is_authenticated and not READ_ONLY_MODE %}
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{% url "csv_upload_view" %}">{% trans "Upload Well Data" %}</a></li>
+                                    <li><a href="{% url "well_upload_view" %}">{% trans "Upload Well Data" %}</a></li>
                                     <li><a href="{% url "layer_upload" %}">{% trans "Upload Map Layers" %}</a></li>
                                     {% if USE_GEOSERVER and CREATE_LAYER %}
                                         <li><a href="{% url "layer_create" %}">{% trans "Create Map Layer" %}</a></li>
