@@ -99,3 +99,7 @@ GWML2_DATABASE_CONFIG = 'gwml2'
 DATABASES[GWML2_DATABASE_CONFIG] = gwml2_database_conf
 DATABASE_ROUTERS = ['gwml2.router.GWML2Router']
 ROOT_URLCONF = 'core.urls'
+
+LOCALE_PATHS += (
+    os.path.join(PROJECT_ROOT, 'igrac', 'locale'),
+)
