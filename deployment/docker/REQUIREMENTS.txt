@@ -27,3 +27,4 @@ pyexcel-xlsx
 
 git+https://github.com/kartoza/django-mapstore-adapter
 git+https://github.com/kartoza/geonode-mapstore-client.git@develop
+django-crispy-forms==1.8.1

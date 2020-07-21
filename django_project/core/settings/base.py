@@ -21,6 +21,7 @@ INSTALLED_APPS += (
     'wagtail.contrib.modeladmin',
     'wagtailmenus',
     'modelcluster',
+    'crispy_forms',
 )
 
 MIDDLEWARE = (
