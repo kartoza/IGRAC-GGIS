@@ -21,6 +21,7 @@ INSTALLED_APPS += (
     'wagtail.contrib.modeladmin',
     'wagtailmenus',
     'modelcluster',
+    'preferences'
 )
 
 MIDDLEWARE = (
@@ -74,6 +75,9 @@ TEMPLATES = [
                 # WAGTAIL
                 'wagtail.contrib.settings.context_processors.settings',
                 'wagtailmenus.context_processors.wagtailmenus',
+
+                # Preferences
+                'preferences.context_processors.preferences_cp',
             ],
             'debug': DEBUG,
         },
