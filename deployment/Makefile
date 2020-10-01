@@ -43,6 +43,13 @@ build:
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) build
 
+dev-shell:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Shelling in in dev mode"
+	@echo "------------------------------------------------------------------"
+	@docker-compose -p $(PROJECT_ID) exec dev /bin/bash
+
 # mapstore-frontend:
 #	@echo
 #	@echo "------------------------------------------------------------------"

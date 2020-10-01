@@ -264,6 +264,9 @@
         }
     </script>
 
+{% block additional_head %}
+{% endblock %}
+
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
@@ -340,6 +343,12 @@
                                         <li><a href="{% url "group_create" %}">{% trans "Create Group" %}</a></li>
                                     {% endif %}
                                 </ul>
+                            </li>
+                        {% endif %}
+                        {% if preferences.SitePreference.manual_page_link %}
+                            <li class="nav-item active">
+                                <a class="nav-link"
+                                   href="{{ preferences.SitePreference.manual_page_link }}">Docs</a>
                             </li>
                         {% endif %}
                         {% main_menu %}
@@ -498,7 +507,7 @@
     </div>
 {% endblock %}
 
-
+{% block additional_footer %}{% endblock %}
 
 <!-- Modal must stay outside the navbar -->
 {% if not user.is_authenticated %}
