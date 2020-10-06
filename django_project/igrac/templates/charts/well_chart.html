@@ -1,11 +1,11 @@
 {% load staticfiles %}
 <link href="{% static 'css/apexcharts/apexcharts.css' %}" rel="stylesheet">
 <style>
-    .chart-row:before {
+    .well-chart-row:before {
         display: table;
     }
 
-    .chart-row {
+    .well-chart-row {
         padding-top: 10px;
         min-height: 600px;
         padding-bottom: 25px;
@@ -71,7 +71,7 @@
 </style>
 
 
-<div class="chart-row">
+<div class="well-chart-row">
     <div class="column-25 height-100">
         <div class="charts-header">
             <h3>Well Chart</h3>
@@ -121,23 +121,34 @@
         <div class="title">
             <h4>Stratigraphy</h4>
             <table>
-            <tr>
-                <td width="30%">Top depth</td>
-                <td><%= stratigraphy.top %></td>
-            </tr>
-            <tr>
-                <td>Bottom depth</td>
-                <td><%= stratigraphy.bottom %></td>
-            </tr>
-            <tr>
-                <td>Material</td>
-                <td><%= stratigraphy.data.material %></td>
-            </tr>
-            <tr>
-                <td>Stratigraphy Unit</td>
-                <td><%= stratigraphy.data.unit %></td>
-            </tr>
-        </table>
+                <tr>
+                    <td width="30%">Top depth</td>
+                    <td><%= stratigraphy.top %></td>
+                </tr>
+                <tr>
+                    <td>Bottom depth</td>
+                    <td><%= stratigraphy.bottom %></td>
+                </tr>
+                <% if (stratigraphy.data) { %>
+                <tr>
+                    <td>Material</td>
+                    <td><%= stratigraphy.data.material %></td>
+                </tr>
+                <tr>
+                    <td>Stratigraphy Unit</td>
+                    <td><%= stratigraphy.data.unit %></td>
+                </tr>
+                <% } else { %>
+                <tr>
+                    <td>Material</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Stratigraphy Unit</td>
+                    <td></td>
+                </tr>
+                <% } %>
+            </table>
         </div>
     </div>
     <div class="table-description">
@@ -154,75 +165,83 @@
 <script>
 
     $(function () {
+        // Get chart data
+        let stratigraphicLogData = $('#stratigraphic_log_table tr:has(td)').map(function(i, v) {
+            let $td = $('td', this);
+            return {
+                id: parseInt(`${$td.eq(0).find('[name^="id_"]').val()}`),
+                top: parseFloat(`${$td.eq(1).find('[name^="top_depth_value"]').val()}`),
+                bottom: parseFloat(`${$td.eq(2).find('[name^="bottom_depth_value"]').val()}`),
+                data: {
+                    material: `${$td.eq(3).find('[name^="material"]').val()}`,
+                    unit: `${$td.eq(4).find('[name^="stratigraphic_unit"]').val()}`,
+                }
+            }
+        }).get();
+
+        let casingData = $('#casing_table tr:has(td)').map(function(i, v) {
+            let $td = $('td', this);
+            return {
+                id: parseInt(`${$td.eq(0).find('[name^="id_"]').val()}`),
+                top: parseFloat(`${$td.eq(1).find('[name^="top_depth_value"]').val()}`),
+                bottom: parseFloat(`${$td.eq(2).find('[name^="bottom_depth_value"]').val()}`),
+                diameter: `${$td.eq(3).find('[name^="diameter"]').val()}`,
+                material: `${$td.eq(4).find('[name^="material"]').val()}`,
+                description: `${$td.eq(5).find('[name^="description"]').val()}`,
+            }
+        }).get();
+
+        let screenData = $('#screen_table tr:has(td)').map(function(i, v) {
+            let $td = $('td', this);
+            return {
+                id: parseInt(`${$td.eq(0).find('[name^="id_"]').val()}`),
+                top: parseFloat(`${$td.eq(1).find('[name^="top_depth_value"]').val()}`),
+                bottom: parseFloat(`${$td.eq(2).find('[name^="bottom_depth_value"]').val()}`),
+                diameter: `${$td.eq(3).find('[name^="diameter"]').val()}`,
+                material: `${$td.eq(4).find('[name^="material"]').val()}`,
+                description: `${$td.eq(5).find('[name^="description"]').val()}`,
+            }
+        }).get();
+
+        const constructionData = []
+
+        casingData.forEach((casing, index) => {
+            constructionData.push({
+                'top': casing['top'],
+                'bottom': casing['bottom'],
+                'id': casing['id'],
+                'type': 'Casing',
+                'data': {
+                    'diameter': casing['diameter'],
+                    'material': casing['material'],
+                    'description': casing['description']
+                }
+            })
+        })
+
+        screenData.forEach((screen, index) => {
+            constructionData.push({
+                'top': screen['top'],
+                'bottom': screen['bottom'],
+                'id': screen['id'],
+                'type': 'Screen',
+                'data': {
+                    'diameter': screen['diameter'],
+                    'material': screen['material'],
+                    'description': screen['description']
+                }
+            })
+        })
+
         let chartData = {
-            'stratigraphy': [{
-                'top': 0,
-                'bottom': 10,
-                'id': 1,
-                'data': {
-                    'material': 'clay',
-                    'unit': 'upper devonian'
-                }
-            }, {
-                'top': 10,
-                'bottom': 30,
-                'id': 2,
-                'data': {
-                    'material': 'soil',
-                    'unit': 'lower devonian'
-                }
-            },{
-                'top': 30,
-                'bottom': 40,
-                'id': 3,
-                'data': {
-                    'material': 'soil',
-                    'unit': 'lower devonian'
-                }
-            }],
-            'construction': [{
-                'top': 0,
-                'bottom': 20,
-                'id': 1,
-                'type': 'casing',
-                'data': {
-                    'diameter': '20mm',
-                    'material': 'pvc',
-                    'description': 'lorem ipsum'
-                }
-            }, {
-                'top': 20,
-                'bottom': 25,
-                'id': 2,
-                'type': 'casing 2',
-                'data': {
-                    'diameter': '30mm',
-                    'material': 'pvc 2',
-                    'description': 'lorem ipsum 2'
-                }
-            }, {
-                'top': 25,
-                'bottom': 30,
-                'id': 3,
-                'type': 'casing 3',
-                'data': {
-                    'diameter': '30mm',
-                    'material': 'pvc 2',
-                    'description': 'lorem ipsum 2'
-                }
-            }, {
-                'top': 30,
-                'bottom': 40,
-                'id': 4,
-                'type': 'casing 4',
-                'data': {
-                    'diameter': '30mm',
-                    'material': 'pvc 2',
-                    'description': 'lorem ipsum 2'
-                }
-            }]
+            'stratigraphy': stratigraphicLogData,
+            'construction': constructionData
         }
-        createWellChart(chartData, 'well-chart-container', 'well-table-container');
+        if (stratigraphicLogData.length > 0 || constructionData.length > 0) {
+            createWellChart(chartData, 'well-chart-container', 'well-table-container');
+        } else {
+            $('.well-chart-row').hide();
+        }
     });
 
     /**
@@ -315,9 +334,12 @@
                 }
                 const constructionData = chartData['construction'][config['seriesIndex']];
                 chartData['stratigraphy'].some((stratigraphyData, index) => {
+                    console.log(stratigraphyData, constructionData)
                     if (constructionData['bottom'] <= stratigraphyData['bottom']) {
                         renderTable(tableContainerId, constructionData, stratigraphyData);
                         return true;
+                    } else {
+                        renderTable(tableContainerId, constructionData, {});
                     }
                 })
             });

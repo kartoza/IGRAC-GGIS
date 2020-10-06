@@ -122,9 +122,10 @@ services:
       - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
     volumes:
       - database:/var/lib/postgresql/data/
+      - ./backups:/backups
     restart: on-failure
     ports:
-      - "5432:5432"
+      - "25432:5432"
 
   # Celery worker that executes celery tasks created by Django.
   celery:
@@ -182,6 +183,10 @@ services:
     build:
       context: ./docker/
       dockerfile: Dockerfile-dev
+    depends_on:
+      - geoserver
+      - postgres
+      - celery
     ports:
       # for django test server
       - "3002:8080"
