@@ -203,13 +203,13 @@
             }
         }).get();
 
-        const constructionData = []
+        stratigraphicLogData.sort((a,b) => (a.top > b.top) ? 1 : ((b.top > a.top) ? -1 : 0));
 
+        const constructionData = []
         casingData.forEach((casing, index) => {
             constructionData.push({
                 'top': casing['top'],
                 'bottom': casing['bottom'],
-                'id': casing['id'],
                 'type': 'Casing',
                 'data': {
                     'diameter': casing['diameter'],
@@ -223,7 +223,6 @@
             constructionData.push({
                 'top': screen['top'],
                 'bottom': screen['bottom'],
-                'id': screen['id'],
                 'type': 'Screen',
                 'data': {
                     'diameter': screen['diameter'],
@@ -232,6 +231,8 @@
                 }
             })
         })
+
+        constructionData.sort((a,b) => (a.top > b.top) ? 1 : ((b.top > a.top) ? -1 : 0));
 
         let chartData = {
             'stratigraphy': stratigraphicLogData,
@@ -326,7 +327,7 @@
         renderChart(constructionDataSeries, `#${constructionChartId}`, max,
             {
                 'center': true,
-                'colors': chroma.scale(['#f1aeaa','#F44336']).mode('hcl').colors(6)
+                'colors': chroma.scale(['#fcd76f','#f99036']).mode('hcl').colors(6)
             }, (event, chartContext, config) => {
                 if (!event) {
                     // $(`#${tableContainerId}`).html('');
