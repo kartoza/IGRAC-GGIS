@@ -453,7 +453,7 @@
         const colors = options.hasOwnProperty('colors') ? options['colors'] : ['#F44336', '#E91E63', '#9C27B0'];
         const opacity = options.hasOwnProperty('opacity') ? options['opacity'] : 1;
         const patterns = options.hasOwnProperty('patterns') ? options['patterns'] : 'solid';
-        const pattern_type = options.hasOwnProperty('pattern_type') ? options['pattern_type'] : 'squares';
+        const pattern_type = options.hasOwnProperty('pattern_type') ? options['pattern_type'] : 'horizontalLines';
         let chartOptions = {
             series: chartSeriesData,
             stroke: {
@@ -528,9 +528,9 @@
                 type: patterns,
                 pattern: {
                     style: pattern_type,
-                    width: 4,
-                    height: 4,
-                    strokeWidth: 1,
+                    width: 5,
+                    height: 5,
+                    strokeWidth: 3,
                 },
             },
             legend: {
