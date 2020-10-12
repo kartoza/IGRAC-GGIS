@@ -13,6 +13,7 @@ x-common-django:
     - HTTP_PORT=${HTTP_PORT}
     - ADMIN_USERNAME=${ADMIN_USERNAME}
     - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    - CELERY_TASK_ALWAYS_EAGER=False
     - ADMIN_EMAIL=${ADMIN_EMAIL}
     - GEOSERVER_ADMIN_USER=${ADMIN_USERNAME}
     - GEOSERVER_ADMIN_PASSWORD=${ADMIN_PASSWORD}
@@ -130,7 +131,9 @@ services:
   # Celery worker that executes celery tasks created by Django.
   celery:
     <<: *default-common-django
-    command: 'celery worker --app=geonode.celery_app:app -l debug'
+    command: 'celery worker --app=geonode.celery_app:app -B -l debug'
+    depends_on:
+      - rabbitmq
   # Celery beat that triggers scheduled tasks
 
   celerybeat:
