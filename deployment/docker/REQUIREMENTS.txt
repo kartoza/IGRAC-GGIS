@@ -3,6 +3,7 @@ django-admin-sortable==2.1.8
 django-braces==1.14.0
 django-model-utils==1.4.0
 django-pipeline==1.6.14
+django-preferences==1.0.0
 django-role-permissions==2.2.0
 markdown==2.6.11
 

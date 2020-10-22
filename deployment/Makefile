@@ -31,10 +31,6 @@ dev:
 	@echo "Running in dev mode"
 	@echo "------------------------------------------------------------------"
 	@docker-compose ${ARGS} up -d dev
-	@# Dont confuse this with the dbbackup make command below
-	@# This one runs the postgis-backup cron container
-	@# We add --no-recreate so that it does not destroy & recreate the db container
-	@docker-compose ${ARGS} up --no-recreate --no-deps -d
 
 build:
 	@echo
@@ -42,6 +38,13 @@ build:
 	@echo "Building in production mode"
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) build
+
+dev-shell:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Shelling in in dev mode"
+	@echo "------------------------------------------------------------------"
+	@docker-compose -p $(PROJECT_ID) exec dev /bin/bash
 
 # mapstore-frontend:
 #	@echo

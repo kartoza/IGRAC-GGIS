@@ -6,6 +6,8 @@ INSTALLED_APPS += (
     'igrac',
     'gwml2',
 
+    'adminsortable',
+
     # Wagtail
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -21,6 +23,7 @@ INSTALLED_APPS += (
     'wagtail.contrib.modeladmin',
     'wagtailmenus',
     'modelcluster',
+    'preferences'
 )
 
 MIDDLEWARE = (
@@ -74,6 +77,9 @@ TEMPLATES = [
                 # WAGTAIL
                 'wagtail.contrib.settings.context_processors.settings',
                 'wagtailmenus.context_processors.wagtailmenus',
+
+                # Preferences
+                'preferences.context_processors.preferences_cp',
             ],
             'debug': DEBUG,
         },
@@ -103,3 +109,5 @@ ROOT_URLCONF = 'core.urls'
 LOCALE_PATHS += (
     os.path.join(PROJECT_ROOT, 'igrac', 'locale'),
 )
+
+CSRF_COOKIE_HTTPONLY = False
