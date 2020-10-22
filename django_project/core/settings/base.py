@@ -6,6 +6,8 @@ INSTALLED_APPS += (
     'igrac',
     'gwml2',
 
+    'adminsortable',
+
     # Wagtail
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -107,3 +109,5 @@ ROOT_URLCONF = 'core.urls'
 LOCALE_PATHS += (
     os.path.join(PROJECT_ROOT, 'igrac', 'locale'),
 )
+
+CSRF_COOKIE_HTTPONLY = False
