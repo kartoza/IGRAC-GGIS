@@ -24,6 +24,7 @@ service_identity
 # igrac
 wagtail==2.9
 wagtailmenus
+openpyxl==3.0.5
 pyexcel-xls
 pyexcel-xlsx
 
