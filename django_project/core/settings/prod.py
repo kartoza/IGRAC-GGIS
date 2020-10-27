@@ -24,3 +24,4 @@ EMAIL_SUBJECT_PREFIX = '[IGRAC-GGIS]'
 
 SERVER_EMAIL = os.environ.get('ADMIN_EMAILS', 'admin@kartoza.com')
 DEFAULT_FROM_EMAIL = os.environ.get('ADMIN_EMAILS', 'admin@kartoza.com')
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
