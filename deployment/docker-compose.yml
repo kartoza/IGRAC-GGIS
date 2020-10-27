@@ -33,6 +33,8 @@ x-common-django:
     - DATABASE_URL=postgis://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
     - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
     # hardcoded
+    - CELERY_TASK_ALWAYS_EAGER=False
+    - CELERY_TASK_EAGER_PROPAGATES=False
     - DEBUG=False
     - DJANGO_SETTINGS_MODULE=core.settings.prod
     - BROKER_URL=amqp://rabbitmq:5672
@@ -142,40 +144,40 @@ services:
     <<: *default-common-django
     command: 'celery events --app=geonode.celery_app:app --pidfile="/celeryev.pid" --camera=django_celery_monitor.camera.Camera --frequency=2.0 -l debug'
 
-  # Gets and installs letsencrypt certificates
-  letsencrypt:
-    image: geonode/spcgeonode:letsencrypt-3.0
-    environment:
-      - HTTPS_HOST=${HTTPS_HOST}
-      - HTTP_HOST=${HTTP_HOST}
-      - ADMIN_EMAIL=${ADMIN_EMAIL}
-      - LETSENCRYPT_MODE=${LETSENCRYPT_MODE}
-    volumes:
-      - certificates:/spcgeonode-certificates/
-    restart: on-failure
-
-  # dumps the non geodata db
-  pgdumper_nogeo:
-    container_name: dumper_${GEONODE_DATABASE}_${COMPOSE_PROJECT_NAME}
-    image: geonode/spcgeonode:pgdumper-3.0
-    volumes:
-      - pgdumps:/spcgeonode-pgdumps/
-    restart: on-failure
-    environment:
-      - DATABASE=${GEONODE_DATABASE}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
-
-  # dumps the geodata db
-  pgdumper_geo:
-    container_name: dumper_${GEONODE_GEODATABASE}_${COMPOSE_PROJECT_NAME}
-    image: geonode/spcgeonode:pgdumper-3.0
-    volumes:
-      - pgdumps:/spcgeonode-pgdumps/
-    restart: on-failure
-    environment:
-      - DATABASE=${GEONODE_GEODATABASE}
-      # pgdumper needs postgres:// as connection string for the geodatabase
-      - DATABASE_URL=postgres://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
+  #  # Gets and installs letsencrypt certificates
+  #  letsencrypt:
+  #    image: geonode/spcgeonode:letsencrypt-3.0
+  #    environment:
+  #      - HTTPS_HOST=${HTTPS_HOST}
+  #      - HTTP_HOST=${HTTP_HOST}
+  #      - ADMIN_EMAIL=${ADMIN_EMAIL}
+  #      - LETSENCRYPT_MODE=${LETSENCRYPT_MODE}
+  #    volumes:
+  #      - certificates:/spcgeonode-certificates/
+  #    restart: on-failure
+  #
+  #  # dumps the non geodata db
+  #  pgdumper_nogeo:
+  #    container_name: dumper_${GEONODE_DATABASE}_${COMPOSE_PROJECT_NAME}
+  #    image: geonode/spcgeonode:pgdumper-3.0
+  #    volumes:
+  #      - pgdumps:/spcgeonode-pgdumps/
+  #    restart: on-failure
+  #    environment:
+  #      - DATABASE=${GEONODE_DATABASE}
+  #      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
+  #
+  #  # dumps the geodata db
+  #  pgdumper_geo:
+  #    container_name: dumper_${GEONODE_GEODATABASE}_${COMPOSE_PROJECT_NAME}
+  #    image: geonode/spcgeonode:pgdumper-3.0
+  #    volumes:
+  #      - pgdumps:/spcgeonode-pgdumps/
+  #    restart: on-failure
+  #    environment:
+  #      - DATABASE=${GEONODE_GEODATABASE}
+  #      # pgdumper needs postgres:// as connection string for the geodatabase
+  #      - DATABASE_URL=postgres://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
 
   # django application for development
   dev:
