@@ -7,7 +7,7 @@ from .base import *  # noqa
 USE_X_FORWARDED_HOST = True
 
 # Set debug to false for production
-DEBUG = TEMPLATE_DEBUG = True
+DEBUG = TEMPLATE_DEBUG = False
 
 # See fig.yml file for postfix container definition#
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

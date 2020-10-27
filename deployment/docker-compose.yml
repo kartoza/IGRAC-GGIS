@@ -34,7 +34,7 @@ x-common-django:
     - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
     # hardcoded
     - DEBUG=False
-    - DJANGO_SETTINGS_MODULE=core.settings.base
+    - DJANGO_SETTINGS_MODULE=core.settings.prod
     - BROKER_URL=amqp://rabbitmq:5672
     - STATIC_ROOT=/home/web/static/
     - MEDIA_ROOT=/home/web/media/
