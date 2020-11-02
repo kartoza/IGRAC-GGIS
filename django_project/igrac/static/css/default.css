@@ -220,3 +220,25 @@ body {
 .branding a {
 	background: none !important;
 }
+
+
+/* updated dropdown */
+.dropdown-menu li {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-menu .dropdown-sub-menu {
+    position: absolute;
+    left: 100%;
+    top: -8px;
+
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+	color: white;
+	background: none;
+	border: none;
+	outline: none;
+	outline-offset: 0;
+}

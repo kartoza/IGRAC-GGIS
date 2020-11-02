@@ -264,8 +264,8 @@
         }
     </script>
 
-{% block additional_head %}
-{% endblock %}
+    {% block additional_head %}
+    {% endblock %}
 
 </head>
 
@@ -297,7 +297,6 @@
                                 {% endif %}
                                 {% if user.is_authenticated and not READ_ONLY_MODE %}
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{% url "well_upload_view" %}">{% trans "Upload Well Data" %}</a></li>
                                     <li><a href="{% url "layer_upload" %}">{% trans "Upload Map Layers" %}</a></li>
                                     {% if USE_GEOSERVER and CREATE_LAYER %}
                                         <li><a href="{% url "layer_create" %}">{% trans "Create Map Layer" %}</a></li>
@@ -308,6 +307,21 @@
                                     {% if not READ_ONLY_MODE %}
                                         <li><a href="{% url "register_service" %}">{% trans "Add Remote Service" %}</a></li>
                                     {% endif %}
+                                {% endif %}
+                                {% if user.is_authenticated and not READ_ONLY_MODE %}
+                                    <li role="separator" class="divider"></li>
+                                    {% if user.is_superuser %}
+                                        <li class="dropdown-submenu">
+                                            <a class="btn-submenu" tabindex="-1" href="#">
+                                                {% trans "Upload Well Data" %} <i class="fa fa-angle-right fa-lg pull-right" aria-hidden="true"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-sub-menu">
+                                                <li><a tabindex="-1" href="{% url "well_create" %}">{% trans "Add single well" %}</a></li>
+                                                <li><a tabindex="-1" href="{% url "well_upload_view" %}">{% trans "Batch upload" %}</a></li>
+                                            </ul>
+                                        </li>
+                                    {% endif %}
+                                    <li><a href="{% url "map_view" 2 %}">{% trans "Well and Monitoring Data" %}</a></li>
                                 {% endif %}
                             </ul>
                         </li>
@@ -481,9 +495,9 @@
 
 {% block footer %}
     <div class="footer-wrapper">
-    <div style="position: fixed; padding: 10px">
-        {% flat_menu 'disclaimer-and-license' show_menu_heading=False %}
-    </div>
+        <div style="position: fixed; padding: 10px">
+            {% flat_menu 'disclaimer-and-license' show_menu_heading=False %}
+        </div>
         <center>
             <div class="footer-item">{% trans "Brought to you by" %}&nbsp;</div>
             <a class="footer-item" href="https://www.un-igrac.org/" target="_blank"><img src="/static/img/logo-small.png" width="50" alt="logo" style="vertical-align: bottom"/></a>
@@ -588,6 +602,12 @@
             url: '{% url "autocomplete_base" %}'
         })
         window.autocomplete2.setup()
+
+        $('.dropdown-submenu a.btn-submenu').on("click", function (e) {
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
     })
 
     $('#search').on('submit', (e) => {
