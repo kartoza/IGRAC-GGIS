@@ -22,6 +22,7 @@
 {% load account socialaccount %}
 {% load base_tags %}
 {% load menu_tags %}
+{% load gwml2_menu %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -310,7 +311,8 @@
                                 {% endif %}
                                 {% if user.is_authenticated and not READ_ONLY_MODE %}
                                     <li role="separator" class="divider"></li>
-                                    {% if user.is_superuser %}
+                                    {% allow_to_edit user as allow %}
+                                    {% if allow %}
                                         <li class="dropdown-submenu">
                                             <a class="btn-submenu" tabindex="-1" href="#">
                                                 {% trans "Upload Well Data" %} <i class="fa fa-angle-right fa-lg pull-right" aria-hidden="true"></i>
