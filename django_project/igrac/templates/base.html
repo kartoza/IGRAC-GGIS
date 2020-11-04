@@ -431,6 +431,12 @@
                                     <li><a href="{% url "favorite_list" %}">{% trans "Favorites" %}</a></li>
                                 {% endif %}
                                 <li><a href="{% url "messages_inbox" %}">{% trans "Inbox" %}</a></li>
+
+                                {% is_admin user as allow %}
+                                {% if allow %}
+                                    <li><a href="{% url "organisation_list" %}">{% trans "Organisation" %}</a></li>
+                                {% endif %}
+
                                 {% if user.is_superuser or user.is_staff %}
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{% url "admin:index" %}">{% trans "Admin" %}</a></li>
