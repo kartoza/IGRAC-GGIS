@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
+{% load manual_menu %}
 
 {% block body_class %}{% trans "igrac-home" %}{% endblock %}
 
@@ -97,21 +98,25 @@
             <h1>{% trans "Explore the viewers" %}</h1>
         </div>
         <div class="map-wrapper">
-            <div class="row">
-                {% for map in maps %}
-                    <div class="col-lg-4 map-item">
-                        <a class="map-item-wrappper" href="{% url 'map_view_slug' slug=map.slug %}" data-toggle="tooltip" data-placement="top" title="{{ map.map.title }}">
-                            <div class="viewer-thumb">
-                                <img src="{{ map.map.thumbnail_url }}" />
-                            </div>
-                            <div class="viewer-desc">
-                                <div class="viewer-title"><strong>{{ map.map.title|truncatechars:40 }}</strong></div>
-                                <div class="map-abstract">{{ map.map.abstract|truncatechars:110 }}</div>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
+            {% explore_map maps as ordered_maps %}
+            {% for key, explored_maps in ordered_maps %}
+                <div class="row">
+                    <h2>{{ key }}</h2>
+                    {% for map in explored_maps %}
+                        <div class="col-lg-4 map-item">
+                            <a class="map-item-wrappper" href="{% url 'map_view_slug' slug=map.slug %}" data-toggle="tooltip" data-placement="top" title="{{ map.map.title }}">
+                                <div class="viewer-thumb">
+                                    <img src="{{ map.map.thumbnail_url }}"/>
+                                </div>
+                                <div class="viewer-desc">
+                                    <div class="viewer-title"><strong>{{ map.map.title|truncatechars:40 }}</strong></div>
+                                    <div class="map-abstract">{{ map.map.abstract|truncatechars:110 }}</div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

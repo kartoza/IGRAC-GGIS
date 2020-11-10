@@ -24,3 +24,24 @@ def manual_menu(menu_data, active_slug):
     """Returns side menu for manual page"""
     element = get_list_element(menu_data, active_slug)
     return mark_safe(element)
+
+
+@register.simple_tag(name='explore_map')
+def explore_map(maps):
+    """Returns side menu for map menu"""
+    key_maps = {}
+    for _map in maps:
+        for keyword in _map.map.keyword_csv.split(','):
+            try:
+                key_maps[keyword]
+            except KeyError:
+                key_maps[keyword] = []
+            key_maps[keyword].append(_map)
+    ordered_maps = sorted(key_maps.items())
+    try:
+        if ordered_maps[0][0] == '':
+            del ordered_maps[0]
+            ordered_maps.append(['', key_maps['']])
+    except KeyError:
+        pass
+    return ordered_maps
