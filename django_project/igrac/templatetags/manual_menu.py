@@ -42,6 +42,6 @@ def explore_map(maps):
         if ordered_maps[0][0] == '':
             del ordered_maps[0]
             ordered_maps.append(['', key_maps['']])
-    except KeyError:
+    except (KeyError, IndexError):
         pass
     return ordered_maps
