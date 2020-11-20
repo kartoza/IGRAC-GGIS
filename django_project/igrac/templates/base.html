@@ -311,6 +311,7 @@
                                 {% endif %}
                                 {% if user.is_authenticated and not READ_ONLY_MODE %}
                                     <li role="separator" class="divider"></li>
+                                    <li><a href="{% url "map_view" 2 %}">{% trans "Well and Monitoring Data" %}</a></li>
                                     {% allow_to_edit user as allow %}
                                     {% if allow %}
                                         <li class="dropdown-submenu">
@@ -323,7 +324,6 @@
                                             </ul>
                                         </li>
                                     {% endif %}
-                                    <li><a href="{% url "map_view" 2 %}">{% trans "Well and Monitoring Data" %}</a></li>
                                 {% endif %}
                             </ul>
                         </li>
