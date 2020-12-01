@@ -1,7 +1,14 @@
 from geonode.urls import *
+from core.api.layer import LayerAttributeAPI
 
+geonode_additional_api = [
+    url(r'^layer/(?P<id>\d+)/attributes',
+        view=LayerAttributeAPI.as_view(),
+        name='geonode_layer_attribute'),
+]
 urlpatterns = [
                   url(r'^', include('igrac.urls')),
+                  url(r'^api/', include(geonode_additional_api)),
               ] + urlpatterns
 
 if settings.DEBUG:
