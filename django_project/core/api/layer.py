@@ -11,9 +11,9 @@ class LayerAttributeAPI(APIView):
     Return status of the upload session
     """
 
-    def get(self, request, id, *args):
+    def get(self, request, alternate, *args):
         try:
-            layer = Layer.objects.get(id=id)
+            layer = Layer.objects.get(alternate=alternate)
             return Response(AttributeSerializer(layer.attribute_set.all(), many=True).data)
         except Layer.DoesNotExist:
             return Http404('Layer not found')

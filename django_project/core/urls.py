@@ -2,7 +2,7 @@ from geonode.urls import *
 from core.api.layer import LayerAttributeAPI
 
 geonode_additional_api = [
-    url(r'^layer/(?P<id>\d+)/attributes',
+    url(r'^layer/(?P<alternate>[\w\+%_&: ]+)/attributes',
         view=LayerAttributeAPI.as_view(),
         name='geonode_layer_attribute'),
 ]
