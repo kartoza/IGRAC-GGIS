@@ -5,6 +5,7 @@ django-model-utils==1.4.0
 django-pipeline==1.6.14
 django-preferences==1.0.0
 django-role-permissions==2.2.0
+django-uuid-upload-path==1.0.0
 markdown==2.6.11
 
 raven==6.10.0
