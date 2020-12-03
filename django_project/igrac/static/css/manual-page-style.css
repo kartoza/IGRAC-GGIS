@@ -1,3 +1,21 @@
+html,
+body {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+body {
+    padding-top: 0;
+    width: 100%;
+}
+
+#wrap {
+    padding-top: 50px;
+    padding-bottom: 35px;
+    height: 100%;
+    margin-top: 0 !important;
+}
+
 .menu-container {
     display: none;
 }
@@ -97,12 +115,6 @@
     -webkit-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.23);
     -moz-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.23);
     box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.23);
-}
-
-#wrap {
-    padding-top: 0 !important;
-    margin-top: -8px !important;
-    height: 91vh;
 }
 
 .manual-content {
