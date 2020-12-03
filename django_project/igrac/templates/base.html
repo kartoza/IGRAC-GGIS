@@ -367,7 +367,11 @@
                                    href="{{ preferences.SitePreference.manual_page_link }}">Docs</a>
                             </li>
                         {% endif %}
-                        {% main_menu %}
+{#                        {% main_menu %}#}
+                        <li class="nav-item active">
+                            <a class="nav-link"
+                               href="https://staging.igrac.kartoza.com/pages/disclaimer-and-license/">Disclaimer and License</a>
+                        </li>
                         {% block extra_tab %}
 
                         {% endblock %}
