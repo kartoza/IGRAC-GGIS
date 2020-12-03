@@ -16,4 +16,4 @@ class LayerAttributeAPI(APIView):
             layer = Layer.objects.get(alternate=alternate)
             return Response(AttributeSerializer(layer.attribute_set.all(), many=True).data)
         except Layer.DoesNotExist:
-            return Http404('Layer not found')
+            raise Http404('Layer not found')
