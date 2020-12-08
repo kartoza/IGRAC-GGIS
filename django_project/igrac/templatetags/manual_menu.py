@@ -31,6 +31,10 @@ def explore_map(maps):
     """Returns side menu for map menu"""
     key_maps = {}
     for _map in maps:
+        # skip if not featured
+        if not _map.map.featured:
+            continue
+
         for keyword in _map.map.keyword_csv.split(','):
             try:
                 key_maps[keyword]
