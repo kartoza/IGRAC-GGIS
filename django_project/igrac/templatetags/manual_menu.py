@@ -35,6 +35,11 @@ def explore_map(maps):
         if not _map.map.featured:
             continue
 
+        # replace thumbnail_url with curated_thumbs
+        if hasattr(_map.map, 'curatedthumbnail'):
+            if hasattr(_map.map.curatedthumbnail.img_thumbnail, 'url'):
+                _map.map.thumbnail_url = _map.map.curatedthumbnail.thumbnail_url
+
         for keyword in _map.map.keyword_csv.split(','):
             try:
                 key_maps[keyword]
