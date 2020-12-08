@@ -136,15 +136,6 @@ body.igrac-home {
     justify-content: space-between;
 }
 
-.btn {
-    font-weight: 300 !important;
-    padding: 10px 20px;
-    color: #005198;
-    border: 1px solid #005198;
-    border-radius: 0;
-    transition: 0.25s;
-}
-
 .btn.btn-orange {
     color: #fff;
     border: 1px solid #ff6b0d;
@@ -328,8 +319,7 @@ body.igrac-home {
 
 @media (max-width: 768px) {
     .navbar-header {
-    [ padding-left: 15 px;
+        padding-left: 15px;
         padding-right: 15px;
-    ]
     }
 }

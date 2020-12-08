@@ -57,6 +57,7 @@
 
         <link href="{% static "geonode/css/base.css" %}" rel="stylesheet"/>
         <link href="{% static "css/default.css" %}" rel="stylesheet"/>
+        <link href="{% static "css/base-igrac.css" %}" rel="stylesheet"/>
 
         <link rel='stylesheet' id='cookie-law-info-css' href="{% static "geonode/css/cookie-law-info/cookie-law-info-public.css" %}" type='text/css' media='all'/>
         <link rel='stylesheet' id='cookie-law-info-gdpr-css' href="{% static "geonode/css/cookie-law-info/cookie-law-info-gdpr.css" %}" type='text/css' media='all'/>
@@ -367,7 +368,7 @@
                                    href="{{ preferences.SitePreference.manual_page_link }}">Docs</a>
                             </li>
                         {% endif %}
-{#                        {% main_menu %}#}
+                        {#                        {% main_menu %}#}
                         <li class="nav-item active">
                             <a class="nav-link"
                                href="https://staging.igrac.kartoza.com/pages/disclaimer-and-license/">Disclaimer and License</a>
