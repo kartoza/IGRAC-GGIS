@@ -8,6 +8,13 @@ RUN apt-get update -y && apt-get -y --allow-downgrades --allow-remove-essential 
 RUN pip uninstall -y django-geonode-client
 RUN pip uninstall -y django-geonode-mapstore-client
 
+WORKDIR /spcgeonode
+RUN git pull origin 61ccc4818d9f66386954c58934f38c343c83aeae
+# TODO:
+#   this is used by staging
+#   https://github.com/GeoNode/geonode/tree/61ccc4818d9f66386954c58934f38c343c83aeae
+#   we need to bump it to 3.1
+
 ADD REQUIREMENTS.txt /REQUIREMENTS.txt
 RUN pip install -r /REQUIREMENTS.txt
 #

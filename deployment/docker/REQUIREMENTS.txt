@@ -29,7 +29,7 @@ openpyxl==3.0.5
 pyexcel-xls
 pyexcel-xlsx
 
-git+https://github.com/kartoza/django-mapstore-adapter
+django_mapstore_adapter==2.0.5.1
 git+https://github.com/kartoza/geonode-mapstore-client.git@develop
 
 #latest geonode
