@@ -20,15 +20,15 @@
 {% endblock %}
 
 {% block middle %}
-{#    <div class="manual-header">#}
-{#        <h4>#}
-{#            {% if self.get_ancestors|length > 1 %}#}
-{#                <a href="{% pageurl self.get_ancestors.1 %}">{{ self.get_ancestors.1.title }}</a>#}
-{#            {% else %}#}
-{#                {{ page.title }}#}
-{#            {% endif %}#}
-{#        </h4>#}
-{#    </div>#}
+    {#    <div class="manual-header">#}
+    {#        <h4>#}
+    {#            {% if self.get_ancestors|length > 1 %}#}
+    {#                <a href="{% pageurl self.get_ancestors.1 %}">{{ self.get_ancestors.1.title }}</a>#}
+    {#            {% else %}#}
+    {#                {{ page.title }}#}
+    {#            {% endif %}#}
+    {#        </h4>#}
+    {#    </div>#}
     <div class="container-fluid">
         <div class="row manual-row">
             <div class="col-md-10 col-md-push-2 col-xs-12 manual-content">
@@ -58,6 +58,7 @@
             </div>
 
             <div class="col-md-2 col-md-pull-10 col-xs-12 menu-sidebar">
+                <h5> GGIS IGRAC Docs</h5>
                 <div id="jstree1" class="demo">
                     {% manual_menu menu page.slug %}
                 </div>

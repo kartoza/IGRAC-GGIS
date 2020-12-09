@@ -7,6 +7,7 @@ body {
 body {
     padding-top: 0;
     width: 100%;
+    font-family: nimbus-sans, sans-serif;
 }
 
 #wrap {
@@ -25,8 +26,21 @@ body {
     padding-bottom: 5px;
 }
 
+.breadcrumb {
+    padding: 8px 15px;
+    margin-bottom: 22px;
+    font-size: 14px;
+    list-style: none;
+    background-color: #ececec;
+    border-radius: 0;
+}
+
 .manual-title {
     font-size: 2em;
+    font-style: normal;
+    font-weight: 700;
+    color: #24619d;
+    line-height: 1;
 }
 
 .manual-intro {
@@ -40,6 +54,14 @@ body {
     color: white;
     padding-right: 0 !important;
     padding-left: 0 !important;
+}
+
+.menu-sidebar h5 {
+    padding-left: 32px;
+    padding-top: 34px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #17497b;
+    margin: 0;
 }
 
 .jstree .jstree-open > .jstree-children {
@@ -79,6 +101,7 @@ body {
 .jstree-default-large .jstree-anchor {
     line-height: 50px;
     height: 50px;
+    font-size: 14px;
 }
 
 .jstree-default-large > .jstree-no-dots .jstree-closed > .jstree-ocl {
@@ -119,7 +142,8 @@ body {
 
 .manual-content {
     padding: 25px;
-    padding-bottom: 50px;
+    padding-bottom: 70px;
+    padding-left: 35px;
     height: 100%;
     overflow-y: auto !important;
     line-height: 20px;
