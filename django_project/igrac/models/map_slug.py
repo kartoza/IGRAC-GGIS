@@ -6,10 +6,11 @@ from django.dispatch import receiver
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 from geonode.maps.models import Map
+from adminsortable.models import Sortable
 from ..utilities import STOP_WORDS, check_slug
 
 
-class MapSlugMapping(models.Model):
+class MapSlugMapping(Sortable):
     """Model to define slug for each map."""
 
     map = models.ForeignKey(Map, on_delete=models.CASCADE)
@@ -34,6 +35,11 @@ class MapSlugMapping(models.Model):
             self.slug = new_slug
         super(MapSlugMapping, self).save(*args, **kwargs)
 
+    class Meta(Sortable.Meta):
+        pass
+
+    def __str__(self):
+        return self.map.__str__()
 
 @receiver(post_save, sender=Map)
 def create_map_slug(sender, instance, **kwargs):
