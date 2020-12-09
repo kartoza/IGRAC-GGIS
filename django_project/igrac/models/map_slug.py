@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.text import slugify
+from django.utils.translation import ugettext_lazy as _
 from geonode.maps.models import Map
 from ..utilities import STOP_WORDS, check_slug
 
@@ -13,6 +14,8 @@ class MapSlugMapping(models.Model):
 
     map = models.ForeignKey(Map, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True)
+    featured = models.BooleanField(_("Featured"), default=False, help_text=_(
+        'Should this resource be showed in home page?'))
 
     def save(self, *args, **kwargs):
         """Overwrite save method.

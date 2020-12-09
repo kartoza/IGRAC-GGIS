@@ -32,7 +32,7 @@ def explore_map(maps):
     key_maps = {}
     for _map in maps:
         # skip if not featured
-        if not _map.map.featured:
+        if not _map.featured:
             continue
 
         # replace thumbnail_url with curated_thumbs
