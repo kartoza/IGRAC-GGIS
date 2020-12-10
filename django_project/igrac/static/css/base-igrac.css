@@ -55,9 +55,29 @@ body.igrac-home {
     color: #ff6b0d;
 }
 
+
+.nav > li {
+    height: 100%;
+}
+
+.branding {
+    height: 100%;
+}
+
+.branding a {
+    height: 100%;
+    display: block;
+}
+
+.branding a img {
+    height: 100%;
+    padding: 11px 0;
+}
+
 .navbar-nav > li > a {
     padding-top: 14px !important;
     padding-bottom: 14px !important;
+
 }
 
 .navbar-nav .search {
