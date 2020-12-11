@@ -252,12 +252,14 @@ body.igrac-home {
 .viewer-desc {
     width: 55%;
     padding: 17px;
+    font-size: 13px;
 }
 
 .viewer-title {
     font-weight: bold;
     margin-bottom: 8px;
-    color: #24619d
+    color: #24619d;
+    font-size: 13px;
 }
 
 .tooltip-inner {
@@ -270,7 +272,7 @@ body.igrac-home {
 }
 
 .map-item-wrappper .map-abstract {
-    font-size: smaller;
+    font-size: 13px;
     color: #797979;
 }
 
