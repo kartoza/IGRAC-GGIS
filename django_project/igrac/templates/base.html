@@ -310,9 +310,9 @@
                                         <li><a href="{% url "register_service" %}">{% trans "Add Remote Service" %}</a></li>
                                     {% endif %}
                                 {% endif %}
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/view/groundwater-well">{% trans "Well and Monitoring Data" %}</a></li>
                                 {% if user.is_authenticated and not READ_ONLY_MODE %}
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="{% url "map_view" 2 %}">{% trans "Well and Monitoring Data" %}</a></li>
                                     {% allow_to_edit user as allow %}
                                     {% if allow %}
                                         <li class="dropdown-submenu">
