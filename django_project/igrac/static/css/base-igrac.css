@@ -148,7 +148,8 @@ body.igrac-home {
 .banner .cta {
     position: relative;
     z-index: 20;
-    margin-bottom: 90px;
+    margin-top: 40px;
+    margin-bottom: 60px;
 }
 
 .banner .cta .justify {
