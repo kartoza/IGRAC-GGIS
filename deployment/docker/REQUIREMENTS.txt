@@ -36,3 +36,4 @@ git+https://github.com/kartoza/geonode-mapstore-client.git@develop
 django-tinymce==3.1.0
 django-markdownify==0.8.1
 geopy==2.0.0
+geoserver-restconfig==2.0.4.6
