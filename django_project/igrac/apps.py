@@ -6,3 +6,4 @@ class IgracConfig(AppConfig):
 
     def ready(self):
         import igrac.signals
+        import igrac.monkeypatch
