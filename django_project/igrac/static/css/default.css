@@ -257,7 +257,6 @@ body {
 }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-    color: white;
     background: none;
     border: none;
     outline: none;
