@@ -263,6 +263,10 @@ body {
     outline-offset: 0;
 }
 
+#nav_layers .dropdown-menu > li > a:hover, #nav_layers .dropdown-menu > li > a:focus {
+    color: white !important;
+}
+
 .pagination > li:first-child > a, .pagination > li:last-child > a {
     padding-top: 9px;
     padding-bottom: 9px;
