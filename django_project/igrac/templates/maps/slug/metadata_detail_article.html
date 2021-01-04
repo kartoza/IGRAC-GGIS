@@ -324,6 +324,21 @@
 
     </dl>
 
+    {% if documents %}
+        <span class="subtitle">{% trans "Documents" %}</span>
+        <div class="sep_title">
+            <hr>
+        </div>
+        <dl class="dl-horizontal">
+            <dt>Documents</dt>
+            <dd>
+                {% for document in documents %}
+                    <a href="{{ document.get_absolute_url }}">{{ document.name }}&nbsp;</a>
+                {% endfor %}
+            </dd>
+        </dl>
+    {% endif %}
+
     {% if resource.metadata_author %}
         <span class="subtitle">{% trans "Metadata Author" %}</span>
         <div class="sep_title">
