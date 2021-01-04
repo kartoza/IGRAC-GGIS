@@ -263,7 +263,7 @@ body {
     outline-offset: 0;
 }
 
-#nav_layers .dropdown-menu > li > a:hover, #nav_layers .dropdown-menu > li > a:focus {
+#navbar .dropdown-menu > li > a:hover, #navbar .dropdown-menu > li > a:focus {
     color: white !important;
 }
 
