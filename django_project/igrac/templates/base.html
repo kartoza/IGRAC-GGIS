@@ -316,12 +316,13 @@
                                     {% allow_to_edit user as allow %}
                                     {% if allow %}
                                         <li class="dropdown-submenu">
-                                            <a class="btn-submenu" tabindex="-1" href="#">
-                                                {% trans "Upload Well Data" %} <i class="fa fa-angle-right fa-lg pull-right" aria-hidden="true"></i>
+                                            <a class="btn-submenu" tabindex="-1" href="#" style="position: relative; display: inline-block">
+                                                {% trans "Upload Well and Monitoring Data" %} &nbsp;&nbsp;
+                                                <i class="fa fa-angle-right fa-lg pull-right" aria-hidden="true" style="position: absolute; top: 6px; right: 10px;"></i>
                                             </a>
                                             <ul class="dropdown-menu dropdown-sub-menu">
-                                                <li><a tabindex="-1" href="{% url "well_create" %}">{% trans "Add single well" %}</a></li>
-                                                <li><a tabindex="-1" href="{% url "well_upload_view" %}">{% trans "Batch upload" %}</a></li>
+                                                <li><a tabindex="-1" href="{% url "well_create" %}">{% trans "Add Record" %}</a></li>
+                                                <li><a tabindex="-1" href="{% url "well_upload_view" %}">{% trans "Batch Upload" %}</a></li>
                                             </ul>
                                         </li>
                                     {% endif %}
