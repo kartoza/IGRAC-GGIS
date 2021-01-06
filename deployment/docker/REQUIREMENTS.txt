@@ -5,21 +5,10 @@ django-model-utils==1.4.0
 django-pipeline==1.6.14
 django-preferences==1.0.0
 django-role-permissions==2.2.0
-django-uuid-upload-path==1.0.0
-markdown==2.6.11
 
 raven==6.10.0
 django-sentry==1.13.5
-pytz
-# support special characters
 
-# Django Easy Audit
-# https://github.com/soynatan/django-easy-audit
-# git+https://github.com/soynatan/django-easy-audit.git
-django-grappelli==2.14.2
-
-djangorestframework==3.9.1
-djangorestframework-gis==0.13
 service_identity
 
 # igrac
@@ -29,11 +18,4 @@ openpyxl==3.0.5
 pyexcel-xls
 pyexcel-xlsx
 
-django_mapstore_adapter==2.0.5.1
 git+https://github.com/kartoza/geonode-mapstore-client.git@develop
-
-#latest geonode
-django-tinymce==3.1.0
-django-markdownify==0.8.1
-geopy==2.0.0
-geoserver-restconfig==2.0.4.6

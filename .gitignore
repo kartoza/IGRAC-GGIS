@@ -5,4 +5,5 @@ deployment/static/
 deployment/media/
 deployment/volumes/
 celery.log
+django_project/worker.state
 django_project/celerybeat-schedule
