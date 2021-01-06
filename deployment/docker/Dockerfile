@@ -7,8 +7,8 @@ RUN apt-get update -y && apt-get -y --allow-downgrades --allow-remove-essential 
 
 WORKDIR /spcgeonode
 
-#   https://github.com/GeoNode/geonode/tree/25d184a10ab4e2c687bd5f6234e054385076d3e1
-RUN git pull origin 25d184a10ab4e2c687bd5f6234e054385076d3e1
+#   https://github.com/GeoNode/geonode/tree/07e9c1b69418368d1e3275c64923605de001fb25
+RUN git pull origin 07e9c1b69418368d1e3275c64923605de001fb25
 RUN pip install -r requirements.txt
 
 RUN pip uninstall -y django-geonode-mapstore-client
