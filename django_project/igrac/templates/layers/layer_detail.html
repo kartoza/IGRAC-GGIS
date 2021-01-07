@@ -10,6 +10,7 @@
 {% load client_lib_tags %}
 {% load proxy_lib_tags %}
 {% load layer_tags %}
+{% load custom_geonode_utils %}
 
 {% block title %}{{ resource.title|default:resource.alternate }} — {{ block.super }}{% endblock %}
 
@@ -596,10 +597,12 @@
                   {% if legend.link_type == 'image' and style_name in legend.url %}
                     {# TODO : This is hidden #}
                     {#<p id="legend_sld_title" style="font-size:10px">{{ style.sld_title|default:style.name }}</p>#}
+
+                    {# TODO : remove_localhost is just temporary fix, needs to check why it's still using localhost:8080 #}
                     {% if request.user.is_authenticated and access_token %}
-                        <p><img id="legend_icon" src="{{ legend.url }}&access_token={{access_token}}"></p>
+                        <p><img id="legend_icon" src="{{ legend.url|remove_localhost }}&access_token={{access_token}}"></p>
                     {% else %}
-                        <p><img id="legend_icon" src="{{ legend.url }}"></p>
+                        <p><img id="legend_icon" src="{{ legend.url|remove_localhost }}"></p>
                     {% endif %}
                   {% else %}
                   <div id='legend_placeholder'></div>
