@@ -27,7 +27,7 @@
 
     {% if resource.abstract %}
     <dt>{% trans "Abstract" %}</dt>
-    <dd itemprop="description">{{ resource.abstract|safe|escape|linebreaks|safe|truncatechars:500 }}</dd>
+    <dd itemprop="description">{{ resource.abstract|safe|urlize|escape|linebreaks|safe }}</dd>
     {% endif %}
 
     {% if resource.date %}
