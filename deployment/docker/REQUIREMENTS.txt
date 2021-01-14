@@ -18,4 +18,4 @@ openpyxl==3.0.5
 pyexcel-xls
 pyexcel-xlsx
 
-git+https://github.com/kartoza/geonode-mapstore-client.git@develop
+git+https://github.com/kartoza/geonode-mapstore-client.git@2.0.10
