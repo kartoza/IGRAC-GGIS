@@ -4,7 +4,8 @@ version: '3.4'
 x-common-django:
   &default-common-django
   build:
-    context: docker
+    context: ../
+    dockerfile: deployment/docker/Dockerfile
   environment:
     # editable in .env
     - HTTPS_HOST=${HTTPS_HOST}

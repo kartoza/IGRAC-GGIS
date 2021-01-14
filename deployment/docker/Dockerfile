@@ -14,16 +14,17 @@ RUN pip install -r requirements.txt
 
 RUN pip uninstall -y django-geonode-mapstore-client
 
-ADD REQUIREMENTS.txt /REQUIREMENTS.txt
+ADD deployment/docker/REQUIREMENTS.txt /REQUIREMENTS.txt
 RUN pip install -r /REQUIREMENTS.txt
 #
 #USER www-data
+ADD django_project /home/web/django_project
 WORKDIR /home/web/django_project
 
 # Open port 8080 as we will be running our uwsgi socket on that
 #EXPOSE 8080
 
-ADD entrypoint.sh /entrypoint.sh
-ADD initialize.py /initialize.py
-ADD uwsgi.conf /uwsgi.conf
+ADD deployment/docker/entrypoint.sh /entrypoint.sh
+ADD deployment/docker/initialize.py /initialize.py
+ADD deployment/docker/uwsgi.conf /uwsgi.conf
 CMD ["uwsgi", "--ini", "/uwsgi.conf"]
