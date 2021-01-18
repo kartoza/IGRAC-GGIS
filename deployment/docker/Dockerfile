@@ -27,4 +27,5 @@ WORKDIR /home/web/django_project
 ADD deployment/docker/entrypoint.sh /entrypoint.sh
 ADD deployment/docker/initialize.py /initialize.py
 ADD deployment/docker/uwsgi.conf /uwsgi.conf
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["uwsgi", "--ini", "/uwsgi.conf"]
