@@ -1,0 +1,21 @@
+psycopg2-binary
+django-admin-sortable==2.1.8
+django-braces==1.14.0
+django-model-utils==1.4.0
+django-pipeline==1.6.14
+django-preferences==1.0.0
+django-role-permissions==2.2.0
+
+raven==6.10.0
+django-sentry==1.13.5
+
+service_identity
+
+# igrac
+wagtail==2.9
+wagtailmenus
+openpyxl==3.0.5
+pyexcel-xls
+pyexcel-xlsx
+
+git+https://github.com/kartoza/geonode-mapstore-client.git@2.0.10

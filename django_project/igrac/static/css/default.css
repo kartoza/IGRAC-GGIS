@@ -1,0 +1,277 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    /*margin: 0;*/
+    /*padding: 0;*/
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1.3;
+    background: white;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/****** Main CSS *******/
+body {
+    font-size: 16px;
+    font-family: nimbus-sans, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+#container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #cad2d3;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    /*height: 56px;*/
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+}
+
+#branding {
+    padding-left: 20px;
+    margin: 7px;
+}
+
+#branding .logo {
+    display: inline-block;
+    height: 56px;
+    line-height: 56px;
+    vertical-align: middle;
+}
+
+#branding .logo img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.main-navigation {
+    text-align: center;
+}
+
+.main-navigation li {
+    display: inline-block;
+}
+
+.main-navigation li a {
+    color: #24619d;
+    display: inline-block;
+    height: 56px;
+    line-height: 56px;
+    text-decoration: none;
+    background: #fff;
+    padding: 0 10px;
+}
+
+.main-navigation li a:hover, .nav.navbar-nav.toolbar li a:hover, .nav.navbar-nav.navbar-right li a:hover {
+    color: #fff !important;
+    background: #ff6c0e !important;
+}
+
+.navbar .user {
+    padding-right: 30px;
+}
+
+.navbar .user .action {
+    color: #24619d;
+    font-size: 17px;
+    display: inline-block;
+    height: 56px;
+    line-height: 56px;
+    padding: 0 5px;
+}
+
+.navbar-nav {
+    margin: 0 4px !important;
+}
+
+.navbar-nav > li > a {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+}
+
+.navbar-nav .search {
+    top: 10px;
+}
+
+.navbar-nav .search input:focus {
+    width: 200px !important;
+}
+
+.dropdown-open {
+    display: block;
+}
+
+.navbar-nav .dropdown > .dropdown-menu {
+    margin-left: 15px;
+}
+
+.navbar-nav > .dropdown > .dropdown-menu {
+    margin-left: 0 !important;
+}
+
+#branding, .branding {
+    margin: 0;
+}
+
+#branding .logo, .branding .logo {
+    height: 50px;
+    line-height: 50px;
+}
+
+.footer-wrapper {
+    width: 100%;
+    height: 100%;
+    display: table;
+    text-align: center;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+}
+
+.footer-wrapper .footer-item {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 10pt;
+    padding-right: 5px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.footer-wrapper {
+    background: rgba(255, 255, 255, 0.85);
+    height: 20px;
+    position: fixed;
+    bottom: 0;
+    color: #2c689c;
+}
+
+.branding .logo {
+    padding: 0 !important;
+    background: none !important;
+}
+
+.branding .logo img {
+    vertical-align: middle;
+}
+
+#branding {
+    min-width: 65px;
+}
+
+.nav.navbar-nav.navbar-right li a.logo:hover {
+    background: none !important;
+}
+
+#branding .logo i {
+    color: #24619d;
+    line-height: 47px;
+}
+
+#ms-container {
+    top: 52px !important;
+}
+
+.navbar-nav .search input {
+    border-color: lightgrey !important;
+}
+
+.branding {
+    padding-right: 10px;
+    border-right: 1px solid lightgrey;
+}
+
+.search {
+    margin-left: 10px;
+}
+
+.branding a {
+    background: none !important;
+}
+
+
+/* updated dropdown */
+.dropdown-menu li {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-menu .dropdown-sub-menu {
+    position: absolute;
+    left: 100%;
+    top: -8px;
+
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background: none;
+    border: none;
+    outline: none;
+    outline-offset: 0;
+}
+
+#navbar .dropdown-menu > li > a:hover, #navbar .dropdown-menu > li > a:focus {
+    color: white !important;
+}
+
+.pagination > li:first-child > a, .pagination > li:last-child > a {
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+.pagination > li > a {
+    height: 37px;
+}

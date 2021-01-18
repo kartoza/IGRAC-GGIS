@@ -1,0 +1,150 @@
+html,
+body {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+body {
+    padding-top: 0;
+    width: 100%;
+    font-family: nimbus-sans, sans-serif;
+}
+
+#wrap {
+    padding-top: 50px;
+    padding-bottom: 35px;
+    height: 100%;
+    margin-top: 0 !important;
+}
+
+.menu-container {
+    display: none;
+}
+
+.menu-container li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.breadcrumb {
+    padding: 8px 15px;
+    margin-bottom: 22px;
+    font-size: 14px;
+    list-style: none;
+    background-color: #ececec;
+    border-radius: 0;
+}
+
+.manual-title {
+    font-size: 2em;
+    font-style: normal;
+    font-weight: 700;
+    color: #24619d;
+    line-height: 1;
+}
+
+.manual-intro {
+    padding-top: 5px;
+}
+
+.menu-sidebar {
+    height: 100%;
+    background-color: #24619d;
+    overflow-y: auto;
+    color: white;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.menu-sidebar h5 {
+    padding-left: 32px;
+    padding-top: 34px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #17497b;
+    margin: 0;
+}
+
+.jstree .jstree-open > .jstree-children {
+    background-color: #1b5289;
+}
+
+.container-fluid {
+    height: 100%;
+}
+
+.manual-row {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.jstree-default .jstree-wholerow-clicked {
+    background: #1b5289 !important;
+    background: -webkit-linear-gradient(top, #1b5289 0, #1b5289 100%) !important;
+    background: linear-gradient(to bottom, #1b5289 0, #1b5289 100%) !important;
+}
+
+.jstree-clicked {
+    color: #F48020 !important;
+}
+
+.jstree-default-large .jstree-node {
+    min-height: 50px;
+    line-height: 50px;
+    margin-left: 20px;
+    min-width: 50px;
+}
+
+.jstree-default-large .jstree-wholerow {
+    height: 50px;
+}
+
+.jstree-default-large .jstree-anchor {
+    line-height: 50px;
+    height: 50px;
+    font-size: 14px;
+}
+
+.jstree-default-large > .jstree-no-dots .jstree-closed > .jstree-ocl {
+    background-position: 0 9px;
+}
+
+.jstree-default-large > .jstree-no-dots .jstree-open > .jstree-ocl {
+    background-position: -32px 8px;
+}
+
+.jstree-default .jstree-hovered {
+    background: #1b5289;
+    border-radius: 2px;
+    color: #F48020 !important;
+}
+
+.jstree-default .jstree-wholerow-hovered {
+    background: #1b5289;
+    color: #F48020 !important;
+}
+
+.manual-header {
+    border-bottom: none;
+    margin: 0 !important;
+    padding-left: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    color: #24619d;
+    font-size: 20px;
+    background: #F6F6F6;
+
+    /*shadow*/
+    -webkit-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.23);
+    box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.23);
+}
+
+.manual-content {
+    padding: 25px;
+    padding-bottom: 70px;
+    padding-left: 35px;
+    height: 100%;
+    overflow-y: auto !important;
+    line-height: 20px;
+}

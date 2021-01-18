@@ -1,0 +1,214 @@
+---
+version: '2'
+catalog:
+    name: "SPCGeoNode"
+    version: "v1.0"
+    description: "SPC GeoNode deployment"
+    uuid: spc-geonode-0
+    minimum_rancher_version: 'v1.6'
+
+    questions:
+        - variable: "HTTPS_HOST"
+          label: "Host for HTTPS configuration"
+          description: "Host for HTTPS configuration."
+          default:
+          required: false
+          type: "string"
+
+        - variable: "HTTPS_PORT"
+          label: "Port for HTTPS configuration"
+          description: "Port for HTTPS configuration."
+          default: "443"
+          required: true
+          type: "string"
+
+        - variable: "HTTP_HOST"
+          label: "Host for HTTP configuration"
+          description: "Host for HTTP configuration."
+          default: "94.130.76.38"
+          required: true
+          type: "string"
+
+        - variable: "HTTP_PORT"
+          label: "Port for HTTP configuration"
+          description: "Port for HTTP configuration."
+          default: "80"
+          required: true
+          type: "string"
+
+        - variable: "ADMIN_USERNAME"
+          label: "admin username"
+          description: "Admin username."
+          required: true
+          type: "string"
+          default: "admin"
+
+        - variable: "ADMIN_PASSWORD"
+          label: "admin password"
+          description: "Admin password."
+          required: true
+          type: "string"
+          default: "kartoza_pass"
+
+        - variable: "ADMIN_EMAIL"
+          label: "admin email"
+          description: "Admin email."
+          required: true
+          type: "string"
+          default: "anita@kartoza.com"
+
+        - variable: "POSTGRES_USER"
+          label: "Postgres user"
+          description: "Postgres user for database environment."
+          required: true
+          type: 'string'
+          default: "postgres"
+
+        - variable: "POSTGRES_PASSWORD"
+          label: "PostgreSQL superuser password."
+          description: "PostgreSQL superuser password (to be set if PostgreSQL is exposed)"
+          required: false
+          default: "postgres"
+          type: "string"
+
+        - variable: "GEONODE_DATABASE"
+          label: "Geonode database name."
+          description: "Geonode database name, the standart geonode django database with non-spatial data"
+          required: false
+          type: "string"
+          default: "geonode"
+
+        - variable: "GEONODE_DATABASE_USER"
+          label: "Geonode database user"
+          description: "User for geonode database."
+          required: true
+          type: "string"
+          default: "geonode"
+
+        - variable: "GEONODE_DATABASE_PASSWORD"
+          label: "Geonode database password"
+          description: "Password for geonode database."
+          required: true
+          type: "string"
+          default: "geonode"
+
+        - variable: "GEONODE_GEODATABASE"
+          label: "Geonode django postgis database"
+          description: "The spatial geonode django postgis database for data ingestion."
+          required: true
+          type: "string"
+          default: "geonode_data"
+
+        - variable: "GEONODE_GEODATABASE_USER"
+          label: "Geonode django postgis database user"
+          description: "User for geonode django postgis."
+          required: true
+          type: "string"
+          default: "geonode_data"
+
+        - variable: "GEONODE_GEODATABASE_PASSWORD"
+          label: "Geonode django postgis database password"
+          description: "Password for geonode django postgis."
+          required: true
+          type: "string"
+          default: "geonode"
+
+        - variable: "SECRET_KEY"
+          label: "Django secret key"
+          description: "Django secret key."
+          required: true
+          type: "string"
+          default: "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+        - variable: "LETSENCRYPT_MODE"
+          label: "Letsencrypt mode"
+          description: "Let's Encrypt certificates for https encryption.
+              You must have a domain name as HTTPS_HOST.
+              disabled : we do not get a certificate at all
+              (a placeholder certificate will be used)
+              staging : we get staging certificates (are invalid,
+              but allow to test the process completely and have much higher
+              limit rates)
+              production : we get a normal certificate (default)"
+          required: true
+          type: "string"
+          default: "disabled"
+
+        - variable: "TIME_ZONE"
+          label: "Timezone"
+          description: "Timezone."
+          required: true
+          type: "string"
+          default: "UTC"
+
+        - variable: "REGISTRATION_OPEN"
+          label: "Registration settings."
+          description: "Whether users should be able to create accounts themselves."
+          required: true
+          type: "string"
+          default: "True"
+
+        - variable: "S3_ACCESS_KEY"
+          label: "S3 ACCESS KEY for backup configuration"
+          description: "S3 ACCESS KEY for backup configuration."
+          required: false
+          type: "string"
+          default:
+
+        - variable: "S3_SECRET_KEY"
+          label: "S3 secret key for backup configuration"
+          description: "S3 secret key for backup configuration."
+          required: false
+          type: string
+          default:
+
+        - variable: "S3_REGION"
+          label: "S3 region for backup configuration"
+          description: "S3 region for backup configuration."
+          required: false
+          type: "string"
+          default:
+
+        - variable: "S3_BUCKET"
+          label: "S3 bucket for backup configuration"
+          description: "S3 bucket for backup configuration."
+          required: false
+          type: "string"
+          default:
+services:
+    django:
+        scale: 1
+        start_on_create: true
+    celery:
+        scale: 1
+        start_on_create: true
+    celerybeat:
+        scale: 1
+        start_on_create: true
+    celerycam:
+        scale: 1
+        start_on_create: true
+    nginx:
+        scale: 1
+        start_on_create: true
+    geoserver:
+        scale: 1
+        start_on_create: true
+    letsencrypt:
+        scale: 1
+        start_on_create: true
+    pgdumper-nogeo:
+        scale: 1
+        start_on_create: true
+    pgdumper-geo:
+        scale: 1
+        start_on_create: true
+    rclone:
+        scale: 1
+        start_on_create: true
+    postgres:
+        scale: 1
+        start_on_create: true
+    rabbitmq:
+        scale: 1
+        start_on_create: true
