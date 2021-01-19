@@ -4,17 +4,17 @@ html {
 
 body.igrac-home {
     padding-top: 51px;
-    background: #fff;
+    background: #f6f6f6;
     color: #797979;
     line-height: 1.3;
     min-height: 100%;
 }
 
 .igrac-home #wrap {
-    margin-top: 0 !important;
     height: 100%;
     background: #f6f6f6;
     padding-bottom: 80px !important;
+    position: relative;
 }
 
 .igrac-home #wrap a:link, .igrac-home #wrap a:visited {
