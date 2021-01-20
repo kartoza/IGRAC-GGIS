@@ -28,10 +28,6 @@ body.igrac-home {
     font-weight: 700;
 }
 
-.igrac-home #wrap a:hover, .igrac-home #wrap a:focus {
-    text-decoration: underline;
-}
-
 #branding {
     margin: 0;
     padding-left: 15px;
