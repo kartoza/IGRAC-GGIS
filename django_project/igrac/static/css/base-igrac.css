@@ -274,6 +274,7 @@ body.igrac-home {
 /* width */
 .map-abstract::-webkit-scrollbar {
     width: 5px;
+    height: 5px;
     opacity: 0;
 }
 
@@ -309,11 +310,13 @@ body.igrac-home {
 /* Hide scrollbar for IE, Edge and Firefox */
 .map-abstract {
     -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-height: none; /* Firefox */
     scrollbar-width: none; /* Firefox */
 }
 
 .map-abstract:hover {
     -ms-overflow-style: scrollbar; /* IE and Edge */
+    scrollbar-height: thin; /* Firefox */
     scrollbar-width: thin; /* Firefox */
 }
 
@@ -399,4 +402,8 @@ body.igrac-home {
         padding-left: 15px;
         padding-right: 15px;
     }
+}
+
+.form-actions {
+    margin-bottom: 10px;
 }
