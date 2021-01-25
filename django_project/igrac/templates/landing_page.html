@@ -104,7 +104,7 @@
                             </div>
                             <div class="viewer-desc">
                                 <div class="viewer-title"><strong>{{ map.map.title }}</strong></div>
-                                <div class="map-abstract">{{ map.map.abstract }}</div>
+                                <div class="map-abstract">{{ map.map.abstract|safe|escape|linebreaks|safe }}</div>
                             </div>
                         </a>
                     </div>
