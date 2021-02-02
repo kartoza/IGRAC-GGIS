@@ -1,5 +1,6 @@
 import copy
 from geonode.settings import *
+from wagtail.embeds.oembed_providers import youtube
 from .utils import absolute_path  # noqa
 
 INSTALLED_APPS += (
@@ -95,6 +96,18 @@ TEMPLATES[0]['DIRS'] = [absolute_path('igrac', 'templates')] + TEMPLATES[0]['DIR
 # Wagtail Settings
 WAGTAIL_SITE_NAME = 'My Example Site'
 WAGTAILMENUS_SITE_SPECIFIC_TEMPLATE_DIRS = True
+youtube_https = youtube.copy()
+youtube_https['endpoint'] = "https://www.youtube.com/oembed"
+WAGTAILEMBEDS_FINDERS = [
+    {
+        'class': 'wagtail.embeds.finders.oembed',
+        'providers': [youtube_https],
+        'options': {'scheme': 'https'}
+    },
+    {
+        'class': 'wagtail.embeds.finders.oembed',
+    }
+]
 # -- END Settings for Wagtail
 
 # gwml2 database conf
