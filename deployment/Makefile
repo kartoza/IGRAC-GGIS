@@ -126,6 +126,13 @@ collectstatic:
 	# no -it flag so we can run over remote shell
 	@docker exec $(PROJECT_ID)_django_1 python manage.py collectstatic --noinput
 
+versioning:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Make version for current project"
+	@echo "------------------------------------------------------------------"
+	@cd ../django_project/version; ./commit.sh; ./version.sh
+
 reload:
 	@echo
 	@echo "------------------------------------------------------------------"

@@ -81,6 +81,9 @@ TEMPLATES = [
 
                 # Preferences
                 'preferences.context_processors.preferences_cp',
+
+                # igrac specified
+                'core.middleware.project_version',
             ],
             'debug': DEBUG,
         },
