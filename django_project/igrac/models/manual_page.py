@@ -1,7 +1,7 @@
+from django.urls import reverse
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.core import hooks
 from django.db.models import Q
 
 
@@ -38,17 +38,27 @@ class ManualPage(Page):
                 Q(view_restrictions__restriction_type='login') |
                 # pages restricted by group
                 Q(view_restrictions__restriction_type='groups',
-                    view_restrictions__groups__in=request.user.groups.all())
+                  view_restrictions__groups__in=request.user.groups.all())
             )
         return pages
 
     def get_children_menu(self, page, request):
+        from wagtail.admin.urls.pages import app_name
         menu = []
         for child in self.get_children_with_permission(page, request):
+            if child.live:
+                url = child.url
+            elif request.user.is_superuser:
+                url = reverse(
+                    '{}:edit'.format(app_name),
+                    args=[child.id])
+            else:
+                url = None
             children_data = {
                 'title': child.title,
                 'slug': child.slug,
-                'url': child.url
+                'url': url,
+                'live': child.live
             }
             if child.get_children():
                 children_data['children'] = self.get_children_menu(
