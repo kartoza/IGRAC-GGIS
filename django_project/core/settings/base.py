@@ -99,6 +99,7 @@ TEMPLATES[0]['DIRS'] = [absolute_path('igrac', 'templates')] + TEMPLATES[0]['DIR
 # Wagtail Settings
 WAGTAIL_SITE_NAME = 'My Example Site'
 WAGTAILMENUS_SITE_SPECIFIC_TEMPLATE_DIRS = True
+WAGTAILEMBEDS_RESPONSIVE_HTML = True
 youtube_https = youtube.copy()
 youtube_https['endpoint'] = "https://www.youtube.com/oembed"
 WAGTAILEMBEDS_FINDERS = [
