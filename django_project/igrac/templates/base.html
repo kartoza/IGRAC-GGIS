@@ -442,7 +442,6 @@
                                 {% if user.is_superuser or user.is_staff %}
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{% url "admin:index" %}">{% trans "Admin" %}</a></li>
-                                    <li><a href="/cms/">{% trans "Wagtail Admin" %}</a></li>
                                     {% if 'geonode.geoserver' in INSTALLED_APPS %}
                                         <li><a href="{{ OGC_SERVER.default.WEB_UI_LOCATION }}">GeoServer</a></li>
                                     {% endif %}
@@ -451,6 +450,14 @@
                                         <li><a href="{% url "monitoring:index" %}">{% trans "Monitoring & Analytics" %}</a></li>
                                     {% endif %}
                                 {% endif %}
+
+                                {% if perms.wagtailadmin.access_admin %}
+                                    {% if not user.is_superuser and not user.is_staff %}
+                                        <li role="separator" class="divider"></li>
+                                    {% endif %}
+                                    <li><a href="/cms/">{% trans "Wagtail Admin" %}</a></li>
+                                {% endif %}
+
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{% url "help" %}">{% trans "Help" %}</a></li>
                                 <li role="separator" class="divider"></li>
@@ -505,14 +512,15 @@
 
 {% block footer %}
     <div class="footer-wrapper">
-        <div style="position: fixed; padding: 10px">
-            {% flat_menu 'disclaimer-and-license' show_menu_heading=False %}
-        </div>
+        {% if IGRAC_VERSION %}
+            <div class="footer-item" style="position: absolute; top: 8px; left: 7px;">version <a href="{{ IGRAC_VERSION.url }}">{{ IGRAC_VERSION.name }}</a></div>
+        {% endif %}
         <center>
             <div class="footer-item">{% trans "Brought to you by" %}&nbsp;</div>
             <a class="footer-item" href="https://www.un-igrac.org/" target="_blank"><img src="/static/img/logo-small.png" width="50" alt="logo" style="vertical-align: bottom"/></a>
             <div class="footer-item" style="padding-left: 15px">{% trans "Web site developed by" %}&nbsp;</div>
-            <a class="footer-item" href="https://kartoza.com/" target="_blank"><img src="/static/img/kartoza-icon.png" height="23" alt="kartoza_logo"/></a></center>
+            <a class="footer-item" href="https://kartoza.com/" target="_blank"><img src="/static/img/kartoza-icon.png" height="23" alt="kartoza_logo"/></a>
+        </center>
         {#  form for change language #}
         <form id="lang-form" class="form-inline" action="/i18n/setlang/" method="post"
               style="width: 300px;

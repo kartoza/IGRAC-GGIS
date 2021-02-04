@@ -12,7 +12,7 @@ django-sentry==1.13.5
 service_identity
 
 # igrac
-wagtail==2.9
+wagtail==2.9.3
 wagtailmenus
 openpyxl==3.0.5
 pyexcel-xls

@@ -1,4 +1,6 @@
 from django import template
+from django.utils.html import word_split_re
+from django.template.defaultfilters import stringfilter, urlize
 
 register = template.Library()
 
@@ -9,3 +11,19 @@ def remove_localhost(url):
     if url:
         url = url.replace('http://localhost:8080', '')
     return url
+
+
+@register.filter()
+@stringfilter
+def urlize_that_is_link(string):
+    """no follow url from string"""
+    words = word_split_re.split(str(string))
+    before2 = None
+    before = None
+    for idx, word in enumerate(words):
+        couple_words = "{}{}{}".format(before2, before, word)
+        if ('http://' in word or 'https://' in word) and "href" not in couple_words and '">' not in couple_words:
+            words[idx] = urlize(word)
+        before2 = before
+        before = word
+    return ''.join(words)

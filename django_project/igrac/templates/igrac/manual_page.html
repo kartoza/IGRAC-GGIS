@@ -20,18 +20,10 @@
 {% endblock %}
 
 {% block middle %}
-    {#    <div class="manual-header">#}
-    {#        <h4>#}
-    {#            {% if self.get_ancestors|length > 1 %}#}
-    {#                <a href="{% pageurl self.get_ancestors.1 %}">{{ self.get_ancestors.1.title }}</a>#}
-    {#            {% else %}#}
-    {#                {{ page.title }}#}
-    {#            {% endif %}#}
-    {#        </h4>#}
-    {#    </div>#}
     <div class="container-fluid">
         <div class="row manual-row">
             <div class="col-md-10 col-md-push-2 col-xs-12 manual-content">
+                <!-- Breadcrumb -->
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         {% for ancestor in self.get_ancestors|slice:"1:" %}

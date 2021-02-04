@@ -7,11 +7,13 @@ register = template.Library()
 def get_list_element(list_data, active_slug):
     element = '<ul>'
     for data in list_data:
-        element += '<li {c}><a href="{url}" >{title}</a>'.format(
-            url=data['url'],
-            title=data['title'],
-            c="data-jstree='{\"opened\":true,\"selected\":true}'" if data['slug'] == active_slug else ''
-        )
+        if data['url']:
+            element += '<li {c}><a href="{url}" >{title} {indicator}</a>'.format(
+                url=data['url'],
+                title=data['title'],
+                indicator='(Pending)' if not data['live'] else '',
+                c="data-jstree='{\"opened\":true,\"selected\":true}'" if data['slug'] == active_slug else ''
+            )
         if 'children' in data:
             element += get_list_element(data['children'], active_slug)
         element += '</li>'
