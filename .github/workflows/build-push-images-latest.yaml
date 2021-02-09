@@ -2,9 +2,8 @@ name: latest-build
 on:
   workflow_dispatch:
   push:
-    branches: 
+    branches:
       - develop
-    
 jobs:
   docker-builder:
     runs-on: ubuntu-latest
