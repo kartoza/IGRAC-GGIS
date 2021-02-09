@@ -65,7 +65,8 @@
                 <div class="col-md-7">
                     <div class="banner-text">
                         <h2>{% trans "The Global Groundwater Information System (GGIS)" %}</h2>
-                        <p>{% trans "The GGIS is an interactive portal for sharing data and information on groundwater resources around the world. It gives access to map layers, documents, and well and monitoring data. It also contains several thematic map viewers." %}</p></div>
+                        <p>{% trans "The GGIS is an interactive portal for sharing data and information on groundwater resources around the world. It gives access to map layers, documents, and well and monitoring data. It also contains several thematic map viewers." %}</p>
+                    </div>
                 </div>
             </div>
             <div class="cta">
@@ -98,7 +99,7 @@
             <div class="row">
                 {% for map in ordered_maps %}
                     <div class="col-lg-4 map-item">
-                        <a class="map-item-wrappper" href="{% url 'map_view_slug' slug=map.slug %}" data-toggle="tooltip" data-placement="top" title="{{ map.map.title }}">
+                        <div class="map-item-wrappper" onclick="window.location='{% url 'map_view_slug' slug=map.slug %}'" data-toggle="tooltip" data-placement="top" title="{{ map.map.title }}">
                             <div class="viewer-thumb">
                                 <img src="{{ map.map.thumbnail_url }}"/>
                             </div>
@@ -106,7 +107,7 @@
                                 <div class="viewer-title"><strong>{{ map.map.title }}</strong></div>
                                 <div class="map-abstract">{{ map.map.abstract|safe|escape|linebreaks|safe }}</div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
