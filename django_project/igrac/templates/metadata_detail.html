@@ -1,5 +1,6 @@
 {% extends "geonode_base.html" %}
 {% load i18n %}
+{% load custom_geonode_utils %}
 {% load bootstrap_tags %}
 
 {% block title %}{{ resource.title }} — {{ block.super }}{% endblock %}
@@ -48,7 +49,7 @@
 
         {% if resource.abstract %}
         <dt>{% trans "Abstract" %}</dt>
-        <dd>{{ resource.abstract|safe|escape|urlize|linebreaks|safe }}</dd>
+        <dd>{{ resource.abstract|urlize_that_is_link|safe|escape }}</dd>
         {% endif %}
 
     </dl>

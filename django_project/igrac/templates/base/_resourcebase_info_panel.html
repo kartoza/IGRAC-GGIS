@@ -28,8 +28,7 @@
 
     {% if resource.abstract %}
     <dt>{% trans "Abstract" %}</dt>
-{#    <dd itemprop="description">{{ resource.abstract|safe|escape|linebreaks|safe|remove_nofollow_url|safe }}</dd>#}
-    <dd itemprop="description">{{ resource.abstract|urlize_that_is_link|safe|escape|linebreaks|safe }}</dd>
+    <dd itemprop="description">{{ resource.abstract|urlize_that_is_link|safe|escape }}</dd>
     {% endif %}
 
     {% if resource.date %}
