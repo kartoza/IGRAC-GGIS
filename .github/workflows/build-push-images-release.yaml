@@ -19,6 +19,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.inputs.tags }}
+          submodules: 'true'
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
