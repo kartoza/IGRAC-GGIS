@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load custom_geonode_utils %}
 <div class="page-header">
     {% if resource.class_name == "Document" %}
         <a href="{% url 'document_detail' docid=resource.id %}" class="btn btn-primary pull-right">{% trans "Return to Document" %}</a>
@@ -25,7 +26,7 @@
 
         {% if resource.abstract %}
             <dt>{% trans "Abstract" %}</dt>
-            <dd>{{ resource.abstract|safe|escape|urlize|linebreaks|safe }}</dd>
+            <dd>{{ resource.abstract|urlize_that_is_link|safe|escape }}</dd>
         {% endif %}
 
     </dl>

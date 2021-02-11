@@ -4,12 +4,15 @@ MAINTAINER Anita Hapsari<anita@kartoza.com>
 
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update -y && apt-get -y --allow-downgrades --allow-remove-essential --allow-unauthenticated install yui-compressor rpl mdbtools git
+RUN echo "Activate memcached" && \
+    apt-get update && apt-get install -y memcached && \
+    pip install pylibmc  && pip install sherlock
 
 WORKDIR /spcgeonode
 
-# TODO: based
-#   https://github.com/GeoNode/geonode/tree/d888a6c6b7cfe386e1153d8f3bbee3b5b974d19b
-RUN git pull https://github.com/kartoza/geonode.git upstream-fix
+# TODO: base repo : https://github.com/GeoNode/geonode/commit/4f780ebf2744ada788e4b21782d4e6c53bd60e0f
+# This is geonode : 3.2 stable version
+RUN git pull https://github.com/kartoza/geonode.git geonode.3.2-fix
 RUN pip install -r requirements.txt
 
 RUN pip uninstall -y django-geonode-mapstore-client

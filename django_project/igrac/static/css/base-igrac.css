@@ -229,6 +229,7 @@ body.igrac-home {
     box-shadow: 0 0 28px -5px rgba(0, 0, 0, 0.24);
     transition: all 0.2s;
     background: #fff;
+    cursor: pointer;
 }
 
 .viewer-thumb {
