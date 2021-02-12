@@ -125,6 +125,7 @@ ROOT_URLCONF = 'core.urls'
 
 LOCALE_PATHS += (
     os.path.join(PROJECT_ROOT, 'igrac', 'locale'),
+    os.path.join(PROJECT_ROOT, 'gwml2', 'locale'),
 )
 
 CSRF_COOKIE_HTTPONLY = False

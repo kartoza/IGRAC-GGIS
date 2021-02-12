@@ -247,6 +247,33 @@
     <script>
         var siteUrl = '{{ SITEURL }}'.replace(/\/?$/, '/');
         var staticUrl = '{% static '' %}';
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function delete_cookie(name) {
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
     </script>
 
     <!-- Autocomplete script for input boxes -->
@@ -396,13 +423,13 @@
                                 <div id="search-container" class="autocomplete-input">
                                     {% if HAYSTACK_SEARCH %}
                                         <input autocomplete="off" id="search_input" type="text" placeholder="{% trans 'Search' %}" name="q">
-                                        <input type="hidden" name="abstract__icontains" id="search_abstract_input" placeholder="Search">
-                                        <input type="hidden" name="purpose__icontains" id="search_purpose_input" placeholder="Search">
+                                        <input type="hidden" name="abstract__icontains" id="search_abstract_input" placeholder="{% trans 'Search' %}">
+                                        <input type="hidden" name="purpose__icontains" id="search_purpose_input" placeholder="{% trans 'Search' %}">
                                         <input type="hidden" name="f_method" id="filtering_type" value="or">
                                     {% else %}
-                                        <input autocomplete="off" type="text" name="title__icontains" id="search_input" placeholder="Search">
-                                        <input type="hidden" name="abstract__icontains" id="search_abstract_input" placeholder="Search">
-                                        <input type="hidden" name="purpose__icontains" id="search_purpose_input" placeholder="Search">
+                                        <input autocomplete="off" type="text" name="title__icontains" id="search_input" placeholder="{% trans 'Search' %}">
+                                        <input type="hidden" name="abstract__icontains" id="search_abstract_input" placeholder="{% trans 'Search' %}">
+                                        <input type="hidden" name="purpose__icontains" id="search_purpose_input" placeholder="{% trans 'Search' %}">
                                         <input type="hidden" name="f_method" id="filtering_type" value="or">
                                     {% endif %}
                                 </div>
@@ -513,7 +540,7 @@
 {% block footer %}
     <div class="footer-wrapper">
         {% if IGRAC_VERSION %}
-            <div class="footer-item" style="position: absolute; top: 8px; left: 7px;">version <a href="{{ IGRAC_VERSION.url }}">{{ IGRAC_VERSION.name }}</a></div>
+            <div class="footer-item" style="position: absolute; top: 8px; left: 7px;">{% trans "Version" %} <a href="{{ IGRAC_VERSION.url }}">{{ IGRAC_VERSION.name }}</a></div>
         {% endif %}
         <center>
             <div class="footer-item">{% trans "Brought to you by" %}&nbsp;</div>
