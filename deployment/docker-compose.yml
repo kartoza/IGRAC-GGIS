@@ -80,7 +80,8 @@ services:
     image: nginx
     hostname: nginx
     volumes:
-      - ./sites-enabled:/etc/nginx/conf.d:ro
+      - ./nginx/sites-enabled:/etc/nginx/conf.d:ro
+      - ./nginx/pages:/pages:ro
       - ./volumes/logs:/var/log/nginx
       - ./volumes/static:/home/web/static:ro
       - ./volumes/media:/home/web/media:ro
