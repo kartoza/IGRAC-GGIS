@@ -801,71 +801,73 @@ msgstr "Mapas que están utilizando esta capa"
 
 #: igrac/templates/layers/layer_detail.html:624
 msgid "List of maps using this layer:"
-msgstr ""
+msgstr "Lista de mapas que están utilizando esta capa"
 
 #: igrac/templates/layers/layer_detail.html:630
 msgid "This layer is not currently used in any maps."
-msgstr ""
+msgstr "Esta capa no está siendo usada en ningún mapa."
 
 #: igrac/templates/layers/layer_detail.html:636
 msgid "Create a map using this layer"
-msgstr ""
+msgstr "Crear un mapa usando esta capa"
 
 #: igrac/templates/layers/layer_detail.html:637
 msgid "Click the button below to generate a new map based on this layer."
-msgstr ""
+msgstr "Haga clic en el botón de abajo para generar un nuevo mapa basado en esta capa."
 
 #: igrac/templates/layers/layer_detail.html:638
 msgid "Create a Map"
-msgstr ""
+msgstr "Crear un mapa"
 
 #: igrac/templates/layers/layer_detail.html:643
 msgid "Add the layer to an existing map"
-msgstr ""
+msgstr "Agregar la capa a un mapa existente"
 
 #: igrac/templates/layers/layer_detail.html:651
 msgid "Click the button below to add the layer to the selected map."
-msgstr ""
+msgstr "Haga clic en el botón de abajo para agregar la capa al mapa seleccionado"
 
 #: igrac/templates/layers/layer_detail.html:653
 msgid "Add to Map"
-msgstr ""
+msgstr "Agregar al mapa"
 
 #: igrac/templates/layers/layer_detail.html:660
 msgid "Documents related to this layer"
-msgstr ""
+msgstr "Documentos relacionados con esta capa"
 
 #: igrac/templates/layers/layer_detail.html:661
 msgid "List of documents related to this layer:"
-msgstr ""
+msgstr "Lista de documentos relacionados con esta capa"
 
 #: igrac/templates/layers/layer_detail.html:673
 msgid ""
 "The following styles are associated with this layer. Choose a style to view "
 "it in the preview map."
 msgstr ""
+"Los siguientes estilos están asociados con esta capa. Elija un estilo para verlo " 
+"en el mapa de vista previa."
 
 #: igrac/templates/layers/layer_detail.html:681
 #: igrac/templates/layers/layer_detail.html:695
 msgid "(default style)"
-msgstr ""
+msgstr "(estilo por defecto)"
 
 #: igrac/templates/layers/layer_detail.html:688
 #: igrac/templates/layers/layer_detail.html:702
 msgid "No styles associated with this layer"
-msgstr ""
+msgstr "No hay estilos asociados con esta capa"
 
 #: igrac/templates/layers/layer_detail.html:711
 msgid "External service layer"
-msgstr ""
+msgstr "Capa de servicio externo"
 
 #: igrac/templates/layers/layer_detail.html:712
 msgid "Source"
-msgstr ""
+msgstr "Fuente"
 
 #: igrac/templates/layers/layer_detail.html:722
 msgid "Refresh Attributes and Statistics of this layer"
-msgstr ""
+msgstr "Actualizar atributos y estadísticas de esta capa"
 
 #: igrac/templates/layers/layer_detail.html:723
 msgid ""
@@ -873,6 +875,9 @@ msgid ""
 "Layer Attributes. If the option 'WPS_ENABLED' has been also set on the "
 "backend, it will recalculate their statistics too."
 msgstr ""
+"Haga clic en el botón de abajo para permitir que GeoNode actualice la "
+"lista de Atributos de Capa disponibles. Si la opción 'WPS_ENABLED' se ha configurado "
+"también en el backend, se recalcularán sus estadísticas." 
 
 #: igrac/templates/layers/layer_detail.html:724
 msgid "Refresh Attributes and Statistics"
