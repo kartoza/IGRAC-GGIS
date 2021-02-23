@@ -606,196 +606,198 @@ msgstr "Analizar con"
 #: igrac/templates/layers/layer_detail.html:266
 #: igrac/templates/layers/layer_detail.html:279
 msgid "Download Layer"
-msgstr ""
+msgstr "Descargar layers"
 
 #: igrac/templates/layers/layer_detail.html:269
 msgid "Request Download"
-msgstr ""
+msgstr "Solicitar descarga"
 
 #: igrac/templates/layers/layer_detail.html:285
 msgid "Images"
-msgstr ""
+msgstr "Imagenes"
 
 #: igrac/templates/layers/layer_detail.html:315
 msgid "Click to filter the layer"
-msgstr ""
+msgstr "Click para filtrar la capa"
 
 #: igrac/templates/layers/layer_detail.html:316
 msgid "Do you want to filter it?"
-msgstr ""
+msgstr "¿Desea filtrarla? "
 
 #: igrac/templates/layers/layer_detail.html:319
 msgid "Loading..."
-msgstr ""
+msgstr "Cargando..."
 
 #: igrac/templates/layers/layer_detail.html:323
 msgid "Filter by attributes"
-msgstr ""
+msgstr "Filtrar por atributos"
 
 #: igrac/templates/layers/layer_detail.html:330
 msgid "Match"
-msgstr ""
+msgstr "Armonizar"
 
 #: igrac/templates/layers/layer_detail.html:338
 msgid "all"
-msgstr ""
+msgstr "todo"
 
 #: igrac/templates/layers/layer_detail.html:339
 msgid "any"
-msgstr ""
+msgstr "cualquiera"
 
 #: igrac/templates/layers/layer_detail.html:345
 msgid "of the following:"
-msgstr ""
+msgstr "de los siguientes"
 
 #: igrac/templates/layers/layer_detail.html:352
 msgid "Attribute"
-msgstr ""
+msgstr "Atributos"
 
 #: igrac/templates/layers/layer_detail.html:368
 msgid "Operator"
-msgstr ""
+msgstr "Operador"
 
 #: igrac/templates/layers/layer_detail.html:394
 msgid "Feature limit"
-msgstr ""
+msgstr "Límite de funciones"
 
 #: igrac/templates/layers/layer_detail.html:396
 msgid "Clear"
-msgstr ""
+msgstr "Limpiar"
 
 #: igrac/templates/layers/layer_detail.html:403
 msgid "Pick your download format:"
-msgstr ""
+msgstr "Elija su formato de descarga"
 
 #: igrac/templates/layers/layer_detail.html:412
 msgid ""
 "No data available for this resource. Please contact a system administrator "
 "or a manager."
 msgstr ""
+"No hay datos disponibles para este recurso. Comuníquese con un administrador o gestor "
+"del sistema"
 
 #: igrac/templates/layers/layer_detail.html:412
 msgid "Warning"
-msgstr ""
+msgstr "Advertencia"
 
 #: igrac/templates/layers/layer_detail.html:441
 msgid "Metadata Detail"
-msgstr ""
+msgstr "Detalles de metadatos"
 
 #: igrac/templates/layers/layer_detail.html:448
 msgid "Request change"
-msgstr ""
+msgstr "Solicitar cambio"
 
 #: igrac/templates/layers/layer_detail.html:455
 msgid "Editing Tools"
-msgstr ""
+msgstr "Herramientas de edición"
 
 #: igrac/templates/layers/layer_detail.html:462
 msgid "Edit Layer"
-msgstr ""
+msgstr "Editar capa"
 
 #: igrac/templates/layers/layer_detail.html:469
 #: igrac/templates/metadata_detail.html:35
 msgid "Metadata"
-msgstr ""
+msgstr "Metadatos"
 
 #: igrac/templates/layers/layer_detail.html:470
 msgid "Wizard"
-msgstr ""
+msgstr "Asistente"
 
 #: igrac/templates/layers/layer_detail.html:471
 msgid "Advanced Edit"
-msgstr ""
+msgstr "Edición avanzada"
 
 #: igrac/templates/layers/layer_detail.html:472
 msgid "Upload Metadata"
-msgstr ""
+msgstr "Subir metadatos"
 
 #: igrac/templates/layers/layer_detail.html:480
 #: igrac/templates/layers/layer_detail.html:495
 #: igrac/templates/layers/layer_detail.html:672
 msgid "Styles"
-msgstr ""
+msgstr "Estilos"
 
 #: igrac/templates/layers/layer_detail.html:482
 #: igrac/templates/layers/layer_detail.html:484
 #: igrac/templates/layers/layer_detail.html:496
 msgid "Edit"
-msgstr ""
+msgstr "Edición"
 
 #: igrac/templates/layers/layer_detail.html:486
 #: igrac/templates/layers/layer_detail.html:507
 msgid "Upload"
-msgstr ""
+msgstr "Subir"
 
 #: igrac/templates/layers/layer_detail.html:487
 msgid "Manage"
-msgstr ""
+msgstr "Administrar"
 
 #: igrac/templates/layers/layer_detail.html:503
 msgid "Thumbnail"
-msgstr ""
+msgstr "Miniatura"
 
 #: igrac/templates/layers/layer_detail.html:505
 msgid "Set"
-msgstr ""
+msgstr "Establecer"
 
 #: igrac/templates/layers/layer_detail.html:513
 msgid "Layer"
-msgstr ""
+msgstr "Capa"
 
 #: igrac/templates/layers/layer_detail.html:515
 msgid "Replace"
-msgstr ""
+msgstr "Reemplazar"
 
 #: igrac/templates/layers/layer_detail.html:519
 msgid "Edit data"
-msgstr ""
+msgstr "Editar datos"
 
 #: igrac/templates/layers/layer_detail.html:523
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #: igrac/templates/layers/layer_detail.html:539
 msgid "View Layer"
-msgstr ""
+msgstr "Ver capa"
 
 #: igrac/templates/layers/layer_detail.html:543
 #: igrac/templates/layers/layer_detail.html:551
 msgid "Download Metadata"
-msgstr ""
+msgstr "Descargar metadatos"
 
 #: igrac/templates/layers/layer_detail.html:556
 msgid "Full metadata"
-msgstr ""
+msgstr "Metadatos completos"
 
 #: igrac/templates/layers/layer_detail.html:559
 msgid "Text format"
-msgstr ""
+msgstr "Formato de texto"
 
 #: igrac/templates/layers/layer_detail.html:560
 msgid "HTML format"
-msgstr ""
+msgstr "Formato HTML"
 
 #: igrac/templates/layers/layer_detail.html:565
 msgid "Standard Metadata - XML format"
-msgstr ""
+msgstr "Metadatos estándar - formato XML"
 
 #: igrac/templates/layers/layer_detail.html:574
 msgid "Attribute Information"
-msgstr ""
+msgstr "Información de atributos"
 
 #: igrac/templates/layers/layer_detail.html:576
 msgid "ISO Feature Catalogue"
-msgstr ""
+msgstr "Catálogos de funciones ISO"
 
 #: igrac/templates/layers/layer_detail.html:589
 msgid "Legend"
-msgstr ""
+msgstr "Leyenda"
 
 #: igrac/templates/layers/layer_detail.html:622
 msgid "Maps using this layer"
-msgstr ""
+msgstr "Mapas que están utilizando esta capa"
 
 #: igrac/templates/layers/layer_detail.html:624
 msgid "List of maps using this layer:"
