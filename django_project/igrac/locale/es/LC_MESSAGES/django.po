@@ -182,103 +182,105 @@ msgstr "Cerrar sesión"
 #: igrac/templates/base.html:495 igrac/templates/base.html:578
 #: igrac/templates/base.html:605
 msgid "Sign in"
-msgstr ""
+msgstr "Registrarse"
 
 #: igrac/templates/base.html:506
 msgid "You are using an outdated browser that is not supported by GeoNode."
-msgstr ""
+msgstr "Está utilizando un navegador desactualizado que no es compatible con GeoNode."
 
 #: igrac/templates/base.html:507
 msgid ""
 "Please use a <strong>modern browser</strong> like Mozilla Firefox, Google "
 "Chrome or Safari."
 msgstr ""
+"Por favor utilice un <strong>navegador moderno</strong> como Mozilla Firefox, Google "
+"Chrome o Safari."
 
 #: igrac/templates/base.html:543
 msgid "Version"
-msgstr ""
+msgstr "Versión"
 
 #: igrac/templates/base.html:546
 msgid "Brought to you by"
-msgstr ""
+msgstr "Traído a usted por"
 
 #: igrac/templates/base.html:548
 msgid "Web site developed by"
-msgstr ""
+msgstr "Sitio web desarrollado por"
 
 #: igrac/templates/base.html:577 igrac/templates/layers/layer_detail.html:425
 #: igrac/templates/layers/layer_detail.html:530
 #: igrac/templates/layers/layer_detail.html:581
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #: igrac/templates/base.html:590 igrac/templates/base.html:591
 msgid "Username"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #: igrac/templates/base.html:594 igrac/templates/base.html:595
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: igrac/templates/base.html:598
 msgid "Remember Me"
-msgstr ""
+msgstr "Recordarme"
 
 #: igrac/templates/base.html:601
 msgid "Forgot Password?"
-msgstr ""
+msgstr "¿Olvidó su contraseña?"
 
 #: igrac/templates/base.html:693
 msgid "Uploading..."
-msgstr ""
+msgstr "Subiendo..."
 
 #: igrac/templates/base.html:698
 msgid "Upload in progress..."
-msgstr ""
+msgstr "Subida en curso..."
 
 #: igrac/templates/base.html:710 igrac/templates/layers/layer_detail.html:757
 msgid "Processing..."
-msgstr ""
+msgstr "Procesando"
 
 #: igrac/templates/base.html:715
 msgid "Updating Thumbnail..."
-msgstr ""
+msgstr "Actualizando miniatura..."
 
 #: igrac/templates/base.html:728
 msgid "Message box"
-msgstr ""
+msgstr "Buzón de mensajes"
 
 #: igrac/templates/base.html:734 igrac/templates/base.html:765
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: igrac/templates/base.html:742
 #: igrac/templates/base/_resourcebase_info_panel.html:7
 #: igrac/templates/maps/metadata_detail_article.html:23
 #: igrac/templates/metadata_detail.html:46
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: igrac/templates/base.html:743
 msgid "Message. Do you want to proceed?"
-msgstr ""
+msgstr "Mensaje. ¿Desea proceder?"
 
 #: igrac/templates/base.html:758
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: igrac/templates/base.html:761
 msgid "Some text in the modal"
-msgstr ""
+msgstr "Algún texto en el modal"
 
 #: igrac/templates/base.html:764
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:12
 #: igrac/templates/base/_resourcebase_info_panel.html:143
 msgid "SRID"
-msgstr ""
+msgstr "SRID"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:17
 #: igrac/templates/base/_resourcebase_info_panel.html:148
@@ -287,7 +289,7 @@ msgstr ""
 #: igrac/templates/metadata_detail.html:60
 #: igrac/templates/metadata_detail.html:209
 msgid "License"
-msgstr ""
+msgstr "Licencia"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:25
 #: igrac/templates/base/_resourcebase_info_panel.html:155
@@ -296,38 +298,38 @@ msgstr ""
 #: igrac/templates/metadata_detail.html:68
 #: igrac/templates/metadata_detail.html:216
 msgid "For more info see"
-msgstr ""
+msgstr "Para obtener más información, consulte"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:30
 #: igrac/templates/maps/metadata_detail_article.html:28
 #: igrac/templates/metadata_detail.html:51
 msgid "Abstract"
-msgstr ""
+msgstr "Resumen"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:36
 msgid "Creation Date"
-msgstr ""
+msgstr "Fecha de creación"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:38
-msgid "Pubblication Date"
-msgstr ""
+msgid "Publication Date"
+msgstr "Fecha de publicación"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:40
 msgid "Revision Date"
-msgstr ""
+msgstr "Fecha de revisión"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:42
 #: igrac/templates/maps/metadata_detail_article.html:51
 #: igrac/templates/metadata_detail.html:74
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:54
 #: igrac/templates/layers/layer_detail.html:714
 #: igrac/templates/maps/metadata_detail_article.html:56
 #: igrac/templates/metadata_detail.html:79
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:59
 #: igrac/templates/maps/metadata_detail_article.html:61
@@ -339,113 +341,113 @@ msgstr ""
 #: igrac/templates/metadata_detail.html:300
 #: igrac/templates/metadata_detail.html:381
 msgid "Keywords"
-msgstr ""
+msgstr "Palabras clave"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:86
 #: igrac/templates/maps/metadata_detail_article.html:68
 #: igrac/templates/metadata_detail.html:91
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:96
 #: igrac/templates/maps/metadata_detail_article.html:79
 #: igrac/templates/metadata_detail.html:101
 msgid "Regions"
-msgstr ""
+msgstr "Regiones"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:108
 #: igrac/templates/maps/metadata_detail_article.html:106
 #: igrac/templates/metadata_detail.html:128
 msgid "Responsible"
-msgstr ""
+msgstr "Responsable"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:113
 msgid "Point of Contact"
-msgstr ""
+msgstr "Punto de contacto"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:118
 #: igrac/templates/maps/metadata_detail_article.html:93
 #: igrac/templates/metadata_detail.html:115
 msgid "Group"
-msgstr ""
+msgstr "Grupo"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:123
 #: igrac/templates/maps/metadata_detail_article.html:97
 #: igrac/templates/metadata_detail.html:119
 msgid "DOI"
-msgstr ""
+msgstr "DOI"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:128
 #: igrac/templates/maps/metadata_detail_article.html:100
 #: igrac/templates/metadata_detail.html:122
 msgid "Attribution"
-msgstr ""
+msgstr "Atribución"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:135
 msgid "More info"
-msgstr ""
+msgstr "Más información"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:161
 #: igrac/templates/maps/metadata_detail_article.html:206
 #: igrac/templates/metadata_detail.html:222
 msgid "Maintenance Frequency"
-msgstr ""
+msgstr "Frecuencia de mantenimiento"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:166
 #: igrac/templates/maps/metadata_detail_article.html:211
 #: igrac/templates/metadata_detail.html:227
 msgid "Restrictions"
-msgstr ""
+msgstr "Restricciones"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:175
 #: igrac/templates/maps/metadata_detail_article.html:220
 #: igrac/templates/metadata_detail.html:236
 msgid "Edition"
-msgstr ""
+msgstr "Edición"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:180
 #: igrac/templates/maps/metadata_detail_article.html:225
 #: igrac/templates/metadata_detail.html:241
 msgid "Purpose"
-msgstr ""
+msgstr "Propósito"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:185
 #: igrac/templates/maps/metadata_detail_article.html:230
 #: igrac/templates/metadata_detail.html:246
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:190
 #: igrac/templates/maps/metadata_detail_article.html:235
 #: igrac/templates/metadata_detail.html:251
 msgid "Temporal Extent"
-msgstr ""
+msgstr "Extensión temporal"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:195
 #: igrac/templates/maps/metadata_detail_article.html:240
 #: igrac/templates/metadata_detail.html:256
 msgid "Data Quality"
-msgstr ""
+msgstr "Calidad de los datos"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:200
 #: igrac/templates/maps/metadata_detail_article.html:245
 #: igrac/templates/metadata_detail.html:261
 msgid "Supplemental Information"
-msgstr ""
+msgstr "Información suplementaria"
 
 #: igrac/templates/base/_resourcebase_info_panel.html:205
 #: igrac/templates/maps/metadata_detail_article.html:250
 #: igrac/templates/metadata_detail.html:266
 msgid "Spatial Representation Type"
-msgstr ""
+msgstr "Tipo de representación espacial"
 
 #: igrac/templates/landing_page.html:6
 msgid "igrac-home"
-msgstr ""
+msgstr "igrac-home"
 
 #: igrac/templates/landing_page.html:40
 msgid "The Global Groundwater Information System (GGIS)"
-msgstr ""
+msgstr "El Sistema Global de Información del Agua Subterránea (GGIS)"
 
 #: igrac/templates/landing_page.html:41
 msgid ""
@@ -454,148 +456,152 @@ msgid ""
 "documents, and well and monitoring data. It also contains several thematic "
 "map viewers."
 msgstr ""
+"El GGIS es un portal interactivo para compartir datos e información sobre "
+"los recursos de agua subterránea en todo el mundo. Provee acceso a capas SIG, "
+"documentos, y datos de pozos y monitoreo. También contiene varios visores"
+"de mapas temáticos."
 
 #: igrac/templates/landing_page.html:47
 msgid "Visit IGRAC Website"
-msgstr ""
+msgstr "Visite el sitio web de IGRAC"
 
 #: igrac/templates/landing_page.html:48
 msgid "Hide this banner"
-msgstr ""
+msgstr "Ocultar este banner"
 
 #: igrac/templates/landing_page.html:64
 msgid "Show banner"
-msgstr ""
+msgstr "Mostrar banner"
 
 #: igrac/templates/landing_page.html:68
 msgid "Explore the viewers"
-msgstr ""
+msgstr "Explorar los visores"
 
 #: igrac/templates/layers/layer_detail.html:34
 msgid "layers"
-msgstr ""
+msgstr "capas"
 
 #: igrac/templates/layers/layer_detail.html:45
 msgid "Service is"
-msgstr ""
+msgstr "Servicio es"
 
 #: igrac/templates/layers/layer_detail.html:45
 msgid "online"
-msgstr ""
+msgstr "en línea"
 
 #: igrac/templates/layers/layer_detail.html:45
 msgid "offline"
-msgstr ""
+msgstr "fuera de línea"
 
 #: igrac/templates/layers/layer_detail.html:70
 msgid "Layer WMS GetCapabilities document"
-msgstr ""
+msgstr "Documento capa WMS GetCapabilities"
 
 #: igrac/templates/layers/layer_detail.html:80
 msgid "Filter Granules"
-msgstr ""
+msgstr "Filtrar gránulos"
 
 #: igrac/templates/layers/layer_detail.html:83
 msgid "Active Filter:"
-msgstr ""
+msgstr "Filtro activo:"
 
 #: igrac/templates/layers/layer_detail.html:89
 msgid "Granule ID"
-msgstr ""
+msgstr "ID de gránulo"
 
 #: igrac/templates/layers/layer_detail.html:90
 msgid "Bounding Box"
-msgstr ""
+msgstr "Cuadro delimitador"
 
 #: igrac/templates/layers/layer_detail.html:91
 msgid "Time"
-msgstr ""
+msgstr "Tiempo"
 
 #: igrac/templates/layers/layer_detail.html:92
 msgid "Elevation"
-msgstr ""
+msgstr "Elevación"
 
 #: igrac/templates/layers/layer_detail.html:93
 msgid "Actions"
-msgstr ""
+msgstr "Acciones"
 
 #: igrac/templates/layers/layer_detail.html:105
 msgid "Granule Preview"
-msgstr ""
+msgstr "Vista previa de gránulos"
 
 #: igrac/templates/layers/layer_detail.html:106
 msgid "Granule Remove"
-msgstr ""
+msgstr "Remover gránulo"
 
 #: igrac/templates/layers/layer_detail.html:155
 msgid "Dimension"
-msgstr ""
+msgstr "Dimensión"
 
 #: igrac/templates/layers/layer_detail.html:156
 msgid "Enabled"
-msgstr ""
+msgstr "Activado"
 
 #: igrac/templates/layers/layer_detail.html:157
 msgid "Regex"
-msgstr ""
+msgstr "Regex"
 
 #: igrac/templates/layers/layer_detail.html:162
 msgid "TIME"
-msgstr ""
+msgstr "TIEMPO"
 
 #: igrac/templates/layers/layer_detail.html:163
 #: igrac/templates/layers/layer_detail.html:168
 msgid "True"
-msgstr ""
+msgstr "Verdadero"
 
 #: igrac/templates/layers/layer_detail.html:163
 #: igrac/templates/layers/layer_detail.html:168
 msgid "False"
-msgstr ""
+msgstr "Falso"
 
 #: igrac/templates/layers/layer_detail.html:167
 msgid "ELEVATION"
-msgstr ""
+msgstr "ELEVACIÓN"
 
 #: igrac/templates/layers/layer_detail.html:178
 msgid "Attribute Name"
-msgstr ""
+msgstr "Nombre de atributo"
 
 #: igrac/templates/layers/layer_detail.html:179
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #: igrac/templates/layers/layer_detail.html:180
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #: igrac/templates/layers/layer_detail.html:182
 msgid "Range"
-msgstr ""
+msgstr "Rango"
 
 #: igrac/templates/layers/layer_detail.html:183
 msgid "Average"
-msgstr ""
+msgstr "Promedio"
 
 #: igrac/templates/layers/layer_detail.html:184
 msgid "Median"
-msgstr ""
+msgstr "Mediana"
 
 #: igrac/templates/layers/layer_detail.html:185
 msgid "Standard Deviation"
-msgstr ""
+msgstr "Desviación estándar"
 
 #: igrac/templates/layers/layer_detail.html:236
 msgid "Rate this layer"
-msgstr ""
+msgstr "Calificar esta capa"
 
 #: igrac/templates/layers/layer_detail.html:240
 msgid "Average Rating"
-msgstr ""
+msgstr "Puntuación media"
 
 #: igrac/templates/layers/layer_detail.html:261
 msgid "Analyze with"
-msgstr ""
+msgstr "Analizar con"
 
 #: igrac/templates/layers/layer_detail.html:266
 #: igrac/templates/layers/layer_detail.html:279
