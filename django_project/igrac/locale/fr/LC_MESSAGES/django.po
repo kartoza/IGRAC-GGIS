@@ -99,158 +99,160 @@ msgstr "Utilisateurs"
 
 #: igrac/templates/base.html:376
 msgid "People"
-msgstr ""
+msgstr "Personnes"
 
 #: igrac/templates/base.html:377
 msgid "Groups"
-msgstr ""
+msgstr "Groupes"
 
 #: igrac/templates/base.html:378
 msgid "Group Categories"
-msgstr ""
+msgstr "Catégories de Groupe"
 
 #: igrac/templates/base.html:380
 msgid "Announcements"
-msgstr ""
+msgstr "Annonces"
 
 #: igrac/templates/base.html:384
 msgid "Invite Users"
-msgstr ""
+msgstr "Inviter des Utilisateurs"
 
 #: igrac/templates/base.html:387
 msgid "Add User"
-msgstr ""
+msgstr "Ajouter un Utilisateur"
 
 #: igrac/templates/base.html:388
 msgid "Create Group"
-msgstr ""
+msgstr "Créer un Groupe"
 
 #: igrac/templates/base.html:425 igrac/templates/base.html:426
 #: igrac/templates/base.html:427 igrac/templates/base.html:430
 #: igrac/templates/base.html:431 igrac/templates/base.html:432
 msgid "Search"
-msgstr ""
+msgstr "Recherche"
 
 #: igrac/templates/base.html:440
 msgid "Register"
-msgstr ""
+msgstr "S'inscrire"
 
 #: igrac/templates/base.html:456
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: igrac/templates/base.html:457
 msgid "Recent Activity"
-msgstr ""
+msgstr "Activité Récente"
 
 #: igrac/templates/base.html:459
 msgid "Favorites"
-msgstr ""
+msgstr "Favoris"
 
 #: igrac/templates/base.html:461
 msgid "Inbox"
-msgstr ""
+msgstr "Boîte de réception"
 
 #: igrac/templates/base.html:465
 msgid "Organisation"
-msgstr ""
+msgstr "Organisation"
 
 #: igrac/templates/base.html:468
 msgid "Well Data Download List"
-msgstr ""
+msgstr "Liste de Téléchargement des Données de Puits"
 
 #: igrac/templates/base.html:471
 msgid "Admin"
-msgstr ""
+msgstr "Administrateur"
 
 #: igrac/templates/base.html:477
 msgid "Monitoring & Analytics"
-msgstr ""
+msgstr "Suivi et Analyses"
 
 #: igrac/templates/base.html:485
 msgid "Wagtail Admin"
-msgstr ""
+msgstr "Administrateur Wagtail"
 
 #: igrac/templates/base.html:489
 msgid "Help"
-msgstr ""
+msgstr "Aide"
 
 #: igrac/templates/base.html:491
 msgid "Log out"
-msgstr ""
+msgstr "Se déconnecter"
 
 #: igrac/templates/base.html:495 igrac/templates/base.html:578
 #: igrac/templates/base.html:605
 msgid "Sign in"
-msgstr ""
+msgstr "S'identifier"
 
 #: igrac/templates/base.html:506
 msgid "You are using an outdated browser that is not supported by GeoNode."
-msgstr ""
+msgstr "Vous utilisez un navigateur obsolète qui n'est pas pris en charge par GeoNode."
 
 #: igrac/templates/base.html:507
 msgid ""
 "Please use a <strong>modern browser</strong> like Mozilla Firefox, Google "
 "Chrome or Safari."
 msgstr ""
+"Veuillez utiliser un <fort> navigateur moderne </fort> comme Mozilla Firefox, Google"
+"Chrome ou Safari."
 
 #: igrac/templates/base.html:543
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: igrac/templates/base.html:546
 msgid "Brought to you by"
-msgstr ""
+msgstr "Présenté par"
 
 #: igrac/templates/base.html:548
 msgid "Web site developed by"
-msgstr ""
+msgstr "Site Web développé par"
 
 #: igrac/templates/base.html:577 igrac/templates/layers/layer_detail.html:425
 #: igrac/templates/layers/layer_detail.html:530
 #: igrac/templates/layers/layer_detail.html:581
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: igrac/templates/base.html:590 igrac/templates/base.html:591
 msgid "Username"
-msgstr ""
+msgstr "Nom d'utilisateur"
 
 #: igrac/templates/base.html:594 igrac/templates/base.html:595
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: igrac/templates/base.html:598
 msgid "Remember Me"
-msgstr ""
+msgstr "Souviens-toi de moi"
 
 #: igrac/templates/base.html:601
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Mot de passe oublié?"
 
 #: igrac/templates/base.html:693
 msgid "Uploading..."
-msgstr ""
+msgstr "Téléchargement..."
 
 #: igrac/templates/base.html:698
 msgid "Upload in progress..."
-msgstr ""
+msgstr "Téléchargement en cours ..."
 
 #: igrac/templates/base.html:710 igrac/templates/layers/layer_detail.html:757
 msgid "Processing..."
-msgstr ""
+msgstr "Traitement..."
 
 #: igrac/templates/base.html:715
 msgid "Updating Thumbnail..."
-msgstr ""
+msgstr "Mise à jour de la Vignette..."
 
 #: igrac/templates/base.html:728
 msgid "Message box"
-msgstr ""
+msgstr "Messagerie"
 
 #: igrac/templates/base.html:734 igrac/templates/base.html:765
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: igrac/templates/base.html:742
 #: igrac/templates/base/_resourcebase_info_panel.html:7
