@@ -22,80 +22,80 @@ msgstr ""
 #: igrac/templates/maps/metadata_detail_article.html:89
 #: igrac/templates/metadata_detail.html:111
 msgid "Featured"
-msgstr ""
+msgstr "Présenté"
 
 #: igrac/models/map_slug.py:19
 msgid "Should this resource be showed in home page?"
-msgstr ""
+msgstr "Cette ressource devrait-elle être affichée sur la page d'accueil?"
 
 #: igrac/templates/base.html:245
 msgid "GeoNode Search"
-msgstr ""
+msgstr "Recherche GeoNode"
 
 #: igrac/templates/base.html:319 igrac/templates/layers/layer_detail.html:288
 msgid "Data"
-msgstr ""
+msgstr "Données"
 
 #: igrac/templates/base.html:322
 msgid "Map Layers"
-msgstr ""
+msgstr "Couches Cartographiques"
 
 #: igrac/templates/base.html:323
 #: igrac/templates/maps/metadata_detail_article.html:340
 msgid "Documents"
-msgstr ""
+msgstr "Documents"
 
 #: igrac/templates/base.html:325
 msgid "Remote Services"
-msgstr ""
+msgstr "Services à distance"
 
 #: igrac/templates/base.html:329
 msgid "Upload Map Layers"
-msgstr ""
+msgstr "Télécharger des Couches Cartographiques"
 
 #: igrac/templates/base.html:331
 msgid "Create Map Layer"
-msgstr ""
+msgstr "Créer une Couche Cartographique"
 
 #: igrac/templates/base.html:333
 msgid "Upload Document"
-msgstr ""
+msgstr "Télécharger un Document"
 
 #: igrac/templates/base.html:337
 msgid "Add Remote Service"
-msgstr ""
+msgstr "Ajouter un Service à Distance"
 
 #: igrac/templates/base.html:341
 msgid "Well and Monitoring Data"
-msgstr ""
+msgstr "Puits et Données Piézométriques"
 
 #: igrac/templates/base.html:347
 msgid "Upload Well and Monitoring Data"
-msgstr ""
+msgstr "Télécharger des Puits et Données Piézométriques"
 
 #: igrac/templates/base.html:351
 msgid "Add Record"
-msgstr ""
+msgstr "Ajouter un Enregistrement"
 
 #: igrac/templates/base.html:352
 msgid "Batch Upload"
-msgstr ""
+msgstr "Télécharger un Groupe de Données"
 
 #: igrac/templates/base.html:361 igrac/templates/base.html:369
 msgid "Map Viewers"
-msgstr ""
+msgstr "Visionneurs de Carte"
 
 #: igrac/templates/base.html:363
 msgid "Explore Map Viewers"
-msgstr ""
+msgstr "Explorer les Visionneurs de Carte "
 
 #: igrac/templates/base.html:365
 msgid "Create Map Viewer"
-msgstr ""
+msgstr "Créer un Visionneur de Carte"
 
 #: igrac/templates/base.html:374
 msgid "Users"
-msgstr ""
+msgstr "Utilisateurs"
 
 #: igrac/templates/base.html:376
 msgid "People"
