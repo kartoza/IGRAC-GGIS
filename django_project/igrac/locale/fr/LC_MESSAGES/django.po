@@ -866,7 +866,7 @@ msgstr "Source"
 
 #: igrac/templates/layers/layer_detail.html:722
 msgid "Refresh Attributes and Statistics of this layer"
-msgstr ""
+msgstr "Actualiser les Attributs et les Statistiques de cette couche"
 
 #: igrac/templates/layers/layer_detail.html:723
 msgid ""
@@ -874,22 +874,25 @@ msgid ""
 "Layer Attributes. If the option 'WPS_ENABLED' has been also set on the "
 "backend, it will recalculate their statistics too."
 msgstr ""
+"Cliquez sur le bouton ci-dessous pour permettre à GeoNode d'actualiser la liste des "
+"attributs de la couche. Si l'option 'WPS_ENABLED' a également été définie sur l'arrière-plan "
+"il recalculera également leurs statistiques."
 
 #: igrac/templates/layers/layer_detail.html:724
 msgid "Refresh Attributes and Statistics"
-msgstr ""
+msgstr "Actualiser les Attributs et les Statistiques"
 
 #: igrac/templates/layers/layer_detail.html:728
 msgid "Clear the Server Cache of this layer"
-msgstr ""
+msgstr "Effacer le Serveur Cache de cette couche"
 
 #: igrac/templates/layers/layer_detail.html:729
 msgid "Click the button below to wipe the tile-cache of this layer."
-msgstr ""
+msgstr "Cliquez sur le bouton ci-dessous pour effacer le cache d'images de cette couche."
 
 #: igrac/templates/layers/layer_detail.html:730
 msgid "Empty Tiled-Layer Cache"
-msgstr ""
+msgstr "Vider "
 
 #: igrac/templates/layers/layer_detail.html:739
 msgid "Permissions"
