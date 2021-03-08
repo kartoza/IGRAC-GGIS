@@ -685,182 +685,184 @@ msgstr "Détail des Métadonnées"
 
 #: igrac/templates/layers/layer_detail.html:448
 msgid "Request change"
-msgstr ""
+msgstr "Demander un changement"
 
 #: igrac/templates/layers/layer_detail.html:455
 msgid "Editing Tools"
-msgstr ""
+msgstr "Outils d'édition"
 
 #: igrac/templates/layers/layer_detail.html:462
 msgid "Edit Layer"
-msgstr ""
+msgstr "Modifier la couche"
 
 #: igrac/templates/layers/layer_detail.html:469
 #: igrac/templates/metadata_detail.html:35
 msgid "Metadata"
-msgstr ""
+msgstr "Métadonnées"
 
 #: igrac/templates/layers/layer_detail.html:470
 msgid "Wizard"
-msgstr ""
+msgstr "Assistant"
 
 #: igrac/templates/layers/layer_detail.html:471
 msgid "Advanced Edit"
-msgstr ""
+msgstr "Modification Avancée"
 
 #: igrac/templates/layers/layer_detail.html:472
 msgid "Upload Metadata"
-msgstr ""
+msgstr "Télécharger des Métadonnées"
 
 #: igrac/templates/layers/layer_detail.html:480
 #: igrac/templates/layers/layer_detail.html:495
 #: igrac/templates/layers/layer_detail.html:672
 msgid "Styles"
-msgstr ""
+msgstr "Styles"
 
 #: igrac/templates/layers/layer_detail.html:482
 #: igrac/templates/layers/layer_detail.html:484
 #: igrac/templates/layers/layer_detail.html:496
 msgid "Edit"
-msgstr ""
+msgstr "Editer"
 
 #: igrac/templates/layers/layer_detail.html:486
 #: igrac/templates/layers/layer_detail.html:507
 msgid "Upload"
-msgstr ""
+msgstr "Télécharger"
 
 #: igrac/templates/layers/layer_detail.html:487
 msgid "Manage"
-msgstr ""
+msgstr "Gérer"
 
 #: igrac/templates/layers/layer_detail.html:503
 msgid "Thumbnail"
-msgstr ""
+msgstr "Vignette"
 
 #: igrac/templates/layers/layer_detail.html:505
 msgid "Set"
-msgstr ""
+msgstr "Ensemble"
 
 #: igrac/templates/layers/layer_detail.html:513
 msgid "Layer"
-msgstr ""
+msgstr "Couche"
 
 #: igrac/templates/layers/layer_detail.html:515
 msgid "Replace"
-msgstr ""
+msgstr "Remplacer"
 
 #: igrac/templates/layers/layer_detail.html:519
 msgid "Edit data"
-msgstr ""
+msgstr "Modifier les données"
 
 #: igrac/templates/layers/layer_detail.html:523
 msgid "Remove"
-msgstr ""
+msgstr "Supprimer"
 
 #: igrac/templates/layers/layer_detail.html:539
 msgid "View Layer"
-msgstr ""
+msgstr "Afficher la couche"
 
 #: igrac/templates/layers/layer_detail.html:543
 #: igrac/templates/layers/layer_detail.html:551
 msgid "Download Metadata"
-msgstr ""
+msgstr "Télécharger les métadonnées"
 
 #: igrac/templates/layers/layer_detail.html:556
 msgid "Full metadata"
-msgstr ""
+msgstr "Métadonnées complètes"
 
 #: igrac/templates/layers/layer_detail.html:559
 msgid "Text format"
-msgstr ""
+msgstr "Format texte"
 
 #: igrac/templates/layers/layer_detail.html:560
 msgid "HTML format"
-msgstr ""
+msgstr "Format HTML"
 
 #: igrac/templates/layers/layer_detail.html:565
 msgid "Standard Metadata - XML format"
-msgstr ""
+msgstr "Métadonnées standard - format XML"
 
 #: igrac/templates/layers/layer_detail.html:574
 msgid "Attribute Information"
-msgstr ""
+msgstr "Informations sur les Attributs"
 
 #: igrac/templates/layers/layer_detail.html:576
 msgid "ISO Feature Catalogue"
-msgstr ""
+msgstr "Catalogue de fonctionnalités ISO"
 
 #: igrac/templates/layers/layer_detail.html:589
 msgid "Legend"
-msgstr ""
+msgstr "Légende"
 
 #: igrac/templates/layers/layer_detail.html:622
 msgid "Maps using this layer"
-msgstr ""
+msgstr "Cartes utilisant cette couche"
 
 #: igrac/templates/layers/layer_detail.html:624
 msgid "List of maps using this layer:"
-msgstr ""
+msgstr "Liste des cartes utilisant cette couche:"
 
 #: igrac/templates/layers/layer_detail.html:630
 msgid "This layer is not currently used in any maps."
-msgstr ""
+msgstr "Cette couche n'est actuellement utilisée dans aucune carte."
 
 #: igrac/templates/layers/layer_detail.html:636
 msgid "Create a map using this layer"
-msgstr ""
+msgstr "Créer une carte à l'aide de cette couche"
 
 #: igrac/templates/layers/layer_detail.html:637
 msgid "Click the button below to generate a new map based on this layer."
-msgstr ""
+msgstr "Cliquez sur le bouton ci-dessous pour générer une nouvelle carte basée sur cette couche."
 
 #: igrac/templates/layers/layer_detail.html:638
 msgid "Create a Map"
-msgstr ""
+msgstr "Créer une Carte"
 
 #: igrac/templates/layers/layer_detail.html:643
 msgid "Add the layer to an existing map"
-msgstr ""
+msgstr "Ajouter la couche à une carte existante"
 
 #: igrac/templates/layers/layer_detail.html:651
 msgid "Click the button below to add the layer to the selected map."
-msgstr ""
+msgstr "Cliquez sur le bouton ci-dessous pour ajouter la couche à la carte sélectionnée."
 
 #: igrac/templates/layers/layer_detail.html:653
 msgid "Add to Map"
-msgstr ""
+msgstr "Ajouter à la Carte"
 
 #: igrac/templates/layers/layer_detail.html:660
 msgid "Documents related to this layer"
-msgstr ""
+msgstr "Documents liés à cette couche"
 
 #: igrac/templates/layers/layer_detail.html:661
 msgid "List of documents related to this layer:"
-msgstr ""
+msgstr "Liste des documents liés à cette couche:"
 
 #: igrac/templates/layers/layer_detail.html:673
 msgid ""
 "The following styles are associated with this layer. Choose a style to view "
 "it in the preview map."
 msgstr ""
+"Les styles suivants sont associés à cette couche. Choisissez un style pour l'afficher"
+"sur la carte de prévisualisation."
 
 #: igrac/templates/layers/layer_detail.html:681
 #: igrac/templates/layers/layer_detail.html:695
 msgid "(default style)"
-msgstr ""
+msgstr "(style par défaut)"
 
 #: igrac/templates/layers/layer_detail.html:688
 #: igrac/templates/layers/layer_detail.html:702
 msgid "No styles associated with this layer"
-msgstr ""
+msgstr "Aucun style associé à cette couche"
 
 #: igrac/templates/layers/layer_detail.html:711
 msgid "External service layer"
-msgstr ""
+msgstr "Couche de Service Externe"
 
 #: igrac/templates/layers/layer_detail.html:712
 msgid "Source"
-msgstr ""
+msgstr "Source"
 
 #: igrac/templates/layers/layer_detail.html:722
 msgid "Refresh Attributes and Statistics of this layer"
