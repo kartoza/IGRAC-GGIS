@@ -49,6 +49,7 @@ x-common-django:
     - SESSION_EXPIRED_CONTROL_ENABLED=False
     - MONITORING_ENABLED=False
     - PYTHONPATH=/home/web/django_project:/spcgeonode
+    - ADD_TIMESTAMP_IN_THUMBNAIL=True
   volumes:
     - ../django_project:/home/web/django_project
     - ./volumes/static:/home/web/static:rw

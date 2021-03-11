@@ -10,9 +10,8 @@ RUN echo "Activate memcached" && \
 
 WORKDIR /spcgeonode
 
-# TODO: base repo : https://github.com/GeoNode/geonode/commit/4f780ebf2744ada788e4b21782d4e6c53bd60e0f
-# This is geonode : 3.2 stable version
-RUN git pull https://github.com/kartoza/geonode.git geonode.3.2-fix
+# TODO: base repo : https://github.com/kartoza/geonode/commit/4f64450061046881aea74ea43673965440318e64
+RUN git pull https://github.com/kartoza/geonode.git 3.2.1
 RUN pip install -r requirements.txt
 
 RUN pip uninstall -y django-geonode-mapstore-client
