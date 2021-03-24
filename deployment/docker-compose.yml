@@ -15,6 +15,9 @@ x-common-django:
     - ADMIN_USERNAME=${ADMIN_USERNAME}
     - ADMIN_PASSWORD=${ADMIN_PASSWORD}
     - ADMIN_EMAIL=${ADMIN_EMAIL}
+    - EMAIL_HOST_USER="${EMAIL_HOST_USER}@${EMAIL_HOST_DOMAIN}"
+    - EMAIL_HOST_PASSWORD="${EMAIL_HOST_PASSWORD}"
+    - EMAIL_HOST=${EMAIL_HOST}
     - GEOSERVER_ADMIN_USER=${ADMIN_USERNAME}
     - GEOSERVER_ADMIN_PASSWORD=${ADMIN_PASSWORD}
     - REGISTRATION_OPEN=${REGISTRATION_OPEN}
@@ -69,8 +72,8 @@ services:
   smtp:
     image: catatnight/postfix
     environment:
-      maildomain: kartoza.com
-      smtp_user: noreply:docker
+      maildomain: "${EMAIL_HOST_DOMAIN}"
+      smtp_user: "${EMAIL_HOST_USER}:${EMAIL_HOST_PASSWORD}"
     restart: unless-stopped
 
   # Our custom django application. It includes Geonode.
