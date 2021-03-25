@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: igrac/models/map_slug.py:18
 #: igrac/templates/maps/metadata_detail_article.html:89
@@ -26,7 +26,7 @@ msgstr ""
 
 #: igrac/models/map_slug.py:19
 msgid "Should this resource be showed in home page?"
-msgstr "Apakah material ini ditampilkan di halaman utaman?"
+msgstr ""
 
 #: igrac/templates/base.html:245
 msgid "GeoNode Search"
@@ -47,7 +47,7 @@ msgstr ""
 
 #: igrac/templates/base.html:325
 msgid "Remote Services"
-msgstr "Layanan Jauh"
+msgstr ""
 
 #: igrac/templates/base.html:329
 msgid "Upload Map Layers"
@@ -63,35 +63,35 @@ msgstr ""
 
 #: igrac/templates/base.html:337
 msgid "Add Remote Service"
-msgstr "Daftarkan Layanan Baru"
+msgstr ""
 
 #: igrac/templates/base.html:341
 msgid "Well and Monitoring Data"
-msgstr "Data sumur dan pemantauannya"
+msgstr ""
 
 #: igrac/templates/base.html:347
 msgid "Upload Well and Monitoring Data"
-msgstr "Unggah Sumur dan Pemantauannya"
+msgstr ""
 
 #: igrac/templates/base.html:351
 msgid "Add Record"
-msgstr "Tambahkan Data"
+msgstr ""
 
 #: igrac/templates/base.html:352
 msgid "Batch Upload"
-msgstr "Unggah Sejumlah Data"
+msgstr ""
 
 #: igrac/templates/base.html:361 igrac/templates/base.html:369
 msgid "Map Viewers"
-msgstr "Peta"
+msgstr ""
 
 #: igrac/templates/base.html:363
 msgid "Explore Map Viewers"
-msgstr "Jelajahi Peta"
+msgstr ""
 
 #: igrac/templates/base.html:365
 msgid "Create Map Viewer"
-msgstr "Daftarkan Peta Baru"
+msgstr ""
 
 #: igrac/templates/base.html:374
 msgid "Users"
@@ -115,11 +115,11 @@ msgstr ""
 
 #: igrac/templates/base.html:384
 msgid "Invite Users"
-msgstr "Ajak Pengguna"
+msgstr ""
 
 #: igrac/templates/base.html:387
 msgid "Add User"
-msgstr "Tambahkan Pengguna"
+msgstr ""
 
 #: igrac/templates/base.html:388
 msgid "Create Group"
@@ -129,7 +129,7 @@ msgstr ""
 #: igrac/templates/base.html:427 igrac/templates/base.html:430
 #: igrac/templates/base.html:431 igrac/templates/base.html:432
 msgid "Search"
-msgstr "Cari"
+msgstr ""
 
 #: igrac/templates/base.html:440
 msgid "Register"
@@ -145,19 +145,19 @@ msgstr ""
 
 #: igrac/templates/base.html:459
 msgid "Favorites"
-msgstr "Favorit"
+msgstr ""
 
 #: igrac/templates/base.html:461
 msgid "Inbox"
-msgstr "Kotak Masuk"
+msgstr ""
 
 #: igrac/templates/base.html:465
 msgid "Organisation"
-msgstr "Organisasi"
+msgstr ""
 
 #: igrac/templates/base.html:468
 msgid "Well Data Download List"
-msgstr "Daftar Unggahan Data Sumur"
+msgstr ""
 
 #: igrac/templates/base.html:471
 msgid "Admin"
@@ -200,11 +200,11 @@ msgstr ""
 
 #: igrac/templates/base.html:546
 msgid "Brought to you by"
-msgstr "Dipersembahkan oleh"
+msgstr ""
 
 #: igrac/templates/base.html:548
 msgid "Web site developed by"
-msgstr "Situs web dikembangkan oleh"
+msgstr ""
 
 #: igrac/templates/base.html:577 igrac/templates/layers/layer_detail.html:425
 #: igrac/templates/layers/layer_detail.html:530
@@ -226,7 +226,7 @@ msgstr ""
 
 #: igrac/templates/base.html:601
 msgid "Forgot Password?"
-msgstr "Lupa Kata Sandi?"
+msgstr ""
 
 #: igrac/templates/base.html:693
 msgid "Uploading..."
@@ -454,26 +454,22 @@ msgid ""
 "documents, and well and monitoring data. It also contains several thematic "
 "map viewers."
 msgstr ""
-"GGIS adalah portal interaktif dalam berbagi data dan informasi tentang "
-"sumber daya air tanah di dunia. Portal ini memberikan akses berupa peta, "
-"dokumen serta data sumur dan pemantauannya. Portal ini juga mempunyai "
-"beberapa peta tematik."
 
 #: igrac/templates/landing_page.html:47
 msgid "Visit IGRAC Website"
-msgstr "Kunjungi situs web IGRAC"
+msgstr ""
 
 #: igrac/templates/landing_page.html:48
 msgid "Hide this banner"
-msgstr "Sembunyikan spanduk ini"
+msgstr ""
 
 #: igrac/templates/landing_page.html:64
 msgid "Show banner"
-msgstr "Perlihatkan spanduk"
+msgstr ""
 
 #: igrac/templates/landing_page.html:68
 msgid "Explore the viewers"
-msgstr "Jelajahi 'The viewers'"
+msgstr ""
 
 #: igrac/templates/layers/layer_detail.html:34
 msgid "layers"
