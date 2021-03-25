@@ -405,3 +405,12 @@ body.igrac-home {
 .form-actions {
     margin-bottom: 10px;
 }
+
+#status a:nth-child(6) {
+    width: 0 !important;
+    padding: 0 !important;
+    color: rgba(0, 0, 0, 0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: rgba(0, 0, 0, 0) !important;
+    margin-left: -15px !important;
+}

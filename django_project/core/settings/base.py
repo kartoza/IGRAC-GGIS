@@ -134,3 +134,6 @@ FREETEXT_KEYWORDS_READONLY = True
 
 UPLOADER['SUPPORTED_CRS'].append('ESRI:54030')
 EPSG_CODE_MATCHES['ESRI:54030'] = '(54030) World_Robinson'
+
+# Where the file uploaded temporary saved
+FILE_UPLOAD_TEMP_DIR = os.getenv('FILE_UPLOAD_TEMP_DIR', None)
