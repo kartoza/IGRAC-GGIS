@@ -1,0 +1,1097 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-12 08:24+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: igrac/models/map_slug.py:18
+#: igrac/templates/maps/metadata_detail_article.html:89
+#: igrac/templates/metadata_detail.html:111
+msgid "Featured"
+msgstr ""
+
+#: igrac/models/map_slug.py:19
+msgid "Should this resource be showed in home page?"
+msgstr ""
+
+#: igrac/templates/base.html:245
+msgid "GeoNode Search"
+msgstr ""
+
+#: igrac/templates/base.html:319 igrac/templates/layers/layer_detail.html:288
+msgid "Data"
+msgstr ""
+
+#: igrac/templates/base.html:322
+msgid "Map Layers"
+msgstr ""
+
+#: igrac/templates/base.html:323
+#: igrac/templates/maps/metadata_detail_article.html:340
+msgid "Documents"
+msgstr ""
+
+#: igrac/templates/base.html:325
+msgid "Remote Services"
+msgstr ""
+
+#: igrac/templates/base.html:329
+msgid "Upload Map Layers"
+msgstr ""
+
+#: igrac/templates/base.html:331
+msgid "Create Map Layer"
+msgstr ""
+
+#: igrac/templates/base.html:333
+msgid "Upload Document"
+msgstr ""
+
+#: igrac/templates/base.html:337
+msgid "Add Remote Service"
+msgstr ""
+
+#: igrac/templates/base.html:341
+msgid "Well and Monitoring Data"
+msgstr ""
+
+#: igrac/templates/base.html:347
+msgid "Upload Well and Monitoring Data"
+msgstr ""
+
+#: igrac/templates/base.html:351
+msgid "Add Record"
+msgstr ""
+
+#: igrac/templates/base.html:352
+msgid "Batch Upload"
+msgstr ""
+
+#: igrac/templates/base.html:361 igrac/templates/base.html:369
+msgid "Map Viewers"
+msgstr ""
+
+#: igrac/templates/base.html:363
+msgid "Explore Map Viewers"
+msgstr ""
+
+#: igrac/templates/base.html:365
+msgid "Create Map Viewer"
+msgstr ""
+
+#: igrac/templates/base.html:374
+msgid "Users"
+msgstr ""
+
+#: igrac/templates/base.html:376
+msgid "People"
+msgstr ""
+
+#: igrac/templates/base.html:377
+msgid "Groups"
+msgstr ""
+
+#: igrac/templates/base.html:378
+msgid "Group Categories"
+msgstr ""
+
+#: igrac/templates/base.html:380
+msgid "Announcements"
+msgstr ""
+
+#: igrac/templates/base.html:384
+msgid "Invite Users"
+msgstr ""
+
+#: igrac/templates/base.html:387
+msgid "Add User"
+msgstr ""
+
+#: igrac/templates/base.html:388
+msgid "Create Group"
+msgstr ""
+
+#: igrac/templates/base.html:425 igrac/templates/base.html:426
+#: igrac/templates/base.html:427 igrac/templates/base.html:430
+#: igrac/templates/base.html:431 igrac/templates/base.html:432
+msgid "Search"
+msgstr ""
+
+#: igrac/templates/base.html:440
+msgid "Register"
+msgstr ""
+
+#: igrac/templates/base.html:456
+msgid "Profile"
+msgstr ""
+
+#: igrac/templates/base.html:457
+msgid "Recent Activity"
+msgstr ""
+
+#: igrac/templates/base.html:459
+msgid "Favorites"
+msgstr ""
+
+#: igrac/templates/base.html:461
+msgid "Inbox"
+msgstr ""
+
+#: igrac/templates/base.html:465
+msgid "Organisation"
+msgstr ""
+
+#: igrac/templates/base.html:468
+msgid "Well Data Download List"
+msgstr ""
+
+#: igrac/templates/base.html:471
+msgid "Admin"
+msgstr ""
+
+#: igrac/templates/base.html:477
+msgid "Monitoring & Analytics"
+msgstr ""
+
+#: igrac/templates/base.html:485
+msgid "Wagtail Admin"
+msgstr ""
+
+#: igrac/templates/base.html:489
+msgid "Help"
+msgstr ""
+
+#: igrac/templates/base.html:491
+msgid "Log out"
+msgstr ""
+
+#: igrac/templates/base.html:495 igrac/templates/base.html:578
+#: igrac/templates/base.html:605
+msgid "Sign in"
+msgstr ""
+
+#: igrac/templates/base.html:506
+msgid "You are using an outdated browser that is not supported by GeoNode."
+msgstr ""
+
+#: igrac/templates/base.html:507
+msgid ""
+"Please use a <strong>modern browser</strong> like Mozilla Firefox, Google "
+"Chrome or Safari."
+msgstr ""
+
+#: igrac/templates/base.html:543
+msgid "Version"
+msgstr ""
+
+#: igrac/templates/base.html:546
+msgid "Brought to you by"
+msgstr ""
+
+#: igrac/templates/base.html:548
+msgid "Web site developed by"
+msgstr ""
+
+#: igrac/templates/base.html:577 igrac/templates/layers/layer_detail.html:425
+#: igrac/templates/layers/layer_detail.html:530
+#: igrac/templates/layers/layer_detail.html:581
+msgid "Close"
+msgstr ""
+
+#: igrac/templates/base.html:590 igrac/templates/base.html:591
+msgid "Username"
+msgstr ""
+
+#: igrac/templates/base.html:594 igrac/templates/base.html:595
+msgid "Password"
+msgstr ""
+
+#: igrac/templates/base.html:598
+msgid "Remember Me"
+msgstr ""
+
+#: igrac/templates/base.html:601
+msgid "Forgot Password?"
+msgstr ""
+
+#: igrac/templates/base.html:693
+msgid "Uploading..."
+msgstr ""
+
+#: igrac/templates/base.html:698
+msgid "Upload in progress..."
+msgstr ""
+
+#: igrac/templates/base.html:710 igrac/templates/layers/layer_detail.html:757
+msgid "Processing..."
+msgstr ""
+
+#: igrac/templates/base.html:715
+msgid "Updating Thumbnail..."
+msgstr ""
+
+#: igrac/templates/base.html:728
+msgid "Message box"
+msgstr ""
+
+#: igrac/templates/base.html:734 igrac/templates/base.html:765
+msgid "OK"
+msgstr ""
+
+#: igrac/templates/base.html:742
+#: igrac/templates/base/_resourcebase_info_panel.html:7
+#: igrac/templates/maps/metadata_detail_article.html:23
+#: igrac/templates/metadata_detail.html:46
+msgid "Title"
+msgstr ""
+
+#: igrac/templates/base.html:743
+msgid "Message. Do you want to proceed?"
+msgstr ""
+
+#: igrac/templates/base.html:758
+msgid "Confirm"
+msgstr ""
+
+#: igrac/templates/base.html:761
+msgid "Some text in the modal"
+msgstr ""
+
+#: igrac/templates/base.html:764
+msgid "Cancel"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:12
+#: igrac/templates/base/_resourcebase_info_panel.html:143
+msgid "SRID"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:17
+#: igrac/templates/base/_resourcebase_info_panel.html:148
+#: igrac/templates/maps/metadata_detail_article.html:37
+#: igrac/templates/maps/metadata_detail_article.html:193
+#: igrac/templates/metadata_detail.html:60
+#: igrac/templates/metadata_detail.html:209
+msgid "License"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:25
+#: igrac/templates/base/_resourcebase_info_panel.html:155
+#: igrac/templates/maps/metadata_detail_article.html:45
+#: igrac/templates/maps/metadata_detail_article.html:200
+#: igrac/templates/metadata_detail.html:68
+#: igrac/templates/metadata_detail.html:216
+msgid "For more info see"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:30
+#: igrac/templates/maps/metadata_detail_article.html:28
+#: igrac/templates/metadata_detail.html:51
+msgid "Abstract"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:36
+msgid "Creation Date"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:38
+msgid "Pubblication Date"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:40
+msgid "Revision Date"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:42
+#: igrac/templates/maps/metadata_detail_article.html:51
+#: igrac/templates/metadata_detail.html:74
+msgid "Date"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:54
+#: igrac/templates/layers/layer_detail.html:714
+#: igrac/templates/maps/metadata_detail_article.html:56
+#: igrac/templates/metadata_detail.html:79
+msgid "Type"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:59
+#: igrac/templates/maps/metadata_detail_article.html:61
+#: igrac/templates/maps/metadata_detail_article.html:138
+#: igrac/templates/maps/metadata_detail_article.html:286
+#: igrac/templates/maps/metadata_detail_article.html:386
+#: igrac/templates/metadata_detail.html:84
+#: igrac/templates/metadata_detail.html:158
+#: igrac/templates/metadata_detail.html:300
+#: igrac/templates/metadata_detail.html:381
+msgid "Keywords"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:86
+#: igrac/templates/maps/metadata_detail_article.html:68
+#: igrac/templates/metadata_detail.html:91
+msgid "Category"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:96
+#: igrac/templates/maps/metadata_detail_article.html:79
+#: igrac/templates/metadata_detail.html:101
+msgid "Regions"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:108
+#: igrac/templates/maps/metadata_detail_article.html:106
+#: igrac/templates/metadata_detail.html:128
+msgid "Responsible"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:113
+msgid "Point of Contact"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:118
+#: igrac/templates/maps/metadata_detail_article.html:93
+#: igrac/templates/metadata_detail.html:115
+msgid "Group"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:123
+#: igrac/templates/maps/metadata_detail_article.html:97
+#: igrac/templates/metadata_detail.html:119
+msgid "DOI"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:128
+#: igrac/templates/maps/metadata_detail_article.html:100
+#: igrac/templates/metadata_detail.html:122
+msgid "Attribution"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:135
+msgid "More info"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:161
+#: igrac/templates/maps/metadata_detail_article.html:206
+#: igrac/templates/metadata_detail.html:222
+msgid "Maintenance Frequency"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:166
+#: igrac/templates/maps/metadata_detail_article.html:211
+#: igrac/templates/metadata_detail.html:227
+msgid "Restrictions"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:175
+#: igrac/templates/maps/metadata_detail_article.html:220
+#: igrac/templates/metadata_detail.html:236
+msgid "Edition"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:180
+#: igrac/templates/maps/metadata_detail_article.html:225
+#: igrac/templates/metadata_detail.html:241
+msgid "Purpose"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:185
+#: igrac/templates/maps/metadata_detail_article.html:230
+#: igrac/templates/metadata_detail.html:246
+msgid "Language"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:190
+#: igrac/templates/maps/metadata_detail_article.html:235
+#: igrac/templates/metadata_detail.html:251
+msgid "Temporal Extent"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:195
+#: igrac/templates/maps/metadata_detail_article.html:240
+#: igrac/templates/metadata_detail.html:256
+msgid "Data Quality"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:200
+#: igrac/templates/maps/metadata_detail_article.html:245
+#: igrac/templates/metadata_detail.html:261
+msgid "Supplemental Information"
+msgstr ""
+
+#: igrac/templates/base/_resourcebase_info_panel.html:205
+#: igrac/templates/maps/metadata_detail_article.html:250
+#: igrac/templates/metadata_detail.html:266
+msgid "Spatial Representation Type"
+msgstr ""
+
+#: igrac/templates/landing_page.html:6
+msgid "igrac-home"
+msgstr ""
+
+#: igrac/templates/landing_page.html:40
+msgid "The Global Groundwater Information System (GGIS)"
+msgstr ""
+
+#: igrac/templates/landing_page.html:41
+msgid ""
+"The GGIS is an interactive portal for sharing data and information on "
+"groundwater resources around the world. It gives access to map layers, "
+"documents, and well and monitoring data. It also contains several thematic "
+"map viewers."
+msgstr ""
+
+#: igrac/templates/landing_page.html:47
+msgid "Visit IGRAC Website"
+msgstr ""
+
+#: igrac/templates/landing_page.html:48
+msgid "Hide this banner"
+msgstr ""
+
+#: igrac/templates/landing_page.html:64
+msgid "Show banner"
+msgstr ""
+
+#: igrac/templates/landing_page.html:68
+msgid "Explore the viewers"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:34
+msgid "layers"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:45
+msgid "Service is"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:45
+msgid "online"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:45
+msgid "offline"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:70
+msgid "Layer WMS GetCapabilities document"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:80
+msgid "Filter Granules"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:83
+msgid "Active Filter:"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:89
+msgid "Granule ID"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:90
+msgid "Bounding Box"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:91
+msgid "Time"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:92
+msgid "Elevation"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:93
+msgid "Actions"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:105
+msgid "Granule Preview"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:106
+msgid "Granule Remove"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:155
+msgid "Dimension"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:156
+msgid "Enabled"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:157
+msgid "Regex"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:162
+msgid "TIME"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:163
+#: igrac/templates/layers/layer_detail.html:168
+msgid "True"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:163
+#: igrac/templates/layers/layer_detail.html:168
+msgid "False"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:167
+msgid "ELEVATION"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:178
+msgid "Attribute Name"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:179
+msgid "Label"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:180
+msgid "Description"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:182
+msgid "Range"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:183
+msgid "Average"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:184
+msgid "Median"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:185
+msgid "Standard Deviation"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:236
+msgid "Rate this layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:240
+msgid "Average Rating"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:261
+msgid "Analyze with"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:266
+#: igrac/templates/layers/layer_detail.html:279
+msgid "Download Layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:269
+msgid "Request Download"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:285
+msgid "Images"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:315
+msgid "Click to filter the layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:316
+msgid "Do you want to filter it?"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:319
+msgid "Loading..."
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:323
+msgid "Filter by attributes"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:330
+msgid "Match"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:338
+msgid "all"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:339
+msgid "any"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:345
+msgid "of the following:"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:352
+msgid "Attribute"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:368
+msgid "Operator"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:394
+msgid "Feature limit"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:396
+msgid "Clear"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:403
+msgid "Pick your download format:"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:412
+msgid ""
+"No data available for this resource. Please contact a system administrator "
+"or a manager."
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:412
+msgid "Warning"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:441
+msgid "Metadata Detail"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:448
+msgid "Request change"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:455
+msgid "Editing Tools"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:462
+msgid "Edit Layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:469
+#: igrac/templates/metadata_detail.html:35
+msgid "Metadata"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:470
+msgid "Wizard"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:471
+msgid "Advanced Edit"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:472
+msgid "Upload Metadata"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:480
+#: igrac/templates/layers/layer_detail.html:495
+#: igrac/templates/layers/layer_detail.html:672
+msgid "Styles"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:482
+#: igrac/templates/layers/layer_detail.html:484
+#: igrac/templates/layers/layer_detail.html:496
+msgid "Edit"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:486
+#: igrac/templates/layers/layer_detail.html:507
+msgid "Upload"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:487
+msgid "Manage"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:503
+msgid "Thumbnail"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:505
+msgid "Set"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:513
+msgid "Layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:515
+msgid "Replace"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:519
+msgid "Edit data"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:523
+msgid "Remove"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:539
+msgid "View Layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:543
+#: igrac/templates/layers/layer_detail.html:551
+msgid "Download Metadata"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:556
+msgid "Full metadata"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:559
+msgid "Text format"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:560
+msgid "HTML format"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:565
+msgid "Standard Metadata - XML format"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:574
+msgid "Attribute Information"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:576
+msgid "ISO Feature Catalogue"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:589
+msgid "Legend"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:622
+msgid "Maps using this layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:624
+msgid "List of maps using this layer:"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:630
+msgid "This layer is not currently used in any maps."
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:636
+msgid "Create a map using this layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:637
+msgid "Click the button below to generate a new map based on this layer."
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:638
+msgid "Create a Map"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:643
+msgid "Add the layer to an existing map"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:651
+msgid "Click the button below to add the layer to the selected map."
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:653
+msgid "Add to Map"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:660
+msgid "Documents related to this layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:661
+msgid "List of documents related to this layer:"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:673
+msgid ""
+"The following styles are associated with this layer. Choose a style to view "
+"it in the preview map."
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:681
+#: igrac/templates/layers/layer_detail.html:695
+msgid "(default style)"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:688
+#: igrac/templates/layers/layer_detail.html:702
+msgid "No styles associated with this layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:711
+msgid "External service layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:712
+msgid "Source"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:722
+msgid "Refresh Attributes and Statistics of this layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:723
+msgid ""
+"Click the button below to allow GeoNode refreshing the list of available "
+"Layer Attributes. If the option 'WPS_ENABLED' has been also set on the "
+"backend, it will recalculate their statistics too."
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:724
+msgid "Refresh Attributes and Statistics"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:728
+msgid "Clear the Server Cache of this layer"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:729
+msgid "Click the button below to wipe the tile-cache of this layer."
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:730
+msgid "Empty Tiled-Layer Cache"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:739
+msgid "Permissions"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:740
+msgid "Click the button below to change the permissions of this layer."
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:741
+msgid "Change Layer Permissions"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:743
+msgid "Sync permissions immediately"
+msgstr ""
+
+#: igrac/templates/layers/layer_detail.html:762
+msgid "Updating Permissions..."
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:5
+#: igrac/templates/metadata_detail.html:27
+msgid "Return to Document"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:7
+#: igrac/templates/metadata_detail.html:29
+msgid "Return to Layer"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:9
+#: igrac/templates/metadata_detail.html:31
+msgid "Return to Map"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:16
+#: igrac/templates/metadata_detail.html:41
+msgid "Identification"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:83
+#: igrac/templates/metadata_detail.html:105
+msgid "Approved"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:84
+#: igrac/templates/maps/metadata_detail_article.html:87
+#: igrac/templates/maps/metadata_detail_article.html:90
+#: igrac/templates/metadata_detail.html:106
+#: igrac/templates/metadata_detail.html:109
+#: igrac/templates/metadata_detail.html:112
+msgid "Yes"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:84
+#: igrac/templates/maps/metadata_detail_article.html:87
+#: igrac/templates/maps/metadata_detail_article.html:90
+#: igrac/templates/metadata_detail.html:106
+#: igrac/templates/metadata_detail.html:109
+#: igrac/templates/metadata_detail.html:112
+msgid "No"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:86
+#: igrac/templates/metadata_detail.html:108
+msgid "Published"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:116
+#: igrac/templates/maps/metadata_detail_article.html:264
+#: igrac/templates/maps/metadata_detail_article.html:364
+#: igrac/templates/metadata_detail.html:136
+#: igrac/templates/metadata_detail.html:278
+#: igrac/templates/metadata_detail.html:359
+msgid "Name"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:119
+#: igrac/templates/maps/metadata_detail_article.html:267
+#: igrac/templates/maps/metadata_detail_article.html:367
+#: igrac/templates/metadata_detail.html:139
+#: igrac/templates/metadata_detail.html:281
+#: igrac/templates/metadata_detail.html:362
+msgid "email"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:122
+#: igrac/templates/maps/metadata_detail_article.html:270
+#: igrac/templates/maps/metadata_detail_article.html:370
+#: igrac/templates/metadata_detail.html:142
+#: igrac/templates/metadata_detail.html:284
+#: igrac/templates/metadata_detail.html:365
+msgid "Position"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:125
+#: igrac/templates/maps/metadata_detail_article.html:273
+#: igrac/templates/maps/metadata_detail_article.html:373
+#: igrac/templates/metadata_detail.html:145
+#: igrac/templates/metadata_detail.html:287
+#: igrac/templates/metadata_detail.html:368
+msgid "Organization"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:128
+#: igrac/templates/maps/metadata_detail_article.html:276
+#: igrac/templates/maps/metadata_detail_article.html:376
+#: igrac/templates/metadata_detail.html:148
+#: igrac/templates/metadata_detail.html:290
+#: igrac/templates/metadata_detail.html:371
+msgid "Location"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:131
+#: igrac/templates/maps/metadata_detail_article.html:279
+#: igrac/templates/maps/metadata_detail_article.html:379
+#: igrac/templates/metadata_detail.html:151
+#: igrac/templates/metadata_detail.html:293
+#: igrac/templates/metadata_detail.html:374
+msgid "Voice"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:134
+#: igrac/templates/maps/metadata_detail_article.html:282
+#: igrac/templates/maps/metadata_detail_article.html:382
+#: igrac/templates/metadata_detail.html:154
+#: igrac/templates/metadata_detail.html:296
+#: igrac/templates/metadata_detail.html:377
+msgid "Fax"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:149
+#: igrac/templates/metadata_detail.html:169
+msgid "Information"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:156
+#: igrac/templates/metadata_detail.html:174
+msgid "Identification Image"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:165
+#: igrac/templates/metadata_detail.html:183
+msgid "Spatial Extent"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:168
+#: igrac/templates/metadata_detail.html:186
+msgid "Projection System"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:171
+#: igrac/templates/metadata_detail.html:189
+msgid "Extension x0"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:174
+#: igrac/templates/metadata_detail.html:192
+msgid "Extension x1"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:177
+#: igrac/templates/metadata_detail.html:195
+msgid "Extension y0"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:180
+#: igrac/templates/metadata_detail.html:198
+msgid "Extension y1"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:185
+#: igrac/templates/metadata_detail.html:203
+msgid "Features"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:257
+#: igrac/templates/metadata_detail.html:273
+msgid "Contact Points"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:300
+#: igrac/templates/metadata_detail.html:314
+msgid "References"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:307
+#: igrac/templates/metadata_detail.html:319
+msgid "Link Online"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:310
+#: igrac/templates/metadata_detail.html:322
+msgid "Metadata Page"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:314
+#: igrac/templates/metadata_detail.html:326
+msgid "Online Link"
+msgstr ""
+
+#: igrac/templates/maps/metadata_detail_article.html:355
+#: igrac/templates/metadata_detail.html:352
+msgid "Metadata Author"
+msgstr ""
+
+#: igrac/templates/metadata_detail.html:8
+msgid "data"
+msgstr ""
+
+#: igrac/templates/metadata_detail.html:33
+msgid "Return to"
+msgstr ""
