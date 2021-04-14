@@ -22,7 +22,7 @@ msgstr ""
 #: igrac/templates/maps/metadata_detail_article.html:89
 #: igrac/templates/metadata_detail.html:111
 msgid "Featured"
-msgstr "Présenté"
+msgstr "En évidence"
 
 #: igrac/models/map_slug.py:19
 msgid "Should this resource be showed in home page?"
@@ -67,31 +67,31 @@ msgstr "Ajouter un Service à Distance"
 
 #: igrac/templates/base.html:341
 msgid "Well and Monitoring Data"
-msgstr "Puits et Données Piézométriques"
+msgstr "Données de Puits et de Suivi"
 
 #: igrac/templates/base.html:347
 msgid "Upload Well and Monitoring Data"
-msgstr "Télécharger des Puits et Données Piézométriques"
+msgstr "Télécharger des Données de Puits et de Suivi"
 
 #: igrac/templates/base.html:351
 msgid "Add Record"
-msgstr "Ajouter un Enregistrement"
+msgstr "Ajouter un Point de Données"
 
 #: igrac/templates/base.html:352
 msgid "Batch Upload"
-msgstr "Télécharger un Groupe de Données"
+msgstr "Télécharger les Données par Lot"
 
 #: igrac/templates/base.html:361 igrac/templates/base.html:369
 msgid "Map Viewers"
-msgstr "Visionneurs de Carte"
+msgstr "Cartes"
 
 #: igrac/templates/base.html:363
 msgid "Explore Map Viewers"
-msgstr "Explorer les Visionneurs de Carte "
+msgstr "Explorer les Cartes"
 
 #: igrac/templates/base.html:365
 msgid "Create Map Viewer"
-msgstr "Créer un Visionneur de Carte"
+msgstr "Créer une Carte"
 
 #: igrac/templates/base.html:374
 msgid "Users"
@@ -107,7 +107,7 @@ msgstr "Groupes"
 
 #: igrac/templates/base.html:378
 msgid "Group Categories"
-msgstr "Catégories de Groupe"
+msgstr "Catégories de Groupes"
 
 #: igrac/templates/base.html:380
 msgid "Announcements"
@@ -224,7 +224,7 @@ msgstr "Mot de passe"
 
 #: igrac/templates/base.html:598
 msgid "Remember Me"
-msgstr "Souviens-toi de moi"
+msgstr "Se souvenir de moi"
 
 #: igrac/templates/base.html:601
 msgid "Forgot Password?"
@@ -458,7 +458,7 @@ msgid ""
 msgstr ""
 "Le GGIS est un portail interactif de partage de données et d'informations sur "
 "les ressources en eaux souterraines dans le monde. Il donne accès aux couches cartographiques, "
-"documents, puits et suivis piézométriques. Il contient également plusieurs visionneurs thématiques de carte "
+"documents, puits et suivis piézométriques. Il contient également plusieurs cartes thématiques."
 
 #: igrac/templates/landing_page.html:47
 msgid "Visit IGRAC Website"
@@ -474,7 +474,7 @@ msgstr "Montrer cette annonce"
 
 #: igrac/templates/landing_page.html:68
 msgid "Explore the viewers"
-msgstr "Explorer les visionneurs"
+msgstr "Explorer les Cartes"
 
 #: igrac/templates/layers/layer_detail.html:34
 msgid "layers"
@@ -510,7 +510,7 @@ msgstr "Granule ID"
 
 #: igrac/templates/layers/layer_detail.html:90
 msgid "Bounding Box"
-msgstr "Une Case Limitante"
+msgstr "Périmètre"
 
 #: igrac/templates/layers/layer_detail.html:91
 msgid "Time"
@@ -858,7 +858,7 @@ msgstr "Aucun style associé à cette couche"
 
 #: igrac/templates/layers/layer_detail.html:711
 msgid "External service layer"
-msgstr "Couche de Service Externe"
+msgstr "Couche importée"
 
 #: igrac/templates/layers/layer_detail.html:712
 msgid "Source"
