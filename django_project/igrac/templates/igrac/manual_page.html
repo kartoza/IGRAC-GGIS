@@ -81,6 +81,10 @@
     <script src="{% static "js/jstree-3.2.1/jstree.min.js" %}"></script>
     <script>
         $(function () {
+            var tree = $('#jstree1');
+            tree.bind("loaded.jstree", function (event, data) {
+                tree.jstree("open_all");
+            });
             $('#jstree1').jstree({
                 "core": {
                     "themes": {
