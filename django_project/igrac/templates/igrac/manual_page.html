@@ -16,7 +16,25 @@
           href="{% static "css/jstree-3.2.1/style.min.css" %}"/>
     <link rel="stylesheet"
           href="{% static "css/manual-page-style.css" %}"/>
+    <style>
+        .left {
+            float: left;
+        }
 
+        .right {
+            float: right;
+        }
+
+        .captioned-image {
+            width: fit-content;
+            text-align: center;
+        }
+
+        .captioned-image figcaption {
+            font-style: italic;
+            color: gray;
+        }
+    </style>
 {% endblock %}
 
 {% block middle %}
@@ -50,7 +68,7 @@
             </div>
 
             <div class="col-md-2 col-md-pull-10 col-xs-12 menu-sidebar">
-                <h5> GGIS IGRAC Docs</h5>
+                <h5>{{ request.site.root_page.title }}</h5>
                 <div id="jstree1" class="demo">
                     {% manual_menu menu page.slug %}
                 </div>
@@ -63,6 +81,10 @@
     <script src="{% static "js/jstree-3.2.1/jstree.min.js" %}"></script>
     <script>
         $(function () {
+            var tree = $('#jstree1');
+            tree.bind("loaded.jstree", function (event, data) {
+                tree.jstree("open_all");
+            });
             $('#jstree1').jstree({
                 "core": {
                     "themes": {

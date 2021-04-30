@@ -37,7 +37,7 @@ msgid "Data"
 msgstr "Données"
 
 #: igrac/templates/base.html:322
-msgid "Map Layers"
+msgid "Map Layers &nbsp;"
 msgstr "Couches Cartographiques"
 
 #: igrac/templates/base.html:323

@@ -73,7 +73,7 @@ TEMPLATES = [
                 'geonode.themes.context_processors.custom_theme',
 
                 # IGRAC context processor
-                'igrac.context_processors.resource_urls',
+                'igrac.context_processors.extra_context',
 
                 # WAGTAIL
                 'wagtail.contrib.settings.context_processors.settings',
@@ -137,3 +137,5 @@ EPSG_CODE_MATCHES['ESRI:54030'] = '(54030) World_Robinson'
 
 # Where the file uploaded temporary saved
 FILE_UPLOAD_TEMP_DIR = os.getenv('FILE_UPLOAD_TEMP_DIR', None)
+
+GOOGLE_ANALYTIC_KEY = os.getenv('GOOGLE_ANALYTIC_KEY', None)
