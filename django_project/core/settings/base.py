@@ -139,3 +139,15 @@ EPSG_CODE_MATCHES['ESRI:54030'] = '(54030) World_Robinson'
 FILE_UPLOAD_TEMP_DIR = os.getenv('FILE_UPLOAD_TEMP_DIR', None)
 
 GOOGLE_ANALYTIC_KEY = os.getenv('GOOGLE_ANALYTIC_KEY', None)
+
+if MAPSTORE_BASELAYERS:
+    MAPSTORE_BASELAYERS.insert(len(MAPSTORE_BASELAYERS) - 1, {
+        "type": "tileprovider",
+        "title": "CartoDB - Positron",
+        "name": "CartoDB - Positron",
+        "provider": "CartoDB.Positron",
+        "source": "CartoDB",
+        "group": "background",
+        "thumbURL": "%sstatic/img/positron.png" % SITEURL,
+        "visibility": False
+    })

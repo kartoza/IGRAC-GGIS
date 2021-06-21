@@ -1,4 +1,4 @@
-psycopg2-binary
+psycopg2-binary==2.8.6
 django-admin-sortable==2.1.8
 django-braces==1.14.0
 django-model-utils==1.4.0
@@ -19,4 +19,4 @@ pyexcel-xls
 pyexcel-xlsx
 
 git+https://github.com/kartoza/django-mapstore-adapter.git@geonode_latest
-git+https://github.com/kartoza/geonode-mapstore-client.git@2.0.10.3
+git+https://github.com/kartoza/geonode-mapstore-client.git@2.0.11
