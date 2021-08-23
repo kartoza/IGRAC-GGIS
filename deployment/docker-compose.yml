@@ -141,6 +141,7 @@ services:
   # Celery worker that executes celery tasks created by Django.
   celery:
     <<: *default-common-django
+    entrypoint : []
     command: 'celery -A geonode.celery_app:app worker -B -E --statedb=worker.state -s celerybeat-schedule --loglevel=DEBUG --concurrency=10 -n worker1@%h'
 
   # django application for development
