@@ -19,4 +19,4 @@ pyexcel-xls
 pyexcel-xlsx
 
 git+https://github.com/kartoza/django-mapstore-adapter.git@geonode_latest
-git+https://github.com/kartoza/geonode-mapstore-client.git@2.0.12
+git+https://github.com/kartoza/geonode-mapstore-client.git@2.0.13
