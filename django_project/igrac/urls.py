@@ -8,7 +8,9 @@ from .views import HomeView, map_view_with_slug
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
-from igrac.views import MapSlugMetadataDetail, MapMetadataDetail
+from igrac.views import (
+    MapSlugMetadataDetail, MapMetadataDetail, CustomSignupView
+)
 
 urlpatterns = [
     url(r'^$',
@@ -27,4 +29,9 @@ urlpatterns = [
     url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^wagtail/documents/', include(wagtaildocs_urls)),
     url(r'^about/', include(wagtail_urls)),
+    url(
+        r'^account/signup/',
+        CustomSignupView.as_view(),
+        name='account_signup'
+    ),
 ]
