@@ -1,0 +1,151 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load bootstrap_tags %}
+{% load igrac_bootstrap_tags %}
+{% load account socialaccount %}
+
+{% block title %}{% trans "Sign up" %}{% endblock %}
+
+{% block body_outer %}
+    <style>
+        .errorlist {
+            padding: 0;
+        }
+
+        form .row {
+            margin: 0;
+            display: flex;
+        }
+
+        form .col {
+            width: 100%;
+            padding: 0 5px;
+        }
+
+        form .row .col:first-child {
+            padding-left: 0;
+        }
+
+        form .row .col:last-child {
+            padding-right: 0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .help-text {
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .error-msg {
+            margin-top: 5px;
+        }
+
+        .errorlist {
+            margin-bottom: 0;
+        }
+    </style>
+    <div class="page-header">
+        <h1>{% trans "Sign up" %}</h1>
+        <div>
+            Your account will be activated by admins.
+            It might take a few days for admin to reply the registration and might end up in spam box email.
+        </div>
+    </div>
+    <div class="row">
+        {% get_providers as socialaccount_providers %}
+        {% if socialaccount_providers %}
+            <p>{% blocktrans with site.name as site_name %}Sign up with one
+                of your existing third party accounts{% endblocktrans %}</p>
+            {% include "socialaccount/snippets/provider_list.html" with process="signup" %}
+            {% include "socialaccount/snippets/login_extra.html" %}
+            <hr>
+        {% endif %}
+    </div>
+    {% if account_geonode_local_signup %}
+        <div class="row">
+            <form id="signup_form"
+                  method="post"
+                  action="{% url "account_signup" %}"
+                  autocapitalize="off"
+                    {% if form.is_multipart %}
+                  enctype="multipart/form-data"
+                    {% endif %}>
+                <fieldset>
+                    {% csrf_token %}
+                    {{ form.username|field_as_bootstrap }}
+                    {{ form.email|field_as_bootstrap }}
+                    <div class="group">
+                        <div class="row">
+                            <div class="col">
+                                {{ form.first_name|field_as_bootstrap }}
+                            </div>
+                            <div class="col">
+                                {{ form.last_name|field_as_bootstrap }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <div class="row">
+                            <div class="col">
+                                {{ form.organization|field_as_bootstrap }}
+                            </div>
+                            <div class="col">
+                                {{ form.position|field_as_bootstrap }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <div class="row">
+                            <div class="col">
+                                {{ form.city|field_as_bootstrap }}
+                            </div>
+                            <div class="col">
+                                {{ form.area|field_as_bootstrap }}
+                            </div>
+                            <div class="col">
+                                {{ form.country|field_as_bootstrap }}
+                            </div>
+                        </div>
+                    </div>
+                    {{ form.reason|field_as_bootstrap }}
+                    <div class="group">
+                        <div class="row">
+                            <div class="col">
+                                {{ form.password1|field_as_bootstrap }}
+                            </div>
+                            <div class="col">
+                                {{ form.password2|field_as_bootstrap }}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if redirect_field_value %}
+                        <input type="hidden"
+                               name="{{ redirect_field_name }}"
+                               value="{{ redirect_field_value }}"
+                        />
+                    {% endif %}
+                    <div class="form-actions">
+                        <button type="submit"
+                                class="btn btn-primary">
+                            {% trans "Sign up" %}
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block extra_script %}
+    {{ block.super }}
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#id_username').focus();
+      });
+    </script>
+{% endblock %}
