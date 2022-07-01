@@ -2,6 +2,7 @@ import copy
 from geonode.settings import *
 from wagtail.embeds.oembed_providers import youtube
 from .utils import absolute_path  # noqa
+from celery.schedules import crontab
 
 INSTALLED_APPS += (
     'igrac',
@@ -151,3 +152,9 @@ if MAPSTORE_BASELAYERS:
         "thumbURL": "%sstatic/img/positron.png" % SITEURL,
         "visibility": False
     })
+
+if 'gwml2' in INSTALLED_APPS:
+    CELERY_BEAT_SCHEDULE['gwml2'] = {
+        'task': 'gwml2.tasks.well.generate_downloadable_file_cache',
+        'schedule': crontab(hour=00)
+    }
