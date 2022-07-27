@@ -156,5 +156,5 @@ if MAPSTORE_BASELAYERS:
 if 'gwml2' in INSTALLED_APPS:
     CELERY_BEAT_SCHEDULE['generate_downloadable_file_cache'] = {
         'task': 'gwml2.tasks.well.generate_downloadable_file_cache',
-        'schedule': crontab(hour=00)
+        'schedule': crontab(minute=0, hour=0, day_of_week=6)
     }
