@@ -27,7 +27,7 @@ class SignupWithNameForm(SignupForm):
         )
     )
     position = forms.CharField(
-        label=_('Organization Position'),
+        label=_('Position'),
         widget=forms.TextInput(
             attrs={"placeholder": _("Organization position")}
         )
