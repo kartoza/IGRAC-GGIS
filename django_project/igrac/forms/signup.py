@@ -49,7 +49,7 @@ class SignupWithNameForm(SignupForm):
         choices=COUNTRIES
     )
     reason = forms.CharField(
-        label=_('Why want to join the GGIS?'),
+        label=_('Why do you want to register in the GGIS?'),
         widget=forms.Textarea()
     )
 
