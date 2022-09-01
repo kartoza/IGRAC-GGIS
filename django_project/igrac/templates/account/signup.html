@@ -76,7 +76,6 @@
                     {% endif %}>
                 <fieldset>
                     {% csrf_token %}
-                    {{ form.username|field_as_bootstrap }}
                     {{ form.email|field_as_bootstrap }}
                     <div class="group">
                         <div class="row">
@@ -112,6 +111,7 @@
                         </div>
                     </div>
                     {{ form.reason|field_as_bootstrap }}
+                    {{ form.username|field_as_bootstrap }}
                     <div class="group">
                         <div class="row">
                             <div class="col">
