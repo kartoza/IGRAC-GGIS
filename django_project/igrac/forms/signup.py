@@ -29,7 +29,7 @@ class SignupWithNameForm(SignupForm):
     position = forms.CharField(
         label=_('Position'),
         widget=forms.TextInput(
-            attrs={"placeholder": _("Organization position")}
+            attrs={"placeholder": _("position")}
         )
     )
     city = forms.CharField(
