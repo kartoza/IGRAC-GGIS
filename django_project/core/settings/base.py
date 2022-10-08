@@ -3,6 +3,11 @@ from geonode.settings import *
 from wagtail.embeds.oembed_providers import youtube
 from .utils import absolute_path  # noqa
 
+if 'mapstore2_adapter.geoapps.dashboards' in INSTALLED_APPS:
+    INSTALLED_APPS = list(INSTALLED_APPS)
+    INSTALLED_APPS.remove('mapstore2_adapter.geoapps.dashboards')
+    INSTALLED_APPS = tuple(INSTALLED_APPS)
+
 INSTALLED_APPS += (
     'igrac',
     'gwml2',
