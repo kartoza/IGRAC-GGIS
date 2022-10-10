@@ -27,9 +27,9 @@ class SignupWithNameForm(SignupForm):
         )
     )
     position = forms.CharField(
-        label=_('Organization Position'),
+        label=_('Position'),
         widget=forms.TextInput(
-            attrs={"placeholder": _("Organization position")}
+            attrs={"placeholder": _("position")}
         )
     )
     city = forms.CharField(
@@ -49,8 +49,7 @@ class SignupWithNameForm(SignupForm):
         choices=COUNTRIES
     )
     reason = forms.CharField(
-        label=_('Join reason'),
-        help_text=_('Why want to join the GGIS?'),
+        label=_('Why do you want to register in the GGIS?'),
         widget=forms.Textarea()
     )
 

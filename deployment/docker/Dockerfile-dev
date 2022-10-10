@@ -4,6 +4,9 @@
 FROM igrac_django:latest
 MAINTAINER Irwan Fathurrahman<meomancer@gmail.com>
 
+ADD deployment/docker/REQUIREMENTS-DEV.txt /REQUIREMENTS-DEV.txt
+RUN pip install -r /REQUIREMENTS-DEV.txt
+
 # This section taken on 2 July 2015 from
 # https://docs.docker.com/examples/running_ssh_service/
 # Sudo is needed by pycharm when it tries to pip install packages

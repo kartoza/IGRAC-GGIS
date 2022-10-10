@@ -512,7 +512,7 @@
                                     <li><a href="{% url "organisation_list" %}">{% trans "Organisation" %}</a></li>
                                 {% endif %}
 
-                                <li><a href="{% url "download_list_view" %}">{% trans "Well Data Download List" %}</a></li>
+                                <li><a href="{% url "well_download_request" %}">{% trans "Download Well Data" %}</a></li>
                                 {% if user.is_superuser or user.is_staff %}
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{% url "admin:index" %}">{% trans "Admin" %}</a></li>
