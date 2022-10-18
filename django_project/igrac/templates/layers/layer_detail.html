@@ -975,7 +975,7 @@
           layer_name = {{ layer_name | safe }};
           filtered_attributes = {{ filtered_attributes | safe }}
           attribute_description = {{ attribute_description | safe }}
-          whole_url = "{% url 'load_layer_data' %}";
+          {#whole_url = "{% url 'load_layer_data' %}";#}
           if (!ajax_loaded) {
             $.ajax({
               type: "POST",

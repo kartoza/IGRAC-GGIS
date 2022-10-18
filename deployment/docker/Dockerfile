@@ -1,6 +1,6 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-FROM geonode/spcgeonode:django-3.0
-MAINTAINER Anita Hapsari<anita@kartoza.com>
+FROM geonode/geonode:3.3.x
+MAINTAINER Irwan <irwan@kartoza.com>
 
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update -y && apt-get -y --allow-downgrades --allow-remove-essential --allow-unauthenticated install yui-compressor rpl mdbtools git
@@ -8,10 +8,12 @@ RUN echo "Activate memcached" && \
     apt-get update && apt-get install -y memcached && \
     pip install pylibmc  && pip install sherlock
 
-WORKDIR /spcgeonode
+WORKDIR /
 
-# TODO: base repo : https://github.com/kartoza/geonode/commit/4f64450061046881aea74ea43673965440318e64
-RUN git pull https://github.com/kartoza/geonode.git 3.2.2
+RUN rm -r /usr/src/geonode
+RUN git clone --branch 3.3.x --single-branch https://github.com/kartoza/geonode.git spcgeonode
+
+WORKDIR /spcgeonode
 RUN pip install -r requirements.txt
 
 RUN pip uninstall -y django-geonode-mapstore-client
