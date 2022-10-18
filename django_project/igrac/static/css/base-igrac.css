@@ -414,3 +414,16 @@ body.igrac-home {
     border: rgba(0, 0, 0, 0) !important;
     margin-left: -15px !important;
 }
+
+.geostory-button-container {
+    margin-bottom: -20px;
+}
+
+.geostory-button-container .btn {
+    padding: 10px;
+    color: white !important;
+}
+
+.geostory-button-container .btn:hover, .geostory-button-container .btn:focus {
+    color: #ff6b0d !important;
+}

@@ -368,8 +368,6 @@
                                 <li><a href="{% url "layer_browse" %}">
                                     {% trans "Map Layers &nbsp;" %}</a></li>
                                 <li><a href="{% url "document_browse" %}">{% trans "Documents" %}</a></li>
-                                <li><a href="/apps">
-                                    {% trans "Geostory" %}</a></li>
                                 {% if user.is_authenticated %}
                                     <li><a href="{% url "services" %}">{% trans "Remote Services" %}</a></li>
                                 {% endif %}
