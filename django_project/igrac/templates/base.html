@@ -416,6 +416,9 @@
                                 <a href="{% url "maps_browse" %}">{% trans "Map Viewers" %}</a>
                             {% endif %}
                         </li>
+                        <li>
+                            <a href="/apps">{% trans "GeoStories" %}</a>
+                        </li>
                         {% if user.is_authenticated %}
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans "Users" %}<i class="fa fa-angle-down fa-lg"></i></a>
