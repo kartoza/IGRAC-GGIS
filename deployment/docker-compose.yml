@@ -124,16 +124,12 @@ services:
   # PostGIS database.
   postgres:
     # use geonode official postgis 10 image
-    image: geonode/postgis:10
+    image: kartoza/postgis:13
     environment:
       # database info, ${variables} are read from .env
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - GEONODE_DATABASE=${GEONODE_DATABASE}
-      - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
-      - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
-      - GEONODE_GEODATABASE_PASSWORD=${GEONODE_GEODATABASE_PASSWORD}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
-      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
+      - POSTGRES_DBNAME=${GEONODE_DATABASE},${GEONODE_GEODATABASE},groundwater
+      - POSTGRES_USER=${GEONODE_DATABASE_USER}
+      - POSTGRES_PASSWORD=${GEONODE_DATABASE_PASSWORD}
     volumes:
       - database:/var/lib/postgresql/data/
       - ./backups:/backups
