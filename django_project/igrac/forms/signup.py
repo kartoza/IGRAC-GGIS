@@ -3,6 +3,8 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from geonode.base.enumerations import COUNTRIES
 
+from gwml2.models.well_management.organisation import OrganisationType
+
 
 class SignupWithNameForm(SignupForm):
     first_name = forms.CharField(
@@ -26,6 +28,7 @@ class SignupWithNameForm(SignupForm):
             attrs={"placeholder": _("Organization name")}
         )
     )
+    organization_types = forms.MultipleChoiceField()
     position = forms.CharField(
         label=_('Position'),
         widget=forms.TextInput(
@@ -53,6 +56,17 @@ class SignupWithNameForm(SignupForm):
         widget=forms.Textarea()
     )
 
+    def __init__(self, *args, **kwargs):
+        super(SignupWithNameForm, self).__init__(*args, **kwargs)
+        self.fields['organization_types'].choices = [
+            (_type.name, _type.name)
+            for _type in OrganisationType.objects.all()
+        ]
+
+    def clean_organization_types(self):
+        organization_types = self.cleaned_data['organization_types']
+        return ', '.join(organization_types)
+
     def save(self, request):
         user = super().save(request)
         user.organization = self.cleaned_data.get("organization")
@@ -62,5 +76,8 @@ class SignupWithNameForm(SignupForm):
         user.country = self.cleaned_data.get("country")
         user.save()
         user.igracprofile.join_reason = self.cleaned_data.get("reason")
+        user.igracprofile.organization_types = self.cleaned_data.get(
+            "organization_types"
+        )
         user.igracprofile.save()
         return user

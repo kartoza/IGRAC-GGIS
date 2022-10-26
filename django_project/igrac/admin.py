@@ -49,13 +49,19 @@ class IgracProfileAdmin(ProfileAdmin):
                                             'delivery', 'city', 'area',
                                             'zipcode', 'country',
                                             'keywords')}),
-        (_('IGRAC Information'), {'fields': ('join_reason',)}),
+        (_('IGRAC Information'), {'fields': ('join_reason', 'organization_types')}),
     )
-    readonly_fields = ('join_reason',)
+    readonly_fields = ('join_reason', 'organization_types')
 
     def join_reason(self, obj: Profile):
         try:
             return obj.igracprofile.join_reason
+        except IgracProfile.DoesNotExist:
+            return ''
+
+    def organization_types(self, obj: Profile):
+        try:
+            return obj.igracprofile.organization_types
         except IgracProfile.DoesNotExist:
             return ''
 
