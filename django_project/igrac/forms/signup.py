@@ -58,10 +58,21 @@ class SignupWithNameForm(SignupForm):
 
     def __init__(self, *args, **kwargs):
         super(SignupWithNameForm, self).__init__(*args, **kwargs)
+        types = [_type.name for _type in OrganisationType.objects.all()]
         self.fields['organization_types'].choices = [
             (_type.name, _type.name)
             for _type in OrganisationType.objects.all()
         ]
+
+        # From POST data
+        try:
+            for _type in self.data.getlist('organization_types'):
+                if _type not in types:
+                    self.fields['organization_types'].choices += [
+                        (_type, _type)
+                    ]
+        except (AttributeError, KeyError):
+            pass
 
     def clean_organization_types(self):
         organization_types = self.cleaned_data['organization_types']
