@@ -101,7 +101,10 @@ services:
 
   # Geoserver backend
   geoserver:
-    image: geonode/spcgeonode:geoserver-3.0
+    image: kartoza/sadc_gip:geoserver-3.1.netcfd
+    build:
+      context: ../
+      dockerfile: deployment/geoserver/Dockerfile
     healthcheck:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.0.0.1:8080/geoserver/rest/workspaces/geonode.html"
       interval: 60s
@@ -119,6 +122,10 @@ services:
       - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
+    ports:
+      - "5000:8080"
+    depends_on:
+      - postgres
     restart: on-failure
 
   # PostGIS database.
