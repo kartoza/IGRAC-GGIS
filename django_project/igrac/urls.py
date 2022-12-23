@@ -11,6 +11,11 @@ from wagtail.documents import urls as wagtaildocs_urls
 from igrac.views import (
     MapSlugMetadataDetail, MapMetadataDetail, CustomSignupView
 )
+from igrac.g3p import (
+    G3PTimeseriesData, 
+    G3PTimeseriesChart,
+    G3PTimeseriesChartIframe
+)
 
 urlpatterns = [
     url(r'^$',
@@ -34,4 +39,11 @@ urlpatterns = [
         CustomSignupView.as_view(),
         name='account_signup'
     ),
+    url(r'^api/G3P_data/', G3PTimeseriesData.as_view(), name='G3P_data'),
+    url(r'^g3p/(?P<name>[\w\+%_& ]+)/(?P<id>[^/]+)/chart/iframe',
+        G3PTimeseriesChartIframe.as_view(),
+        name='g3p-timeseries-chart-iframe'),
+    url(r'^g3p/(?P<name>[\w\+%_& ]+)/(?P<id>[^/]+)/chart',
+        G3PTimeseriesChart.as_view(),
+        name='g3p-timeseries-chart'),
 ]
