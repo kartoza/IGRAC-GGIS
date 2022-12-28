@@ -23,13 +23,17 @@ class G3PTimeseriesChart(View):
     def get(self, request, *args, **kwargs):
         id = kwargs['id']
         name = kwargs['name']
+        xlabel = kwargs.get('xlabel', '')
+        ylabel = kwargs.get('ylabel', '')
 
         return render(
             request,
             'g3p_timeseries_chart.html',
             {
                 'id': id,
-                'identifier': name
+                'identifier': name,
+                'xlabel': xlabel.replace('_', ' '),
+                'ylabel': ylabel.replace('_', ' ')
             }
         )
 

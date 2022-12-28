@@ -43,7 +43,10 @@ urlpatterns = [
     url(r'^g3p/(?P<name>[\w\+%_& ]+)/(?P<id>[^/]+)/chart/iframe',
         G3PTimeseriesChartIframe.as_view(),
         name='g3p-timeseries-chart-iframe'),
-    url(r'^g3p/(?P<name>[\w\+%_& ]+)/(?P<id>[^/]+)/chart',
+    url(r'^g3p/(?P<name>[^/]+)/(?P<id>[^/]+)/chart',
+        G3PTimeseriesChart.as_view(),
+        name='g3p-timeseries-chart'),
+    url(r'^g3p/(?P<name>[^/]+)/(?P<ylabel>[^/]+)/(?P<xlabel>[^/]+)/(?P<id>[^/]+)/chart',
         G3PTimeseriesChart.as_view(),
         name='g3p-timeseries-chart'),
 ]

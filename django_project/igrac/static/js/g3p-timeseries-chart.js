@@ -98,7 +98,7 @@ function renderTimeseriesChart(identifier, id, chart, data, xLabel, yLabel, onCh
         series: [
             {
                 id: 'value',
-                name: 'Groundwater Product',
+                name: identifier.replaceAll('_', ' '),
                 data: data,
                 fillColor: {
                     linearGradient: {
@@ -136,7 +136,7 @@ function renderTimeseriesChart(identifier, id, chart, data, xLabel, yLabel, onCh
     }
     return chart;
 }
-let TimeseriesChartObj = function (id, identifier, $loading) {
+let TimeseriesChartObj = function (id, identifier, $loading, xlabel = "", ylabel = "") {
     this.identifier = identifier;
     this.id = id;
     this.$loading = $loading;
@@ -172,13 +172,19 @@ let TimeseriesChartObj = function (id, identifier, $loading) {
                 '<div style="text-align: center; color: red">No data found</div>');
             return
         }
+        if (xlabel === "") {
+            xlabel = "Time"
+        }
+        if (ylabel === "") {
+            ylabel = "Groundwater storage anomaly (mm)"
+        }
         this.chart = renderTimeseriesChart(
             this.identifier,
             this.id, 
             this.chart,
             chartData,
-            'Time', 
-            'Groundwater storage change',
+            xlabel, 
+            ylabel,
             function (date) {
                 // when chart is clicked
                 console.log('clicked');
