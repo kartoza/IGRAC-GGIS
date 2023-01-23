@@ -3,7 +3,7 @@ version: '3.4'
 # Common Django template for Geonode, Celery and Celerycam services below
 x-common-django:
   &default-common-django
-  image: kartoza/igrac_ggis:2.0.0-alpha.12
+  image: kartoza/igrac_ggis:2.0.2
   build:
     context: ../
     dockerfile: deployment/docker/Dockerfile
