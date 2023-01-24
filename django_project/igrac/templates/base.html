@@ -685,7 +685,14 @@
 <script type="text/javascript" src="{% url "javascript-catalog" %}"></script>
 {% block extra_script %}{% endblock extra_script %}
 <script type="text/javascript">
+    function removeLocationHash(){
+        let noHashURL = window.location.href.replace(/#.*$/, '');
+        window.history.replaceState('', document.title, noHashURL)
+    }
 
+    window.addEventListener("load", function(){
+        removeLocationHash();
+    });
     // Autocomplete instance for the search found in the header.
     $(document).ready(function () {
         window.autocomplete2 = new Autocomplete({
