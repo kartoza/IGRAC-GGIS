@@ -690,9 +690,35 @@
         window.history.replaceState('', document.title, noHashURL)
     }
 
+    function waitForElm(selector) {
+        return new Promise(resolve => {
+            if (document.querySelector(selector)) {
+                return resolve(document.querySelector(selector));
+            }
+
+            const observer = new MutationObserver(mutations => {
+                if (document.querySelector(selector)) {
+                    resolve(document.querySelector(selector));
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    }
+
     window.addEventListener("load", function(){
         removeLocationHash();
+        if (window.location.href.includes('/maps/')) {
+          waitForElm('.timeline-plugin-btn-group').then((elm) => {
+            document.querySelectorAll('.timeline-plugin-btn-group button')[1].click()
+          });
+        }
     });
+
     // Autocomplete instance for the search found in the header.
     $(document).ready(function () {
         window.autocomplete2 = new Autocomplete({
