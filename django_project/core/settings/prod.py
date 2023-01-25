@@ -29,8 +29,3 @@ DEFAULT_FROM_EMAIL = os.environ.get(
 )
 
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
-CELERY_BEAT_SCHEDULE['run_all_harvester'] = {
-    'task': 'gwml2.tasks.harvester.run_all_harvester',
-    'schedule': crontab(minute=0, hour=00, day_of_week=[0, 3]),
-}

@@ -163,3 +163,7 @@ if 'gwml2' in INSTALLED_APPS:
         'task': 'gwml2.tasks.well.generate_downloadable_file_cache',
         'schedule': crontab(minute=0, hour=0, day_of_week=6)
     }
+    CELERY_BEAT_SCHEDULE['run_all_harvester'] = {
+        'task': 'gwml2.tasks.harvester.run_all_harvester',
+        'schedule': crontab(minute=0, hour=00, day_of_week=[0, 3]),
+    }
