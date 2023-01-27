@@ -1,17 +1,14 @@
 from geonode.urls import *
 from core.api.layer import LayerAttributeAPI
-from core.views.people import CustomSignupView
 
 geonode_additional_api = [
-    url(r'^layer/(?P<alternate>[\w\+%_&: ]+)/attributes',
+    url(r'^api/layer/(?P<alternate>[\w\+%_&: ]+)/attributes',
         view=LayerAttributeAPI.as_view(),
         name='geonode_layer_attribute'),
 ]
 urlpatterns = [
                   url(r'^', include('igrac.urls')),
-                  url(r'^account/signup/', CustomSignupView.as_view(), name='account_signup'),
-                  url(r'^api/', include(geonode_additional_api)),
-              ] + urlpatterns
+              ] + urlpatterns + geonode_additional_api
 
 if settings.DEBUG:
     urlpatterns += static(

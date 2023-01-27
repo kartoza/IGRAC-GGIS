@@ -1,9 +1,7 @@
 # coding=utf-8
-
 """Project level settings."""
+
 from .base import *  # noqa
-import os
-import ast
 
 # Comment if you are not running behind proxy
 USE_X_FORWARDED_HOST = True
@@ -26,6 +24,8 @@ EMAIL_USE_SSL = ast.literal_eval(os.environ.get('EMAIL_USE_SSL', 'False'))
 EMAIL_SUBJECT_PREFIX = os.environ.get('EMAIL_SUBJECT_PREFIX', '[IGRAC-GGIS]')
 
 SERVER_EMAIL = os.environ.get('ADMIN_EMAIL', 'noreply@kartoza.com')
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@kartoza.com')
+DEFAULT_FROM_EMAIL = os.environ.get(
+    'DEFAULT_FROM_EMAIL', 'noreply@kartoza.com'
+)
 
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'

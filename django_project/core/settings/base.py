@@ -2,6 +2,12 @@ import copy
 from geonode.settings import *
 from wagtail.embeds.oembed_providers import youtube
 from .utils import absolute_path  # noqa
+from celery.schedules import crontab
+
+if 'mapstore2_adapter.geoapps.dashboards' in INSTALLED_APPS:
+    INSTALLED_APPS = list(INSTALLED_APPS)
+    INSTALLED_APPS.remove('mapstore2_adapter.geoapps.dashboards')
+    INSTALLED_APPS = tuple(INSTALLED_APPS)
 
 INSTALLED_APPS += (
     'igrac',
@@ -151,3 +157,13 @@ if MAPSTORE_BASELAYERS:
         "thumbURL": "%sstatic/img/positron.png" % SITEURL,
         "visibility": False
     })
+
+if 'gwml2' in INSTALLED_APPS:
+    CELERY_BEAT_SCHEDULE['generate_downloadable_file_cache'] = {
+        'task': 'gwml2.tasks.well.generate_downloadable_file_cache',
+        'schedule': crontab(minute=0, hour=0, day_of_week=6)
+    }
+    CELERY_BEAT_SCHEDULE['run_all_harvester'] = {
+        'task': 'gwml2.tasks.harvester.run_all_harvester',
+        'schedule': crontab(minute=0, hour=00, day_of_week=[0, 3]),
+    }

@@ -416,6 +416,9 @@
                                 <a href="{% url "maps_browse" %}">{% trans "Map Viewers" %}</a>
                             {% endif %}
                         </li>
+                        <li>
+                            <a href="/apps">{% trans "GeoStories" %}</a>
+                        </li>
                         {% if user.is_authenticated %}
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans "Users" %}<i class="fa fa-angle-down fa-lg"></i></a>
@@ -512,7 +515,7 @@
                                     <li><a href="{% url "organisation_list" %}">{% trans "Organisation" %}</a></li>
                                 {% endif %}
 
-                                <li><a href="{% url "download_list_view" %}">{% trans "Well Data Download List" %}</a></li>
+                                <li><a href="{% url "well_download_request" %}">{% trans "Download Well Data" %}</a></li>
                                 {% if user.is_superuser or user.is_staff %}
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{% url "admin:index" %}">{% trans "Admin" %}</a></li>
@@ -682,6 +685,39 @@
 <script type="text/javascript" src="{% url "javascript-catalog" %}"></script>
 {% block extra_script %}{% endblock extra_script %}
 <script type="text/javascript">
+    function removeLocationHash(){
+        let noHashURL = window.location.href.replace(/#.*$/, '');
+        window.history.replaceState('', document.title, noHashURL)
+    }
+
+    function waitForElm(selector) {
+        return new Promise(resolve => {
+            if (document.querySelector(selector)) {
+                return resolve(document.querySelector(selector));
+            }
+
+            const observer = new MutationObserver(mutations => {
+                if (document.querySelector(selector)) {
+                    resolve(document.querySelector(selector));
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    }
+
+    window.addEventListener("load", function(){
+        removeLocationHash();
+        if (window.location.href.includes('/maps/')) {
+          waitForElm('.timeline-plugin-btn-group').then((elm) => {
+            document.querySelectorAll('.timeline-plugin-btn-group button')[1].click()
+          });
+        }
+    });
 
     // Autocomplete instance for the search found in the header.
     $(document).ready(function () {

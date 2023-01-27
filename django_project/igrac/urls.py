@@ -8,7 +8,14 @@ from .views import HomeView, map_view_with_slug
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
-from igrac.views import MapSlugMetadataDetail, MapMetadataDetail
+from igrac.views import (
+    MapSlugMetadataDetail, MapMetadataDetail, CustomSignupView
+)
+from igrac.g3p import (
+    G3PTimeseriesData, 
+    G3PTimeseriesChart,
+    G3PTimeseriesChartIframe
+)
 
 urlpatterns = [
     url(r'^$',
@@ -27,4 +34,19 @@ urlpatterns = [
     url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^wagtail/documents/', include(wagtaildocs_urls)),
     url(r'^about/', include(wagtail_urls)),
+    url(
+        r'^account/signup/',
+        CustomSignupView.as_view(),
+        name='account_signup'
+    ),
+    url(r'^api/G3P_data/', G3PTimeseriesData.as_view(), name='G3P_data'),
+    url(r'^g3p/(?P<name>[\w\+%_& ]+)/(?P<id>[^/]+)/chart/iframe',
+        G3PTimeseriesChartIframe.as_view(),
+        name='g3p-timeseries-chart-iframe'),
+    url(r'^g3p/(?P<name>[^/]+)/(?P<id>[^/]+)/chart',
+        G3PTimeseriesChart.as_view(),
+        name='g3p-timeseries-chart'),
+    url(r'^g3p/(?P<name>[^/]+)/(?P<ylabel>[^/]+)/(?P<xlabel>[^/]+)/(?P<id>[^/]+)/chart',
+        G3PTimeseriesChart.as_view(),
+        name='g3p-timeseries-chart'),
 ]

@@ -1,0 +1,30 @@
+/* FORM GROUP SELECT 2 */
+.form-group .select2-selection {
+    border: 1px solid #ccc !important;
+    min-height: 36px !important;
+}
+
+.select2-container .select2-selection--multiple .select2-selection__rendered {
+    display: flex !important;
+    flex-wrap: wrap;
+}
+
+.select2-container input {
+    margin-top: 9px !important;
+    margin-left: 0 !important;
+    padding-left: 10px !important;
+}
+
+.select2-container li {
+    display: block !important;
+    float: unset !important;
+}
+
+.select2-selection__choice {
+    padding: 2px 10px 0 25px !important;
+    overflow: unset !important;
+}
+
+.select2-selection__choice__remove {
+    padding-top: 2px !important;
+}

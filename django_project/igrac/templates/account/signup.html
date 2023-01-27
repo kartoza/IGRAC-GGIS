@@ -1,0 +1,212 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load staticfiles %}
+{% load bootstrap_tags %}
+{% load igrac_bootstrap_tags %}
+{% load account socialaccount %}
+
+{% block title %}{% trans "Sign up" %}{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'css/form-select2.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet"
+          href="{% static 'js/select2/4.1.0-rc.0/select2.min.css' %}"
+          type="text/css" media="screen, projection"/>
+    <script type="text/javascript"
+            src="{% static 'js/select2/4.1.0-rc.0/select2.min.js' %}"></script>
+    <style>
+        #id_organization_types .select2-container input {
+            min-width: 411px !important;
+        }
+
+        .errorlist {
+            padding: 0;
+        }
+
+        .container > .row,
+        form .row {
+            margin: 0;
+        }
+
+        form .row {
+            display: flex;
+        }
+
+        form .col {
+            width: 100%;
+            padding: 0 5px;
+        }
+
+        form .row .col:first-child {
+            padding-left: 0;
+        }
+
+        form .row .col:last-child {
+            padding-right: 0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .help-text {
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .error-msg {
+            margin-top: 5px;
+        }
+
+        .errorlist {
+            margin-bottom: 0;
+        }
+
+        .form-actions {
+            margin-bottom: 50px;
+        }
+    </style>
+{% endblock %}
+
+{% block body_outer %}
+    <div class="page-header">
+        <h1>{% trans "Sign up" %}</h1>
+        <div>
+            Registering in the GGIS is for users who want to upload data or use
+            advanced functionalities like joining user groups or creating maps.
+            <br>
+            Please note that the activation of your account might take a couple
+            of days, and the notification email could end up in your spam box.
+        </div>
+    </div>
+    <div class="row">
+        {% get_providers as socialaccount_providers %}
+        {% if socialaccount_providers %}
+            <p>{% blocktrans with site.name as site_name %}Sign up with one
+                of your existing third party accounts{% endblocktrans %}</p>
+            {% include "socialaccount/snippets/provider_list.html" with process="signup" %}
+            {% include "socialaccount/snippets/login_extra.html" %}
+            <hr>
+        {% endif %}
+    </div>
+    {% if account_geonode_local_signup %}
+        <div class="row">
+            <form id="signup_form"
+                  method="post"
+                  action="{% url "account_signup" %}"
+                  autocapitalize="off"
+                    {% if form.is_multipart %}
+                  enctype="multipart/form-data"
+                    {% endif %}>
+                <fieldset>
+                    {% csrf_token %}
+                    {{ form.email|field_as_bootstrap }}
+                    <div class="group">
+                        <div class="row">
+                            <div class="col">
+                                {{ form.first_name|field_as_bootstrap }}
+                            </div>
+                            <div class="col">
+                                {{ form.last_name|field_as_bootstrap }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <div class="row">
+                            <div class="col">
+                                {{ form.organization|field_as_bootstrap }}
+                            </div>
+                            <div class="col">
+                                {{ form.organization_types|field_as_bootstrap }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <div class="row">
+                            <div class="col">
+                                {{ form.position|field_as_bootstrap }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <div class="row">
+                            <div class="col">
+                                {{ form.city|field_as_bootstrap }}
+                            </div>
+                            <div class="col">
+                                {{ form.area|field_as_bootstrap }}
+                            </div>
+                            <div class="col">
+                                {{ form.country|field_as_bootstrap }}
+                            </div>
+                        </div>
+                    </div>
+                    {{ form.reason|field_as_bootstrap }}
+                    {{ form.username|field_as_bootstrap }}
+                    <div class="group">
+                        <div class="row">
+                            <div class="col">
+                                {{ form.password1|field_as_bootstrap }}
+                            </div>
+                            <div class="col">
+                                {{ form.password2|field_as_bootstrap }}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if redirect_field_value %}
+                        <input type="hidden"
+                               name="{{ redirect_field_name }}"
+                               value="{{ redirect_field_value }}"
+                        />
+                    {% endif %}
+                    <div class="form-actions">
+                        <button type="submit"
+                                class="btn btn-primary">
+                            {% trans "Sign up" %}
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block extra_script %}
+    {{ block.super }}
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#id_username').focus();
+      });
+
+      {
+        const placeholder = "Select an organization type or more or create by typing new one.";
+        $('#id_organization_types select').select2({
+          placeholder: placeholder,
+          tags: true,
+          createTag: function (params) {
+            return {
+              id: params.term,
+              text: params.term,
+              newOption: true
+            }
+          },
+          templateResult: function (data) {
+            var $result = $("<span></span>");
+            $result.text(data.text);
+            if (data.newOption) {
+              $result.append(" <em>(new)</em>");
+            }
+            return $result;
+          }
+        }).on('select2:open', function (e) {
+          $('#id_organization_types input.select2-search__field').prop('placeholder', placeholder);
+        });
+      }
+    </script>
+{% endblock %}

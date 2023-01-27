@@ -8,5 +8,7 @@ def set_default_filter_by_group(sender, request, user, **kwargs):
     """
     Set layer/map/document to be filtered by user's group by default
     """
-
-    request.session['filter_by_group'] = get_default_filter_by_group(request.user)
+    try:
+        request.session['filter_by_group'] = get_default_filter_by_group(request.user)
+    except AttributeError:
+        pass

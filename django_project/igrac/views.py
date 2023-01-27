@@ -2,14 +2,26 @@ from django.conf import settings
 from django.http import Http404
 from django.views.generic import ListView, TemplateView
 
+from allauth.account.views import SignupView
+
 from geonode.maps.models import Map
 from geonode.maps.views import map_view
 from geonode.groups.models import GroupProfile
-from geonode.monitoring import register_event
+from geonode.base import register_event
 from geonode.monitoring.models import EventType
 from geonode.documents.models import get_related_documents
 
 from igrac.models.map_slug import MapSlugMapping
+from igrac.forms.signup import SignupWithNameForm
+
+
+class CustomSignupView(SignupView):
+    form_class = SignupWithNameForm
+
+    def get_context_data(self, **kwargs):
+        ret = super(CustomSignupView, self).get_context_data(**kwargs)
+        ret.update({'account_geonode_local_signup': settings.SOCIALACCOUNT_WITH_GEONODE_LOCAL_SINGUP})
+        return ret
 
 
 class HomeView(ListView):
