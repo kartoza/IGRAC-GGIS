@@ -3,7 +3,7 @@ version: '3.4'
 # Common Django template for Geonode, Celery and Celerycam services below
 x-common-django:
   &default-common-django
-  image: kartoza/igrac_ggis:2.0.0
+  image: kartoza/igrac_ggis:2.1.0
   build:
     context: ../
     dockerfile: deployment/docker/Dockerfile
@@ -47,6 +47,7 @@ x-common-django:
     - STATIC_ROOT=/home/web/static/
     - MEDIA_ROOT=/home/web/media/
     - GWML_FOLDER=/home/web/gwml2-file/
+    - SFTP_FOLDER=/home/web/sftp/
     - FILE_UPLOAD_TEMP_DIR=/home/web/temp/
     - STATIC_URL=/static/
     - MEDIA_URL=/uploaded/
@@ -62,6 +63,7 @@ x-common-django:
     - ./volumes/media:/home/web/media:rw
     - ./volumes/temp:/home/web/temp:rw
     - ./volumes/gwml2-file:/home/web/gwml2-file:rw
+    - ./volumes/sftp:/home/web/sftp:rw
   restart: on-failure
 
 services:
