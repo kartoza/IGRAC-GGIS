@@ -26,7 +26,7 @@ INSTALLED_APPS += (
     'wagtail.images',
     'wagtail.search',
     'wagtail.admin',
-    'wagtail.core',
+    'wagtail',
     'wagtail.contrib.modeladmin',
     'wagtailmenus',
     'modelcluster',
@@ -47,12 +47,13 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
     'geonode.base.middleware.MaintenanceMiddleware',
     'geonode.base.middleware.ReadOnlyMiddleware',  # a Middleware enabling Read Only mode of Geonode
 
     # Wagtail moddleware
-    'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 

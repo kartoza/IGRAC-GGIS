@@ -11,9 +11,9 @@ RUN echo "Activate memcached" && \
 WORKDIR /
 
 RUN rm -r /usr/src/geonode
-RUN git clone --branch 3.3.x --single-branch https://github.com/kartoza/geonode.git spcgeonode
+RUN git clone --branch 4.0.3 --single-branch https://github.com/kartoza/geonode.git geonode
 
-WORKDIR /spcgeonode
+WORKDIR /geonode
 RUN pip install -r requirements.txt
 RUN pip uninstall -y django-geonode-mapstore-client
 

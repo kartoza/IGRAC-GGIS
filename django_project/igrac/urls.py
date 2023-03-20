@@ -18,9 +18,10 @@ from igrac.g3p import (
 )
 
 urlpatterns = [
-    url(r'^$',
-        view=HomeView.as_view(),
-        name='home_igrac'),
+    # use geonode home instead
+    # url(r'^$',
+    #     view=HomeView.as_view(),
+    #     name='home_igrac'),
     url(r'^view/(?P<id>[^/]+)/metadata_detail/article$',
         MapSlugMetadataDetail.as_view(),
         name='map_view_slug_metadata_detail'),
