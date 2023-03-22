@@ -3,18 +3,111 @@
 {% load static %}
 
 {% block html_class %}msgapi{% endblock %}
+{% block head %}
+    {% if DEBUG_STATIC %}
+        <link href="{% static "lib/css/jquery.dataTables.css" %}"
+              rel="stylesheet"/>
+        <link href="{% static "lib/css/select2.css" %}" rel="stylesheet"/>
+        <link href="{% static "lib/css/bootstrap.css" %}" rel="stylesheet"/>
+        <link href="{% static "lib/css/bootstrap-treeview.css" %}"
+              rel="stylesheet"/>
+        <link href="{% static "lib/css/jquery-ui.theme.min.css" %}"
+              rel="stylesheet"/>
+        <link href="{% static "lib/css/jquery-ui.structure.min.css" %}"
+              rel="stylesheet"/>
+        <link href="{% static "lib/css/bootstrap-treeview.css" %}"
+              rel="stylesheet"/>
+    {% else %}
+        <link href="{% static "lib/css/assets.min.css" %}" rel="stylesheet"/>
+    {% endif %}
+    <link href="{% static "geonode/css/base.css" %}" rel="stylesheet"/>
+    <link rel='stylesheet' id='cookie-law-info-css'
+          href="{% static "geonode/css/cookie-law-info/cookie-law-info-public.css" %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='cookie-law-info-gdpr-css'
+          href="{% static "geonode/css/cookie-law-info/cookie-law-info-gdpr.css" %}"
+          type='text/css' media='all'/>
 
-{% block extra_head %}
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="{% static 'mapstore/dist/themes/geonode.css' %}?{% client_version %}" rel="stylesheet" />
-    <link href="{% static 'lib/css/bootstrap-select.css' %}?{% client_version %}" rel="stylesheet" />
-    <link href="{% static 'css/default.css' %}?{% client_version %}" rel="stylesheet" />
-    <link href="{% static 'css/base-igrac.css' %}?{% client_version %}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+          rel="stylesheet">
+    <link href="{% static 'mapstore/dist/themes/geonode.css' %}?{% client_version %}"
+          rel="stylesheet"/>
+    <link href="{% static 'lib/css/bootstrap-select.css' %}?{% client_version %}"
+          rel="stylesheet"/>
+    <link href="{% static 'css/default.css' %}?{% client_version %}"
+          rel="stylesheet"/>
+    <link href="{% static 'css/base-igrac.css' %}?{% client_version %}"
+          rel="stylesheet"/>
     <link rel="shortcut icon" href="{% static "/img/favicon.ico" %}"/>
     {% include './geonode-mapstore-client/snippets/custom_theme.html' %}
+    <style type="text/css">[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+        display: none !important;
+    }</style>
+    <style type="text/css">
+        {% if custom_theme.logo %}
+            .navbar-brand {
+                background-image: url({{ custom_theme.logo.url }});
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+            }
+        {% endif %}
 
+        {% if custom_theme.jumbotron_color %}
+            .home .jumbotron {
+                background-color: {{ custom_theme.jumbotron_color }}
+            }
+        {% endif %}
+
+        {% if custom_theme.jumbotron_title_color %}
+            .home .jumbotron h1,
+            .home .jumbotron h2,
+            .home .jumbotron h3 {
+                color: {{ custom_theme.jumbotron_title_color }}
+            }
+        {% endif %}
+
+        {% if custom_theme.jumbotron_text_color %}
+            .home .jumbotron p {
+                color: {{ custom_theme.jumbotron_text_color }};
+                font-weight: normal;
+                font-size: xx-large;
+                font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+            }
+        {% endif %}
+
+        {% if custom_theme.jumbotron_welcome_hide %}
+            .home .jumbotron .container {
+                visibility: hidden;
+            }
+        {% endif %}
+
+        {% if custom_theme.jumbotron_bg %}
+            .home .jumbotron .container {
+                position: relative;
+                z-index: 1;
+            }
+            .home .jumbotron:after {
+                content: "";
+                background-image: url({{ custom_theme.jumbotron_bg.url }});
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+            {% if not custom_theme.jumbotron_welcome_hide %}
+                opacity: 0.5;
+            {% endif %}
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: 0;
+            }
+        {% endif %}
+    </style>
+    {% block extra_head %}
+    {% endblock %}
 {% endblock %}
-
 
 {% block body_extra_class %}gn-legacy gn-theme {% if request.user_agent.is_mobile %}gn-mobile{% else %}gn-desktop{% endif %}{% endblock %}
 
