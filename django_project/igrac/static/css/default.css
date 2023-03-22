@@ -192,8 +192,8 @@ body {
 }
 
 .footer-wrapper {
-    background: rgba(255, 255, 255, 0.85);
-    height: 20px;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    height: 50px;
     position: fixed;
     bottom: 0;
     color: #2c689c;

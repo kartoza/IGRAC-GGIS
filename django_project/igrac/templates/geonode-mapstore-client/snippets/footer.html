@@ -1,26 +1,28 @@
-<div class="footer-wrapper">
+{% load i18n %}
+
+<footer class="gn-footer footer-wrapper">
     {% if IGRAC_VERSION %}
         <div class="footer-item" style="position: absolute; top: 8px; left: 7px;">{% trans "Version" %} <a href="{{ IGRAC_VERSION.url }}">{{ IGRAC_VERSION.name }}</a></div>
     {% endif %}
-    <center>
+    <div style="margin-left: auto; margin-right: auto; display: flex">
         <div class="footer-item">{% trans "Brought to you by" %}&nbsp;</div>
         <a class="footer-item" href="https://www.un-igrac.org/" target="_blank"><img src="/static/img/logo-small.png" width="50" alt="logo" style="vertical-align: bottom"/></a>
         <div class="footer-item" style="padding-left: 15px">{% trans "Web site developed by" %}&nbsp;</div>
         <a class="footer-item" href="https://kartoza.com/" target="_blank"><img src="/static/img/kartoza-icon.png" height="23" alt="kartoza_logo"/></a>
-    </center>
+    </div>
     {#  form for change language #}
-    <form id="lang-form" class="form-inline" action="/i18n/setlang/" method="post"
-          style="width: 300px;
-            position: absolute;
-            top: 8px;
-            right: 7px;">
-        {% csrf_token %}
-        <select id="lang-select" class="col-md-6 pull-right" name="language" onchange="changeLanguage($(this).val())" style="font-size: 12px; height: 24px;">
-            {% for lang in LANGUAGES %}
-                <option value="{{ lang.0 }}" {% ifequal LANGUAGE_CODE lang.0 %} selected="selected"{% endifequal %}>
-                    {{ lang.1 }}
-                </option>
-            {% endfor %}
-        </select>
-    </form>
-</div>
+{#    <form id="lang-form" class="form-inline" action="/i18n/setlang/" method="post"#}
+{#          style="width: 300px;#}
+{#            position: absolute;#}
+{#            top: 8px;#}
+{#            right: 7px;">#}
+{#        {% csrf_token %}#}
+{#        <select id="lang-select" class="col-md-6 pull-right" name="language" onchange="changeLanguage($(this).val())" style="font-size: 12px; height: 24px;">#}
+{#            {% for lang in LANGUAGES %}#}
+{#                <option value="{{ lang.0 }}" {% ifequal LANGUAGE_CODE lang.0 %} selected="selected"{% endifequal %}>#}
+{#                    {{ lang.1 }}#}
+{#                </option>#}
+{#            {% endfor %}#}
+{#        </select>#}
+{#    </form>#}
+</footer>
