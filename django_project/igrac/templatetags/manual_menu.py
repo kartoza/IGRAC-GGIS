@@ -43,3 +43,106 @@ def explore_map(maps):
                 _map.map.thumbnail_url = _map.map.curatedthumbnail.thumbnail_url
         output.append(_map)
     return output
+
+
+def _is_mobile_device(context):
+    if context and 'request' in context:
+        req = context['request']
+        return req.user_agent.is_mobile
+    return False
+
+def _is_logged_in(context):
+    if context and 'request' in context:
+        req = context['request']
+        return req.user.is_authenticated
+    return False
+
+@register.simple_tag(
+    takes_context=True, name='get_igrac_base_left_topbar_menu')
+def get_igrac_base_left_topbar_menu(context):
+
+    is_mobile = _is_mobile_device(context)
+    is_logged_in = _is_logged_in(context)
+
+    return [
+        {
+            "label": "Data",
+            "type": "dropdown",
+            "items": [
+                {
+                    "type": "link",
+                    "href": "/catalogue/#/search/?f=dataset",
+                    "label": "Map Layers"
+                },
+                {
+                    "type": "link",
+                    "href": "/catalogue/#/search/?f=document",
+                    "label": "Documents"
+                } if not is_mobile else None,
+                {
+                    "type": "link",
+                    "href": "/services/",
+                    "label": "Remote Services"
+                } if is_logged_in else None,
+                {
+                    "type": "divider"
+                } if is_logged_in else None,
+                {
+                    "type": "link",
+                    "href": "/catalogue/#/upload/dataset",
+                    "label": "Upload Map Layers"
+                } if is_logged_in else None,
+                {
+                    "type": "link",
+                    "href": "/catalogue/#/upload/document",
+                    "label": "Upload Document"
+                } if is_logged_in else None,
+                {
+                    "type": "link",
+                    "href": "/services/register/",
+                    "label": "Add Remote Services"
+                } if is_logged_in else None,
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "link",
+                    "href": "/catalogue/#/search/?f=dataset",
+                    "label": "Well and Monitoring Data"
+                },
+                {
+                    "type": "dropdown",
+                    "label": "Upload Well and Monitoring Data",
+                    "items": [{
+                        "type": "link",
+                        "href": "/groundwater/record/create/",
+                        "label": "Add Record"
+                    }, {
+                        "type": "link",
+                        "href": "/groundwater/batch-upload",
+                        "label": "Batch Upload"
+                    }]
+                } if is_logged_in else None,
+            ]
+        },
+        {
+            "type": "link",
+            "href": "/catalogue/#/search/?f=map",
+            "label": "Maps"
+        },
+        {
+            "type": "link",
+            "href": "/catalogue/#/search/?f=geostory",
+            "label": "GeoStories"
+        },
+        {
+            "type": "link",
+            "href": "/catalogue/#/search/?f=dashboard",
+            "label": "Dashboards"
+        },
+        {
+            "type": "link",
+            "href": "/catalogue/#/search/?f=featured",
+            "label": "Featured"
+        }
+    ]
