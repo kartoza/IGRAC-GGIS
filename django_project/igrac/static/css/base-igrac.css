@@ -6,6 +6,7 @@ html {
     --white: #fff;
     --primary: #2c689c;
     --secondary: #ff6b0d;
+    --primaryBold: #005198
 }
 
 body.igrac-home {
@@ -368,12 +369,12 @@ body.igrac-home {
 }
 .msgapi .btn-primary {
     background: var(--white);
-    color: var(--primary);
+    color: var(--primaryBold);
     border: var(--white);
 }
 
 .footer-item {
-    color: var(--primary)
+    color: var(--primaryBold)
 }
 
 .msgapi .btn-primary:hover,
@@ -515,3 +516,9 @@ body.igrac-home {
 /*  left: -100%;*/
 /*  margin-left: 10px;*/
 /*}*/
+
+
+#wrap {
+    padding-top: 0 !important;
+    padding-bottom: 80px !important;
+}

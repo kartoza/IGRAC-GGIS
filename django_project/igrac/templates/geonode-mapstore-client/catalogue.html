@@ -65,6 +65,40 @@
                             $('li.dropdown-submenu').not($(this).parent()).removeClass('open');
                             $(this).parent().toggleClass('open');
                         });
+
+                        function waitForElm(selector) {
+                            return new Promise(resolve => {
+                                if (document.querySelector(selector)) {
+                                    return resolve(document.querySelector(selector));
+                                }
+
+                                const observer = new MutationObserver(mutations => {
+                                    if (document.querySelector(selector)) {
+                                        resolve(document.querySelector(selector));
+                                        observer.disconnect();
+                                    }
+                                });
+
+                                observer.observe(document.body, {
+                                    childList: true,
+                                    subtree: true
+                                });
+                            });
+                        }
+
+                        function openMapViewDrawer() {
+                            if(window.location.href.includes('#/map/') || window.location.href.includes('/view/')) {
+                                console.log('openMapViewDrawer', window.location.href);
+                                waitForElm('#drawer-menu-button').then((elm) => {
+                                    document.getElementById('drawer-menu-button').click();
+                                });
+                            }
+                        }
+
+                        window.onhashchange = function() {
+                            openMapViewDrawer()
+                        }
+                        openMapViewDrawer()
                     </script>
                 {% endblock %}
             </div>

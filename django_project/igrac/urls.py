@@ -16,21 +16,26 @@ from igrac.g3p import (
     G3PTimeseriesChart,
     G3PTimeseriesChartIframe
 )
+from igrac.api_views.featured import (
+    FeaturedMaps
+)
 
 urlpatterns = [
-    # use geonode home instead
-    # url(r'^$',
-    #     view=HomeView.as_view(),
-    #     name='home_igrac'),
     url(r'^view/(?P<id>[^/]+)/metadata_detail/article$',
         MapSlugMetadataDetail.as_view(),
         name='map_view_slug_metadata_detail'),
     url(r'^maps/(?P<id>[^/]+)/metadata_detail/article$',
         MapMetadataDetail.as_view(),
         name='map_view_metadata_detail'),
-    url(r'^view/(?P<slug>[^/]+)$',
+    url(r'^view/(?P<slug>[^/]+)/$',
         view=map_view_with_slug,
         name='map_view_slug'),
+    url(r'^igrac_api/featured/$',
+        view=FeaturedMaps.as_view(),
+        name='featured_maps'),
+    url(r'^/api/v2/maps/$',
+        view=FeaturedMaps.as_view(),
+        name='featured_maps'),
     url(r'^groundwater/', include('gwml2.urls')),
     url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^wagtail/documents/', include(wagtaildocs_urls)),
