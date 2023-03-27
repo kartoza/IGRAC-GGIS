@@ -2,6 +2,13 @@ html {
     height: 100%;
 }
 
+:root {
+    --white: #fff;
+    --primary: #2c689c;
+    --secondary: #ff6b0d;
+    --primaryBold: #005198
+}
+
 body.igrac-home {
     padding-top: 51px;
     background: #f6f6f6;
@@ -353,8 +360,48 @@ body.igrac-home {
 
 .open-banner {
     float: right;
-    margin-right: 10px;
+    z-index: 999;
     display: none;
+    position: absolute;
+    right: 0;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.msgapi .btn-primary {
+    background: var(--white);
+    color: var(--primaryBold);
+    border: var(--white);
+}
+
+.footer-item {
+    color: var(--primaryBold)
+}
+
+.msgapi .btn-primary:hover,
+.msgapi .btn-primary:active,
+.msgapi .btn-primary:focus,
+.msgapi .btn-primary:active:focus,
+.msgapi .btn-primary.active,
+.msgapi .btn-primary:active,
+.msgapi .open>.dropdown-toggle.btn-primary,
+.msgapi .open>.dropdown-toggle.btn-primary:focus
+{
+    background-color: var(--secondary);
+}
+
+.msgapi .gn-menu.gn-primary {
+    border-top: 1px solid #f2f0f0;
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+}
+.msgapi .gn-menu .gn-menu-container {
+    background-color: white;
+}
+
+.msgapi .gn-menu-divider {
+    background-color: #f2f0f0;
 }
 
 
@@ -426,4 +473,52 @@ body.igrac-home {
 
 .geostory-button-container .btn:hover, .geostory-button-container .btn:focus {
     color: #ff6b0d !important;
+}
+
+/*.dropdown-submenu {*/
+/*  position: relative;*/
+/*}*/
+
+/*.dropdown-submenu>.dropdown-menu {*/
+/*  top: 0;*/
+/*  left: 100%;*/
+/*  margin-top: -6px;*/
+/*  margin-left: -1px;*/
+/*}*/
+
+/*.dropdown-submenu:hover>.dropdown-menu {*/
+/*  display: block;*/
+/*}*/
+
+/*.dropdown-submenu>a:after {*/
+/*  display: block;*/
+/*  content: " ";*/
+/*  float: right;*/
+/*  width: 0;*/
+/*  height: 0;*/
+/*  border-color: transparent;*/
+/*  border-style: solid;*/
+/*  border-width: 5px 0 5px 5px;*/
+/*  border-left-color: #ccc;*/
+/*  margin-top: 5px;*/
+/*  margin-right: -10px;*/
+/*}*/
+
+/*.dropdown-submenu:hover>a:after {*/
+/*  border-left-color: #fff;*/
+/*}*/
+
+/*.dropdown-submenu.pull-left {*/
+/*  float: none;*/
+/*}*/
+
+/*.dropdown-submenu.pull-left>.dropdown-menu {*/
+/*  left: -100%;*/
+/*  margin-left: 10px;*/
+/*}*/
+
+
+#wrap {
+    padding-top: 0 !important;
+    padding-bottom: 80px !important;
 }
