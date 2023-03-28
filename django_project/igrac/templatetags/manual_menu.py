@@ -107,7 +107,7 @@ def get_igrac_base_left_topbar_menu(context):
                 },
                 {
                     "type": "link",
-                    "href": "/catalogue/#/search/?f=dataset",
+                    "href": "/view/well-and-monitoring-data/",
                     "label": "Well and Monitoring Data"
                 },
                 {

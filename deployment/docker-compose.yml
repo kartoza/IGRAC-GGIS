@@ -49,7 +49,6 @@ x-common-django:
     - GWML_FOLDER=/home/web/gwml2-file/
     - SFTP_FOLDER=/home/web/sftp/
     - FILE_UPLOAD_TEMP_DIR=/home/web/temp/
-    - STATIC_URL=/static/
     - MEDIA_URL=/uploaded/
     - GEOSERVER_LOCATION=http://nginx/geoserver/
     - ASYNC_SIGNALS=True

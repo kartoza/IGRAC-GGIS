@@ -31,7 +31,9 @@
             {% endblock %}
             <div class="gn-embed gn-theme">
                 {% block header %}
-                    {% include './snippets/header.html' %}
+                    {% if '/view/' in  request.build_absolute_uri %}
+                        {% include './snippets/header.html' %}
+                    {% endif %}
                 {% endblock %}
 
                 {% block container %}
