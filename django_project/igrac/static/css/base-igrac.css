@@ -367,6 +367,7 @@ body.igrac-home {
     margin-top: 20px;
     margin-right: 20px;
 }
+
 .msgapi .btn-primary {
     background: var(--white);
     color: var(--primaryBold);
@@ -383,10 +384,10 @@ body.igrac-home {
 .msgapi .btn-primary:active:focus,
 .msgapi .btn-primary.active,
 .msgapi .btn-primary:active,
-.msgapi .open>.dropdown-toggle.btn-primary,
-.msgapi .open>.dropdown-toggle.btn-primary:focus
-{
+.msgapi .open > .dropdown-toggle.btn-primary,
+.msgapi .open > .dropdown-toggle.btn-primary:focus {
     background-color: var(--secondary);
+    box-shadow: unset !important;
 }
 
 .msgapi .gn-menu.gn-primary {
@@ -396,6 +397,7 @@ body.igrac-home {
     -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
 }
+
 .msgapi .gn-menu .gn-menu-container {
     background-color: white;
 }
@@ -523,6 +525,18 @@ body.igrac-home {
     padding-bottom: 80px !important;
 }
 
-#gn-brand-navbar{
+#gn-brand-navbar {
     z-index: 1401 !important;
+}
+
+.nav-link:focus {
+    box-shadow: unset !important;
+}
+
+.menu-sidebar a {
+    outline: none !important;
+}
+
+.menu-sidebar a:focus {
+    text-decoration: unset;
 }
