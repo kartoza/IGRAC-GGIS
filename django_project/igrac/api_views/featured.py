@@ -63,5 +63,5 @@ class FeaturedMaps(APIView):
             "total": featured_map.count(),
             "page": 1,
             "page_size": 99,
-            "resources": sorted(resources, key=lambda d: d['title'])
+            "resources": resources
         })

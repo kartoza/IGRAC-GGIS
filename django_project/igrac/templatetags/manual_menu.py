@@ -138,18 +138,13 @@ def get_igrac_base_left_topbar_menu(context):
         },
         {
             "type": "link",
-            "href": "/catalogue/#/search/?f=geostory",
-            "label": "GeoStories"
-        },
-        {
-            "type": "link",
             "href": "/catalogue/#/search/?f=dashboard",
             "label": "Dashboards"
         },
         {
             "type": "link",
-            "href": "/catalogue/#/search/?f=featured",
-            "label": "Featured"
+            "href": "/catalogue/#/search/?f=geostory",
+            "label": "GeoStories"
         },
         {
             "type": "link",
