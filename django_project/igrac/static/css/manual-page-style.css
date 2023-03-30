@@ -31,7 +31,7 @@ body {
     margin-bottom: 22px;
     font-size: 14px;
     list-style: none;
-    background-color: #ececec;
+    background-color: #ececec!important;
     border-radius: 0;
 }
 
@@ -141,7 +141,7 @@ body {
 }
 
 .manual-content {
-    padding: 25px;
+    padding: 25px !important;
     padding-bottom: 70px;
     padding-left: 35px;
     height: 100%;

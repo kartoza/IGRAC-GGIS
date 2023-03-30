@@ -1,17 +1,17 @@
-from rest_framework import serializers
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from geonode.maps.models import Map
 from geonode.base.api.serializers import ResourceBaseSerializer
 from geonode.base.models import (
-    Link,
     ResourceBase,
 )
+from geonode.geoapps.models import GeoApp
+from geonode.maps.models import Map
+from rest_framework import serializers
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from igrac.models.map_slug import MapSlugMapping
 
 
-class FeaturedSerializer(ResourceBaseSerializer):
-
+class MapFeaturedSerializer(ResourceBaseSerializer):
     slug = serializers.SerializerMethodField()
     detail_url = serializers.SerializerMethodField()
 
@@ -41,10 +41,20 @@ class FeaturedMaps(APIView):
         ).order_by(
             'mapslugmapping__order', 'id'
         )
-        serializer = FeaturedSerializer(
+        serializer = MapFeaturedSerializer(
             featured_map,
             many=True
         )
+        resources = serializer.data
+        resources += ResourceBaseSerializer(
+            GeoApp.objects.filter(featured=True, resource_type='dashboard'),
+            many=True
+        ).data
+        resources += ResourceBaseSerializer(
+            GeoApp.objects.filter(featured=True, resource_type='geostory'),
+            many=True
+        ).data
+
         return Response({
             "links": {
                 "next": None,
@@ -53,5 +63,5 @@ class FeaturedMaps(APIView):
             "total": featured_map.count(),
             "page": 1,
             "page_size": 99,
-            "resources": serializer.data
+            "resources": sorted(resources, key=lambda d: d['title'])
         })

@@ -54,6 +54,7 @@
         </div>
     </div>
 </nav>
+{% include './topbar.html' with id='gn-topbar' %}
 <div id="{{ id|default:'' }}-bottom">
     {% block bottom_menu %}
         {% include './search_bar.html' with search_bar_id='gn-search-bar-bottom' %}
