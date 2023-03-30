@@ -124,6 +124,11 @@ def get_igrac_base_left_topbar_menu(context):
                         "label": "Batch Upload"
                     }]
                 } if is_logged_in else None,
+                {
+                    "type": "link",
+                    "href": "/groundwater/record/download-request",
+                    "label": "Download Well and Monitoring Data",
+                },
             ]
         },
         {
@@ -182,7 +187,12 @@ def get_igrac_base_right_topbar_menu(context):
                     "type": "link",
                     "href": "/groups/",
                     "label": "Groups"
-                }
+                },
+                {
+                    "type": "link",
+                    "href": "/groundwater/organisation/",
+                    "label": "Organisations"
+                } if user.is_superuser else None,
             ]
         }
     if user.is_authenticated and not Configuration.load().read_only:
@@ -204,6 +214,6 @@ def get_igrac_base_right_topbar_menu(context):
                 "type": "link",
                 "href": "/groups/create/",
                 "label": "Create group"
-            }if user.is_superuser else None,
+            } if user.is_superuser else None,
         ])
     return [home, about]
