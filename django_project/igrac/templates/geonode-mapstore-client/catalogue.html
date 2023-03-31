@@ -95,10 +95,22 @@
                             }
                         }
 
+                        function openFilterMenu() {
+                            if(window.location.href.includes('/catalogue/')) {
+                                waitForElm('.gn-filters-menu button').then((elm) => {
+                                    if(!$('.gn-filter-form').length) {
+                                        $($('.gn-filters-menu button')[0]).click()
+                                    }
+                                });
+                            }
+                        }
+
                         window.onhashchange = function() {
                             openMapViewDrawer()
+                            openFilterMenu()
                         }
                         openMapViewDrawer()
+                        openFilterMenu()
                     </script>
                 {% endblock %}
             </div>
