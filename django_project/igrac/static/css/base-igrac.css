@@ -127,6 +127,7 @@ body.igrac-home {
 .banner-text h2 {
     font-size: 36px;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
 .banner-text a {
@@ -409,6 +410,12 @@ form .row {
     box-shadow: unset !important;
 }
 
+.msgapi body {
+    font-family: sans-serif !important;
+    -ms-text-size-adjust: 100% !important;;
+    -webkit-text-size-adjust: 100% !important;;
+}
+
 .msgapi .gn-menu{
     padding: 0;
 }
@@ -442,7 +449,8 @@ form .row {
     border-radius: 0 !important;
 }
 
-.gn-user-menu-dropdown button:hover {
+.gn-user-menu-dropdown button:hover,
+.gn-user-menu-dropdown button:focus {
     background-color: var(--secondary) !important;
 }
 
