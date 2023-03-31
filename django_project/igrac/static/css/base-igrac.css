@@ -65,6 +65,7 @@ body.igrac-home {
 
 .branding {
     height: 100%;
+    margin-right: 1rem !important;
 }
 
 .branding a {
@@ -74,7 +75,7 @@ body.igrac-home {
 
 .branding a img {
     height: 100%;
-    padding: 11px 0;
+    padding: 5px 0;
 }
 
 .navbar-nav > li > a {
@@ -408,6 +409,9 @@ form .row {
     box-shadow: unset !important;
 }
 
+.msgapi .gn-menu{
+    padding: 0;
+}
 .msgapi .gn-menu.gn-primary {
     border-top: 1px solid #f2f0f0;
     background: #fff;
@@ -422,6 +426,28 @@ form .row {
 
 .msgapi .gn-menu-divider {
     background-color: #f2f0f0;
+}
+
+.gn-search-bar-li {
+    padding-right: 1rem !important;
+}
+
+#gn-search-bar{
+    border-width: 1px;
+    box-shadow: unset;
+}
+
+.gn-user-menu-dropdown button {
+    padding: 0.25rem 0.5rem !important;
+    border-radius: 0 !important;
+}
+
+.gn-user-menu-dropdown button:hover {
+    background-color: var(--secondary) !important;
+}
+
+.gn-search-bar-apply:focus {
+    box-shadow: unset !important;
 }
 
 

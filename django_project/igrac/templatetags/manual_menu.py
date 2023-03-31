@@ -1,7 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 from geonode.base.models import Configuration
-
+from geonode_mapstore_client.templatetags.get_menu_json import get_user_menu
 register = template.Library()
 
 
@@ -64,6 +64,50 @@ def get_igrac_base_left_topbar_menu(context):
 
     is_mobile = _is_mobile_device(context)
     is_logged_in = _is_logged_in(context)
+
+    user = context.get('request').user
+    users = {
+        "label": "Users",
+        "type": "dropdown",
+        "items": [
+            {
+                "type": "link",
+                "href": "/people/",
+                "label": "People"
+            },
+            {
+                "type": "link",
+                "href": "/groups/",
+                "label": "Groups"
+            },
+            {
+                "type": "link",
+                "href": "/groundwater/organisation/",
+                "label": "Organisations"
+            } if user.is_superuser else None,
+        ]
+    }
+    if user.is_authenticated and not Configuration.load().read_only:
+        users['items'].extend([
+            {
+                "type": "divider"
+            },
+            {
+                "type": "link",
+                "href": "/invitations/geonode-send-invite/",
+                "label": "Invite users"
+            },
+            {
+                "type": "link",
+                "href": "/admin/people/profile/add/",
+                "label": "Add user"
+            } if user.is_superuser else None,
+            {
+                "type": "link",
+                "href": "/groups/create/",
+                "label": "Create group"
+            } if user.is_superuser else None,
+        ])
 
     return [
         {
@@ -146,6 +190,7 @@ def get_igrac_base_left_topbar_menu(context):
             "href": "/catalogue/#/search/?f=geostory",
             "label": "GeoStories"
         },
+        users,
         {
             "type": "link",
             "href": "/about",
@@ -157,58 +202,22 @@ def get_igrac_base_left_topbar_menu(context):
 @register.simple_tag(
     takes_context=True, name='get_igrac_base_right_topbar_menu')
 def get_igrac_base_right_topbar_menu(context):
+    return []
 
-    is_mobile = _is_mobile_device(context)
 
-    if is_mobile:
-        return []
-
-    home = {
-        "type": "link",
-        "href": "/",
-        "label": "Home"
-    }
+@register.simple_tag(takes_context=True)
+def get_igrac_user_menu(context):
+    profile = get_user_menu(context)
     user = context.get('request').user
-    about = {
-            "label": "Users",
-            "type": "dropdown",
-            "items": [
-                {
-                    "type": "link",
-                    "href": "/people/",
-                    "label": "People"
-                },
-                {
-                    "type": "link",
-                    "href": "/groups/",
-                    "label": "Groups"
-                },
-                {
-                    "type": "link",
-                    "href": "/groundwater/organisation/",
-                    "label": "Organisations"
-                } if user.is_superuser else None,
-            ]
-        }
-    if user.is_authenticated and not Configuration.load().read_only:
-        about['items'].extend([
-            {
-                "type": "divider"
-            },
-            {
-                "type": "link",
-                "href": "/invitations/geonode-send-invite/",
-                "label": "Invite users"
-            },
-            {
-                "type": "link",
-                "href": "/admin/people/profile/add/",
-                "label": "Add user"
-            } if user.is_superuser else None,
-            {
-                "type": "link",
-                "href": "/groups/create/",
-                "label": "Create group"
-            } if user.is_superuser else None,
-        ])
-    return [home, about]
+    profile[0]['label'] = user.full_name_or_nick
+    profile[0]['variant'] = 'primary'
+    for idx, item in enumerate(profile[0]['items']):
+        try:
+            if item['label'] == 'GeoServer':
+                profile[0]['items'].insert(
+                    idx + 1,
+                    {'type': 'link', 'href': '/cms/', 'label': 'Wagtail Admin'}
+                )
+        except KeyError:
+            pass
+    return profile
