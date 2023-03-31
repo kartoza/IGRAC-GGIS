@@ -65,6 +65,7 @@ body.igrac-home {
 
 .branding {
     height: 100%;
+    margin-right: 1rem !important;
 }
 
 .branding a {
@@ -74,7 +75,7 @@ body.igrac-home {
 
 .branding a img {
     height: 100%;
-    padding: 11px 0;
+    padding: 5px 0;
 }
 
 .navbar-nav > li > a {
@@ -121,6 +122,10 @@ body.igrac-home {
     line-height: 1.4;
     position: relative;
     z-index: 20;
+}
+
+h1, h2, h5 {
+    font-weight: 600 !important;
 }
 
 .banner-text h2 {
@@ -408,6 +413,17 @@ form .row {
     box-shadow: unset !important;
 }
 
+.msgapi body,
+[data-ms2-container] {
+    font-family: sans-serif !important;
+    -ms-text-size-adjust: 100% !important;;
+    -webkit-text-size-adjust: 100% !important;;
+}
+
+.msgapi .gn-menu {
+    padding: 0;
+}
+
 .msgapi .gn-menu.gn-primary {
     border-top: 1px solid #f2f0f0;
     background: #fff;
@@ -422,6 +438,29 @@ form .row {
 
 .msgapi .gn-menu-divider {
     background-color: #f2f0f0;
+}
+
+.gn-search-bar-li {
+    padding-right: 1rem !important;
+}
+
+#gn-search-bar {
+    border-width: 1px;
+    box-shadow: unset;
+}
+
+.gn-user-menu-dropdown button {
+    padding: 0.25rem 0.5rem !important;
+    border-radius: 0 !important;
+}
+
+.gn-user-menu-dropdown button:hover,
+.gn-user-menu-dropdown button:focus {
+    background-color: var(--secondary) !important;
+}
+
+#gn-search-bar-apply:focus {
+    box-shadow: unset !important;
 }
 
 
@@ -495,9 +534,26 @@ form .row {
     color: #ff6b0d !important;
 }
 
-/*.dropdown-submenu {*/
-/*  position: relative;*/
-/*}*/
+.fa-home {
+    font-size: 1.4rem;
+}
+
+.dropdown-menu {
+    background-color: #2c689c !important;
+    border-top: 1px solid #2c689c !important;
+    border: unset !important;
+}
+.dropdown-menu li > a:hover {
+    background-color: #ff6b0d !important;
+}
+
+.dropdown-menu a {
+    color: white !important;
+}
+
+.dropdown-menu .divider {
+    background-color: #204d74 !important;
+}
 
 /*.dropdown-submenu>.dropdown-menu {*/
 /*  top: 0;*/
@@ -536,15 +592,23 @@ form .row {
 /*  left: -100%;*/
 /*  margin-left: 10px;*/
 /*}*/
-
+.error-data {
+    text-align: center;
+    color: red;
+    padding: 2rem;
+}
 
 #wrap {
     padding-top: 0 !important;
     padding-bottom: 80px !important;
+    margin-top: 0 !important;
 }
 
 #gn-brand-navbar {
     z-index: 1401 !important;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23)
 }
 
 .nav-link:focus {

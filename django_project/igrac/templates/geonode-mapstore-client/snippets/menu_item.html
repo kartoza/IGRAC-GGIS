@@ -27,11 +27,14 @@
                     class="dropdown-toggle btn btn-{{variant|default:'default'}}"
                     data-toggle="dropdown"
                 >
-                    {% if menu_item.label %}
-                        {% trans menu_item.label %}
-                    {% endif %}
                     {% if menu_item.image %}
                         <img src="{{ menu_item.image }}">
+                        {% if menu_item.label %}
+                            &nbsp;&nbsp;
+                        {% endif %}
+                    {% endif %}
+                    {% if menu_item.label %}
+                        {% trans menu_item.label %} <i class="fa fa-angle-down fa-lg"></i>
                     {% endif %}
                 </button>
                 <ul class="dropdown-menu{% if align_right %} dropdown-menu-right{% endif %}" aria-labelledby="{{menu_item.id}}">
