@@ -56,6 +56,9 @@ x-common-django:
     - MONITORING_ENABLED=False
     - PYTHONPATH=/home/web/django_project:/geonode
     - ADD_TIMESTAMP_IN_THUMBNAIL=True
+    - SITE_HOST_NAME=${SITE_HOST_NAME}
+    - SITE_HOST_PORT=${SITE_HOST_PORT}
+    - GEOSERVER_PUBLIC_PORT=${GEOSERVER_PUBLIC_PORT}
   volumes:
     - ../django_project:/home/web/django_project
     - ./volumes/static:/home/web/static:rw
@@ -104,7 +107,7 @@ services:
 
   # Geoserver backend
   geoserver:
-    image: geonode/spcgeonode:geoserver-3.0
+    image: geonode/geoserver:2.20.7
     healthcheck:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.0.0.1:8080/geoserver/rest/workspaces/geonode.html"
       interval: 60s
@@ -118,10 +121,15 @@ services:
       - HTTP_PORT=${HTTP_PORT}
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
+      - DATABASE_URL=postgis://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
       - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - GEOSERVER_DATA_DIR=/spcgeonode-geodatadir/
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
+    env_file:
+      - .env
     ports:
       - "5000:8080"
     depends_on:

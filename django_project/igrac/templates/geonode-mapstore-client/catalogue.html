@@ -99,7 +99,6 @@
                         function openFilterMenu() {
                             if(window.location.href.includes('/catalogue/')) {
                                 waitForElm('.gn-filters-menu button').then((elm) => {
-                                    console.log(isBeforeDetail)
                                     if(!$('.gn-filter-form').length && !window.location.href.includes('detail') && !isBeforeDetail) {
                                         $($('.gn-filters-menu button')[0]).click()
                                         isBeforeDetail = false
