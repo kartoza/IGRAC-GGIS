@@ -209,15 +209,16 @@ def get_igrac_base_right_topbar_menu(context):
 def get_igrac_user_menu(context):
     profile = get_user_menu(context)
     user = context.get('request').user
-    profile[0]['label'] = user.full_name_or_nick
-    profile[0]['variant'] = 'primary'
-    for idx, item in enumerate(profile[0]['items']):
-        try:
-            if item['label'] == 'GeoServer':
-                profile[0]['items'].insert(
-                    idx + 1,
-                    {'type': 'link', 'href': '/cms/', 'label': 'Wagtail Admin'}
-                )
-        except KeyError:
-            pass
+    if user.is_authenticated:
+        profile[0]['label'] = user.full_name_or_nick
+        profile[0]['variant'] = 'primary'
+        for idx, item in enumerate(profile[0]['items']):
+            try:
+                if item['label'] == 'GeoServer':
+                    profile[0]['items'].insert(
+                        idx + 1,
+                        {'type': 'link', 'href': '/cms/', 'label': 'Wagtail Admin'}
+                    )
+            except KeyError:
+                pass
     return profile
