@@ -58,6 +58,7 @@
                     <script src="{% static "lib/js/jquery.min.js" %}"></script>
                     <script src="{% static "lib/js/bootstrap.min.js" %}"></script>
                     <script type="text/javascript">
+                        let isBeforeDetail = null
                         // enable dropdown functionalities
                         $('li.dropdown-submenu a[data-toggle="dropdown"]').on('click', function (event) {
                             event.preventDefault();
@@ -98,14 +99,19 @@
                         function openFilterMenu() {
                             if(window.location.href.includes('/catalogue/')) {
                                 waitForElm('.gn-filters-menu button').then((elm) => {
-                                    if(!$('.gn-filter-form').length && !window.location.href.includes('detail')) {
+                                    console.log(isBeforeDetail)
+                                    if(!$('.gn-filter-form').length && !window.location.href.includes('detail') && !isBeforeDetail) {
                                         $($('.gn-filters-menu button')[0]).click()
+                                        isBeforeDetail = false
                                     }
                                 });
                             }
                         }
 
                         window.onhashchange = function() {
+                            if(window.location.href.includes('detail')) {
+                              isBeforeDetail = true
+                            }
                             openMapViewDrawer()
                             openFilterMenu()
                         }
