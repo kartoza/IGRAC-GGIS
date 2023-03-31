@@ -408,7 +408,8 @@ form .row {
 .msgapi .btn-primary.active,
 .msgapi .btn-primary:active,
 .msgapi .open > .dropdown-toggle.btn-primary,
-.msgapi .open > .dropdown-toggle.btn-primary:focus {
+.msgapi .open > .dropdown-toggle.btn-primary:focus,
+.dropdown-menu a:focus {
     background-color: var(--secondary);
     box-shadow: unset !important;
 }
