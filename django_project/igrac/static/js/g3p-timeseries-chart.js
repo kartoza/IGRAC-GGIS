@@ -169,7 +169,7 @@ let TimeseriesChartObj = function (id, identifier, $loading, xlabel = "", ylabel
         if (!chartData || chartData.length === 0) {
             that.$loading.hide();
             $(`#g3p-${this.id}-chart`).html(
-                '<div style="text-align: center; color: red">No data found</div>');
+                '<div class="error-data">No data found</div>');
             return
         }
         if (xlabel === "") {
@@ -213,7 +213,7 @@ let TimeseriesChartObj = function (id, identifier, $loading, xlabel = "", ylabel
                 error: function (error, textStatus, request) {
                     that.$loading.hide();
                     $(`#g3p-${this.id}-chart`).html(
-                        '<div style="text-align: center; color: red">No data found</div>')
+                        '<div class="error-data">No data found</div>')
                 }
             })
         }

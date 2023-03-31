@@ -111,7 +111,7 @@ def get_igrac_base_left_topbar_menu(context):
 
     return [
         {
-            "label": "Data",
+            "label": 'Data',
             "type": "dropdown",
             "items": [
                 {

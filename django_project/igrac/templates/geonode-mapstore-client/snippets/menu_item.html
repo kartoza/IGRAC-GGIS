@@ -34,7 +34,7 @@
                         {% endif %}
                     {% endif %}
                     {% if menu_item.label %}
-                        {% trans menu_item.label %}
+                        {% trans menu_item.label %} <i class="fa fa-angle-down fa-lg"></i>
                     {% endif %}
                 </button>
                 <ul class="dropdown-menu{% if align_right %} dropdown-menu-right{% endif %}" aria-labelledby="{{menu_item.id}}">
