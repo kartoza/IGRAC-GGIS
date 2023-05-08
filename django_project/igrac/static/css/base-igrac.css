@@ -403,7 +403,6 @@ form .row {
 
 .msgapi .btn-primary:hover,
 .msgapi .btn-primary:active,
-.msgapi .btn-primary:focus,
 .msgapi .btn-primary:active:focus,
 .msgapi .btn-primary.active,
 .msgapi .btn-primary:active,
@@ -412,6 +411,12 @@ form .row {
 .dropdown-menu a:focus {
     background-color: var(--secondary);
     box-shadow: unset !important;
+}
+
+
+.msgapi .btn-primary:focus {
+    background-color: white;
+    color: var(--primaryBold);
 }
 
 .msgapi body,
