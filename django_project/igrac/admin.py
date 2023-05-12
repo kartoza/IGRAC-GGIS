@@ -1,7 +1,7 @@
 from adminsortable.admin import SortableAdmin
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from geonode.base.admin import set_user_and_group_layer_permission
+from geonode.base.admin import set_user_and_group_dataset_permission
 from geonode.people.admin import ProfileAdmin
 from geonode.people.models import Profile
 from preferences.admin import PreferencesAdmin
@@ -37,7 +37,7 @@ class IgracProfileAdmin(ProfileAdmin):
         'username', 'organization', 'profile',
         'first_name', 'last_name', 'email'
     )
-    actions = [set_user_and_group_layer_permission, make_active]
+    actions = [set_user_and_group_dataset_permission, make_active]
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),

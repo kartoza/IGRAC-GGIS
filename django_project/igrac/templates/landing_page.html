@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load staticfiles %}
+{% load static %}
 {% load manual_menu %}
 
 {% block body_class %}{% trans "igrac-home" %}{% endblock %}
@@ -72,7 +72,9 @@
             <div class="row">
                 {% for map in ordered_maps %}
                     <div class="col-lg-4 map-item">
-                        <div class="map-item-wrappper" onclick="window.location='{% url 'map_view_slug' slug=map.slug %}'" data-toggle="tooltip" data-placement="top" title="{{ map.map.title }}">
+                        <div class="map-item-wrappper"
+                             onclick="window.location='{% url 'map_view_slug' slug=map.slug %}'"
+                             data-toggle="tooltip" data-placement="top" title="{{ map.map.title }}">
                             <div class="viewer-thumb">
                                 <img src="{{ map.map.thumbnail_url }}"/>
                             </div>

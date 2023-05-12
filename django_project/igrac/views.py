@@ -5,7 +5,7 @@ from django.views.generic import ListView, TemplateView
 from allauth.account.views import SignupView
 
 from geonode.maps.models import Map
-from geonode.maps.views import map_view
+from geonode.maps.views import map_embed
 from geonode.groups.models import GroupProfile
 from geonode.base import register_event
 from geonode.monitoring.models import EventType
@@ -37,7 +37,7 @@ def map_view_with_slug(request, slug):
     except MapSlugMapping.DoesNotExist:
         raise Http404("Map does not exist")
 
-    return map_view(request, mapid=map.map.id)
+    return map_embed(request, mapid=map.map.id)
 
 
 class MetadataDetail(TemplateView):

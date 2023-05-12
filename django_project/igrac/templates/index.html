@@ -1,0 +1,151 @@
+{% load static %}
+{% load client_version %}
+{% load i18n %}
+<!DOCTYPE html>
+<html class="msgapi">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="{% static 'mapstore/dist/themes/geonode.css' %}?{% client_version %}" rel="stylesheet" />
+        <link href="{% static 'css/default.css' %}?{% client_version %}" rel="stylesheet" />
+        <link href="{% static 'css/base-igrac.css' %}?{% client_version %}" rel="stylesheet" />
+
+        <title>{{ SITE_NAME }}</title>
+        <link rel="shortcut icon" href="{% static "/img/favicon.ico" %}"/>
+        {% include './geonode-mapstore-client/snippets/loader_style.html' %}
+
+        {% block custom_theme %}
+            {% include './geonode-mapstore-client/snippets/custom_theme.html' %}
+        {% endblock %}
+
+        <script>
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toGMTString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function delete_cookie(name) {
+                document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
+            function checkCookieBanner() {
+                var hide_banner = getCookie("hideBanner");
+                if (hide_banner) {
+                    var css = '.banner {display: none;} .open-banner {display: block;}',
+                        head = document.head || document.getElementsByTagName('head')[0],
+                        style = document.createElement('style');
+
+                    head.appendChild(style);
+
+                    console.log('hide_Banner', head)
+                    style.type = 'text/css';
+                    if (style.styleSheet) {
+                        // This is required for IE8 and below.
+                        style.styleSheet.cssText = css;
+                    } else {
+                        style.appendChild(document.createTextNode(css));
+                    }
+                }
+            }
+
+            checkCookieBanner();
+        </script>
+
+        {% block extra_style %}
+        {% endblock %}
+    </head>
+    <body class="msgapi ms2" data-ms2-container="ms2">
+
+        <div class="gn-page-wrapper {% if request.user_agent.is_mobile %}gn-mobile{% else %}gn-desktop{% endif %}">
+            <div class="gn-theme gn-homepage">
+
+                {% include './geonode-mapstore-client/_geonode_config.html' %}
+                {% block header %}
+                    {% include './geonode-mapstore-client/snippets/header.html' with show_hero=True %}
+                {% endblock %}
+
+                <div class="open-banner">
+                    <button onclick="openBanner()" class="btn btn-grey ml-auto">{% trans "Show banner" %} <i class="fa fa-eye" aria-hidden="true" style="margin-left: 7px"></i></button>
+                </div>
+
+                {% block content %}
+                    {% comment %}
+                    <!-- example of content extension -->
+                    <div class="gn-container">
+                        <div class="gn-content">
+                            <!-- My custom content -->
+                        </div>
+                    </div>
+                    {% endcomment %}
+                {% endblock %}
+
+                {% block container %}
+                    <div id="container">
+                        <div class="gn-main-event-container">
+                            <div class="gn-main-event-content">
+                                <div class="gn-main-loader"></div>
+                                <div class="gn-main-event-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+    
+                {% block ms_scripts %}
+                    <script id="gn-script" src="{% static 'mapstore/dist/js/gn-home.js' %}?{% client_version %}"></script>
+                {% endblock %}
+    
+                {% block footer %}
+                    {% include './geonode-mapstore-client/snippets/footer.html' %}
+                {% endblock %}
+    
+                {% block scripts %}
+                    <script src="{% static "lib/js/jquery.min.js" %}"></script>
+                    <script src="{% static "lib/js/bootstrap.min.js" %}"></script>
+                    <script type="text/javascript">
+                        // enable dropdown functionalities
+                        $('li.dropdown-submenu a[data-toggle="dropdown"]').on('click', function (event) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            $('li.dropdown-submenu').not($(this).parent()).removeClass('open');
+                            $(this).parent().toggleClass('open');
+                        });
+                    </script>
+                {% endblock %}
+
+                <script>
+                    $('.btn-hide').click(function () {
+                        $('.banner').slideUp();
+                        setCookie('hideBanner', true, 7);
+                        $('.open-banner').show();
+                    });
+
+                    function openBanner() {
+                        delete_cookie('hideBanner');
+                        console.log('banner')
+                        $('.banner').slideDown();
+                        $('.open-banner').hide();
+                    }
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

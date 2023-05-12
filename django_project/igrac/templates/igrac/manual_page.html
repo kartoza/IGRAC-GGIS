@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static from staticfiles %}
+{% load static %}
 {% load manual_menu %}
 {% load wagtailcore_tags %}
 
@@ -11,7 +11,7 @@
     {% endif %}
 {% endblock %}
 
-{% block additional_head %}
+{% block extra_head %}
     <link rel="stylesheet"
           href="{% static "css/jstree-3.2.1/style.min.css" %}"/>
     <link rel="stylesheet"
@@ -38,7 +38,7 @@
 {% endblock %}
 
 {% block middle %}
-    <div class="container-fluid">
+    <div class="container-fluid igrac-wagtail">
         <div class="row manual-row">
             <div class="col-md-10 col-md-push-2 col-xs-12 manual-content">
                 <!-- Breadcrumb -->
@@ -68,7 +68,7 @@
             </div>
 
             <div class="col-md-2 col-md-pull-10 col-xs-12 menu-sidebar">
-                <h5>{{ request.site.root_page.title }}</h5>
+                <h5>GGIS Documentation</h5>
                 <div id="jstree1" class="demo">
                     {% manual_menu menu page.slug %}
                 </div>
