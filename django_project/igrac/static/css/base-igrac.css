@@ -546,7 +546,7 @@ form .row {
 }
 
 .fa-home {
-    font-size: 1.4rem;
+    font-size: 1.4rem !important;
 }
 
 .dropdown-menu {
@@ -554,7 +554,8 @@ form .row {
     border-top: 1px solid #2c689c !important;
     border: unset !important;
 }
-.dropdown-menu li > a:hover {
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus {
     background-color: #ff6b0d !important;
 }
 
