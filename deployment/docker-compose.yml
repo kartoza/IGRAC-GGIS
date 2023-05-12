@@ -3,7 +3,7 @@ version: '3.4'
 # Common Django template for Geonode, Celery and Celerycam services below
 x-common-django:
   &default-common-django
-  image: kartoza/igrac_ggis:2.1.0
+  image: kartoza/igrac_ggis:${VERSION}
   build:
     context: ../
     dockerfile: deployment/docker/Dockerfile
@@ -49,13 +49,12 @@ x-common-django:
     - GWML_FOLDER=/home/web/gwml2-file/
     - SFTP_FOLDER=/home/web/sftp/
     - FILE_UPLOAD_TEMP_DIR=/home/web/temp/
-    - STATIC_URL=/static/
     - MEDIA_URL=/uploaded/
     - GEOSERVER_LOCATION=http://nginx/geoserver/
     - ASYNC_SIGNALS=True
     - SESSION_EXPIRED_CONTROL_ENABLED=False
     - MONITORING_ENABLED=False
-    - PYTHONPATH=/home/web/django_project:/spcgeonode
+    - PYTHONPATH=/home/web/django_project:/geonode
     - ADD_TIMESTAMP_IN_THUMBNAIL=True
   volumes:
     - ../django_project:/home/web/django_project
@@ -154,7 +153,7 @@ services:
   # django application for development
   dev:
     <<: *default-common-django
-    image: kartoza/igrac_ggis:2.0.0-dev
+    image: kartoza/igrac_ggis:${VERSION}-dev
     entrypoint: []
     build:
       context: ../

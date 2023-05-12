@@ -1,0 +1,125 @@
+{% load static %}
+{% load client_lib_tags %}
+{% load client_version %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="{% static 'mapstore/dist/themes/geonode.css' %}?{% client_version %}" rel="stylesheet" />
+        <link href="{% static 'css/default.css' %}?{% client_version %}" rel="stylesheet" />
+        <link href="{% static 'css/base-igrac.css' %}?{% client_version %}" rel="stylesheet" />
+        <title>{{ SITE_NAME }}</title>
+        <link rel="shortcut icon" href="{% static "/img/favicon.ico" %}"/>
+        {% include './snippets/loader_style.html' %}
+
+        {% block custom_theme %}
+            {% include './snippets/custom_theme.html' %}
+        {% endblock %}
+
+        {% block extra_style %}
+        {% endblock %}
+
+    </head>
+
+    <body class="msgapi ms2" data-ms2-container="ms2" >
+        <div class="gn-page-wrapper {% if request.user_agent.is_mobile %}gn-mobile{% else %}gn-desktop{% endif %}">
+            {% block gn_config %}
+                {% include './_geonode_config.html' %}
+            {% endblock %}
+            <div class="gn-catalogue gn-theme">
+                {% block header %}
+                    {% include './snippets/header.html' %}
+                {% endblock %}
+
+                {% block container %}
+                    <div id="ms-container">
+                        <div class="gn-main-event-container">
+                            <div class="gn-main-event-content">
+                                <div class="gn-main-loader"></div>
+                                <div class="gn-main-event-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+
+                {% block ms_scripts %}
+                    <script id="gn-script" src="{% static 'mapstore/dist/js/gn-catalogue.js' %}?{% client_version %}"></script>
+                {% endblock %}
+
+                {% block footer %}
+                    {% include './snippets/footer.html' %}
+                {% endblock %}
+
+                {% block scripts %}
+                    <script src="{% static "lib/js/jquery.min.js" %}"></script>
+                    <script src="{% static "lib/js/bootstrap.min.js" %}"></script>
+                    <script type="text/javascript">
+                        let isBeforeDetail = null
+                        // enable dropdown functionalities
+                        $('li.dropdown-submenu a[data-toggle="dropdown"]').on('click', function (event) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            $('li.dropdown-submenu').not($(this).parent()).removeClass('open');
+                            $(this).parent().toggleClass('open');
+                        });
+
+                        function waitForElm(selector) {
+                            return new Promise(resolve => {
+                                if (document.querySelector(selector)) {
+                                    return resolve(document.querySelector(selector));
+                                }
+
+                                const observer = new MutationObserver(mutations => {
+                                    if (document.querySelector(selector)) {
+                                        resolve(document.querySelector(selector));
+                                        observer.disconnect();
+                                    }
+                                });
+
+                                observer.observe(document.body, {
+                                    childList: true,
+                                    subtree: true
+                                });
+                            });
+                        }
+
+                        function openMapViewDrawer() {
+                            if(window.location.href.includes('#/map/') || window.location.href.includes('/view/')) {
+                                console.log('openMapViewDrawer', window.location.href);
+                                waitForElm('#drawer-menu-button').then((elm) => {
+                                    document.getElementById('drawer-menu-button').click();
+                                });
+                            }
+                        }
+
+                        function openFilterMenu() {
+                            if(window.location.href.includes('/catalogue/')) {
+                                waitForElm('.gn-filters-menu button').then((elm) => {
+                                    console.log(isBeforeDetail)
+                                    if(!$('.gn-filter-form').length && !window.location.href.includes('detail') && !isBeforeDetail) {
+                                        $($('.gn-filters-menu button')[0]).click()
+                                        isBeforeDetail = false
+                                    }
+                                });
+                            }
+                        }
+
+                        window.onhashchange = function() {
+                            if(window.location.href.includes('detail')) {
+                              isBeforeDetail = true
+                            }
+                            openMapViewDrawer()
+                            openFilterMenu()
+                        }
+                        openMapViewDrawer()
+                        openFilterMenu()
+                    </script>
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

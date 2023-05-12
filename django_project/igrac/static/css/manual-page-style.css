@@ -31,16 +31,21 @@ body {
     margin-bottom: 22px;
     font-size: 14px;
     list-style: none;
-    background-color: #ececec;
+    background-color: #ececec!important;
     border-radius: 0;
 }
 
+.manual-content h1,
+.manual-content h2 {
+    font-size: 100% !important;
+}
+
 .manual-title {
-    font-size: 2em;
-    font-style: normal;
-    font-weight: 700;
-    color: #24619d;
-    line-height: 1;
+    font-size: 2em !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    color: #24619d !important;
+    line-height: 1 !important;
 }
 
 .manual-intro {
@@ -141,7 +146,7 @@ body {
 }
 
 .manual-content {
-    padding: 25px;
+    padding: 25px !important;
     padding-bottom: 70px;
     padding-left: 35px;
     height: 100%;

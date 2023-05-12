@@ -1,0 +1,142 @@
+{% load static %}
+{% load get_menu_json %}
+{% load manual_menu %}
+{% load catalogue_urls %}
+{% get_igrac_user_menu as USER_MENU %}
+
+{% get_igrac_base_left_topbar_menu as BASE_TOPBAR_MENU_LEFT %}
+{% get_menu_json 'TOPBAR_MENU' as TOPBAR_MENU %}
+{% get_menu_json 'TOPBAR_MENU_LEFT' as TOPBAR_MENU_LEFT %}
+{% get_igrac_base_right_topbar_menu as BASE_TOPBAR_MENU_RIGHT %}
+{% get_menu_json 'TOPBAR_MENU_RIGHT' as TOPBAR_MENU_RIGHT %}
+
+{% block extra_style %}
+{% endblock %}
+
+<style>
+    #{{ id|default:'' }}-bottom {
+        display: none;
+        margin-bottom: 0;
+    }
+    @media (max-width: 748px) {
+        #{{ id|default:'' }} .gn-menu-content-center > * {
+            display: none;
+        }
+        #{{ id|default:'' }}-bottom {
+            display: flex;
+            width: calc(100% - 16px);
+            margin: 8px;
+        }
+    }
+</style>
+
+<nav id="{{ id|default:'' }}" class="gn-menu gn-menu-symmetric">
+    <div class="gn-menu-container">
+        <div class="gn-menu-content">
+            <div class="gn-menu-content-left">
+                {% block left_menu %}
+                    <ul class="gn-menu-list">
+                        <li class="home-menu">
+                            <a href="/" target="" class="nav-link btn btn-primary">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                         {% for menu_item in BASE_TOPBAR_MENU_LEFT %}
+                            {% include './menu_item.html' with menu_item=menu_item variant='primary' %}
+                        {% endfor %}
+                        {% for menu_item in TOPBAR_MENU %}
+                            {% include './menu_item.html' with menu_item=menu_item variant='primary' %}
+                        {% endfor %}
+                        {% for menu_item in TOPBAR_MENU_LEFT %}
+                            {% include './menu_item.html' with menu_item=menu_item variant='primary' %}
+                        {% endfor %}
+                    </ul>
+                {% endblock %}
+            </div>
+            <div class="gn-menu-content-right">
+                {% block right_menu %}
+                <ul class="gn-menu-list">
+                    <li>
+                        <div class="navbar-header branding">
+                            <a class="logo" href="https://www.un-igrac.org/" target="_blank"><img src="{% static "img/logo-small.svg" %}" width="50" alt="logo"></a>
+                        </div>
+                    </li>
+                    <li class="gn-search-bar-li">
+                        {% include './search_bar.html' with search_bar_id='gn-search-bar' %}
+                    </li>
+                    {% for menu_item in USER_MENU %}
+                        {% include './menu_item.html' with menu_item=menu_item align_right=True variant='primary' %}
+                    {% endfor %}
+                    {% block language_selector %}
+                        {% include './language_selector.html' with variant='primary' align_right=True %}
+                    {% endblock %}
+                </ul>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</nav>
+{% include './topbar.html' with id='gn-topbar' %}
+<div id="{{ id|default:'' }}-bottom">
+    {% block bottom_menu %}
+        {% include './search_bar.html' with search_bar_id='gn-search-bar-bottom' %}
+    {% endblock %}
+</div>
+{% block extra_script %}
+    <script type="text/javascript">
+        (function() {
+            function manageUrlChange() {
+                var signInElement = document.getElementById("sign-in");
+                if (signInElement){
+                    if (window.location.pathname === '/account/login/'){
+                        signInElement.setAttribute("href", window.location.href)
+                    }
+                    else {
+                        var href = signInElement.getAttribute("href").split("next=")[0];
+                        var url_parts = window.location.href.split(window.location.pathname);
+                        var path_name = encodeURIComponent(window.location.pathname + url_parts[url_parts.length-1]);
+                        signInElement.setAttribute("href", href.concat("next=".concat(path_name)));
+                    }
+                }
+            }
+            window.addEventListener('DOMContentLoaded', manageUrlChange);
+            window.addEventListener('hashchange', manageUrlChange, false);
+        })();
+    </script>
+    <script>
+        (function () {
+            function onResizeMenu(menu) {
+                const menuContent = menu.querySelector('.gn-menu-content');
+                const leftSide = menu.querySelector('.gn-menu-content-left');
+                const leftSideMenuList = menu.querySelector('.gn-menu-content-left > .gn-menu-list');
+                leftSideMenuList.style.position = 'absolute';
+                leftSideMenuList.style.top = '50%';
+                leftSideMenuList.style.transform = 'translateY(-50%)';
+                const leftSideMenuDisplay = leftSideMenuList.style.display;
+                const leftSideDropdown = menu.querySelector('.gn-menu-content-left > .dropdown');
+                leftSideDropdown.style.position = 'absolute';
+                leftSideDropdown.style.top = '50%';
+                leftSideDropdown.style.transform = 'translateY(-50%)';
+                function resize() {
+                    if (leftSide.clientWidth < leftSideMenuList.clientWidth) {
+                        leftSideMenuList.style.visibility = 'hidden';
+                        leftSideDropdown.style.visibility = 'visible';
+                    } else {
+                        leftSideMenuList.style.visibility = 'visible';
+                        leftSideDropdown.style.visibility = 'hidden';
+                    }
+                }
+
+                window.addEventListener('resize', resize);
+                window.addEventListener('DOMContentLoaded', resize);
+
+                resize();
+            }
+            const menus = document.querySelectorAll('[data-gn-menu-resize="true"]');
+            for (var i = 0; i < menus.length; i++) {
+                const menu = menus[i];
+                onResizeMenu(menu);
+            }
+        })();
+    </script>
+{% endblock extra_script %}

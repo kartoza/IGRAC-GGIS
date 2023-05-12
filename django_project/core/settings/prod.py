@@ -29,3 +29,4 @@ DEFAULT_FROM_EMAIL = os.environ.get(
 )
 
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+STATIC_URL = '/static/'
