@@ -71,6 +71,17 @@
 
         window.addEventListener("load", function () {
             removeLocationHash();
+
+            {# Fixing toggle #}
+            $('.dropdown-submenu .dropdown-toggle').click(function () {
+              const $parent = $(this).closest('.dropdown-submenu')
+              if ($parent.hasClass('open')) {
+                $parent.removeClass('open')
+              } else {
+                $parent.addClass('open')
+              }
+              return false
+            })
         });
 
         function waitForElm(selector) {

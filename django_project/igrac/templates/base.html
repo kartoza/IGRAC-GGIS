@@ -105,6 +105,20 @@
             }
         {% endif %}
     </style>
+    <script>
+        window.addEventListener("load", function () {
+            {# Fixing toggle #}
+            $('.dropdown-submenu .dropdown-toggle').click(function () {
+              const $parent = $(this).closest('.dropdown-submenu')
+              if ($parent.hasClass('open')) {
+                $parent.removeClass('open')
+              } else {
+                $parent.addClass('open')
+              }
+              return false
+            })
+        });
+    </script>
     {% block extra_head %}
     {% endblock %}
 {% endblock %}
@@ -128,5 +142,16 @@
             $('li.dropdown-submenu').not($(this).parent()).removeClass('open');
             $(this).parent().toggleClass('open');
         });
+
+        {# Fixing toggle #}
+        $('.dropdown-submenu .dropdown-toggle').click(function () {
+          const $parent = $(this).closest('.dropdown-submenu')
+          if ($parent.hasClass('open')) {
+            $parent.removeClass('open')
+          } else {
+            $parent.addClass('open')
+          }
+          return false
+        })
     </script>
 {% endblock extra_script %}
