@@ -638,3 +638,14 @@ form .row {
 .menu-sidebar a:focus {
     text-decoration: unset;
 }
+
+#ms-app .dropdown-menu button {
+    background-color: unset !important;
+    border: none !important;
+    color: white;
+    border-radius: 0 !important;
+}
+
+#ms-app .dropdown-menu button:hover {
+    background-color: #ff6b0d !important;
+}
