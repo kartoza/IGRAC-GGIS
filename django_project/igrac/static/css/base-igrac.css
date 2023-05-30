@@ -649,3 +649,7 @@ form .row {
 #ms-app .dropdown-menu button:hover {
     background-color: #ff6b0d !important;
 }
+
+#footer-attribution-container .ol-attribution {
+    padding: 4px 2px;
+}
