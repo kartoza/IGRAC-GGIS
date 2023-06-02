@@ -84,7 +84,7 @@ services:
   # Our custom django application. It includes Geonode.
   django:
     <<: *default-common-django
-    entrypoint: ["/entrypoint.sh"]
+    entrypoint: []
     command: 'uwsgi --ini /uwsgi.conf'
 
   nginx:
@@ -121,9 +121,9 @@ services:
       - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
       - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
     volumes:
-      - geodatadir:/spcgeonode-geodatadir/
+      - ./volumes/geodatadir:/spcgeonode-geodatadir/
     ports:
-      - "5000:8080"
+      - "8080:8080"
     depends_on:
       - postgres
     restart: on-failure
