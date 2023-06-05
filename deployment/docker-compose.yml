@@ -85,7 +85,7 @@ services:
   # Our custom django application. It includes Geonode.
   django:
     <<: *default-common-django
-    entrypoint: []
+    entrypoint: ["/entrypoint.sh"]
     command: 'uwsgi --ini /uwsgi.conf'
 
   nginx:

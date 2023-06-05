@@ -1,13 +1,20 @@
 from adminsortable.admin import SortableAdmin
 from django.contrib import admin
+from django.http import HttpResponseRedirect
+from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
+from preferences.admin import PreferencesAdmin
+
 from geonode.base.admin import set_user_and_group_dataset_permission
 from geonode.people.admin import ProfileAdmin
 from geonode.people.models import Profile
-from preferences.admin import PreferencesAdmin
-
-from igrac.models.profile import IgracProfile
+from gwml2.models.well_management.organisation import Organisation
+from igrac.forms.groundwater_layer import (
+    CreateGroundwaterLayerForm, EditGroundwaterLayerForm
+)
+from igrac.models.groundwater_layer import GroundwaterLayer
 from igrac.models.map_slug import MapSlugMapping
+from igrac.models.profile import IgracProfile
 from igrac.models.site_preference import SitePreference
 
 
@@ -31,7 +38,7 @@ def make_active(modeladmin, request, queryset):
 class IgracProfileAdmin(ProfileAdmin):
     list_display = (
         'id', 'username', 'email', 'first_name', 'last_name',
-        'is_staff', 'is_active','organization', 'position', 'join_reason'
+        'is_staff', 'is_active', 'organization', 'position', 'join_reason'
     )
     search_fields = (
         'username', 'organization', 'profile',
@@ -49,7 +56,8 @@ class IgracProfileAdmin(ProfileAdmin):
                                             'delivery', 'city', 'area',
                                             'zipcode', 'country',
                                             'keywords')}),
-        (_('IGRAC Information'), {'fields': ('join_reason', 'organization_types')}),
+        (_('IGRAC Information'),
+         {'fields': ('join_reason', 'organization_types')}),
     )
     readonly_fields = ('join_reason', 'organization_types')
 
@@ -67,3 +75,38 @@ class IgracProfileAdmin(ProfileAdmin):
 
 
 admin.site.register(Profile, IgracProfileAdmin)
+
+
+class GroundwaterLayerAdmin(admin.ModelAdmin):
+    list_display = ('layer', '_organisations')
+    add_form = CreateGroundwaterLayerForm
+    change_form = EditGroundwaterLayerForm
+
+    def get_form(self, request, obj=None, **kwargs):
+        if not obj:
+            self.form = self.add_form
+        else:
+            self.form = self.change_form
+
+        return super(GroundwaterLayerAdmin, self).get_form(
+            request, obj, **kwargs
+        )
+
+    def response_post_save_change(self, request, obj: GroundwaterLayer):
+        redirect_url = f'/catalogue/#/dataset/{obj.layer.pk}'
+        return HttpResponseRedirect(redirect_url)
+
+    def response_post_save_add(self, request, obj: GroundwaterLayer):
+        redirect_url = f'/catalogue/#/dataset/{obj.layer.pk}'
+        return HttpResponseRedirect(redirect_url)
+
+    def _organisations(self, obj: GroundwaterLayer):
+        return format_html(
+            ''.join([
+                f'<span style="display:inline-block; background:#ddd; margin:2px; padding: 4px 6px">{org.name}</span>' for org in
+                Organisation.objects.filter(id__in=obj.organisations)
+            ])
+        )
+
+
+admin.site.register(GroundwaterLayer, GroundwaterLayerAdmin)
