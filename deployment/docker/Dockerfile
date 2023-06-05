@@ -11,7 +11,7 @@ RUN echo "Activate memcached" && \
 WORKDIR /
 
 RUN rm -r /usr/src/geonode
-RUN git clone --branch 4.0.3 --single-branch https://github.com/kartoza/geonode.git geonode
+RUN git clone --branch 4.0.4 --single-branch https://github.com/kartoza/geonode.git geonode
 
 WORKDIR /geonode
 RUN pip install -r requirements.txt

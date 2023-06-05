@@ -1,3 +1,7 @@
 [submodule "django_project/gwml2"]
 	path = django_project/gwml2
 	url = https://github.com/kartoza/gwml2.git
+[submodule "geonode"]
+	path = geonode
+	url = git@github.com:kartoza/geonode.git
+	branch = 4.0.4
