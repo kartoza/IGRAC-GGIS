@@ -57,6 +57,7 @@ x-common-django:
     - PYTHONPATH=/home/web/django_project:/geonode
     - ADD_TIMESTAMP_IN_THUMBNAIL=True
   volumes:
+    - ../geonode:/geonode
     - ../django_project:/home/web/django_project
     - ./volumes/static:/home/web/static:rw
     - ./volumes/media:/home/web/media:rw
