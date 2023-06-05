@@ -12,6 +12,7 @@ from geonode.layers.models import Dataset
 from gwml2.models.download_request import WELL_AND_MONITORING_DATA, GGMN
 from gwml2.models.well_management.organisation import Organisation
 from igrac.models.groundwater_layer import GroundwaterLayer
+from igrac.models.site_preference import SitePreference
 
 User = get_user_model()
 
@@ -153,19 +154,23 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
 
 class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
     """Create groundwater layer."""
-    name = forms.CharField(help_text='The layer name that will be created.')
+    name = forms.CharField(
+        help_text='The layer name that will be created.',
+        widget=forms.TextInput(attrs={'style': 'width:500px'})
+    )
 
     def clean_well_type(self):
         """Well type."""
         well_type = self.cleaned_data['well_type']
-        self.layer = None
+        pref = SitePreference.objects.first()
         target_layer = None
         if well_type == WELL_AND_MONITORING_DATA:
-            target_layer = 'groundwater:Groundwater_Well'
+            target_layer = pref.well_and_monitoring_data_layer.__str__()
         elif well_type == GGMN:
-            target_layer = 'groundwater:Groundwater_Well_GGMN'
+            target_layer = pref.ggmn_layer.__str__()
 
         # Check target layer on geoserver
+        self.layer = None
         if target_layer:
             self.layer = gs_catalog.get_layer(target_layer)
         if not self.layer:
@@ -198,7 +203,7 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
         exclude = ('layer', 'organisations')
 
 
-class EditGroundwaterLayerForm(CreateGroundwaterLayerForm):
+class EditGroundwaterLayerForm(_BaseGroundwaterLayerForm):
     """Edit groundwater layer."""
     layer = None
     well_type = forms.ChoiceField(
@@ -224,8 +229,8 @@ class EditGroundwaterLayerForm(CreateGroundwaterLayerForm):
         """Run it for duplication data."""
         layer = None
         if self.instance.layer:
-            layer = gs_catalog.get_layer(self.instance.layer.name)
-        if not self.layer:
+            layer = gs_catalog.get_layer(self.instance.layer.__str__())
+        if not layer:
             raise Exception(
                 f'{self.instance.layer.name} does not found. Please contact admin.'
             )
@@ -260,12 +265,6 @@ class EditGroundwaterLayerForm(CreateGroundwaterLayerForm):
         # Need to handle the response
         if r.status_code == 200:
             call_command('updatelayers', filter=layer.name)
-            try:
-                dataset = Dataset.objects.get(
-                    workspace=workspace, store=store, name=layer.name
-                )
-                return dataset
-            except Dataset.DoesNotExist:
-                return None
+            return self.instance.layer
         else:
             raise Exception(r.content)

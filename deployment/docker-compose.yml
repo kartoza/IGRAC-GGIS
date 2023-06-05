@@ -122,7 +122,7 @@ services:
       - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
       - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
     volumes:
-      - ./volumes/geodatadir:/spcgeonode-geodatadir/
+      - geodatadir:/spcgeonode-geodatadir/
     ports:
       - "8080:8080"
     depends_on:

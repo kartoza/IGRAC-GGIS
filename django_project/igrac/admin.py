@@ -103,7 +103,8 @@ class GroundwaterLayerAdmin(admin.ModelAdmin):
     def _organisations(self, obj: GroundwaterLayer):
         return format_html(
             ''.join([
-                f'<span style="display:inline-block; background:#ddd; margin:2px; padding: 4px 6px">{org.name}</span>' for org in
+                f'<span style="display:inline-block; background:#ddd; margin:2px; padding: 4px 6px">{org.name}</span>'
+                for org in
                 Organisation.objects.filter(id__in=obj.organisations)
             ])
         )

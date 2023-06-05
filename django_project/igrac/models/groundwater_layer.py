@@ -6,7 +6,7 @@ from geonode.layers.models import Dataset
 
 class GroundwaterLayer(models.Model):
     """GroundwaterLayer. """
-    layer = models.ForeignKey(
+    layer = models.OneToOneField(
         Dataset,
         on_delete=models.CASCADE
     )
