@@ -77,6 +77,11 @@ class IgracProfileAdmin(ProfileAdmin):
 admin.site.register(Profile, IgracProfileAdmin)
 
 
+def reassign_template(modeladmin, request, queryset):
+    for layer in queryset:
+        layer.assign_template()
+
+
 class GroundwaterLayerAdmin(admin.ModelAdmin):
     list_display = ('layer', '_organisations')
     add_form = CreateGroundwaterLayerForm
@@ -108,6 +113,8 @@ class GroundwaterLayerAdmin(admin.ModelAdmin):
                 Organisation.objects.filter(id__in=obj.organisations)
             ])
         )
+
+    actions = [reassign_template]
 
 
 admin.site.register(GroundwaterLayer, GroundwaterLayerAdmin)

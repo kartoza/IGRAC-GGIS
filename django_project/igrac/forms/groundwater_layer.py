@@ -21,7 +21,6 @@ User = get_user_model()
 #  All hardcoded need to be saved on the preferences
 
 class _BaseGroundwaterLayerForm(forms.ModelForm):
-    layer = None
     well_type = forms.ChoiceField(
         choices=(
             (WELL_AND_MONITORING_DATA, WELL_AND_MONITORING_DATA),
@@ -89,6 +88,57 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
         )
         tree.find('metadata/entry/virtualTable/sql').text = sql
 
+
+class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
+    """Create groundwater layer."""
+    layer = None
+    target_layer = None
+    name = forms.CharField(
+        help_text='The layer name that will be created.',
+        widget=forms.TextInput(attrs={'style': 'width:500px'})
+    )
+
+    def clean_well_type(self):
+        """Well type."""
+        well_type = self.cleaned_data['well_type']
+        pref = SitePreference.objects.first()
+        target_layer = None
+        if well_type == WELL_AND_MONITORING_DATA:
+            self.target_layer = pref.well_and_monitoring_data_layer
+            target_layer = self.target_layer.__str__()
+        elif well_type == GGMN:
+            self.target_layer = pref.ggmn_layer
+            target_layer = self.target_layer.__str__()
+
+        # Check target layer on geoserver
+        self.layer = None
+        if target_layer:
+            self.layer = gs_catalog.get_layer(target_layer)
+        if not self.layer:
+            raise forms.ValidationError(
+                f'{target_layer} does not found. Please contact admin.'
+            )
+        return well_type
+
+    def clean_name(self):
+        """Validate name."""
+        name = self.cleaned_data['name']
+        layer = self.layer
+        if layer:
+            workspace = layer.resource.workspace.name
+            target_layer_name = name.replace(' ', '_')
+            layer_name = f'{workspace}:{target_layer_name}'
+            layer = gs_catalog.get_layer(layer_name)
+            if layer:
+                raise forms.ValidationError(
+                    f'Layer with this name is already exist'
+                )
+        else:
+            raise forms.ValidationError(
+                f'Can not proceed, layer does not found'
+            )
+        return name
+
     def run(self):
         """Run it for duplication data."""
         name = self.cleaned_data['name']
@@ -145,58 +195,16 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
                 dataset = Dataset.objects.get(
                     workspace=workspace, store=store, name=target_layer_name
                 )
+                if dataset and self.target_layer:
+                    dataset.use_featureinfo_custom_template = self.target_layer.use_featureinfo_custom_template
+                    dataset.featureinfo_custom_template = self.target_layer.featureinfo_custom_template
+                    dataset.save()
+
                 return dataset
             except Dataset.DoesNotExist:
                 return None
         else:
             raise Exception(r.content)
-
-
-class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
-    """Create groundwater layer."""
-    name = forms.CharField(
-        help_text='The layer name that will be created.',
-        widget=forms.TextInput(attrs={'style': 'width:500px'})
-    )
-
-    def clean_well_type(self):
-        """Well type."""
-        well_type = self.cleaned_data['well_type']
-        pref = SitePreference.objects.first()
-        target_layer = None
-        if well_type == WELL_AND_MONITORING_DATA:
-            target_layer = pref.well_and_monitoring_data_layer.__str__()
-        elif well_type == GGMN:
-            target_layer = pref.ggmn_layer.__str__()
-
-        # Check target layer on geoserver
-        self.layer = None
-        if target_layer:
-            self.layer = gs_catalog.get_layer(target_layer)
-        if not self.layer:
-            raise forms.ValidationError(
-                f'{target_layer} does not found. Please contact admin.'
-            )
-        return well_type
-
-    def clean_name(self):
-        """Validate name."""
-        name = self.cleaned_data['name']
-        layer = self.layer
-        if layer:
-            workspace = layer.resource.workspace.name
-            target_layer_name = name.replace(' ', '_')
-            layer_name = f'{workspace}:{target_layer_name}'
-            layer = gs_catalog.get_layer(layer_name)
-            if layer:
-                raise forms.ValidationError(
-                    f'Layer with this name is already exist'
-                )
-        else:
-            raise forms.ValidationError(
-                f'Can not proceed, layer does not found'
-            )
-        return name
 
     class Meta:
         model = GroundwaterLayer
