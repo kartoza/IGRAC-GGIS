@@ -5,3 +5,7 @@
 	path = geonode
 	url = git@github.com:kartoza/geonode.git
 	branch = 4.0.4
+[submodule "istsos2"]
+	path = istsos2
+	url = git@github.com:meomancer/istsos2.git
+	branch = igrac

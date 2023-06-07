@@ -10,6 +10,8 @@ from igrac.models.site_preference import SitePreference
 
 def run(apps, schema_editor):
     site_preference = SitePreference.objects.first()
+    if not site_preference:
+        return
     try:
         site_preference.well_and_monitoring_data_layer = Dataset.objects.get(
             store='groundwater', name='Groundwater_Well'

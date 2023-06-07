@@ -12,6 +12,7 @@ if 'mapstore2_adapter.geoapps.dashboards' in INSTALLED_APPS:
 INSTALLED_APPS += (
     'igrac',
     'gwml2',
+    'istsos',
 
     'adminsortable',
 
