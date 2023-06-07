@@ -92,7 +92,6 @@ TEMPLATES = [
 
                 # igrac specified
                 'core.middleware.project_version',
-                'igrac_api.middleware.api_keys',
             ],
             'debug': DEBUG,
         },
@@ -104,7 +103,6 @@ STATICFILES_DIRS = [absolute_path('igrac', 'static'), ] + STATICFILES_DIRS
 
 # Additional locations of templates
 TEMPLATES[0]['DIRS'] = [absolute_path('igrac', 'templates')] + TEMPLATES[0]['DIRS']
-TEMPLATES[0]['DIRS'] = [absolute_path('igrac_api', 'templates')] + TEMPLATES[0]['DIRS']
 
 # Wagtail Settings
 WAGTAIL_SITE_NAME = 'My Example Site'

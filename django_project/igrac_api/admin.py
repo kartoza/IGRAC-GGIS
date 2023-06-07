@@ -1,19 +1,28 @@
 from django.contrib import admin
-from django.utils.safestring import mark_safe
 
+from igrac_api.forms.api_key import CreateApiKeyForm, EditApiKeyForm
 from igrac_api.models.api_key import (
-    UserApiKey, ApiKeyRequestLog, ApiKeyAccess, ApiKeyEnrollment
+    ApiKey, ApiKeyRequestLog
 )
 
 
-class UserApiKeyAdmin(admin.ModelAdmin):
-    list_display = ('user', 'api_key', 'is_active')
-    list_filter = ('api_key',)
+class ApiKeyAdmin(admin.ModelAdmin):
+    list_display = (
+        'user', 'api_key', 'is_active', 'allow_write', 'max_request_per_day'
+    )
+    list_filter = ('user', 'is_active', 'allow_write')
+    add_form = CreateApiKeyForm
+    change_form = EditApiKeyForm
 
+    def get_form(self, request, obj=None, **kwargs):
+        if not obj:
+            self.form = self.add_form
+        else:
+            self.form = self.change_form
 
-class ApiKeyAccessAdmin(admin.ModelAdmin):
-    list_display = ('api_key', 'date', 'counter')
-    list_filter = ('api_key__api_key',)
+        return super(ApiKeyAdmin, self).get_form(
+            request, obj, **kwargs
+        )
 
 
 class ApiKeyRequestLogAdmin(admin.ModelAdmin):
@@ -24,26 +33,5 @@ class ApiKeyRequestLogAdmin(admin.ModelAdmin):
         return obj.api_key.user
 
 
-class ApiKeyEnrollmentAdmin(admin.ModelAdmin):
-    list_display = (
-        'contact_person', 'contact_email', 'organisation_name',
-        'organisation_url', 'project_url', 'time', 'approved',
-        '_api_key'
-    )
-    list_editable = ('approved',)
-
-    def _api_key(self, obj: ApiKeyEnrollment):
-        """Return colors that palette has."""
-        return mark_safe(
-            f'<a href="/admin/api/userapikey/{obj.api_key}/change/">'
-            f'{obj.api_key}'
-            f'</a>'
-        )
-
-    _api_key.allow_tags = True
-
-
-admin.site.register(UserApiKey, UserApiKeyAdmin)
-admin.site.register(ApiKeyAccess, ApiKeyAccessAdmin)
+admin.site.register(ApiKey, ApiKeyAdmin)
 admin.site.register(ApiKeyRequestLog, ApiKeyRequestLogAdmin)
-admin.site.register(ApiKeyEnrollment, ApiKeyEnrollmentAdmin)

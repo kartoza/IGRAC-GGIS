@@ -1,11 +1,11 @@
 from rest_framework.serializers import ModelSerializer
 
-from igrac_api.models.api_key import UserApiKey
+from igrac_api.models.api_key import ApiKey
 
 
-class UserApiKeySerializer(ModelSerializer):
-    """Serializer for UserApiKey."""
+class ApiKeySerializer(ModelSerializer):
+    """Serializer for ApiKey."""
 
     class Meta:
-        model = UserApiKey
+        model = ApiKey
         exclude = ()

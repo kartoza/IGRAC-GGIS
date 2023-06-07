@@ -3,7 +3,7 @@ __date__ = '28/01/19'
 
 from rest_framework import authentication, exceptions
 
-from igrac_api.models.api_key import UserApiKey, ApiKeyAccess
+from igrac_api.models.api_key import ApiKey, ApiKeyAccess
 
 
 class APIKeyAuthentication(authentication.BaseAuthentication):
@@ -11,7 +11,7 @@ class APIKeyAuthentication(authentication.BaseAuthentication):
         api_key = request.GET.get('api-key', None)
         if not api_key:
             raise exceptions.AuthenticationFailed('api-key is needed')
-        key = UserApiKey.get_key_from_api_key(api_key)
+        key = ApiKey.get_key_from_api_key(api_key)
         if not key:
             raise exceptions.AuthenticationFailed(
                 'API key invalid. '

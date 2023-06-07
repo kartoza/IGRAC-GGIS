@@ -3,13 +3,12 @@ import os
 
 from django.contrib.auth import get_user_model
 from django.contrib.gis.db import models
-from django.core.validators import URLValidator
 from django.utils import timezone
 
 User = get_user_model()
 
 
-class UserApiKey(models.Model):
+class ApiKey(models.Model):
     """
     This model provide user API KEY to access API of istsos
     """
@@ -21,17 +20,18 @@ class UserApiKey(models.Model):
         max_length=40, primary_key=True
     )
     is_active = models.BooleanField(
-        default=False
+        default=True
     )
     allow_write = models.BooleanField(
         default=False,
-        help_text='Allow this api key to write data'
+        help_text='Allow this api key to write data.'
     )
     max_request_per_day = models.IntegerField(
         help_text=(
-            'Max request per day for the api key.'
+            'Max request per day for the api key. '
+            'Keep blank or null for unlimited.'
         ),
-        default=1000
+        null=True, blank=True
     )
 
     @property
@@ -57,11 +57,11 @@ class UserApiKey(models.Model):
         :rtype: User
         """
         try:
-            return UserApiKey.objects.get(
+            return ApiKey.objects.get(
                 api_key=api_key,
                 is_active=True
             ).user
-        except UserApiKey.DoesNotExist:
+        except ApiKey.DoesNotExist:
             return None
 
     @staticmethod
@@ -71,26 +71,26 @@ class UserApiKey(models.Model):
         :param api_key: user that going to be checked
         :type api_key: User
 
-        :return: UserApiKey
-        :rtype: UserApiKey
+        :return: ApiKey
+        :rtype: ApiKey
         """
         try:
-            return UserApiKey.objects.get(
+            return ApiKey.objects.get(
                 api_key=api_key
             )
-        except UserApiKey.DoesNotExist:
+        except ApiKey.DoesNotExist:
             return None
 
 
 class ApiKeyAccess(models.Model):
     """API Key Access."""
 
-    api_key = models.ForeignKey(UserApiKey, on_delete=models.CASCADE)
+    api_key = models.ForeignKey(ApiKey, on_delete=models.CASCADE)
     date = models.DateField()
     counter = models.IntegerField(default=0)
 
     @staticmethod
-    def request(api_key: UserApiKey, url: str, method: str):
+    def request(api_key: ApiKey, url: str, method: str):
         """Doing a request."""
         now = timezone.now()
         date = now.date()
@@ -98,7 +98,7 @@ class ApiKeyAccess(models.Model):
             api_key=api_key, date=date
         )
         access.counter += 1
-        if access.counter > api_key.limit:
+        if api_key.limit is not None and access.counter > api_key.limit:
             return False
 
         access.save()
@@ -111,48 +111,7 @@ class ApiKeyAccess(models.Model):
 class ApiKeyRequestLog(models.Model):
     """API Key for request log."""
 
-    api_key = models.ForeignKey(UserApiKey, on_delete=models.CASCADE)
+    api_key = models.ForeignKey(ApiKey, on_delete=models.CASCADE)
     method = models.CharField(max_length=126)
     time = models.DateTimeField()
     url = models.TextField()
-
-
-class ApiKeyEnrollment(models.Model):
-    """API Key enrollment data."""
-
-    contact_person = models.CharField(max_length=512)
-    contact_email = models.EmailField()
-    organisation_name = models.CharField(max_length=512)
-    organisation_url = models.CharField(
-        max_length=512, validators=[URLValidator()]
-    )
-    project_url = models.CharField(
-        max_length=512,
-        help_text='web site or project URL for API will be used',
-        validators=[URLValidator()]
-    )
-    time = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(
-        default=False,
-        help_text='When approved, the api_key will be created and activated'
-    )
-    api_key = models.OneToOneField(
-        UserApiKey, on_delete=models.SET_NULL, null=True, blank=True
-    )
-
-    def save(self, *args, **kwargs):
-        super(ApiKeyEnrollment, self).save(*args, **kwargs)
-        if self.api_key:
-            self.api_key.is_active = self.approved
-            self.api_key.save()
-
-    def generate_api_key(self, user: User):
-        """Generating api key."""
-        if not self.api_key:
-            api_key = UserApiKey(
-                user=user, is_active=False
-            )
-            api_key.api_key = UserApiKey.generate_key()
-            api_key.save()
-            self.api_key = api_key
-            self.save()
