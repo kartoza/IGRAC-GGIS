@@ -1,13 +1,15 @@
 """Proxi API for request the url from outside API."""
 
 import requests
-
 from django.http import HttpResponse
 from rest_framework.views import APIView
+
+from igrac_api.authentication import APIKeyAuthentication
 
 
 class IstsosView(APIView):
     """ISTSOS API for returning outside url."""
+    authentication_classes = (APIKeyAuthentication,)
 
     def get(self, request):
         """GET ISTSOS API."""

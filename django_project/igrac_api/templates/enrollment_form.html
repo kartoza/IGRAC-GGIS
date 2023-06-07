@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap_tags %}
+{% load igrac_bootstrap_tags %}
+
+{% block page_title %}
+    API Key Enrollment Form
+{% endblock %}
+
+{% block extra_head %}
+    <link href="{% static 'css/igrac-form.css' %} "
+          rel="stylesheet" type="text/css"/>
+{% endblock extra_head %}
+
+{% block body_outer %}
+    <div class="page-header">
+        <h1>Data Request</h1>
+    </div>
+    <div class="row">
+        <form method="post" autocomplete="off">
+            <fieldset>
+                {% csrf_token %}
+                <div class="group">
+                    <div class="row">
+                        <div class="col">
+                            {{ form.contact_person|field_as_bootstrap }}
+                        </div>
+                        <div class="col">
+                            {{ form.contact_email|field_as_bootstrap }}
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="row">
+                        <div class="col">
+                            {{ form.organisation_name|field_as_bootstrap }}
+                        </div>
+                        <div class="col">
+                            {{ form.organisation_url|field_as_bootstrap }}
+                        </div>
+                    </div>
+                </div>
+                {{ form.project_url|field_as_bootstrap }}
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        {% trans "Request" %}
+                    </button>
+                </div>
+                <br>
+                <br>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}
