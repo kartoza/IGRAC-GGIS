@@ -14,7 +14,7 @@ class IstsosView(APIView):
     def get(self, request):
         """GET ISTSOS API."""
         params = request.get_full_path().split('?')[1]
-        response = requests.get('http://istsos/istsos/igrac?' + params)
+        response = requests.get('http://istsos/istsos/istsos?' + params)
 
         django_response = HttpResponse(
             content=response.content,

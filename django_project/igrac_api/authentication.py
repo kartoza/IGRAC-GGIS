@@ -15,7 +15,7 @@ class APIKeyAuthentication(authentication.BaseAuthentication):
         if not key:
             raise exceptions.AuthenticationFailed(
                 'API key invalid. '
-                'Please recreate your key using the enrollment form.'
+                'Please ask the admins for valid API key.'
             )
         if not key.is_active:
             raise exceptions.AuthenticationFailed(

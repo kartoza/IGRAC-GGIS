@@ -6,7 +6,7 @@ from django.conf.urls import url
 from igrac_api.api.istsos import IstsosView
 
 urlpatterns = [
-    url(r'^istsos/igrac',
+    url(r'^istsos$',
         view=IstsosView.as_view(),
         name='istsos-api')
 ]
