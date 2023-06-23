@@ -36,8 +36,9 @@ class MapFeaturedSerializer(ResourceBaseSerializer):
 
 class FeaturedMaps(APIView):
     def get(self, request, *args):
+        map_slug = MapSlugMapping.objects.filter(featured=True)
         featured_map = Map.objects.filter(
-            featured=True
+            id__in=map_slug.values_list('map_id', flat=True)
         ).order_by(
             'mapslugmapping__order', 'id'
         )

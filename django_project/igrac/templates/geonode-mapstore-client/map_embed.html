@@ -13,7 +13,7 @@
         <link href="{% static 'css/default.css' %}?{% client_version %}" rel="stylesheet" />
         <link href="{% static 'css/base-igrac.css' %}?{% client_version %}" rel="stylesheet" />
         <title>{{ SITE_NAME }}</title>
-        <link rel="shortcut icon" href="{% static "/img/favicon.ico" %}"/>
+        <link rel="shortcut icon" href="{% static "img/favicon.ico" %}"/>
         {% include './snippets/loader_style.html' %}
 
         {% block custom_theme %}
@@ -71,6 +71,17 @@
 
         window.addEventListener("load", function () {
             removeLocationHash();
+
+            {# Fixing toggle #}
+            $('.dropdown-submenu .dropdown-toggle').click(function () {
+              const $parent = $(this).closest('.dropdown-submenu')
+              if ($parent.hasClass('open')) {
+                $parent.removeClass('open')
+              } else {
+                $parent.addClass('open')
+              }
+              return false
+            })
         });
 
         function waitForElm(selector) {

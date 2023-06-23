@@ -56,7 +56,9 @@ x-common-django:
     - MONITORING_ENABLED=False
     - PYTHONPATH=/home/web/django_project:/geonode
     - ADD_TIMESTAMP_IN_THUMBNAIL=True
+    - USE_DEFAULT_GEOSERVER_STYLE=True
   volumes:
+    - ../geonode:/geonode
     - ../django_project:/home/web/django_project
     - ./volumes/static:/home/web/static:rw
     - ./volumes/media:/home/web/media:rw
@@ -104,7 +106,7 @@ services:
 
   # Geoserver backend
   geoserver:
-    image: geonode/spcgeonode:geoserver-3.0
+    image: kartoza/sadc_gip:geoserver-3.1.netcfd
     healthcheck:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.0.0.1:8080/geoserver/rest/workspaces/geonode.html"
       interval: 60s
@@ -123,7 +125,7 @@ services:
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
     ports:
-      - "5000:8080"
+      - "8080:8080"
     depends_on:
       - postgres
     restart: on-failure
