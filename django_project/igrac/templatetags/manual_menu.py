@@ -1,7 +1,9 @@
 from django import template
 from django.utils.safestring import mark_safe
-from geonode.base.models import Configuration
 from geonode_mapstore_client.templatetags.get_menu_json import get_user_menu
+
+from geonode.base.models import Configuration
+
 register = template.Library()
 
 
@@ -13,7 +15,8 @@ def get_list_element(list_data, active_slug):
                 url=data['url'],
                 title=data['title'],
                 indicator='(Pending)' if not data['live'] else '',
-                c="data-jstree='{\"opened\":true,\"selected\":true}'" if data['slug'] == active_slug else ''
+                c="data-jstree='{\"opened\":true,\"selected\":true}'" if data[
+                                                                             'slug'] == active_slug else ''
             )
         if 'children' in data:
             element += get_list_element(data['children'], active_slug)
@@ -52,16 +55,17 @@ def _is_mobile_device(context):
         return req.user_agent.is_mobile
     return False
 
+
 def _is_logged_in(context):
     if context and 'request' in context:
         req = context['request']
         return req.user.is_authenticated
     return False
 
+
 @register.simple_tag(
     takes_context=True, name='get_igrac_base_left_topbar_menu')
 def get_igrac_base_left_topbar_menu(context):
-
     is_mobile = _is_mobile_device(context)
     is_logged_in = _is_logged_in(context)
 
@@ -208,6 +212,17 @@ def get_igrac_base_right_topbar_menu(context):
 @register.simple_tag(takes_context=True)
 def get_igrac_user_menu(context):
     profile = get_user_menu(context)
+
+    admin_only = [
+        {
+            "type": "link",
+            "href": "/admin/",
+            "label": "Admin"
+        }
+    ]
+
+    print(profile)
+
     user = context.get('request').user
     if user.is_authenticated:
         profile[0]['label'] = user.full_name_or_nick
@@ -217,8 +232,29 @@ def get_igrac_user_menu(context):
                 if item['label'] == 'GeoServer':
                     profile[0]['items'].insert(
                         idx + 1,
-                        {'type': 'link', 'href': '/cms/', 'label': 'Wagtail Admin'}
+                        {'type': 'link', 'href': '/cms/',
+                         'label': 'Wagtail Admin'}
                     )
             except KeyError:
                 pass
+
+            # Add Admin if user is just staff
+            if user.is_staff and not user.is_superuser:
+                try:
+                    if item['label'] == 'Inbox':
+                        profile[0]['items'].insert(
+                            idx + 1,
+                            {
+                                "type": "link",
+                                "href": "/admin/",
+                                "label": "Admin"
+                            }
+                        )
+                        profile[0]['items'].insert(
+                            idx + 1,
+                            {'type': 'divider'}
+                        )
+                except KeyError:
+                    pass
+
     return profile
