@@ -4,8 +4,15 @@
         xsi:schemaLocation="http://www.opengis.net/sensorML/1.0.1 http://schemas.opengis.net/sensorML/1.0.1/sensorML.xsd"
         version="1.0.1">
     <ns0:member>
-        <ns0:System xmlns:gml="http://www.opengis.net/gml" gml:id="AAA"><!--System Description-->
-            <gml:name>AAA</gml:name><!--System Identifiers-->
+        <ns0:System xmlns:gml="http://www.opengis.net/gml"
+                    gml:id="AAA">
+            <!--System Description-->
+            <gml:name>AAA</gml:name>
+            <!--System License-->
+            <gml:License/>
+            <!--System Restriction-->
+            <gml:Restriction/>
+            <!--System Identifiers-->
             <ns0:identification>
                 <ns0:IdentifierList>
                     <ns0:identifier name="uniqueID">
@@ -21,12 +28,14 @@
             <ns0:classification>
                 <ns0:ClassifierList>
                     <ns0:classifier name="System Type">
-                        <ns0:Term definition="urn:ogc:def:classifier:x-istsos:1.0:systemType">
+                        <ns0:Term
+                                definition="urn:ogc:def:classifier:x-istsos:1.0:systemType">
                             <ns0:value>insitu-fixed-point</ns0:value>
                         </ns0:Term>
                     </ns0:classifier>
                     <ns0:classifier name="Sensor Type">
-                        <ns0:Term definition="urn:ogc:def:classifier:x-istsos:1.0:sensorType">
+                        <ns0:Term
+                                definition="urn:ogc:def:classifier:x-istsos:1.0:sensorType">
                             <ns0:value>measurement</ns0:value>
                         </ns0:Term>
                     </ns0:classifier>
@@ -37,7 +46,7 @@
             </ns0:capabilities><!--System Location-->
             <ns0:location>
                 <gml:Point gml:id="AAA" srsName="EPSG:4326">
-                    <gml:coordinates>1,1,1</gml:coordinates>
+                    <gml:coordinates/>
                 </gml:Point>
             </ns0:location><!--System Outputs-->
             <ns0:outputs>
@@ -47,12 +56,14 @@
                                 xmlns:swe="http://www.opengis.net/swe/1.0.1"
                                 definition="urn:ogc:def:dataType:x-istsos:1.0:timeSeries">
                             <swe:field name="Time">
-                                <swe:Time gml:id="IDT_1" definition="urn:ogc:def:parameter:x-istsos:1.0:time:iso8601">
+                                <swe:Time gml:id="IDT_1"
+                                          definition="urn:ogc:def:parameter:x-istsos:1.0:time:iso8601">
                                     <swe:uom code="iso8601"/>
                                 </swe:Time>
                             </swe:field>
                             <swe:field name="water-depth">
-                                <swe:Quantity gml:id="IDQ_2" definition="urn:ogc:def:parameter:x-istsos:1.0:water:depth">
+                                <swe:Quantity gml:id="IDQ_2"
+                                              definition="urn:ogc:def:parameter:x-istsos:1.0:water:depth">
                                     <swe:uom code="m"/>
                                 </swe:Quantity>
                             </swe:field>

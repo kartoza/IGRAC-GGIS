@@ -180,6 +180,14 @@ services:
     volumes:
       - ./istsos/services:/usr/share/istsos/services
       - ../istsos2/istsoslib:/usr/share/istsos/istsoslib:ro
+      - ../istsos2/application_istsoslib.py:/usr/share/istsos/application_istsoslib.py:ro
+    environment:
+    - GWML2_DATABASE=groundwater
+    - GEONODE_DATABASE=${GEONODE_DATABASE}
+    - GEONODE_DATABASE_USER=${GEONODE_DATABASE_USER}
+    - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
+    - GEONODE_DATABASE_HOST=postgres
+    - GEONODE_DATABASE_PORT=5432
     ports:
       - "5001:80"
 
