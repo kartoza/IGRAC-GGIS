@@ -86,7 +86,7 @@ services:
   # Our custom django application. It includes Geonode.
   django:
     <<: *default-common-django
-    entrypoint: [ "/entrypoint.sh" ]
+    entrypoint: ["/entrypoint.sh"]
     command: 'uwsgi --ini /uwsgi.conf'
 
   nginx:
@@ -125,7 +125,7 @@ services:
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
     ports:
-      - "5000:8080"
+      - "8080:8080"
     depends_on:
       - postgres
     restart: on-failure
@@ -149,14 +149,14 @@ services:
   # Celery worker that executes celery tasks created by Django.
   celery:
     <<: *default-common-django
-    entrypoint: [ ]
+    entrypoint : []
     command: 'celery -A geonode.celery_app:app worker -B -E --statedb=worker.state -s celerybeat-schedule --loglevel=DEBUG --concurrency=10 -n worker1@%h'
 
   # django application for development
   dev:
     <<: *default-common-django
     image: kartoza/igrac_ggis:${VERSION}-dev
-    entrypoint: [ ]
+    entrypoint : []
     build:
       context: ../
       dockerfile: deployment/docker/Dockerfile
