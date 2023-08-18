@@ -1,5 +1,5 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-FROM geonode/geonode:3.3.x AS prod
+FROM geonode/geonode:latest-ubuntu-22.10 AS prod
 MAINTAINER Irwan <irwan@kartoza.com>
 
 RUN mkdir -p /usr/share/man/man1
@@ -11,15 +11,19 @@ RUN echo "Activate memcached" && \
 WORKDIR /
 
 RUN rm -r /usr/src/geonode
-RUN git clone --branch 4.0.5 --single-branch https://github.com/kartoza/geonode.git geonode
+RUN git clone --branch 4.1.1.igrac --single-branch https://github.com/kartoza/geonode.git geonode
 
 WORKDIR /geonode
+
 RUN pip install -r requirements.txt
 RUN pip uninstall -y django-geonode-mapstore-client
 
 ADD deployment/docker/REQUIREMENTS.txt /REQUIREMENTS.txt
 RUN pip install -r /REQUIREMENTS.txt
-#
+
+# Not sure why we have this migrations
+RUN rm /usr/local/lib/python3.10/dist-packages/avatar/migrations/0002_auto_20200210_1421.py
+
 #USER www-data
 ADD django_project /home/web/django_project
 WORKDIR /home/web/django_project

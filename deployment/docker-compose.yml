@@ -58,7 +58,7 @@ x-common-django:
     - ADD_TIMESTAMP_IN_THUMBNAIL=True
     - USE_DEFAULT_GEOSERVER_STYLE=True
   volumes:
-    - ../geonode:/geonode
+#    - ../geonode:/geonode
     - ../django_project:/home/web/django_project
     - ./volumes/static:/home/web/static:rw
     - ./volumes/media:/home/web/media:rw
