@@ -213,16 +213,6 @@ def get_igrac_base_right_topbar_menu(context):
 def get_igrac_user_menu(context):
     profile = get_user_menu(context)
 
-    admin_only = [
-        {
-            "type": "link",
-            "href": "/admin/",
-            "label": "Admin"
-        }
-    ]
-
-    print(profile)
-
     user = context.get('request').user
     if user.is_authenticated:
         profile[0]['label'] = user.full_name_or_nick
