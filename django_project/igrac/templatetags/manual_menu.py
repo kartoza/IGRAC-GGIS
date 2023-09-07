@@ -120,12 +120,12 @@ def get_igrac_base_left_topbar_menu(context):
             "items": [
                 {
                     "type": "link",
-                    "href": "/catalogue/#/search/?f=dataset",
+                    "href": "/catalogue/#?f=dataset",
                     "label": "Map Layers"
                 },
                 {
                     "type": "link",
-                    "href": "/catalogue/#/search/?f=document",
+                    "href": "/catalogue/#/?f=document",
                     "label": "Documents"
                 } if not is_mobile else None,
                 {
@@ -181,17 +181,17 @@ def get_igrac_base_left_topbar_menu(context):
         },
         {
             "type": "link",
-            "href": "/catalogue/#/search/?f=map",
+            "href": "/catalogue/#/?f=map",
             "label": "Maps"
         },
         {
             "type": "link",
-            "href": "/catalogue/#/search/?f=dashboard",
+            "href": "/catalogue/#/?f=dashboard",
             "label": "Dashboards"
         },
         {
             "type": "link",
-            "href": "/catalogue/#/search/?f=geostory",
+            "href": "/catalogue/#/?f=geostory",
             "label": "GeoStories"
         },
         users,

@@ -27,3 +27,11 @@ def urlize_that_is_link(string):
         before2 = before
         before = word
     return ''.join(words)
+
+
+@register.filter(name='return_metadata_link')
+def return_metadata_link(resource):
+    """Return metadat link."""
+    if resource.embed_url:
+        return resource.embed_url.replace('embed', 'metadata_detail')
+    return resource.get_absolute_url() + '/metadata_detail'
