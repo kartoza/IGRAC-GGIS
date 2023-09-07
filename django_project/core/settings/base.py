@@ -1,8 +1,10 @@
 import copy
-from geonode.settings import *
-from wagtail.embeds.oembed_providers import youtube
-from .utils import absolute_path  # noqa
+
 from celery.schedules import crontab
+from wagtail.embeds.oembed_providers import youtube
+
+from geonode.settings import *
+from .utils import absolute_path  # noqa
 
 if 'mapstore2_adapter.geoapps.dashboards' in INSTALLED_APPS:
     INSTALLED_APPS = list(INSTALLED_APPS)
@@ -51,7 +53,8 @@ MIDDLEWARE = (
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
     'geonode.base.middleware.MaintenanceMiddleware',
-    'geonode.base.middleware.ReadOnlyMiddleware',  # a Middleware enabling Read Only mode of Geonode
+    'geonode.base.middleware.ReadOnlyMiddleware',
+    # a Middleware enabling Read Only mode of Geonode
 
     # Wagtail moddleware
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
@@ -101,7 +104,8 @@ TEMPLATES = [
 STATICFILES_DIRS = [absolute_path('igrac', 'static'), ] + STATICFILES_DIRS
 
 # Additional locations of templates
-TEMPLATES[0]['DIRS'] = [absolute_path('igrac', 'templates')] + TEMPLATES[0]['DIRS']
+TEMPLATES[0]['DIRS'] = [absolute_path('igrac', 'templates')] + TEMPLATES[0][
+    'DIRS']
 
 # Wagtail Settings
 WAGTAIL_SITE_NAME = 'My Example Site'
@@ -172,3 +176,10 @@ if 'gwml2' in INSTALLED_APPS:
         'task': 'gwml2.tasks.clean.clean_download_file',
         'schedule': crontab(hour=0),
     }
+
+GWML2_FOLDER = os.getenv(
+    'GWML_FOLDER', os.path.join(PROJECT_ROOT, 'gwml2-file')
+)
+SFTP_FOLDER = os.getenv(
+    'SFTP_FOLDER', os.path.join(PROJECT_ROOT, 'sftp')
+)
