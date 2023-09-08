@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 
 from igrac_api.authentication import APIKeyAuthentication
+from igrac_api.cache import get_params, check_cache
+from igrac_api.tasks import cache_istsos
 
 
 class IstsosView(APIView):
@@ -13,12 +15,20 @@ class IstsosView(APIView):
 
     def get(self, request):
         """GET ISTSOS API."""
-        params = request.get_full_path().split('?')[1]
-        response = requests.get('http://istsos/istsos/istsos?' + params)
+        url = request.get_full_path()
+        content, content_type = check_cache(url)
+        status_code = 200
+        if not content:
+            params = get_params(url)
+            response = requests.get('http://istsos/istsos/istsos?' + params)
+            content = response.content
+            content_type = response.headers['Content-Type']
+            status_code = response.status_code
+            cache_istsos.delay(url)
 
         django_response = HttpResponse(
-            content=response.content,
-            status=response.status_code,
-            content_type=response.headers['Content-Type']
+            content=content,
+            status=status_code,
+            content_type=content_type
         )
         return django_response
