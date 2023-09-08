@@ -120,12 +120,12 @@ def get_igrac_base_left_topbar_menu(context):
             "items": [
                 {
                     "type": "link",
-                    "href": "/catalogue/#/search/?f=dataset",
+                    "href": "/catalogue/#?f=dataset",
                     "label": "Map Layers"
                 },
                 {
                     "type": "link",
-                    "href": "/catalogue/#/search/?f=document",
+                    "href": "/catalogue/#/?f=document",
                     "label": "Documents"
                 } if not is_mobile else None,
                 {
@@ -181,17 +181,17 @@ def get_igrac_base_left_topbar_menu(context):
         },
         {
             "type": "link",
-            "href": "/catalogue/#/search/?f=map",
+            "href": "/catalogue/#/?f=map",
             "label": "Maps"
         },
         {
             "type": "link",
-            "href": "/catalogue/#/search/?f=dashboard",
+            "href": "/catalogue/#/?f=dashboard",
             "label": "Dashboards"
         },
         {
             "type": "link",
-            "href": "/catalogue/#/search/?f=geostory",
+            "href": "/catalogue/#/?f=geostory",
             "label": "GeoStories"
         },
         users,
@@ -212,16 +212,6 @@ def get_igrac_base_right_topbar_menu(context):
 @register.simple_tag(takes_context=True)
 def get_igrac_user_menu(context):
     profile = get_user_menu(context)
-
-    admin_only = [
-        {
-            "type": "link",
-            "href": "/admin/",
-            "label": "Admin"
-        }
-    ]
-
-    print(profile)
 
     user = context.get('request').user
     if user.is_authenticated:

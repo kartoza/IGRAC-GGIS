@@ -144,6 +144,7 @@ _load_initial_fixtures = ast.literal_eval(
     os.getenv('INITIAL_FIXTURES', 'True'))
 if _load_initial_fixtures:
     call_command('loaddata', 'initial_data')
+    call_command('update_fixtures', 'initial_data')
 
 
 #########################################################
