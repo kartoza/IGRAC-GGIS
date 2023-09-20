@@ -64,22 +64,8 @@ services:
       timeout: 10s
       retries: 1
       start_period: 60s
-    environment:
-      - STABLE_EXTENSIONS=netcdf-out-plugin
-      - NGINX_BASE_URL=http://nginx:80
-      - SAMPLE_DATA=FALSE
-      - HTTPS_HOST=${HTTPS_HOST}
-      - HTTPS_PORT=${HTTPS_PORT}
-      - HTTP_HOST=${HTTP_HOST}
-      - HTTP_PORT=${HTTP_PORT}
-      - GEOSERVER_ADMIN_USER=${GEOSERVER_ADMIN_USER}
-      - GEOSERVER_ADMIN_PASSWORD=${GEOSERVER_ADMIN_PASSWORD}
-      - DATABASE_HOST=${DATABASE_HOST}
-      - DATABASE_PORT=${DATABASE_PORT}
-      - GEONODE_GEODATABASE_SCHEMA=${GEONODE_GEODATABASE_SCHEMA}
-      - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
-      - GEONODE_GEODATABASE_PASSWORD=${GEONODE_GEODATABASE_PASSWORD}
-      - GEOSERVER_DATA_DIR=/spcgeonode-geodatadir
+    env_file:
+      - .env
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
     ports:
@@ -87,6 +73,15 @@ services:
     depends_on:
       - db
     restart: on-failure
+
+  data-dir-conf:
+    image: geonode/geoserver_data:2.23.0
+    entrypoint: sleep infinity
+    volumes:
+      - geodatadir:/geoserver_data/data
+    restart: on-failure
+    healthcheck:
+      test: "ls -A '/geoserver_data/data' | wc -l"
 
   # PostGIS database.
   db:
