@@ -1,0 +1,41 @@
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+form .row {
+    margin: 0;
+}
+
+form .row {
+    display: flex;
+}
+
+form .col {
+    width: 100%;
+    padding: 0 5px;
+}
+
+form .row .col:first-child {
+    padding-left: 0;
+}
+
+form .row .col:last-child {
+    padding-right: 0;
+}
+
+.helptext {
+    margin: 0 0 20px 0;
+}
+
+#id_organization_types .select2-container input {
+    min-width: 411px !important;
+}
+
+#id_countries .select2-container input {
+    min-width: 138px !important;
+}
+
+.form-actions button {
+    width: 100%;
+}

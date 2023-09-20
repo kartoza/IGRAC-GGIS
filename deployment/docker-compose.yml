@@ -124,6 +124,26 @@ services:
       # for ssh
       - "3003:22"
 
+  istsos:
+    image: kartoza/igrac_ggis:istsos-${ISTSOS_VERSION}
+    build:
+      context: ../
+      dockerfile: deployment/istsos/Dockerfile
+    restart: always
+    volumes:
+      - ./istsos/services:/usr/share/istsos/services
+      - ../istsos2/istsoslib:/usr/share/istsos/istsoslib:ro
+      - ../istsos2/application_istsoslib.py:/usr/share/istsos/application_istsoslib.py:ro
+    environment:
+    - GWML2_DATABASE=groundwater
+    - GEONODE_DATABASE=${GEONODE_DATABASE}
+    - GEONODE_DATABASE_USER=${GEONODE_DATABASE_USER}
+    - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
+    - GEONODE_DATABASE_HOST=${DATABASE_HOST}
+    - GEONODE_DATABASE_PORT=${DATABASE_PORT}
+    ports:
+      - "5001:80"
+
 volumes:
   database:
   geodatadir:

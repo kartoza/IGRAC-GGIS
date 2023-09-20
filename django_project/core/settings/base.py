@@ -14,6 +14,7 @@ if 'mapstore2_adapter.geoapps.dashboards' in INSTALLED_APPS:
 INSTALLED_APPS += (
     'igrac',
     'gwml2',
+    'igrac_api',
 
     'adminsortable',
 
@@ -147,7 +148,9 @@ UPLOADER['SUPPORTED_CRS'].append('ESRI:54030')
 EPSG_CODE_MATCHES['ESRI:54030'] = '(54030) World_Robinson'
 
 # Where the file uploaded temporary saved
-FILE_UPLOAD_TEMP_DIR = os.getenv('FILE_UPLOAD_TEMP_DIR', None)
+FILE_UPLOAD_TEMP_DIR = os.getenv(
+    'FILE_UPLOAD_TEMP_DIR', os.path.join(PROJECT_ROOT, 'temp')
+)
 
 GOOGLE_ANALYTIC_KEY = os.getenv('GOOGLE_ANALYTIC_KEY', None)
 

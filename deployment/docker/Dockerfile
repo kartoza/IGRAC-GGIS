@@ -1,6 +1,6 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
 FROM geonode/geonode:latest-ubuntu-22.10 AS prod
-MAINTAINER Irwan <irwan@kartoza.com>
+MAINTAINER Irwan Fathurrahman <irwan@kartoza.com>
 
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update -y && apt-get -y --allow-downgrades --allow-remove-essential --allow-unauthenticated install yui-compressor rpl mdbtools git
