@@ -57,7 +57,7 @@ services:
 
   # Geoserver backend
   geoserver:
-    image: kartoza/sadc_gip:geoserver-3.1.netcfd
+    image: kartoza/geoserver:2.23.0-geo
     healthcheck:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.0.0.1:8080/geoserver/rest/workspaces/geonode.html"
       interval: 60s
@@ -65,14 +65,21 @@ services:
       retries: 1
       start_period: 60s
     environment:
+      - STABLE_EXTENSIONS=netcdf-out-plugin
+      - NGINX_BASE_URL=http://nginx:80
+      - SAMPLE_DATA=FALSE
       - HTTPS_HOST=${HTTPS_HOST}
       - HTTPS_PORT=${HTTPS_PORT}
       - HTTP_HOST=${HTTP_HOST}
       - HTTP_PORT=${HTTP_PORT}
-      - ADMIN_USERNAME=${GEOSERVER_ADMIN_USER}
-      - ADMIN_PASSWORD=${GEOSERVER_ADMIN_PASSWORD}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@db:5432/${GEONODE_DATABASE}
-      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@db:5432/${GEONODE_GEODATABASE}
+      - GEOSERVER_ADMIN_USER=${GEOSERVER_ADMIN_USER}
+      - GEOSERVER_ADMIN_PASSWORD=${GEOSERVER_ADMIN_PASSWORD}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - GEONODE_GEODATABASE_SCHEMA=${GEONODE_GEODATABASE_SCHEMA}
+      - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
+      - GEONODE_GEODATABASE_PASSWORD=${GEONODE_GEODATABASE_PASSWORD}
+      - GEOSERVER_DATA_DIR=/spcgeonode-geodatadir
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
     ports:
