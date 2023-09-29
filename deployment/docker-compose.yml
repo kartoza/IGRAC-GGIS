@@ -11,7 +11,7 @@ x-common-django:
   env_file:
     - .env
   volumes:
-    #    - ../geonode:/geonode
+    - ../geonode:/geonode
     - ../django_project:/home/web/django_project
     - ./volumes/statics:/home/web/statics:rw
   restart: on-failure
@@ -57,22 +57,15 @@ services:
 
   # Geoserver backend
   geoserver:
-    image: kartoza/sadc_gip:geoserver-3.1.netcfd
+    image: kartoza/geoserver:2.23.0-geo
     healthcheck:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.0.0.1:8080/geoserver/rest/workspaces/geonode.html"
       interval: 60s
       timeout: 10s
       retries: 1
       start_period: 60s
-    environment:
-      - HTTPS_HOST=${HTTPS_HOST}
-      - HTTPS_PORT=${HTTPS_PORT}
-      - HTTP_HOST=${HTTP_HOST}
-      - HTTP_PORT=${HTTP_PORT}
-      - ADMIN_USERNAME=${GEOSERVER_ADMIN_USER}
-      - ADMIN_PASSWORD=${GEOSERVER_ADMIN_PASSWORD}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@db:5432/${GEONODE_DATABASE}
-      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@db:5432/${GEONODE_GEODATABASE}
+    env_file:
+      - .env
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
     ports:
@@ -80,6 +73,15 @@ services:
     depends_on:
       - db
     restart: on-failure
+
+  data-dir-conf:
+    image: geonode/geoserver_data:2.23.0
+    entrypoint: sleep infinity
+    volumes:
+      - geodatadir:/geoserver_data/data
+    restart: on-failure
+    healthcheck:
+      test: "ls -A '/geoserver_data/data' | wc -l"
 
   # PostGIS database.
   db:

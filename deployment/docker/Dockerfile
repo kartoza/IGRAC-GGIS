@@ -1,5 +1,5 @@
-#--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-FROM geonode/geonode:latest-ubuntu-22.10 AS prod
+#--------- Prod image ------------
+FROM geonode/geonode:latest-ubuntu-22.04 AS prod
 MAINTAINER Irwan Fathurrahman <irwan@kartoza.com>
 
 RUN mkdir -p /usr/share/man/man1
@@ -37,7 +37,7 @@ ADD deployment/docker/uwsgi.conf /uwsgi.conf
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["uwsgi", "--ini", "/uwsgi.conf"]
 
-
+#--------- Development image ------------
 FROM prod AS dev
 
 ADD deployment/docker/REQUIREMENTS-DEV.txt /REQUIREMENTS-DEV.txt
