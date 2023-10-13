@@ -236,3 +236,18 @@ expires = make_token_expiration()
     application=app,
     expires=expires,
     token=generate_token())
+
+#########################################################
+# 11. Restart harvesters
+#########################################################
+
+try:
+    from gwml2.functions import Functions
+
+    print("-----------------------------------------------------")
+    print("11. Restart harvesters")
+
+    Functions().restart_harvesters()
+except Exception as e:
+    print(f'{e}')
+    pass
