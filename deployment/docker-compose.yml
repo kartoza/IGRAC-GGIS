@@ -86,14 +86,14 @@ services:
   # PostGIS database.
   db:
     # use geonode official postgis 10 image
-    image: kartoza/postgis:13
+    image: kartoza/postgis:16
     environment:
       # database info, ${variables} are read from .env
       - POSTGRES_DBNAME=${GEONODE_DATABASE},${GEONODE_GEODATABASE},groundwater
       - POSTGRES_USER=${GEONODE_DATABASE_USER}
       - POSTGRES_PASSWORD=${GEONODE_DATABASE_PASSWORD}
     volumes:
-      - database:/var/lib/postgresql/data/
+      - database:/var/lib/postgresql/16/
       - ./backups:/backups
     restart: on-failure
     ports:
