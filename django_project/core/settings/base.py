@@ -184,3 +184,22 @@ GWML2_FOLDER = os.getenv(
 SFTP_FOLDER = os.getenv(
     'SFTP_FOLDER', os.path.join(PROJECT_ROOT, 'sftp')
 )
+
+MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP = set(
+    [
+        "ping_mngmt_commands_http",
+        "updatelayers",
+        "sync_geonode_datasets",
+        "sync_geonode_maps",
+        "importlayers",
+        "set_all_datasets_metadata",
+        "set_layers_permissions",
+        "refresh_materialized_views",
+        "generate_data_countries_cache",
+        "generate_data_wells_cache",
+        "generate_well_measurement_cache",
+        "generate_uploader_report",
+    ]
+    + ast.literal_eval(
+        os.getenv("MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP ", "[]"))
+)
