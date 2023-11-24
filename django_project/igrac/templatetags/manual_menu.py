@@ -228,6 +228,21 @@ def get_igrac_user_menu(context):
             except KeyError:
                 pass
 
+            if user.is_superuser:
+                try:
+                    if item['label'] == 'Help':
+                        profile[0]['items'].insert(
+                            idx + 1,
+                            {
+                                'type': 'link',
+                                'href': 'https://kartoza.com/app/issue?status=Open',
+                                'label': 'Report issue',
+                                'target': '__blank__'
+                            }
+                        )
+                except KeyError:
+                    pass
+
             # Add Admin if user is just staff
             if user.is_staff and not user.is_superuser:
                 try:

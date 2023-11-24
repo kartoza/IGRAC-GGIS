@@ -152,10 +152,10 @@ if _load_initial_fixtures:
 #########################################################
 
 print("-----------------------------------------------------")
-print("6. Running updatemaplayerip")
+print("6. Running updatemaplayerip - skip")
 # call_command('updatelayers')
 #  TODO CRITICAL : this overrides the layer thumbnail of existing layers even if unchanged !!!
-call_command('updatemaplayerip')
+# call_command('updatemaplayerip')
 
 
 #########################################################

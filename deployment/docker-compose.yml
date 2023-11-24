@@ -39,6 +39,8 @@ services:
     <<: *default-common-django
     entrypoint: [ "/entrypoint.sh" ]
     command: 'uwsgi --ini /uwsgi.conf'
+    ports:
+      - "3000:8080"
 
   nginx:
     image: nginx:1.17-alpine
@@ -57,7 +59,10 @@ services:
 
   # Geoserver backend
   geoserver:
-    image: kartoza/geoserver:2.23.0-geo
+    #    TODO:
+    #     Using older geoserver
+    #    image: kartoza/sadc_gip:geoserver-3.1.netcfd
+    image: kartoza/geoserver:2.23.0-geo-v2023.09.15
     healthcheck:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.0.0.1:8080/geoserver/rest/workspaces/geonode.html"
       interval: 60s
@@ -66,6 +71,11 @@ services:
       start_period: 60s
     env_file:
       - .env
+
+    #    TODO:
+    #     Uncomment this if using netcfd
+    #    environment:
+    #      - DATABASE_URL=postgres://geonode:geonode@db:5432/geonode
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
     ports:
@@ -74,6 +84,8 @@ services:
       - db
     restart: on-failure
 
+  #    TODO:
+  #     Comment this if using netcfd
   data-dir-conf:
     image: geonode/geoserver_data:2.23.0
     entrypoint: sleep infinity
@@ -137,12 +149,12 @@ services:
       - ../istsos2/istsoslib:/usr/share/istsos/istsoslib:ro
       - ../istsos2/application_istsoslib.py:/usr/share/istsos/application_istsoslib.py:ro
     environment:
-    - GWML2_DATABASE=groundwater
-    - GEONODE_DATABASE=${GEONODE_DATABASE}
-    - GEONODE_DATABASE_USER=${GEONODE_DATABASE_USER}
-    - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
-    - GEONODE_DATABASE_HOST=${DATABASE_HOST}
-    - GEONODE_DATABASE_PORT=${DATABASE_PORT}
+      - GWML2_DATABASE=groundwater
+      - GEONODE_DATABASE=${GEONODE_DATABASE}
+      - GEONODE_DATABASE_USER=${GEONODE_DATABASE_USER}
+      - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
+      - GEONODE_DATABASE_HOST=${DATABASE_HOST}
+      - GEONODE_DATABASE_PORT=${DATABASE_PORT}
     ports:
       - "5001:80"
 
