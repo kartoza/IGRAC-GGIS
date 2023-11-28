@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 let url = '/';
 
-test('test', async ({ page }) => {
+test('test for landing page', async ({ page }) => {
   await page.goto(url);
   
   await expect(page.getByRole('heading', { name: 'The Global Groundwater' })).toBeVisible();

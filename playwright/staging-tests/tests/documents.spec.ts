@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 let url = '/';
 
-test('test', async ({ page }) => {
+test('test for data > documents', async ({ page }) => {
 
   await page.goto(url);
 

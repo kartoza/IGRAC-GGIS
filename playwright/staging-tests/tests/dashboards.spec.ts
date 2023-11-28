@@ -2,18 +2,18 @@ import { test, expect } from '@playwright/test';
 
 let url = '/';
 
-test('test', async ({ page }) => {
+test('test fo dashboards', async ({ page }) => {
   await page.goto(url);
 
   await page.getByRole('link', { name: 'Dashboards' }).click();
 
   await page.waitForLoadState('domcontentloaded');
 
-  await expect(page.locator('li').filter({ hasText: 'Trial_GGMN...Elie GergesView' }).getByRole('link').first()).toBeVisible({timeout: 30000});
+  await expect(page.locator('li').filter({ hasText: 'Trial_GGMN...Elie GergesView' }).getByRole('link').first()).toBeVisible();
 
-  await expect(page.locator('li').filter({ hasText: 'Pie_chart_trial...Elie' }).getByRole('link').first()).toBeVisible({timeout: 30000});
+  await expect(page.locator('li').filter({ hasText: 'Pie_chart_trial...Elie' }).getByRole('link').first()).toBeVisible();
 
-  await expect(page.locator('li').filter({ hasText: 'Dashboard Population...Elie' }).getByRole('link').first()).toBeVisible({timeout: 30000});
+  await expect(page.locator('li').filter({ hasText: 'Dashboard Population...Elie' }).getByRole('link').first()).toBeVisible();
 
   await page.getByRole('link', { name: 'Trial_GGMN' }).click();
 
@@ -44,11 +44,11 @@ test('test', async ({ page }) => {
 
   await page.locator('div').filter({ hasText: /^View full metadata$/ }).nth(1).click();
 
-  await expect(page.getByRole('heading', { name: 'Metadata : Trial_GGMN' })).toBeVisible({timeout: 30000});
+  await expect(page.getByRole('heading', { name: 'Metadata : Trial_GGMN' })).toBeVisible();
 
-  await expect(page.getByText('Identification', { exact: true })).toBeVisible({timeout: 30000});
+  await expect(page.getByText('Identification', { exact: true })).toBeVisible();
 
-  await expect(page.getByText('Trial_GGMN', { exact: true })).toBeVisible({timeout: 30000});
+  await expect(page.getByText('Trial_GGMN', { exact: true })).toBeVisible();
 
   await page.goBack();
 
@@ -58,19 +58,19 @@ test('test', async ({ page }) => {
 
   await page.getByRole('link', { name: 'Pie_chart_trial' }).click();
 
-  await expect(page.frameLocator('iframe').locator('canvas')).toBeVisible({timeout: 30000});
+  await expect(page.frameLocator('iframe').locator('canvas')).toBeVisible();
 
   await page.getByRole('tabpanel').getByText('Pie_chart_trial').click();
 
   await page.locator('div').filter({ hasText: /^View full metadata$/ }).nth(1).click();
 
-  await expect(page.getByRole('heading', { name: 'Metadata : Pie_chart_trial' })).toBeVisible({timeout: 30000});
+  await expect(page.getByRole('heading', { name: 'Metadata : Pie_chart_trial' })).toBeVisible();
 
   await page.goBack();
 
   await page.getByText('Resource type').click();
 
-  await expect(page.getByRole('tabpanel').getByRole('link', { name: 'dashboard' })).toBeVisible({timeout: 30000});
+  await expect(page.getByRole('tabpanel').getByRole('link', { name: 'dashboard' })).toBeVisible();
 
   await page.locator('li').filter({ hasText: 'Dashboard Population...Elie' }).getByRole('link').first().click();
 
@@ -81,11 +81,11 @@ test('test', async ({ page }) => {
     }
   });
 
-  await expect(page.frameLocator('iframe').locator('canvas')).toBeVisible({timeout: 30000});
+  await expect(page.frameLocator('iframe').locator('canvas')).toBeVisible();
 
-  await expect(page.getByRole('tabpanel').getByRole('link', { name: 'dashboard' })).toBeVisible({timeout: 30000});
+  await expect(page.getByRole('tabpanel').getByRole('link', { name: 'dashboard' })).toBeVisible();
 
   await page.getByRole('link', { name: 'View full metadata' }).click();
   
-  await expect(page.getByRole('heading', { name: 'Metadata : Dashboard' })).toBeVisible({timeout: 30000});
+  await expect(page.getByRole('heading', { name: 'Metadata : Dashboard' })).toBeVisible();
 });

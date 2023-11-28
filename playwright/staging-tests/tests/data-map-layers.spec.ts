@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 let url = '/';
 
-test('test', async ({ page }) => {
+test('test for data > map-layers', async ({ page }) => {
   await page.goto(url);
   await page.getByRole('button', { name: 'Data ' }).click();
   await page.getByRole('link', { name: 'Map Layers' }).click();
