@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 let url = '/';
 
-test('test fo dashboards', async ({ page }) => {
+test('test for dashboards', async ({ page }) => {
   await page.goto(url);
 
   await page.getByRole('link', { name: 'Dashboards' }).click();

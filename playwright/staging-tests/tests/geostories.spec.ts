@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 let url = '/';
 
-test('test > geostories', async ({ page }) => {
+test('test for geostories', async ({ page }) => {
   await page.goto(url);
   await page.getByRole('link', { name: 'GeoStories' }).click();
   await page.waitForLoadState('domcontentloaded');
