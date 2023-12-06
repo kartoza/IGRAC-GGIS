@@ -144,6 +144,7 @@ _load_initial_fixtures = ast.literal_eval(
     os.getenv('INITIAL_FIXTURES', 'True'))
 if _load_initial_fixtures:
     call_command('loaddata', 'initial_data')
+    call_command('update_fixtures')
 
 
 #########################################################
@@ -151,10 +152,10 @@ if _load_initial_fixtures:
 #########################################################
 
 print("-----------------------------------------------------")
-print("6. Running updatemaplayerip")
+print("6. Running updatemaplayerip - skip")
 # call_command('updatelayers')
 #  TODO CRITICAL : this overrides the layer thumbnail of existing layers even if unchanged !!!
-call_command('updatemaplayerip')
+# call_command('updatemaplayerip')
 
 
 #########################################################
@@ -235,3 +236,18 @@ expires = make_token_expiration()
     application=app,
     expires=expires,
     token=generate_token())
+
+#########################################################
+# 11. Restart harvesters
+#########################################################
+
+try:
+    from gwml2.functions import Functions
+
+    print("-----------------------------------------------------")
+    print("11. Restart harvesters")
+
+    Functions().restart_harvesters()
+except Exception as e:
+    print(f'{e}')
+    pass

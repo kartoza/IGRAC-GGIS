@@ -8,6 +8,7 @@ geonode_additional_api = [
 ]
 urlpatterns = [
                   url(r'^', include('igrac.urls')),
+                  url(r'^', include('igrac_api.urls')),
               ] + urlpatterns + geonode_additional_api
 
 if settings.DEBUG:

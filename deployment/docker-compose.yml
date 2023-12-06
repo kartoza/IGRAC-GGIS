@@ -8,64 +8,15 @@ x-common-django:
     context: ../
     dockerfile: deployment/docker/Dockerfile
     target: prod
-  environment:
-    # editable in .env
-    - HTTPS_HOST=${HTTPS_HOST}
-    - HTTPS_PORT=${HTTPS_PORT}
-    - HTTP_HOST=${HTTP_HOST}
-    - HTTP_PORT=${HTTP_PORT}
-    - ADMIN_USERNAME=${ADMIN_USERNAME}
-    - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-    - ADMIN_EMAIL=${ADMIN_EMAIL}
-    - EMAIL_HOST_USER="${EMAIL_HOST_USER}@${EMAIL_HOST_DOMAIN}"
-    - EMAIL_HOST_PASSWORD="${EMAIL_HOST_PASSWORD}"
-    - EMAIL_HOST=${EMAIL_HOST}
-    - GEOSERVER_ADMIN_USER=${ADMIN_USERNAME}
-    - GEOSERVER_ADMIN_PASSWORD=${ADMIN_PASSWORD}
-    - REGISTRATION_OPEN=${REGISTRATION_OPEN}
-    - TIME_ZONE=${TIME_ZONE}
-    - ALLOWED_HOSTS=['nginx','127.0.0.1','localhost','$HTTPS_HOST','$HTTP_HOST']
-    - SECRET_KEY=${SECRET_KEY}
-    # data
-    ## -- comment to disable postgis ingestion of uploaded shapefiles
-    - DEFAULT_BACKEND_UPLOADER=geonode.importer
-    - DEFAULT_BACKEND_DATASTORE=datastore
-    # database info, ${variables} are read from .env
-    - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    - GEONODE_DATABASE=${GEONODE_DATABASE}
-    - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
-    - GEONODE_GEODATABASE=${GEONODE_GEODATABASE}
-    - GEONODE_GEODATABASE_PASSWORD=${GEONODE_GEODATABASE_PASSWORD}
-    - DATABASE_URL=postgis://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
-    - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
-    # hardcoded
-    - CELERY_TASK_ALWAYS_EAGER=False
-    - CELERY_TASK_EAGER_PROPAGATES=False
-    - DEBUG=False
-    - DJANGO_SETTINGS_MODULE=core.settings.prod
-    - BROKER_URL=amqp://rabbitmq:5672
-    - STATIC_ROOT=/home/web/static/
-    - MEDIA_ROOT=/home/web/media/
-    - GWML_FOLDER=/home/web/gwml2-file/
-    - SFTP_FOLDER=/home/web/sftp/
-    - FILE_UPLOAD_TEMP_DIR=/home/web/temp/
-    - MEDIA_URL=/uploaded/
-    - GEOSERVER_LOCATION=http://nginx/geoserver/
-    - ASYNC_SIGNALS=True
-    - SESSION_EXPIRED_CONTROL_ENABLED=False
-    - MONITORING_ENABLED=False
-    - PYTHONPATH=/home/web/django_project:/geonode
-    - ADD_TIMESTAMP_IN_THUMBNAIL=True
-    - USE_DEFAULT_GEOSERVER_STYLE=True
+  env_file:
+    - .env
   volumes:
     - ../geonode:/geonode
     - ../django_project:/home/web/django_project
-    - ./volumes/static:/home/web/static:rw
-    - ./volumes/media:/home/web/media:rw
-    - ./volumes/temp:/home/web/temp:rw
-    - ./volumes/gwml2-file:/home/web/gwml2-file:rw
-    - ./volumes/sftp:/home/web/sftp:rw
+    - ./volumes/statics:/home/web/statics:rw
   restart: on-failure
+  depends_on:
+    - db
 
 services:
   # Vanilla RabbitMQ service. This is needed by celery
@@ -79,97 +30,133 @@ services:
   smtp:
     image: catatnight/postfix
     environment:
-      maildomain: "${EMAIL_HOST_DOMAIN}"
-      smtp_user: "${EMAIL_HOST_USER}:${EMAIL_HOST_PASSWORD}"
+      maildomain: "${DJANGO_EMAIL_HOST}"
+      smtp_user: "${DJANGO_EMAIL_HOST_USER}:${DJANGO_EMAIL_HOST_PASSWORD}"
     restart: unless-stopped
 
   # Our custom django application. It includes Geonode.
   django:
     <<: *default-common-django
-    entrypoint: ["/entrypoint.sh"]
+    entrypoint: [ "/entrypoint.sh" ]
     command: 'uwsgi --ini /uwsgi.conf'
+    ports:
+      - "3000:8080"
 
   nginx:
-    image: nginx
+    image: nginx:1.17-alpine
     hostname: nginx
     volumes:
       - ./nginx/sites-enabled:/etc/nginx/conf.d:ro
       - ./nginx/pages:/pages:ro
       - ./volumes/logs:/var/log/nginx
-      - ./volumes/static:/home/web/static:ro
-      - ./volumes/media:/home/web/media:ro
-      - ./volumes/temp:/home/web/temp:ro
-      - ./volumes/gwml2-file:/home/web/gwml2-file:ro
+      - ./volumes/statics/static:/home/web/static:ro
+      - ./volumes/statics/media:/home/web/media:ro
+      - ./volumes/statics/temp:/home/web/temp:ro
+      - ./volumes/statics/gwml2:/home/web/gwml2:ro
     ports:
       - "${HTTP_PORT}:80"
     restart: unless-stopped
 
   # Geoserver backend
   geoserver:
-    image: kartoza/sadc_gip:geoserver-3.1.netcfd
+    #    TODO:
+    #     Using older geoserver
+    #    image: kartoza/sadc_gip:geoserver-3.1.netcfd
+    image: kartoza/geoserver:2.23.0-geo-v2023.09.15
     healthcheck:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.0.0.1:8080/geoserver/rest/workspaces/geonode.html"
       interval: 60s
       timeout: 10s
       retries: 1
       start_period: 60s
-    environment:
-      - HTTPS_HOST=${HTTPS_HOST}
-      - HTTPS_PORT=${HTTPS_PORT}
-      - HTTP_HOST=${HTTP_HOST}
-      - HTTP_PORT=${HTTP_PORT}
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-      - DATABASE_URL=postgres://${GEONODE_DATABASE_USER}:${GEONODE_DATABASE_PASSWORD}@postgres:5432/${GEONODE_DATABASE}
-      - GEODATABASE_URL=postgis://${GEONODE_GEODATABASE_USER}:${GEONODE_GEODATABASE_PASSWORD}@postgres:5432/${GEONODE_GEODATABASE}
+    env_file:
+      - .env
+
+    #    TODO:
+    #     Uncomment this if using netcfd
+    #    environment:
+    #      - DATABASE_URL=postgres://geonode:geonode@db:5432/geonode
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
     ports:
       - "8080:8080"
     depends_on:
-      - postgres
+      - db
     restart: on-failure
 
+  #    TODO:
+  #     Comment this if using netcfd
+  data-dir-conf:
+    image: geonode/geoserver_data:2.23.0
+    entrypoint: sleep infinity
+    volumes:
+      - geodatadir:/geoserver_data/data
+    restart: on-failure
+    healthcheck:
+      test: "ls -A '/geoserver_data/data' | wc -l"
+
   # PostGIS database.
-  postgres:
+  db:
     # use geonode official postgis 10 image
-    image: kartoza/postgis:13
+    image: kartoza/postgis:16
     environment:
       # database info, ${variables} are read from .env
       - POSTGRES_DBNAME=${GEONODE_DATABASE},${GEONODE_GEODATABASE},groundwater
       - POSTGRES_USER=${GEONODE_DATABASE_USER}
       - POSTGRES_PASSWORD=${GEONODE_DATABASE_PASSWORD}
     volumes:
-      - database:/var/lib/postgresql/data/
+      - database:/var/lib/postgresql/16/
       - ./backups:/backups
     restart: on-failure
     ports:
       - "25432:5432"
+    healthcheck:
+      test: "pg_isready -d postgres -U postgres"
 
   # Celery worker that executes celery tasks created by Django.
   celery:
     <<: *default-common-django
-    entrypoint : []
+    entrypoint: [ ]
     command: 'celery -A geonode.celery_app:app worker -B -E --statedb=worker.state -s celerybeat-schedule --loglevel=DEBUG --concurrency=10 -n worker1@%h'
 
   # django application for development
   dev:
     <<: *default-common-django
     image: kartoza/igrac_ggis:${VERSION}-dev
-    entrypoint: []
+    entrypoint: [ ]
     build:
       context: ../
       dockerfile: deployment/docker/Dockerfile
       target: dev
     depends_on:
       - geoserver
-      - postgres
+      - db
       - celery
     ports:
       # for django test server
       - "3002:8080"
       # for ssh
       - "3003:22"
+
+  istsos:
+    image: kartoza/igrac_ggis:istsos-${ISTSOS_VERSION}
+    build:
+      context: ../
+      dockerfile: deployment/istsos/Dockerfile
+    restart: always
+    volumes:
+      - ./istsos/services:/usr/share/istsos/services
+      - ../istsos2/istsoslib:/usr/share/istsos/istsoslib:ro
+      - ../istsos2/application_istsoslib.py:/usr/share/istsos/application_istsoslib.py:ro
+    environment:
+      - GWML2_DATABASE=groundwater
+      - GEONODE_DATABASE=${GEONODE_DATABASE}
+      - GEONODE_DATABASE_USER=${GEONODE_DATABASE_USER}
+      - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
+      - GEONODE_DATABASE_HOST=${DATABASE_HOST}
+      - GEONODE_DATABASE_PORT=${DATABASE_PORT}
+    ports:
+      - "5001:80"
 
 volumes:
   database:

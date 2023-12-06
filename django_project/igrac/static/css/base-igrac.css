@@ -9,6 +9,10 @@ html {
     --primaryBold: #005198
 }
 
+body {
+    font-family: nimbus-sans, sans-serif;
+}
+
 body.igrac-home {
     padding-top: 51px;
     background: #f6f6f6;
@@ -421,7 +425,7 @@ form .row {
 
 .msgapi body,
 [data-ms2-container] {
-    font-family: sans-serif !important;
+    font-family: nimbus-sans, sans-serif !important;
     -ms-text-size-adjust: 100% !important;;
     -webkit-text-size-adjust: 100% !important;;
 }
@@ -554,6 +558,7 @@ form .row {
     border-top: 1px solid #2c689c !important;
     border: unset !important;
 }
+
 .dropdown-menu li > a:hover,
 .dropdown-menu li > a:focus {
     background-color: #ff6b0d !important;
