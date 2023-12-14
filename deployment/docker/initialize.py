@@ -6,16 +6,16 @@ This script initializes Geonode
 # Setting up the  context
 #########################################################
 
-import os
-import requests
-import json
-import uuid
-import django
 import datetime
+import json
+import os
 import time
+import uuid
+
+import django
+import requests
 
 django.setup()
-
 
 #########################################################
 # Imports
@@ -35,7 +35,6 @@ from oauth2_provider.models import AccessToken, get_application_model
 admin_username = os.getenv('ADMIN_USERNAME')
 admin_password = os.getenv('ADMIN_PASSWORD')
 admin_email = os.getenv('ADMIN_EMAIL')
-
 
 #########################################################
 # 1. Waiting for PostgreSQL
@@ -63,7 +62,6 @@ call_command('makemigrations')
 call_command('migrate', '--noinput')
 call_command('migrate', app_label='gwml2', database='gwml2')
 
-
 #########################################################
 # 3. Creating superuser if it doesn't exist
 #########################################################
@@ -85,7 +83,6 @@ except get_user_model().DoesNotExist:
     )
     print('superuser successfully created')
 
-
 #########################################################
 # 4. Create an OAuth2 provider to use authorisations keys
 #########################################################
@@ -101,8 +98,12 @@ app, created = Application.objects.get_or_create(
     authorization_grant_type='authorization-code',
 )
 app.skip_authorization = True
-_host = os.getenv('HTTPS_HOST', "") if os.getenv('HTTPS_HOST', "") != "" else os.getenv('HTTP_HOST')
-_port = os.getenv('HTTPS_PORT') if os.getenv('HTTPS_HOST', "") != "" else os.getenv('HTTP_PORT', '80')
+_host = os.getenv('HTTPS_HOST', "") if os.getenv('HTTPS_HOST',
+                                                 "") != "" else os.getenv(
+    'HTTP_HOST')
+_port = os.getenv('HTTPS_PORT') if os.getenv('HTTPS_HOST',
+                                             "") != "" else os.getenv(
+    'HTTP_PORT', '80')
 # default port is 80
 _protocols = {
     "80": "http://",
@@ -127,7 +128,6 @@ if created:
 else:
     print('oauth2 provider successfully updated')
 
-
 #########################################################
 # 5. Loading fixtures
 #########################################################
@@ -138,6 +138,7 @@ print("5. Loading fixtures")
 # Disable fixtures loading in prod by including environment variable:
 #  INITIAL_FIXTURES=False
 import ast
+
 # To conform with original behaviour of GeoNode, we need to set it to True
 # as default value
 _load_initial_fixtures = ast.literal_eval(
@@ -145,7 +146,6 @@ _load_initial_fixtures = ast.literal_eval(
 if _load_initial_fixtures:
     call_command('loaddata', 'initial_data')
     call_command('update_fixtures')
-
 
 #########################################################
 # 6. Running updatemaplayerip
@@ -172,8 +172,9 @@ call_command('collectstatic', '--noinput', verbosity=0)
 
 print("-----------------------------------------------------")
 print("8. Waiting for GeoServer")
-_geoserver_host = os.getenv('GEOSERVER_LOCATION', 'http://geoserver:8080/geoserver')
-for _ in range(60*5):
+_geoserver_host = os.getenv('GEOSERVER_LOCATION',
+                            'http://geoserver:8080/geoserver')
+for _ in range(60 * 5):
     try:
         requests.head("{}".format(_geoserver_host))
         break
@@ -189,16 +190,17 @@ else:
 print("-----------------------------------------------------")
 print("9. Securing GeoServer")
 
-
 geoserver_admin_username = os.getenv('GEOSERVER_ADMIN_USER')
 geoserver_admin_password = os.getenv('GEOSERVER_ADMIN_PASSWORD')
 
 # Getting the old password
 try:
     r1 = requests.get('{}/rest/security/masterpw.json'.format(_geoserver_host),
-                      auth=(geoserver_admin_username, geoserver_admin_password))
+                      auth=(
+                          geoserver_admin_username, geoserver_admin_password))
 except requests.exceptions.ConnectionError:
-    print("Unable to connect to GeoServer. Make sure GeoServer is started and accessible.")
+    print(
+        "Unable to connect to GeoServer. Make sure GeoServer is started and accessible.")
     exit(1)
 r1.raise_for_status()
 old_password = json.loads(r1.text)["oldMasterPassword"]
@@ -206,13 +208,15 @@ old_password = json.loads(r1.text)["oldMasterPassword"]
 if old_password == 'M(cqp{V1':
     print("Randomizing master password")
     new_password = uuid.uuid4().hex
-    data = json.dumps({"oldMasterPassword": old_password, "newMasterPassword": new_password})
-    r2 = requests.put('{}/rest/security/masterpw.json'.format(_geoserver_host), data=data,
-                      headers={'Content-Type': 'application/json'}, auth=(geoserver_admin_username, geoserver_admin_password))
+    data = json.dumps(
+        {"oldMasterPassword": old_password, "newMasterPassword": new_password})
+    r2 = requests.put('{}/rest/security/masterpw.json'.format(_geoserver_host),
+                      data=data,
+                      headers={'Content-Type': 'application/json'}, auth=(
+            geoserver_admin_username, geoserver_admin_password))
     r2.raise_for_status()
 else:
     print("Master password was already changed. No changes made.")
-
 
 #########################################################
 # 10. Test User Model
@@ -238,16 +242,17 @@ expires = make_token_expiration()
     token=generate_token())
 
 #########################################################
-# 11. Restart harvesters
+# 11. Restart harvesters and uploads
 #########################################################
 
 try:
     from gwml2.functions import Functions
 
     print("-----------------------------------------------------")
-    print("11. Restart harvesters")
+    print("11. Restart harvesters and uploads")
 
     Functions().restart_harvesters()
+    Functions().restart_uploads()
 except Exception as e:
     print(f'{e}')
     pass
