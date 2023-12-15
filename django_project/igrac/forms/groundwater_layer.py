@@ -155,7 +155,10 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
 
         # Fetch xml data
         xml_url = layer.resource.href
-        xml = requests.get(xml_url).content
+        xml = requests.get(
+            xml_url,
+            auth=(gs_catalog.username, gs_catalog.password)
+        ).content
 
         # Update xml to new data
         tree = ET.ElementTree(ET.fromstring(xml))
@@ -250,7 +253,10 @@ class EditGroundwaterLayerForm(_BaseGroundwaterLayerForm):
 
         # Fetch xml data
         xml_url = layer.resource.href
-        xml = requests.get(xml_url).content
+        xml = requests.get(
+            xml_url,
+            auth=(gs_catalog.username, gs_catalog.password)
+        ).content
 
         # Update xml to new data
         tree = ET.ElementTree(ET.fromstring(xml))
