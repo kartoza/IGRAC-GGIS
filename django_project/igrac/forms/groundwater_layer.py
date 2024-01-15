@@ -81,10 +81,14 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
         elif well_type == GGMN:
             mv = 'mv_well_ggmn'
         sql = (
-                "select id, ggis_uid, original_id, name, feature_type,purpose, status,organisation, country, year_of_drilling, aquifer_name, aquifer_type,manager, detail, location, created_at, created_by, last_edited_at, last_edited_by "
-                f"from {mv} where organisation_id IN (" +
-                f"{','.join(organisations)}" +
-                ") order by created_at DESC"
+            "select id, ggis_uid, original_id, name, feature_type,purpose, status, organisation, "
+            'number_of_measurements_level as "groundwater_level_data", '
+            'number_of_measurements_quality as "groundwater_quality_data", '
+            'number_of_measurements_yield as "abstraction_discharge", '
+            "country, year_of_drilling, aquifer_name, aquifer_type,manager, detail, location, created_at, created_by, last_edited_at, last_edited_by "
+            f"from {mv} where organisation_id IN (" +
+            f"{','.join(organisations)}" +
+            ") order by created_at DESC"
         )
         tree.find('metadata/entry/virtualTable/sql').text = sql
 
