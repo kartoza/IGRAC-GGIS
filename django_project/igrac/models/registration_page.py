@@ -6,7 +6,6 @@ from datetime import datetime
 
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 
 User = get_user_model()
 
@@ -33,7 +32,6 @@ class RegistrationPage(models.Model):
     )
     code = models.TextField(max_length=16, unique=True)
     created_at = models.DateTimeField(
-        _('Requested at'),
         default=datetime.now, blank=True
     )
     note = models.TextField(
