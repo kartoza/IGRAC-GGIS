@@ -27,5 +27,10 @@ class SitePreference(Preferences):
     download_readme_text = models.TextField(
         blank=True,
         null=True,
-        help_text='Readme text to be included in the download zip  file.'
+        help_text='Readme text to be included in the download zip file.'
+    )
+    ggmn_download_readme_text = models.TextField(
+        blank=True,
+        null=True,
+        help_text='Readme text to be included in the download zip file of GGMN data type.'
     )
