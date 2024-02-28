@@ -1,5 +1,7 @@
 from django.contrib.gis.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 from geonode.layers.models import Dataset
 from igrac.models.site_preference import SitePreference
@@ -29,3 +31,11 @@ class GroundwaterLayer(models.Model):
         layer.use_featureinfo_custom_template = target_layer.use_featureinfo_custom_template
         layer.featureinfo_custom_template = target_layer.featureinfo_custom_template
         layer.save()
+
+
+@receiver(post_delete, sender=GroundwaterLayer)
+def groundwater_layer_deleted(
+        sender, instance: GroundwaterLayer, using, **kwargs
+):
+    if instance.layer:
+        instance.layer.delete()
