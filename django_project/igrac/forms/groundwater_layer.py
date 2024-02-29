@@ -1,3 +1,4 @@
+import time
 import xml.etree.ElementTree as ET
 
 import requests
@@ -81,14 +82,14 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
         elif well_type == GGMN:
             mv = 'mv_well_ggmn'
         sql = (
-            "select id, ggis_uid, original_id, name, feature_type,purpose, status, organisation, "
-            'number_of_measurements_level as "groundwater_level_data", '
-            'number_of_measurements_quality as "groundwater_quality_data", '
-            'number_of_measurements_yield as "abstraction_discharge", '
-            "country, year_of_drilling, aquifer_name, aquifer_type,manager, detail, location, created_at, created_by, last_edited_at, last_edited_by "
-            f"from {mv} where organisation_id IN (" +
-            f"{','.join(organisations)}" +
-            ") order by created_at DESC"
+                "select id, ggis_uid, original_id, name, feature_type,purpose, status, organisation, "
+                'number_of_measurements_level as "groundwater_level_data", '
+                'number_of_measurements_quality as "groundwater_quality_data", '
+                'number_of_measurements_yield as "abstraction_discharge", '
+                "country, year_of_drilling, aquifer_name, aquifer_type,manager, detail, location, created_at, created_by, last_edited_at, last_edited_by "
+                f"from {mv} where organisation_id IN (" +
+                f"{','.join(organisations)}" +
+                ") order by created_at DESC"
         )
         tree.find('metadata/entry/virtualTable/sql').text = sql
 
@@ -101,6 +102,7 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
         help_text='The layer name that will be created.',
         widget=forms.TextInput(attrs={'style': 'width:500px'})
     )
+    loop = 1
 
     def clean_well_type(self):
         """Well type."""
@@ -142,6 +144,29 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
                 f'Can not proceed, layer does not found'
             )
         return name
+
+    def get_dataset(
+            self, target_layer_name, workspace, store
+    ):
+        """Get dataset."""
+        if self.loop < 10:
+            call_command('updatelayers', filter=target_layer_name)
+            try:
+                dataset = Dataset.objects.get(
+                    workspace=workspace, store=store, name=target_layer_name
+                )
+                if dataset and self.target_layer:
+                    dataset.use_featureinfo_custom_template = self.target_layer.use_featureinfo_custom_template
+                    dataset.featureinfo_custom_template = self.target_layer.featureinfo_custom_template
+                    dataset.save()
+
+                return dataset
+            except Dataset.DoesNotExist:
+                time.sleep(2)
+                self.loop += 1
+                return self.get_dataset(target_layer_name, workspace, store)
+        else:
+            return None
 
     def run(self):
         """Run it for duplication data."""
@@ -197,19 +222,7 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
             if style:
                 layer.default_style = style
                 gs_catalog.save(layer)
-            call_command('updatelayers', filter=target_layer_name)
-            try:
-                dataset = Dataset.objects.get(
-                    workspace=workspace, store=store, name=target_layer_name
-                )
-                if dataset and self.target_layer:
-                    dataset.use_featureinfo_custom_template = self.target_layer.use_featureinfo_custom_template
-                    dataset.featureinfo_custom_template = self.target_layer.featureinfo_custom_template
-                    dataset.save()
-
-                return dataset
-            except Dataset.DoesNotExist:
-                return None
+            return self.get_dataset(target_layer_name, workspace, store)
         else:
             raise Exception(r.content)
 
