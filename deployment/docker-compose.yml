@@ -59,9 +59,6 @@ services:
 
   # Geoserver backend
   geoserver:
-    #    TODO:
-    #     Using older geoserver
-    #    image: kartoza/sadc_gip:geoserver-3.1.netcfd
     image: kartoza/geoserver:2.23.0-geo-v2023.09.15
     healthcheck:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.0.0.1:8080/geoserver/rest/workspaces/geonode.html"
@@ -71,11 +68,6 @@ services:
       start_period: 60s
     env_file:
       - .env
-
-    #    TODO:
-    #     Uncomment this if using netcfd
-    #    environment:
-    #      - DATABASE_URL=postgres://geonode:geonode@db:5432/geonode
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
     ports:
@@ -105,7 +97,7 @@ services:
       - POSTGRES_USER=${GEONODE_DATABASE_USER}
       - POSTGRES_PASSWORD=${GEONODE_DATABASE_PASSWORD}
     volumes:
-      - database:/var/lib/postgresql/16/
+      - ./volumes/database:/var/lib/postgresql/16/
       - ./backups:/backups
     restart: on-failure
     ports:

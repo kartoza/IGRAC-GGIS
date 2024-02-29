@@ -1,27 +1,71 @@
+from allauth.account.views import SignupView
 from django.conf import settings
 from django.http import Http404
+from django.shortcuts import redirect
 from django.views.generic import ListView, TemplateView
 
-from allauth.account.views import SignupView
-
+from geonode.base import register_event
+from geonode.documents.models import get_related_documents
+from geonode.groups.models import GroupProfile
 from geonode.maps.models import Map
 from geonode.maps.views import map_embed
-from geonode.groups.models import GroupProfile
-from geonode.base import register_event
 from geonode.monitoring.models import EventType
-from geonode.documents.models import get_related_documents
-
-from igrac.models.map_slug import MapSlugMapping
 from igrac.forms.signup import SignupWithNameForm
+from igrac.models.map_slug import MapSlugMapping
+from igrac.models.registration_page import RegistrationPage
+
+
+class RegistrationNotFound(Exception):
+    pass
+
+
+class RegistrationNotValid(Exception):
+    pass
 
 
 class CustomSignupView(SignupView):
     form_class = SignupWithNameForm
 
+    def registration_page(self):
+        """Return registration page."""
+        try:
+            registration_page = RegistrationPage.objects.get(
+                code=self.kwargs.get('code', ''))
+            if registration_page.user:
+                raise RegistrationNotValid()
+        except RegistrationPage.DoesNotExist:
+            raise RegistrationNotFound()
+        return registration_page
+
+    def get(self, request, *args, **kwargs):
+        """GET File."""
+        try:
+            self.registration_page()
+        except RegistrationNotFound:
+            return redirect('account_signup_not_found')
+        except RegistrationNotValid:
+            return redirect('account_signup_not_valid')
+        return super().get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         ret = super(CustomSignupView, self).get_context_data(**kwargs)
-        ret.update({'account_geonode_local_signup': settings.SOCIALACCOUNT_WITH_GEONODE_LOCAL_SINGUP})
+        ret.update(
+            {
+                'account_geonode_local_signup':
+                    settings.SOCIALACCOUNT_WITH_GEONODE_LOCAL_SINGUP
+            }
+        )
         return ret
+
+    def get_success_url(self):
+        """We save the user to Registration page."""
+        try:
+            registration_page = self.registration_page()
+            registration_page.user = self.user
+            registration_page.save()
+        except (AttributeError, RegistrationNotFound, RegistrationNotValid):
+            pass
+        return super(CustomSignupView, self).get_success_url()
 
 
 class HomeView(ListView):
@@ -59,7 +103,8 @@ class MetadataDetail(TemplateView):
                 group = GroupProfile.objects.get(slug=map.group.name)
             except GroupProfile.DoesNotExist:
                 group = None
-        site_url = settings.SITEURL.rstrip('/') if settings.SITEURL.startswith('http') else settings.SITEURL
+        site_url = settings.SITEURL.rstrip('/') if settings.SITEURL.startswith(
+            'http') else settings.SITEURL
         register_event(self.request, EventType.EVENT_VIEW_METADATA, map)
         context.update({
             "resource": map,

@@ -174,7 +174,7 @@ def get_igrac_base_left_topbar_menu(context):
                 } if is_logged_in else None,
                 {
                     "type": "link",
-                    "href": "/groundwater/record/download-request",
+                    "href": "/groundwater/record/download",
                     "label": "Download Well and Monitoring Data",
                 },
             ]
