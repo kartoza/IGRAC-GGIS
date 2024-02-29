@@ -196,6 +196,7 @@ MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP = set(
         "set_layers_permissions",
         "refresh_materialized_views",
         "generate_data_countries_cache",
+        "generate_data_organisations_cache",
         "generate_data_wells_cache",
         "generate_well_measurement_cache",
         "generate_uploader_report",
