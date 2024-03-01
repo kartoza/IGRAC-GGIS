@@ -2,28 +2,38 @@
 
 import django.contrib.postgres.fields
 import django.db.models.deletion
-from django.db import migrations, models
+from django.db import migrations, models, connection
 
 from geonode.layers.models import Dataset
 from igrac.models.site_preference import SitePreference
 
 
 def run(apps, schema_editor):
-    site_preference = SitePreference.objects.first()
-    if site_preference:
-        try:
-            site_preference.well_and_monitoring_data_layer = Dataset.objects.get(
-                store='groundwater', name='Groundwater_Well'
-            )
-        except Dataset.DoesNotExist:
-            pass
-        try:
-            site_preference.ggmn_layer = Dataset.objects.get(
-                store='groundwater', name='Groundwater_Well_GGMN'
-            )
-        except Dataset.DoesNotExist:
-            pass
-        site_preference.save()
+    well_layer_id = None
+    ggmn_layer_id = None
+    try:
+        well_layer_id = Dataset.objects.get(
+            store='groundwater', name='Groundwater_Well'
+        ).id
+    except Dataset.DoesNotExist:
+        pass
+    try:
+        ggmn_layer_id = Dataset.objects.get(
+            store='groundwater', name='Groundwater_Well_GGMN'
+        ).id
+    except Dataset.DoesNotExist:
+        pass
+    sql_update = (
+        """
+        UPDATE public.igrac_sitepreference
+        SET well_and_monitoring_data_layer_id=%s, ggmn_layer_id=%s;
+        """
+    )
+    query_values =[
+        well_layer_id, ggmn_layer_id
+    ]
+    with connection.cursor() as cursor:
+        cursor.execute(sql_update, query_values)
 
 
 class Migration(migrations.Migration):
