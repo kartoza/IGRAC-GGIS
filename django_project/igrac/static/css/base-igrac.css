@@ -113,7 +113,8 @@ body.igrac-home {
 
 .banner {
     position: relative;
-    background-image: url(img/coverfoto.jpg);
+    /* Hide banner image due to copyright issue */
+    /* background-image: url(img/coverfoto.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
