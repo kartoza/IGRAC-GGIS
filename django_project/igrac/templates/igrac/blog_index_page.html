@@ -7,7 +7,7 @@
 {% block body_class %}igrac-wagtail{% endblock %}
 
 {% block extra_head %}
-    <link href="{% static "css/base-igrac.css" %}" rel="stylesheet" />
+    <link href="{% static "css/base-igrac.css" %}?{{ IGRAC_VERSION.name }}" rel="stylesheet" />
 {% endblock %}
 
 {% block body %}
