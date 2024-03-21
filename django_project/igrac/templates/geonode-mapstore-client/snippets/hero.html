@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="banner">
+<div class="banner" {% if BANNER_URL %}style="background-image: url({{ BANNER_URL }})"{% endif %}>
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
