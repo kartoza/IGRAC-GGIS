@@ -24,3 +24,7 @@ class SitePreference(Preferences):
         related_name='preference_ggmn_layer',
         on_delete=models.SET_NULL
     )
+    banner = models.ImageField(
+        upload_to='images',
+        null=True, blank=True,
+    )
