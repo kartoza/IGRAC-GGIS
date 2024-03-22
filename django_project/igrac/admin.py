@@ -85,7 +85,7 @@ def reassign_template(modeladmin, request, queryset):
 
 
 class GroundwaterLayerAdmin(admin.ModelAdmin):
-    list_display = ('layer', '_organisations')
+    list_display = ('layer', '_organisations', 'is_ggmn_layer')
     add_form = CreateGroundwaterLayerForm
     change_form = EditGroundwaterLayerForm
 
