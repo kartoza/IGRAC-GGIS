@@ -34,9 +34,9 @@
           rel="stylesheet"/>
     <link href="{% static 'lib/css/bootstrap-select.css' %}?{% client_version %}"
           rel="stylesheet"/>
-    <link href="{% static 'css/default.css' %}?{% client_version %}"
+    <link href="{% static 'css/default.css' %}?{{ IGRAC_VERSION.name }}"
           rel="stylesheet"/>
-    <link href="{% static 'css/base-igrac.css' %}?{% client_version %}"
+    <link href="{% static 'css/base-igrac.css' %}?{{ IGRAC_VERSION.name }}"
           rel="stylesheet"/>
     <link rel="shortcut icon" href="{% static "img/favicon.ico" %}"/>
     {% include './geonode-mapstore-client/snippets/custom_theme.html' %}

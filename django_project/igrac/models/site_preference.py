@@ -34,3 +34,7 @@ class SitePreference(Preferences):
         null=True,
         help_text='Readme text to be included in the download zip file of GGMN data type.'
     )
+    banner = models.ImageField(
+        upload_to='images',
+        null=True, blank=True
+    )

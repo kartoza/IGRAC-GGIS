@@ -5,7 +5,7 @@
 {#{% block body_class %}{% trans "igrac-home" %}{% endblock %}#}
 
 {% block extra_head %}
-    <link href="{% static "css/base-igrac.css" %}" rel="stylesheet" />
+    <link href="{% static "css/base-igrac.css" %}?{{ IGRAC_VERSION.name }}" rel="stylesheet" />
 {% endblock %}
 
 {% load wagtailcore_tags %}
