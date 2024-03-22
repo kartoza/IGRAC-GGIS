@@ -36,5 +36,5 @@ class SitePreference(Preferences):
     )
     banner = models.ImageField(
         upload_to='images',
-        null=True, blank=True
+        null=True, blank=True,
     )
