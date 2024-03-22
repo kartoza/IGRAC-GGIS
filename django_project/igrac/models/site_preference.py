@@ -24,6 +24,16 @@ class SitePreference(Preferences):
         related_name='preference_ggmn_layer',
         on_delete=models.SET_NULL
     )
+    download_readme_text = models.TextField(
+        blank=True,
+        null=True,
+        help_text='Readme text to be included in the download zip file.'
+    )
+    ggmn_download_readme_text = models.TextField(
+        blank=True,
+        null=True,
+        help_text='Readme text to be included in the download zip file of GGMN data type.'
+    )
     banner = models.ImageField(
         upload_to='images',
         null=True, blank=True,
