@@ -9,6 +9,10 @@ from django.conf import settings
 folder = os.path.join(settings.GWML2_FOLDER, 'istsos')
 
 
+def param_to_lowercase(param):
+    return param.lower() if isinstance(param, str) else param
+
+
 def get_params(url):
     """Get params."""
     params = dict(parse.parse_qs(parse.urlsplit(url).query))
@@ -19,7 +23,10 @@ def get_params(url):
     ordered_params = collections.OrderedDict(sorted(params.items()))
     params = []
     for key, value in ordered_params.items():
-        params.append(f'{key}={value[0]}')
+        if key == 'request':
+            params.append(f'{key}={param_to_lowercase(value[0])}')
+        else:
+            params.append(f'{key}={value[0]}')
     return '&'.join(params)
 
 
