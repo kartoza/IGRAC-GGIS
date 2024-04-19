@@ -4,27 +4,6 @@ import django.contrib.postgres.fields
 import django.db.models.deletion
 from django.db import migrations, models
 
-from geonode.layers.models import Dataset
-from igrac.models.site_preference import SitePreference
-
-
-def run(apps, schema_editor):
-    site_preference = SitePreference.objects.first()
-    if site_preference:
-        try:
-            site_preference.well_and_monitoring_data_layer = Dataset.objects.get(
-                store='groundwater', name='Groundwater_Well'
-            )
-        except Dataset.DoesNotExist:
-            pass
-        try:
-            site_preference.ggmn_layer = Dataset.objects.get(
-                store='groundwater', name='Groundwater_Well_GGMN'
-            )
-        except Dataset.DoesNotExist:
-            pass
-        site_preference.save()
-
 
 class Migration(migrations.Migration):
     dependencies = [
@@ -36,18 +15,22 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='sitepreference',
             name='ggmn_layer',
-            field=models.OneToOneField(blank=True, null=True,
-                                       on_delete=django.db.models.deletion.SET_NULL,
-                                       related_name='preference_ggmn_layer',
-                                       to='layers.dataset'),
+            field=models.OneToOneField(
+                blank=True, null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name='preference_ggmn_layer',
+                to='layers.dataset'
+            ),
         ),
         migrations.AddField(
             model_name='sitepreference',
             name='well_and_monitoring_data_layer',
-            field=models.OneToOneField(blank=True, null=True,
-                                       on_delete=django.db.models.deletion.SET_NULL,
-                                       related_name='preference_well_and_monitoring_data_layer',
-                                       to='layers.dataset'),
+            field=models.OneToOneField(
+                blank=True, null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name='preference_well_and_monitoring_data_layer',
+                to='layers.dataset'
+            ),
         ),
         migrations.CreateModel(
             name='GroundwaterLayer',
@@ -60,6 +43,5 @@ class Migration(migrations.Migration):
                     on_delete=django.db.models.deletion.CASCADE,
                     to='layers.dataset')),
             ],
-        ),
-        migrations.RunPython(run, migrations.RunPython.noop),
+        )
     ]
