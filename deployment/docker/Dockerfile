@@ -11,6 +11,7 @@ RUN apt-get update -y && apt-get -y --allow-downgrades --allow-remove-essential 
 RUN echo "Activate memcached" && \
     apt-get update && apt-get install -y memcached && \
     pip install pylibmc  && pip install sherlock
+RUN apt-get install -y libreoffice
 
 WORKDIR /
 

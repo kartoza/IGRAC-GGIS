@@ -26,14 +26,6 @@ services:
       - rabbitmq:/var/lib/rabbitmq
     restart: on-failure
 
-  # postfix with smtp authentication (sasldb) TLS and OpenDKIM support are optional
-  smtp:
-    image: catatnight/postfix
-    environment:
-      maildomain: "${DJANGO_EMAIL_HOST}"
-      smtp_user: "${DJANGO_EMAIL_HOST_USER}:${DJANGO_EMAIL_HOST_PASSWORD}"
-    restart: unless-stopped
-
   # Our custom django application. It includes Geonode.
   django:
     <<: *default-common-django
