@@ -175,7 +175,7 @@ if 'gwml2' in INSTALLED_APPS:
     }
     CELERY_BEAT_SCHEDULE['clean_download_file'] = {
         'task': 'gwml2.tasks.clean.clean_download_file',
-        'schedule': crontab(hour=0),
+        'schedule': crontab(hour='*/1'),
     }
 
 GWML2_FOLDER = os.getenv(
