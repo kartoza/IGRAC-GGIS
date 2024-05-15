@@ -7,7 +7,7 @@ body {
 body {
     padding-top: 0;
     width: 100%;
-    font-family: nimbus-sans, sans-serif;
+    font-family: var(--gn-font-family-base) !important;
 }
 
 #wrap {
