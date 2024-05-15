@@ -65,10 +65,6 @@ body.igrac-home {
     line-height: 50px;
 }
 
-#branding .logo:hover i {
-    color: #ff6b0d;
-}
-
 
 .navbar > li {
     height: 100%;
@@ -335,12 +331,12 @@ form .btn-primary:hover, form .btn-primary:focus,
 }
 
 .map-abstract:hover::-webkit-scrollbar-thumb {
-    background: #ff6b0d;
+    background: var(--primary);
 }
 
 /* Handle on hover */
 .map-abstract::-webkit-scrollbar-thumb:hover {
-    background: #e05600;
+    background: var(--primary);
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
@@ -574,12 +570,16 @@ form .row {
 }
 
 .geostory-button-container .btn:hover, .geostory-button-container .btn:focus {
-    color: #ff6b0d !important;
+    color: var(--primary); !important;
 }
 
-.home-menu a:hover {
-    background-color: white !important;
-    color: #ff6b0d !important;
+.home-menu a {
+    height: 48px;
+    padding: 0.9rem 0.5rem;
+}
+
+.home-menu a i {
+    margin-top: -2px;
 }
 
 .fa-home {
