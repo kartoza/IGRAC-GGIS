@@ -7,14 +7,14 @@ body {
 body {
     padding-top: 0;
     width: 100%;
-    font-family: nimbus-sans, sans-serif;
+    font-family: var(--gn-font-family-base) !important;
 }
 
 #wrap {
-    padding-top: 50px;
-    padding-bottom: 35px;
-    height: 100%;
+    padding-top: 0 !important;
+    padding-bottom: 100px !important;
     margin-top: 0 !important;
+    height: 100%;
 }
 
 .menu-container {
@@ -69,7 +69,7 @@ body {
     font-size: 2em !important;
     font-style: normal !important;
     font-weight: 700 !important;
-    color: #24619d !important;
+    color: var(--secondary) !important;
     line-height: 1 !important;
 }
 
@@ -79,9 +79,9 @@ body {
 
 .menu-sidebar {
     height: 100%;
-    background-color: #24619d;
+    background-color: var(--secondary);
     overflow-y: auto;
-    color: white;
+    color: var(--white-font);
     padding-right: 0 !important;
     padding-left: 0 !important;
 }
@@ -90,12 +90,8 @@ body {
     padding-left: 32px;
     padding-top: 34px;
     padding-bottom: 32px;
-    border-bottom: 1px solid #17497b;
+    border-bottom: 1px solid var(--primary);
     margin: 0;
-}
-
-.jstree .jstree-open > .jstree-children {
-    background-color: #1b5289;
 }
 
 .container-fluid {
@@ -109,12 +105,12 @@ body {
 
 .jstree-default .jstree-wholerow-clicked {
     background: #1b5289 !important;
-    background: -webkit-linear-gradient(top, #1b5289 0, #1b5289 100%) !important;
-    background: linear-gradient(to bottom, #1b5289 0, #1b5289 100%) !important;
+    background: -webkit-linear-gradient(top, var(--primary) 0, var(--primary) 100%) !important;
+    background: linear-gradient(to bottom, var(--primary) 0, var(--primary) 100%) !important;
 }
 
 .jstree-clicked {
-    color: #F48020 !important;
+    color: white !important;
 }
 
 .jstree-default-large .jstree-node {
@@ -142,15 +138,10 @@ body {
     background-position: -32px 8px;
 }
 
-.jstree-default .jstree-hovered {
-    background: #1b5289;
-    border-radius: 2px;
-    color: #F48020 !important;
-}
-
+.jstree-default .jstree-hovered,
 .jstree-default .jstree-wholerow-hovered {
-    background: #1b5289;
-    color: #F48020 !important;
+    background: var(--bg-hover-color);
+    color: white !important;
 }
 
 .manual-header {

@@ -57,7 +57,7 @@ table {
 /****** Main CSS *******/
 body {
     font-size: 16px;
-    font-family: nimbus-sans, sans-serif;
+    font-family: var(--gn-font-family-base);
     font-weight: 300;
     font-style: normal;
 }
@@ -181,8 +181,8 @@ body {
 }
 
 #gn-topbar .dropdown-menu>li>a:focus, #gn-topbar .dropdown-menu>li>a:hover {
+    color: var(--white-font);
     background-color: var(--secondary);
-    color: var(--white);
 }
 
 #branding, .branding {
@@ -303,26 +303,6 @@ body {
 
 .gn-home-section .gn-card-grid .gn-card-grid-container > ul li {
     margin-top: 20px !important;
-}
-
-.msgapi .gn-resource-card .card-title a {
-    color: var(--primary);
-}
-
-.explore-viewer-title {
-    font-size: 30px !important;
-    font-weight: 700 !important;
-    margin: 25px 10px 15px !important;
-    color: var(--primaryBold) !important;
-}
-
-.gn-home-section .gn-card-description {
-    white-space: initial !important;
-}
-
-.gn-home-section .map-abstract {
-    height: 50px !important;
-    overflow-y: auto !important;
 }
 
 .gn-home-section .gn-resource-card .card-body {
