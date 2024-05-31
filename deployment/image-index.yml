@@ -1,0 +1,4 @@
+images:
+  - name: ggis-geonode
+    dockerfile: deployment/docker/Dockerfile
+    buildPath: .
