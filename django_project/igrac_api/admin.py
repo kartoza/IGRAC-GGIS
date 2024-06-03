@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from igrac_api.forms.api_key import CreateApiKeyForm, EditApiKeyForm
 from igrac_api.models.api_key import (
-    ApiKey, ApiKeyRequestLog
+    ApiKey, ApiKeyRequestLog, ApiKeyAccess
 )
 
 
@@ -33,5 +33,10 @@ class ApiKeyRequestLogAdmin(admin.ModelAdmin):
         return obj.api_key.user
 
 
+class ApiKeyAccessAdmin(admin.ModelAdmin):
+    list_display = ('api_key', 'date', 'counter')
+
+
 admin.site.register(ApiKey, ApiKeyAdmin)
+admin.site.register(ApiKeyAccess, ApiKeyAccessAdmin)
 admin.site.register(ApiKeyRequestLog, ApiKeyRequestLogAdmin)
