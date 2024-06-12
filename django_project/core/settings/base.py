@@ -181,6 +181,9 @@ if 'gwml2' in INSTALLED_APPS:
 GWML2_FOLDER = os.getenv(
     'GWML_FOLDER', os.path.join(PROJECT_ROOT, 'gwml2-file')
 )
+MEASUREMENTS_FOLDER = os.path.join(
+    GWML2_FOLDER, os.getenv('MEASUREMENTS_FOLDER', 'measurements')
+)
 SFTP_FOLDER = os.getenv(
     'SFTP_FOLDER', os.path.join(PROJECT_ROOT, 'sftp')
 )
