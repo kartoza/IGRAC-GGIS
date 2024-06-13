@@ -126,12 +126,20 @@ WAGTAILEMBEDS_FINDERS = [
 ]
 # -- END Settings for Wagtail
 
-# gwml2 database conf
+# -- gwml2 database conf
 gwml2_database_conf = copy.copy(DATABASES['default'])
 gwml2_database_conf['NAME'] = 'groundwater'
-
 GWML2_DATABASE_CONFIG = 'gwml2'
+
+GROUNDWATER_DATABASE_URL = os.getenv("GROUNDWATER_DATABASE_URL", None)
+if GROUNDWATER_DATABASE_URL:
+    _db_conf = dj_database_url.parse(
+        GROUNDWATER_DATABASE_URL, conn_max_age=GEONODE_DB_CONN_MAX_AGE
+    )
+    gwml2_database_conf.update(_db_conf)
 DATABASES[GWML2_DATABASE_CONFIG] = gwml2_database_conf
+# --
+
 DATABASE_ROUTERS = ['gwml2.router.GWML2Router']
 ROOT_URLCONF = 'core.urls'
 
