@@ -192,9 +192,6 @@ GWML2_FOLDER = os.getenv(
 MEASUREMENTS_FOLDER = os.path.join(
     GWML2_FOLDER, os.getenv('MEASUREMENTS_FOLDER', 'measurements')
 )
-SFTP_FOLDER = os.getenv(
-    'SFTP_FOLDER', os.path.join(PROJECT_ROOT, 'sftp')
-)
 
 MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP = set(
     [
