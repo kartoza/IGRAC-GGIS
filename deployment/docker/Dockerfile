@@ -17,6 +17,7 @@ WORKDIR /
 
 RUN rm -r /usr/src/geonode
 RUN git clone --branch 4.1.1.igrac --single-branch https://github.com/kartoza/geonode.git geonode
+RUN git clone https://github.com/kartoza/IGRAC-WellAndMonitoringDatabase.git /home/web/django_project/gwml2
 
 WORKDIR /geonode
 
