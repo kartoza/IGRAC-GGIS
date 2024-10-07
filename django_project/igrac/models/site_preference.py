@@ -1,6 +1,7 @@
 from django.db import models
 from preferences.models import Preferences
 
+from core.middleware import gwml2_version
 from geonode.layers.models import Dataset
 
 
@@ -38,3 +39,8 @@ class SitePreference(Preferences):
         upload_to='images',
         null=True, blank=True,
     )
+
+    @property
+    def gwml2_version(self):
+        """Return the GWML2 version."""
+        return gwml2_version()

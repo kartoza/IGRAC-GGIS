@@ -36,3 +36,20 @@ def project_version(request):
                 }
             }
     return {}
+
+
+def gwml2_version():
+    """ Read gwml2 versionfrom file."""
+    DJANGO_ROOT = os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__))
+        ))
+    _file = os.path.join(
+        DJANGO_ROOT,
+        'django_project', 'gwml2', 'version'
+    )
+    if os.path.exists(_file):
+        version = (open(_file, 'rb').read()).decode("utf-8")
+        if version:
+            return version
+    return '-'
