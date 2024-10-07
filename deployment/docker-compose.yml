@@ -64,6 +64,7 @@ services:
       - .env
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
+      - ./geoserver/download.properties:/spcgeonode-geodatadir/download.properties
     ports:
       - "8080:8080"
     depends_on:
