@@ -31,7 +31,7 @@ admin.site.register(MapSlugMapping, MapSlugMappingAdmin)
 class CustomPreferencesAdmin(PreferencesAdmin):
     """Custom of preferences admin."""
 
-    readonly_fields = ('gwml2_version',)
+    readonly_fields = ('geonode_version', 'igrac_version', 'gwml2_version')
 
 
 admin.site.register(SitePreference, CustomPreferencesAdmin)
