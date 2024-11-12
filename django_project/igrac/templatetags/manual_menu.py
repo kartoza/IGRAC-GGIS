@@ -158,7 +158,7 @@ def get_igrac_base_left_topbar_menu(context):
                     "type": "link",
                     "href": "/view/well-and-monitoring-data/",
                     "label": "Well and Monitoring Data"
-                },
+                } if is_logged_in else None,
                 {
                     "type": "dropdown",
                     "label": "Upload Well and Monitoring Data",
