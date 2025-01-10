@@ -4,6 +4,22 @@
 </header>
 <div class="gn-main-header-placeholder"></div>
 
+{% if GOOGLE_ANALYTIC_KEY %}
+    <!-- Google tag (gtag.js) -->
+    <script async
+            src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTIC_KEY }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+      gtag('config', '{{ GOOGLE_ANALYTIC_KEY }}');
+    </script>
+{% endif %}
+
 {% if show_hero %}
     {% include './hero.html' %}
 {% endif %}
