@@ -41,108 +41,72 @@
     <link rel="shortcut icon" href="{% static "img/favicon.svg" %}"/>
     {% include './geonode-mapstore-client/snippets/custom_theme.html' %}
     <style type="text/css">[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
-        display: none !important;
+      display: none !important;
     }</style>
     <style type="text/css">
         {% if custom_theme.logo %}
-            .navbar-brand {
-                background-image: url({{ custom_theme.logo.url }});
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain;
-            }
+          .navbar-brand {
+            background-image: url({{ custom_theme.logo.url }});
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+          }
         {% endif %}
 
         {% if custom_theme.jumbotron_color %}
-            .home .jumbotron {
-                background-color: {{ custom_theme.jumbotron_color }}
-            }
+          .home .jumbotron {
+            background-color: {{ custom_theme.jumbotron_color }}
+          }
         {% endif %}
 
         {% if custom_theme.jumbotron_title_color %}
-            .home .jumbotron h1,
-            .home .jumbotron h2,
-            .home .jumbotron h3 {
-                color: {{ custom_theme.jumbotron_title_color }}
-            }
+          .home .jumbotron h1,
+          .home .jumbotron h2,
+          .home .jumbotron h3 {
+            color: {{ custom_theme.jumbotron_title_color }}
+          }
         {% endif %}
 
         {% if custom_theme.jumbotron_text_color %}
-            .home .jumbotron p {
-                color: {{ custom_theme.jumbotron_text_color }};
-                font-weight: normal;
-                font-size: xx-large;
-                font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-            }
+          .home .jumbotron p {
+            color: {{ custom_theme.jumbotron_text_color }};
+            font-weight: normal;
+            font-size: xx-large;
+            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+          }
         {% endif %}
 
         {% if custom_theme.jumbotron_welcome_hide %}
-            .home .jumbotron .container {
-                visibility: hidden;
-            }
+          .home .jumbotron .container {
+            visibility: hidden;
+          }
         {% endif %}
 
         {% if custom_theme.jumbotron_bg %}
-            .home .jumbotron .container {
-                position: relative;
-                z-index: 1;
-            }
-            .home .jumbotron:after {
-                content: "";
-                background-image: url({{ custom_theme.jumbotron_bg.url }});
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: cover;
-            {% if not custom_theme.jumbotron_welcome_hide %}
-                opacity: 0.5;
-            {% endif %}
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                position: absolute;
-                z-index: 0;
-            }
+          .home .jumbotron .container {
+            position: relative;
+            z-index: 1;
+          }
+          .home .jumbotron:after {
+            content: "";
+            background-image: url({{ custom_theme.jumbotron_bg.url }});
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+          {% if not custom_theme.jumbotron_welcome_hide %}
+            opacity: 0.5;
+          {% endif %}
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: 0;
+          }
         {% endif %}
     </style>
     <script>
-        window.addEventListener("load", function () {
-            {# Fixing toggle #}
-            $('.dropdown-submenu .dropdown-toggle').click(function () {
-              const $parent = $(this).closest('.dropdown-submenu')
-              if ($parent.hasClass('open')) {
-                $parent.removeClass('open')
-              } else {
-                $parent.addClass('open')
-              }
-              return false
-            })
-        });
-    </script>
-    {% block extra_head %}
-    {% endblock %}
-{% endblock %}
-
-{% block body_extra_class %}gn-legacy gn-theme {% if request.user_agent.is_mobile %}gn-mobile{% else %}gn-desktop{% endif %}{% endblock %}
-
-{% block header %}
-{% include './geonode-mapstore-client/snippets/header.html' %}
-{% endblock %}
-
-{% block footer %}
-{% include './geonode-mapstore-client/snippets/footer.html' %}
-{% endblock %}
-
-{% block extra_script %}
-    <script type="text/javascript">
-        // enable dropdown functionalities
-        $('li.dropdown-submenu a[data-toggle="dropdown"]').on('click', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            $('li.dropdown-submenu').not($(this).parent()).removeClass('open');
-            $(this).parent().toggleClass('open');
-        });
-
+      window.addEventListener("load", function () {
         {# Fixing toggle #}
         $('.dropdown-submenu .dropdown-toggle').click(function () {
           const $parent = $(this).closest('.dropdown-submenu')
@@ -153,5 +117,62 @@
           }
           return false
         })
+      });
+    </script>
+    {% block extra_head %}
+    {% endblock %}
+{% endblock %}
+
+{% block body_extra_class %}gn-legacy gn-theme
+    {% if request.user_agent.is_mobile %}gn-mobile{% else %}gn-desktop
+    {% endif %}{% endblock %}
+
+{% block header %}
+    {% include './geonode-mapstore-client/snippets/header.html' %}
+{% endblock %}
+
+{% block footer %}
+    {% include './geonode-mapstore-client/snippets/footer.html' %}
+{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+      // enable dropdown functionalities
+      $('li.dropdown-submenu a[data-toggle="dropdown"]').on('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        $('li.dropdown-submenu').not($(this).parent()).removeClass('open');
+        $(this).parent().toggleClass('open');
+      });
+
+      {# Fixing toggle #}
+      $('.dropdown-submenu .dropdown-toggle').click(function () {
+        const $parent = $(this).closest('.dropdown-submenu')
+        if ($parent.hasClass('open')) {
+          $parent.removeClass('open')
+        } else {
+          $parent.addClass('open')
+        }
+        return false
+      })
+
+      {# Google analytic #}
+      {% if GOOGLE_ANALYTIC_KEY %}
+        (function (i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+        })
+        (window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga')
+        ;
+        ga('create', "{{ GOOGLE_ANALYTIC_KEY }}", 'auto');
+        ga('send', 'pageview', { 'page': location.pathname + location.search + location.hash });
+      {% endif %}
     </script>
 {% endblock extra_script %}
