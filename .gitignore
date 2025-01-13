@@ -8,3 +8,4 @@ deployment/backups/
 celery.log
 django_project/worker.state
 django_project/celerybeat-schedule
+geonode_version.txt
