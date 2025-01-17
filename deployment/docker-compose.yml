@@ -136,12 +136,11 @@ services:
       - ../istsos2/istsoslib:/usr/share/istsos/istsoslib:ro
       - ../istsos2/application_istsoslib.py:/usr/share/istsos/application_istsoslib.py:ro
     environment:
-      - GWML2_DATABASE=groundwater
-      - GEONODE_DATABASE=${GEONODE_DATABASE}
-      - GEONODE_DATABASE_USER=${GEONODE_DATABASE_USER}
-      - GEONODE_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
-      - GEONODE_DATABASE_HOST=${DATABASE_HOST}
-      - GEONODE_DATABASE_PORT=${DATABASE_PORT}
+      - GROUNDWATER_DATABASE=groundwater
+      - GROUNDWATER_DATABASE_USER=${GEONODE_DATABASE_USER}
+      - GROUNDWATER_DATABASE_PASSWORD=${GEONODE_DATABASE_PASSWORD}
+      - GROUNDWATER_DATABASE_HOST=${DATABASE_HOST}
+      - GROUNDWATER_DATABASE_PORT=${DATABASE_PORT}
     ports:
       - "5001:80"
 
