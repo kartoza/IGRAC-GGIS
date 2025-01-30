@@ -4,10 +4,11 @@
 
 ```
 git clone https://github.com/kartoza/IGRAC-GGIS.git
-cd IGRAC-GGIS/deployment
-make build
-make up
-make collectstatic
+cd IGRAC-GGIS
+git submodule init
+git submodule update
+cd deployment
+make deploy
 ```
 
 The web will be available at `http://localhost/`
