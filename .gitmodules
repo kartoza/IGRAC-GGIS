@@ -3,9 +3,12 @@
 	url = https://github.com/kartoza/gwml2.git
 [submodule "geonode"]
 	path = geonode
-	url = git@github.com:kartoza/geonode.git
+	url = https://github.com/kartoza/geonode.git
+	# url = git@github.com:kartoza/geonode.git
 	branch = 4.1.1.igrac
 [submodule "istsos2"]
 	path = istsos2
-	url = git@github.com:meomancer/istsos2.git
+	url = https://github.com/meomancer/istsos2.git
+	# url = git@github.com:meomancer/istsos2.git	
 	branch = igrac
+

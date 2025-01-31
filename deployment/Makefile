@@ -131,7 +131,7 @@ collectstatic:
 	#We need to run collect static in the same context as the running
 	# django container it seems so I use docker exec here
 	# no -it flag so we can run over remote shell
-	@docker exec $(PROJECT_ID)_django_1 python manage.py collectstatic --noinput
+	@docker exec $(PROJECT_ID)-django-1 python manage.py collectstatic --noinput
 
 versioning:
 	@echo
@@ -146,7 +146,7 @@ reload:
 	@echo "Reload django project in production mode"
 	@echo "------------------------------------------------------------------"
 	# no -it flag so we can run over remote shell
-	@docker exec $(PROJECT_ID)_django_1 django --reload  /tmp/django.pid
+	@docker exec $(PROJECT_ID)-django-1 django --reload  /tmp/django.pid
 
 migrate:
 	@echo
