@@ -65,6 +65,8 @@ services:
     volumes:
       - geodatadir:/spcgeonode-geodatadir/
       - ./geoserver/download.properties:/spcgeonode-geodatadir/download.properties
+      - ./geoserver/update_config.py:/tmp/update_config.py
+    entrypoint: ["/bin/sh", "-c", "python3 /tmp/update_config.py && ./entrypoint.sh"]
     ports:
       - "8080:8080"
     depends_on:
