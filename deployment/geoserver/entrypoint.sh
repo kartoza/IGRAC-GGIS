@@ -158,7 +158,22 @@ for template in in ${geoserver_datadir_template_dirs[*]}; do
 done
 
 # Copy the config.xml to geoserver security
-cp "/tmp/config.xml" "${GEOSERVER_DATA_DIR}/security/config.xml"
+
+echo -e "Replacing filter configuration at ${GEOSERVER_DATA_DIR}/security/config.xml"
+
+XML_FILE="${GEOSERVER_DATA_DIR}/security/config.xml"
+
+NEW_FILTER='    <filters name="gwc service wmts" class="org.geoserver.security.ServiceLoginFilterChain" interceptorName="interceptor" exceptionTranslationName="exception" path="/gwc/service/**" disabled="true" allowSessionCreation="false" ssl="false" matchHTTPMethod="true" httpMethods="GET">\n      <filter>anonymous</filter>\n    </filters>'
+
+# Check if the new filter already exists
+if grep -q '<filters name="gwc service wmts"' "$XML_FILE"; then
+    echo "Filter already exists. No changes made."
+else
+  # Insert the new filter after the existing gwc filter
+  awk -v new_filter="$NEW_FILTER" '{if ($0 ~ /<filters name="gwc"/) {print new_filter} print $0}' "$XML_FILE" > tmp.xml && mv tmp.xml "$XML_FILE"
+
+  echo "New filter inserted successfully."
+fi
 
 # start tomcat
 export GEOSERVER_OPTS="-Djava.awt.headless=true -Xms${INITIAL_MEMORY} -Xmx${MAXIMUM_MEMORY} \
