@@ -28,13 +28,15 @@ class MapSlugMappingAdmin(SortableAdmin):
 admin.site.register(MapSlugMapping, MapSlugMappingAdmin)
 
 
+@admin.register(SitePreference)
 class CustomPreferencesAdmin(PreferencesAdmin):
     """Custom of preferences admin."""
 
-    readonly_fields = ('geonode_version', 'igrac_version', 'gwml2_version')
+    readonly_fields = (
+        'geonode_version', 'igrac_version', 'gwml2_version',
 
+    )
 
-admin.site.register(SitePreference, CustomPreferencesAdmin)
 
 admin.site.unregister(Profile)
 
