@@ -106,6 +106,10 @@ services:
     <<: *default-common-django
     entrypoint: [ ]
     command: 'celery -A geonode.celery_app:app worker -B -E --statedb=worker.state -s celerybeat-schedule --loglevel=DEBUG --concurrency=10 -n worker1@%h'
+    deploy:
+      resources:
+        limits:
+          memory: '8G'
 
   # django application for development
   dev:
