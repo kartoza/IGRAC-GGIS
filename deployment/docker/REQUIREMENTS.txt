@@ -12,7 +12,7 @@ django-sentry==1.13.5
 service_identity
 
 # igrac
-wagtail==4.2.1
+wagtail==5.2
 wagtailmenus==3.1.5
 openpyxl==3.0.10
 pyexcel-xls==0.7.0
@@ -22,4 +22,4 @@ pyexcel-ods3==0.6.1
 # Accessing minio
 s3fs==2024.6.1
 
-git+https://github.com/kartoza/geonode-mapstore-client.git@4.1.2-igrac
+git+https://github.com/kartoza/geonode-mapstore-client.git@4.4.1-igrac

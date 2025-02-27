@@ -5,7 +5,6 @@ from django.shortcuts import redirect
 from django.views.generic import ListView, TemplateView
 
 from geonode.base import register_event
-from geonode.documents.models import get_related_documents
 from geonode.groups.models import GroupProfile
 from geonode.maps.models import Map
 from geonode.maps.views import map_embed
@@ -13,6 +12,7 @@ from geonode.monitoring.models import EventType
 from igrac.forms.signup import SignupWithNameForm
 from igrac.models.map_slug import MapSlugMapping
 from igrac.models.registration_page import RegistrationPage
+from igrac.utilities import get_related_documents
 
 
 class RegistrationNotFound(Exception):

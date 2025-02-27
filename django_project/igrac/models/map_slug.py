@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.text import slugify
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from geonode.maps.models import Map
 from adminsortable.models import Sortable
 from ..utilities import STOP_WORDS, check_slug
