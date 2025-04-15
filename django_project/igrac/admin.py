@@ -33,7 +33,8 @@ class CustomPreferencesAdmin(PreferencesAdmin):
     """Custom of preferences admin."""
 
     readonly_fields = (
-        'geonode_version', 'igrac_version', 'gwml2_version',
+        'geonode_version', 'geonode_mapstore_client_version',
+        'igrac_version', 'gwml2_version',
 
     )
 

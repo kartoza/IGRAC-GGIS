@@ -1,3 +1,5 @@
+from importlib.metadata import version, PackageNotFoundError
+
 from django.db import models
 from preferences.models import Preferences
 
@@ -68,6 +70,14 @@ class SitePreference(Preferences):
     def geonode_version(self):
         """Return the Geonode version."""
         return geonode_version()
+
+    @property
+    def geonode_mapstore_client_version(self):
+        """Return the Geonode mapstore client version."""
+        try:
+            return version("django-geonode-mapstore-client")
+        except PackageNotFoundError:
+            return "Not installed"
 
     @property
     def igrac_version(self):

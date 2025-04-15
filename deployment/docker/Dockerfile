@@ -2,6 +2,8 @@
 FROM geonode/geonode:latest-ubuntu-22.04 AS prod
 MAINTAINER Irwan Fathurrahman <irwan@kartoza.com>
 
+ARG CACHE_BUSTER=1
+
 # Set the locale
 RUN locale-gen C.UTF-8
 ENV LANG C.UTF-8
