@@ -2,6 +2,8 @@
 FROM geonode/geonode:latest-ubuntu-22.04 AS prod
 MAINTAINER Irwan Fathurrahman <irwan@kartoza.com>
 
+ARG CACHE_BUSTER=1
+
 # Set the locale
 RUN locale-gen C.UTF-8
 ENV LANG C.UTF-8
@@ -15,7 +17,7 @@ RUN apt-get install -y libreoffice
 
 WORKDIR /
 
-ENV GEONODE_VERSION 4.1.1.igrac
+ENV GEONODE_VERSION 4.4.1.igrac
 RUN rm -r /usr/src/geonode
 RUN git clone --branch $GEONODE_VERSION --single-branch https://github.com/kartoza/geonode.git geonode
 
@@ -28,7 +30,7 @@ ADD deployment/docker/REQUIREMENTS.txt /REQUIREMENTS.txt
 RUN pip install -r /REQUIREMENTS.txt
 
 # Not sure why we have this migrations
-RUN rm /usr/local/lib/python3.10/dist-packages/avatar/migrations/0002_auto_20200210_1421.py
+# RUN rm /usr/local/lib/python3.10/dist-packages/avatar/migrations/0002_auto_20200210_1421.py
 
 #USER www-data
 ADD django_project /home/web/django_project
@@ -36,7 +38,7 @@ WORKDIR /home/web/django_project
 RUN rm -rf /home/web/django_project/gwml2
 
 # Installing gwml2
-ENV GWML2_VERSION 4.9.22
+ENV GWML2_VERSION geonode-4.4.1-2
 RUN git clone --branch $GWML2_VERSION https://github.com/kartoza/IGRAC-WellAndMonitoringDatabase.git /home/web/django_project/gwml2
 RUN echo $GWML2_VERSION > /home/web/django_project/gwml2/version.txt
 
