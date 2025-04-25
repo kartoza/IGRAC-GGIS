@@ -1,4 +1,12 @@
-# IGRAC-GGIS
+# The Global Groundwater Information System (GGIS)
+
+GGIS is a groundwater information system developed for and funded by UN-IGRAC. The GGIS is an interactive portal for sharing data and information on groundwater resources around the world. It gives access to map layers, documents, and well and monitoring data. It also contains several thematic map viewers.
+
+
+![image](https://github.com/user-attachments/assets/8da808b0-f11c-4db1-aa8b-e0dafb7757b6)
+
+
+You can visit the live site here: https://ggis.un-igrac.org
 
 ## QUICK INSTALLATION GUIDE
 
