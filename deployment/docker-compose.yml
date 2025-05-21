@@ -11,8 +11,6 @@ x-common-django:
   env_file:
     - .env
   volumes:
-    - ../geonode:/geonode
-    - ../django_project:/home/web/django_project
     - ./volumes/statics:/home/web/statics:rw
   restart: on-failure
   depends_on:
@@ -110,6 +108,8 @@ services:
       resources:
         limits:
           memory: '8G'
+    depends_on:
+      - rabbitmq
 
   # django application for development
   dev:
