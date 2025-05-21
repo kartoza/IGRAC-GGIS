@@ -1,0 +1,49 @@
+# GeoHosting Controller.
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ggis_app_test:
+    needs: flake8_py3
+    name: 'GGIS App'
+    runs-on: ubuntu-latest
+    env:
+      APP_IMAGE: ggis_dev
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build test image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: deployment/docker/Dockerfile
+          push: false
+          load: true
+          target: dev
+          tags: ${{ env.APP_IMAGE }}:dev
+          cache-from: |
+            type=gha,scope=test
+            type=gha,scope=prod
+          cache-to: type=gha,scope=test
+
+      - name: Run docker-compose services
+        working-directory: deployment
+        run: |
+          echo "Override docker-compose for testing purposes"
+          make dev
+          make wait-db
+          make dev-entrypoint
+          make dev-runserver
+          make sleep
+
+      - name: Test backend
+        run: make dev-test

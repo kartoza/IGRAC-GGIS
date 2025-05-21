@@ -110,6 +110,8 @@ services:
       resources:
         limits:
           memory: '8G'
+    depends_on:
+      - rabbitmq
 
   # django application for development
   dev:

@@ -155,8 +155,36 @@ migrate:
 	@echo "------------------------------------------------------------------"
 	@docker-compose exec django python manage.py migrate
 
-# --------------- help --------------------------------
+wait-db:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Check database is ready or not"
+	@echo "------------------------------------------------------------------"
+	@docker compose ${ARGS} exec -T db su - postgres -c "until pg_isready; do sleep 5; done"
 
+dev-entrypoint:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Running in DEVELOPMENT mode"
+	@echo "------------------------------------------------------------------"
+	@docker compose ${ARGS} exec -T dev "/entrypoint.sh"
+
+dev-runserver:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Start django runserver in dev container"
+	@echo "------------------------------------------------------------------"
+	@docker compose $(ARGS) exec -T dev bash -c "nohup python manage.py runserver 0.0.0.0:8080 &"
+
+dev-test:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Run tests"
+	@echo "------------------------------------------------------------------"
+	@docker compose exec -T dev python manage.py collectstatic --noinput
+	@docker compose exec -T dev python manage.py test gwml2.tests --noinput
+
+# --------------- help --------------------------------
 help:
 	@echo "* **build** - builds all required containers."
 	@echo "* **up** - runs all required containers."
@@ -166,3 +194,12 @@ help:
 	@echo "* **permissions** - Update the permissions of shared volumes. Note this will destroy any existing permissions you have in place."
 	@echo "* **rm** - remove all containers."
 	@echo "* **shell-frontend-mapstore** - open a bash shell in the frontend mapstore (where django runs) container."
+
+
+sleep:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Sleep for 50 seconds"
+	@echo "------------------------------------------------------------------"
+	@sleep 50
+	@echo "Done"
