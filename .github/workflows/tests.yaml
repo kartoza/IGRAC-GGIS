@@ -37,7 +37,6 @@ jobs:
       - name: Run docker-compose services
         working-directory: deployment
         run: |
-          echo "Override docker-compose for testing purposes"
           make dev
           make wait-db
           make dev-entrypoint

@@ -23,42 +23,42 @@ web:
 	@# Dont confuse this with the dbbackup make command below
 	@# This one runs the postgis-backup cron container
 	@# We add --no-recreate so that it does not destroy & recreate the db container
-	@docker-compose up -d
+	@docker compose up -d
 
 dev:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Running in dev mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose ${ARGS} up -d dev
+	@docker compose ${ARGS} up -d dev
 
 geoserver-up:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Running in dev mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose ${ARGS} up -d geoserver
+	@docker compose ${ARGS} up -d geoserver
 
 build:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Building in production mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) build --no-cache
+	@docker compose -p $(PROJECT_ID) build --no-cache
 
 dev-shell:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Shelling in in dev mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) exec dev /bin/bash
+	@docker compose -p $(PROJECT_ID) exec dev /bin/bash
 
 # mapstore-frontend:
 #	@echo
 #	@echo "------------------------------------------------------------------"
 #	@echo "Running in production mode"
 #	@echo "------------------------------------------------------------------"
-#	@docker-compose -p $(PROJECT_ID) up -d mapstore-frontend
+#	@docker compose -p $(PROJECT_ID) up -d mapstore-frontend
 
 nginx:
 	@echo
@@ -68,7 +68,7 @@ nginx:
 	@echo "In a production environment you will typically use nginx running"
 	@echo "on the host rather if you have a multi-site host."
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) up -d nginx
+	@docker compose -p $(PROJECT_ID) up -d nginx
 	@echo "Site should now be available at http://localhost"
 
 up: web
@@ -78,56 +78,56 @@ status:
 	@echo "------------------------------------------------------------------"
 	@echo "Show status for all containers"
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) ps
+	@docker compose -p $(PROJECT_ID) ps
 
 kill:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Killing in production mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) stop
+	@docker compose -p $(PROJECT_ID) stop
 
 rm: kill
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Removing production instance!!! "
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) down
+	@docker compose -p $(PROJECT_ID) down
 
 shell:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Shelling in in production mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) exec django /bin/bash
+	@docker compose -p $(PROJECT_ID) exec django /bin/bash
 
 db-bash:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Entering DB Bash in production mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) exec db sh
+	@docker compose -p $(PROJECT_ID) exec db sh
 
 db-shell:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Entering PostgreSQL Shell in production mode"
 	@echo "------------------------------------------------------------------"
-	docker-compose -p $(PROJECT_ID) exec db su - postgres -c "psql"
+	docker compose -p $(PROJECT_ID) exec db su - postgres -c "psql"
 
 geoserver-shell:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Entering Geoserver Shell in in production mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) exec geoserver sh
+	@docker compose -p $(PROJECT_ID) exec geoserver sh
 
 collectstatic:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Collecting static in production mode"
 	@echo "------------------------------------------------------------------"
-	#@docker-compose -p $(PROJECT_ID) run django python manage.py collectstatic --noinput
+	#@docker compose -p $(PROJECT_ID) run django python manage.py collectstatic --noinput
 	#We need to run collect static in the same context as the running
 	# django container it seems so I use docker exec here
 	# no -it flag so we can run over remote shell
@@ -153,7 +153,7 @@ migrate:
 	@echo "------------------------------------------------------------------"
 	@echo "Running migrate static in production mode"
 	@echo "------------------------------------------------------------------"
-	@docker-compose exec django python manage.py migrate
+	@docker compose exec django python manage.py migrate
 
 wait-db:
 	@echo
