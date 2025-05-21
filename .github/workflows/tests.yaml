@@ -41,4 +41,5 @@ jobs:
           make sleep
 
       - name: Test backend
+        working-directory: deployment
         run: make dev-test
