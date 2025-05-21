@@ -37,8 +37,7 @@ WORKDIR /home/web/django_project
 RUN rm -rf /home/web/django_project/gwml2
 
 # Installing gwml2
-ARG CACHE_BUSTER=1
-ENV GWML2_VERSION 4.9.29
+ENV GWML2_VERSION 4.9.30
 RUN git clone --branch $GWML2_VERSION https://github.com/kartoza/IGRAC-WellAndMonitoringDatabase.git /home/web/django_project/gwml2
 RUN echo $GWML2_VERSION > /home/web/django_project/gwml2/version.txt
 
