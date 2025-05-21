@@ -11,8 +11,6 @@ jobs:
   ggis_app_test:
     name: 'GGIS App'
     runs-on: ubuntu-latest
-    env:
-      APP_IMAGE: ggis_dev
     steps:
       - uses: actions/checkout@v4
       - name: Set up QEMU
@@ -33,20 +31,6 @@ jobs:
           docker container prune -f
           docker image prune -af
           docker volume prune -f
-      - name: Build test image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: deployment/docker/Dockerfile
-          push: false
-          load: true
-          target: dev
-          tags: ${{ env.APP_IMAGE }}:dev
-          cache-from: |
-            type=gha,scope=test
-            type=gha,scope=prod
-          cache-to: type=gha,scope=test
-
       - name: Run docker-compose services
         working-directory: deployment
         run: |
