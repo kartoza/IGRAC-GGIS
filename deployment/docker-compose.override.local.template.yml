@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  django:
+    volumes:
+      - ../geonode:/geonode
+      - ../django_project:/home/web/django_project
+      - ./volumes/statics:/home/web/statics:rw
+  celery:
+    volumes:
+      - ../geonode:/geonode
+      - ../django_project:/home/web/django_project
+      - ./volumes/statics:/home/web/statics:rw
+  dev:
+    volumes:
+      - ../geonode:/geonode
+      - ../django_project:/home/web/django_project
+      - ./volumes/statics:/home/web/statics:rw

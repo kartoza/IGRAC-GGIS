@@ -5,6 +5,7 @@ deployment/static/
 deployment/media/
 deployment/volumes/
 deployment/backups/
+deployment/docker-compose.override.yml
 celery.log
 django_project/worker.state
 django_project/celerybeat-schedule

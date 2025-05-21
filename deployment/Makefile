@@ -1,4 +1,5 @@
 PROJECT_ID := igrac
+export COMPOSE_FILE=docker-compose.yml:docker-compose.override.yml
 
 SHELL := /bin/bash
 
