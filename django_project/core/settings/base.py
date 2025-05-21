@@ -185,8 +185,6 @@ if 'gwml2' in INSTALLED_APPS:
         'task': 'gwml2.tasks.clean.clean_download_file',
         'schedule': crontab(hour='*/1'),
     }
-    # TODO:
-    #  We enable this after resume being improved
     CELERY_BEAT_SCHEDULE['resume_all_uploader'] = {
         'task': 'gwml2.tasks.upload_session.resume_all_uploader',
         'schedule': crontab(minute='*/10'),
