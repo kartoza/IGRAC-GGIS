@@ -39,9 +39,6 @@ jobs:
           make dev
           make wait-db
           make sleep
-          make dev-entrypoint
-          make dev-runserver
-          make sleep
 
       - name: Test backend
         run: make dev-test
