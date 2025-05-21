@@ -187,10 +187,10 @@ if 'gwml2' in INSTALLED_APPS:
     }
     # TODO:
     #  We enable this after resume being improved
-    # CELERY_BEAT_SCHEDULE['resume_all_uploader'] = {
-    #     'task': 'gwml2.tasks.upload_session.resume_all_uploader',
-    #     'schedule': crontab(minute='*/10'),
-    # }
+    CELERY_BEAT_SCHEDULE['resume_all_uploader'] = {
+        'task': 'gwml2.tasks.upload_session.resume_all_uploader',
+        'schedule': crontab(minute='*/10'),
+    }
 
 GWML2_FOLDER = os.getenv(
     'GWML_FOLDER', os.path.join(PROJECT_ROOT, 'gwml2-file')
