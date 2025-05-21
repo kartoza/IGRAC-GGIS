@@ -168,6 +168,7 @@ dev-entrypoint:
 	@echo "------------------------------------------------------------------"
 	@echo "Running in DEVELOPMENT mode"
 	@echo "------------------------------------------------------------------"
+	@docker compose ${ARGS} exec -T db su - postgres -c "until pg_isready; do sleep 5; done"
 	@docker compose ${ARGS} exec -T dev "/entrypoint.sh"
 
 dev-runserver:

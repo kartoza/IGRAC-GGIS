@@ -38,6 +38,7 @@ jobs:
           cp docker-compose.override.template.yml docker-compose.override.yml
           make dev
           make wait-db
+          make sleep
           make dev-entrypoint
           make dev-runserver
           make sleep
