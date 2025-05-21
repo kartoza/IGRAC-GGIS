@@ -9,7 +9,6 @@ on:
 
 jobs:
   ggis_app_test:
-    needs: flake8_py3
     name: 'GGIS App'
     runs-on: ubuntu-latest
     env:
