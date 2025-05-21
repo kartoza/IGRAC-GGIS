@@ -12,7 +12,7 @@ x-common-django:
     - .env
   volumes:
 #    - ../geonode:/geonode
-    - ../django_project:/home/web/django_project
+#    - ../django_project:/home/web/django_project
     - ./volumes/statics:/home/web/statics:rw
   restart: on-failure
   depends_on:
