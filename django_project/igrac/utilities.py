@@ -1,5 +1,10 @@
 # coding=utf-8
-from geonode.groups.models import Group, GroupProfile
+from django.contrib.contenttypes.models import ContentType
+
+from geonode.documents.models import Document
+from geonode.groups.models import GroupProfile
+from geonode.layers.models import Dataset
+from geonode.maps.models import Map
 
 STOP_WORDS = (
     'a', 'an', 'and', 'if', 'is', 'the', 'in', 'i', 'you', 'other',
@@ -38,3 +43,14 @@ def get_default_filter_by_group(user):
         filter = filter + "&" + "group__group_profile__slug__in=" + group
 
     return filter
+
+
+def get_related_documents(resource):
+    if isinstance(resource, Dataset) or isinstance(resource, Map):
+        content_type = ContentType.objects.get_for_model(resource)
+        return Document.objects.filter(
+            links__content_type=content_type,
+            links__object_id=resource.pk
+        )
+    else:
+        return None

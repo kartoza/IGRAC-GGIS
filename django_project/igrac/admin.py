@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from preferences.admin import PreferencesAdmin
 
 from geonode.base.admin import set_user_and_group_dataset_permission
@@ -33,7 +33,8 @@ class CustomPreferencesAdmin(PreferencesAdmin):
     """Custom of preferences admin."""
 
     readonly_fields = (
-        'geonode_version', 'igrac_version', 'gwml2_version',
+        'geonode_version', 'geonode_mapstore_client_version',
+        'igrac_version', 'gwml2_version',
 
     )
 

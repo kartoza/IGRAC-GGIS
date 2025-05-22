@@ -22,7 +22,6 @@ INSTALLED_APPS += (
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
-    'wagtail.sites',
     'wagtail.users',
     'wagtail.snippets',
     'wagtail.documents',
@@ -30,33 +29,12 @@ INSTALLED_APPS += (
     'wagtail.search',
     'wagtail.admin',
     'wagtail',
-    'wagtail.contrib.modeladmin',
     'wagtailmenus',
     'modelcluster',
     'preferences'
 )
 
-MIDDLEWARE = (
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.sites.middleware.CurrentSiteMiddleware',
-    'dj_pagination.middleware.PaginationMiddleware',
-    # The setting below makes it possible to serve different languages per
-    # user depending on things like headers in HTTP requests.
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'oauth2_provider.middleware.OAuth2TokenMiddleware',
-    'django_user_agents.middleware.UserAgentMiddleware',
-    'geonode.base.middleware.MaintenanceMiddleware',
-    'geonode.base.middleware.ReadOnlyMiddleware',
-    # a Middleware enabling Read Only mode of Geonode
-
+MIDDLEWARE += (
     # Wagtail moddleware
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
@@ -69,20 +47,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(PROJECT_ROOT, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.i18n',
-                'django.template.context_processors.tz',
-                'django.template.context_processors.request',
-                'django.template.context_processors.media',
-                'django.template.context_processors.static',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'django.contrib.auth.context_processors.auth',
-                'geonode.context_processors.resource_urls',
-                'geonode.geoserver.context_processors.geoserver_urls',
-                'geonode.themes.context_processors.custom_theme',
-
+            'context_processors': CONTEXT_PROCESSORS + [
                 # IGRAC context processor
                 'igrac.context_processors.extra_context',
 

@@ -1,12 +1,14 @@
 # coding=utf-8
 """Urls for istsos apps."""
 
-from django.conf.urls import url
+from django.urls import re_path
 
 from igrac_api.api.istsos import IstsosView
 
 urlpatterns = [
-    url(r'^istsos$',
+    re_path(
+        r'^istsos$',
         view=IstsosView.as_view(),
-        name='istsos-api')
+        name='istsos-api'
+    )
 ]
