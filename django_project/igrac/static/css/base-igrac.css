@@ -705,6 +705,10 @@ form .row {
     font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
 }
 
+.gn-home-section .gn-card-grid-container > ul {
+   padding-left: 0 !important;
+}
+
 .msgapi .gn-action-navbar-title {
     background-color: var(--primary);
     color: var(--white-font);
