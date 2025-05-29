@@ -64,6 +64,7 @@ services:
       - geodatadir:/spcgeonode-geodatadir/
       - ./geoserver/download.properties:/spcgeonode-geodatadir/download.properties
       - ./geoserver/entrypoint.sh:/usr/local/tomcat/tmp/entrypoint.sh
+      - ./volumes/statics:/home/web/statics:rw
     ports:
       - "8080:8080"
     depends_on:
