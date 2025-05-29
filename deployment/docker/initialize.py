@@ -58,10 +58,8 @@ connection.close()
 
 print("-----------------------------------------------------")
 print("2. Running the migrations")
-# call_command('makemigrations')
-# call_command('migrate', '--noinput')
-call_command('migrate', app_label='igrac')
-call_command('migrate', app_label='igrac_api')
+call_command('makemigrations')
+call_command('migrate', '--noinput')
 call_command('migrate', app_label='gwml2', database='gwml2')
 
 #########################################################
