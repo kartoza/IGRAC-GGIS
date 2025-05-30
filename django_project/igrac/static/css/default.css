@@ -301,7 +301,7 @@ body {
 }
 
 .gn-home-section .gn-card-grid .gn-card-grid-container > ul li {
-    margin-top: 20px !important;
+    width: 362px !important;
 }
 
 .gn-home-section .gn-resource-card .card-body {
