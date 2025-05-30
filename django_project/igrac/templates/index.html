@@ -141,7 +141,7 @@
                     }
 
                     async function renderFeaturedData() {
-                        const response = await fetch('https://ggis.un-igrac.org/igrac_api/featured/?page_size=99&page=1&filter%7Bfeatured%7D=true');
+                        const response = await fetch('/igrac_api/featured/?page_size=99&page=1&filter%7Bfeatured%7D=true');
                         const result = await response.json();
                         const html = `<div id="ms-app" class="app-router fill"><div class="gn-container"><div class="gn-row gn-home-section"><div class="gn-grid-container container"><div class="gn-card-grid" style=""><div style="display: flex; width: 100%; height: 100%;"><div style="flex: 1 1 0%; width: 100%; height: 100%; padding-bottom: 50px;"><div class="gn-card-grid-container" style="min-height: auto;"><h1 class="explore-viewer-title">{% trans 'Explore the viewers' %}</h1><ul style="padding-bottom: 0px;"></ul></div></div></div></div></div></div></div></div>`
                         $('#container').html(html)
