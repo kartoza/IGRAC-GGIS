@@ -16,7 +16,7 @@ RUN apt-get install -y libreoffice
 
 WORKDIR /
 
-ENV GEONODE_VERSION 4.4.1.igrac
+ENV GEONODE_VERSION 4.4.3.igrac
 RUN rm -r /usr/src/geonode
 RUN git clone --branch $GEONODE_VERSION --single-branch https://github.com/kartoza/geonode.git geonode
 
