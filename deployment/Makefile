@@ -31,7 +31,7 @@ dev:
 	@echo "------------------------------------------------------------------"
 	@echo "Running in dev mode"
 	@echo "------------------------------------------------------------------"
-	@docker compose ${ARGS} up -d dev
+	@docker compose ${ARGS} up -d selery dev
 
 geoserver-up:
 	@echo
