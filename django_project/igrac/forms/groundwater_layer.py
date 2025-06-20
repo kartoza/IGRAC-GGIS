@@ -76,12 +76,7 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
             f'{organisation.pk}' for organisation in
             self.cleaned_data['organisations']
         ]
-        well_type = self.cleaned_data['well_type']
-        mv = None
-        if well_type == WELL_AND_MONITORING_DATA:
-            mv = 'mv_well'
-        elif well_type == GGMN:
-            mv = 'mv_well_ggmn'
+        mv = 'mv_well'
 
         if not mv:
             raise Exception('mv needs to be specified')
