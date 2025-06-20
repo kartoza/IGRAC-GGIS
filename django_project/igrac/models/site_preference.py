@@ -3,7 +3,9 @@ from importlib.metadata import version, PackageNotFoundError
 from django.db import models
 from preferences.models import Preferences
 
-from core.middleware import gwml2_version, igrac_version, geonode_version
+from core.middleware import (
+    gwml2_version, igrac_version, geonode_version, igrac_commit
+)
 from geonode.layers.models import Dataset
 from gwml2.utils.template_check import compare_ods_xlsx_template
 
@@ -83,6 +85,11 @@ class SitePreference(Preferences):
     def igrac_version(self):
         """Return the IGRAC version."""
         return igrac_version()
+
+    @property
+    def igrac_commit(self):
+        """Return the IGRAC commit."""
+        return igrac_commit()
 
     @property
     def gwml2_version(self):
