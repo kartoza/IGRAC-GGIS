@@ -1,0 +1,13 @@
+.idea
+.venv
+pdfs/
+
+# mkdocs related
+mkdocs.yml
+templates/graphics.scss
+site/*
+
+#direnv for docs building
+.direnv
+*.swp
+pandoc*
