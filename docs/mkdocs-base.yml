@@ -1,0 +1,47 @@
+site_name: The Global Groundwater Information System (GGIS)
+site_description: "Project technical and user documentation."
+site_author: "Kartoza"
+docs_dir: ./src
+site_dir: ./site
+repo_name: "IGRAC-GGIS"
+repo_url: "https://github.com/kartoza/IGRAC-GGIS"
+edit_uri: "https://github.com/kartoza/IGRAC-GGIS/edit/main/docs/src/"
+
+copyright: Kartoza and Contributors
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.tasklist
+  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.caret
+  - attr_list # lets us resize images see https://github.com/mkdocs/mkdocs/issues/1678#issuecomment-455500757
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  #- mdx_truly_sane_lists
+  - toc:
+      permalink: true
+      #slugify: !!python/name:pymdownx.slugs.slugify
+  - pymdownx.snippets:
+      base_path: .
+  - admonition
+  - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.snippets:
+      base_path: .
+
+nav:
+  - Introduction: index.md
