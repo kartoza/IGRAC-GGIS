@@ -1,4 +1,6 @@
+from django.http import HttpResponse
 from modelcluster.fields import ParentalManyToManyField
+from wagtail.contrib.routable_page.models import route
 from wagtailautocomplete.edit_handlers import AutocompletePanel
 
 from geonode.maps.models import Map, Dataset
@@ -14,3 +16,7 @@ class GeonodePage(BlogPage):
         AutocompletePanel('maps', target_model=Map),
         AutocompletePanel('datasets', target_model=Dataset)
     ]
+
+    @route(r'^body-only/$')
+    def body_only_view(self, request):
+        return HttpResponse(self.body, content_type='text/html')

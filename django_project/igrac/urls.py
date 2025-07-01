@@ -11,6 +11,7 @@ from wagtailautocomplete.urls.admin import (
 )
 
 from igrac.api_views.featured import FeaturedMaps
+from igrac.api_views.wagtail_page import PageContent
 from igrac.g3p import (
     G3PTimeseriesData,
     G3PTimeseriesChart,
@@ -50,6 +51,11 @@ urlpatterns = [
     re_path(r'^groundwater/', include('gwml2.urls')),
 
     # Wagtail
+    re_path(
+        r'^cms/pages/(?P<id>[^/]+)/body/',
+        view=PageContent.as_view(),
+        name='cms_page_body'
+    ),
     re_path(r'^cms/autocomplete/', include(autocomplete_wagtail_urls)),
     re_path(r'^cms/', include(wagtailadmin_urls)),
     re_path(r'^wagtail/documents/', include(wagtaildocs_urls)),
