@@ -21,6 +21,8 @@ INSTALLED_APPS += (
     # Wagtail
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
+    'wagtail.contrib.modeladmin',
+    'wagtail.sites',
     'wagtail.embeds',
     'wagtail.users',
     'wagtail.snippets',
