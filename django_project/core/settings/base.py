@@ -32,6 +32,7 @@ INSTALLED_APPS += (
     'wagtail.admin',
     'wagtail',
     'wagtailmenus',
+    "wagtailautocomplete",
     'modelcluster',
     'preferences'
 )

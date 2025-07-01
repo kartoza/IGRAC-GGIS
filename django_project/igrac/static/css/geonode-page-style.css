@@ -1,0 +1,33 @@
+.selector {
+  display: flex;
+}
+
+.selector select {
+  min-height: 20rem;
+}
+
+.selector select {
+  width: 100%;
+}
+
+.selector a.selector-add, .selector a.selector-remove {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: rgba(0, 0, 0, 0) !important;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+}
+
+.selector-chooser {
+  padding: 5px;
+  padding-top: 110px;
+}
+
+.selector a.selector-add {
+  background-image: url(/static/grappelli/images/icons/selector-add-m2m-horizontal.png);
+}
+
+.selector a.selector-remove {
+  background-image: url(/static/grappelli/images/icons/selector-remove-m2m-horizontal.png);
+}
