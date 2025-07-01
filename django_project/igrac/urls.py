@@ -11,7 +11,9 @@ from wagtailautocomplete.urls.admin import (
 )
 
 from igrac.api_views.featured import FeaturedMaps
-from igrac.api_views.wagtail_page import PageContent
+from igrac.api_views.wagtail_page import (
+    PageContent, GeonodeBaseResourcePageContent
+)
 from igrac.g3p import (
     G3PTimeseriesData,
     G3PTimeseriesChart,
@@ -51,6 +53,11 @@ urlpatterns = [
     re_path(r'^groundwater/', include('gwml2.urls')),
 
     # Wagtail
+    re_path(
+        r'^cms/resource/(?P<id>[^/]+)/(?P<resource_type>[\w\+%_& ]+)/body/',
+        view=GeonodeBaseResourcePageContent.as_view(),
+        name='cms_page_geonode_resource'
+    ),
     re_path(
         r'^cms/pages/(?P<id>[^/]+)/body/',
         view=PageContent.as_view(),
