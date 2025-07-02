@@ -6,8 +6,14 @@ from django.views.generic import TemplateView
 from wagtail.admin.urls import urlpatterns as wagtailadmin_urls
 from wagtail.documents.urls import urlpatterns as wagtaildocs_urls
 from wagtail.urls import urlpatterns as wagtail_urls
+from wagtailautocomplete.urls.admin import (
+    urlpatterns as autocomplete_wagtail_urls
+)
 
 from igrac.api_views.featured import FeaturedMaps
+from igrac.api_views.wagtail_page import (
+    PageContent, GeonodeBaseResourcePageContent
+)
 from igrac.g3p import (
     G3PTimeseriesData,
     G3PTimeseriesChart,
@@ -45,9 +51,24 @@ urlpatterns = [
         name='featured_maps'
     ),
     re_path(r'^groundwater/', include('gwml2.urls')),
+
+    # Wagtail
+    re_path(
+        r'^cms/resource/(?P<id>[^/]+)/(?P<resource_type>[\w\+%_& ]+)/body/',
+        view=GeonodeBaseResourcePageContent.as_view(),
+        name='cms_page_geonode_resource'
+    ),
+    re_path(
+        r'^cms/pages/(?P<id>[^/]+)/body/',
+        view=PageContent.as_view(),
+        name='cms_page_body'
+    ),
+    re_path(r'^cms/autocomplete/', include(autocomplete_wagtail_urls)),
     re_path(r'^cms/', include(wagtailadmin_urls)),
     re_path(r'^wagtail/documents/', include(wagtaildocs_urls)),
     re_path(r'^about/', include(wagtail_urls)),
+
+    # Others
     re_path(
         r'^account/signup/not-found',
         TemplateView.as_view(template_name='account/signup-not-found.html'),
