@@ -20,6 +20,8 @@ class GeonodeBaseResourcePageContent(APIView):
 
     def get(self, request, id, resource_type, *args):
         """Get page content of a geonode page."""
+        if resource_type == 'geostory':
+            resource_type = 'geostorie'
 
         filter_kwargs = {f"{resource_type}s__id": id}
         try:
