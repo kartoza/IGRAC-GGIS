@@ -31,3 +31,6 @@ DEFAULT_FROM_EMAIL = os.environ.get(
 STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 STATIC_URL = '/static/'
+
+# Default geoip url
+GEOIP_PATH = '/home/web/django_project/core/geoip/GeoLite2-City.mmdb'
