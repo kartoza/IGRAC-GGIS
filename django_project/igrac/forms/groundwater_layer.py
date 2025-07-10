@@ -10,8 +10,9 @@ from geoserver.support import build_url
 
 from geonode.geoserver.helpers import gs_catalog
 from geonode.layers.models import Dataset
-from gwml2.models.download_request import WELL_AND_MONITORING_DATA, GGMN
-from gwml2.models.well_management.organisation import Organisation
+from gwml2.models.well_management.organisation import (
+    Organisation, OrganisationGroup
+)
 from igrac.models.groundwater_layer import GroundwaterLayer
 from igrac.models.site_preference import SitePreference
 
@@ -20,14 +21,8 @@ User = get_user_model()
 
 # TODO:
 #  All hardcoded need to be saved on the preferences
-
 class _BaseGroundwaterLayerForm(forms.ModelForm):
-    well_type = forms.ChoiceField(
-        choices=(
-            (WELL_AND_MONITORING_DATA, WELL_AND_MONITORING_DATA),
-            (GGMN, GGMN)
-        )
-    )
+    """Base groundwater layer form."""
     selected_orgs = forms.ModelMultipleChoiceField(
         Organisation.objects.all(),
         label='Organisations',
@@ -36,21 +31,40 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
             'Organisation that will used to filter the data. '
         )
     )
+    selected_org_group = forms.ModelMultipleChoiceField(
+        OrganisationGroup.objects.all(),
+        label='Organisation groups',
+        widget=FilteredSelectMultiple('organisation groups', False),
+        help_text=(
+            "Organisation group that will used to filter "
+            "the data by it's organisations. "
+        )
+    )
 
     def __init__(self, *args, **kwargs):
         forms.ModelForm.__init__(self, *args, **kwargs)
         if self.instance and self.instance.organisations:
             self.fields['selected_orgs'].initial = Organisation.objects.filter(
-                id__in=self.instance.organisations)
+                id__in=self.instance.organisations
+            )
+        if self.instance and self.instance.organisation_groups:
+            self.fields['selected_org_group'].initial = (
+                OrganisationGroup.objects.filter(
+                    id__in=self.instance.organisation_groups
+                )
+            )
 
     class Meta:
         model = GroundwaterLayer
-        exclude = ('layer', 'organisations')
+        exclude = ('layer', 'organisations', 'organisation_groups')
 
     def clean(self):
         cleaned_data = self.cleaned_data
         organisations = cleaned_data['selected_orgs']
         cleaned_data['organisations'] = organisations
+
+        organisation_groups = cleaned_data['selected_org_group']
+        cleaned_data['organisation_groups'] = organisation_groups
 
         try:
             dataset = self.run()
@@ -65,6 +79,9 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
         instance.organisations = list(
             cleaned_data['organisations'].values_list('pk', flat=True)
         )
+        instance.organisation_groups = list(
+            cleaned_data['organisation_groups'].values_list('pk', flat=True)
+        )
         instance.layer = cleaned_data['layer']
         instance.save()
         return instance
@@ -76,13 +93,13 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
             f'{organisation.pk}' for organisation in
             self.cleaned_data['organisations']
         ]
-        mv = 'mv_well'
-
-        if not mv:
-            raise Exception('mv needs to be specified')
-
+        for group in self.cleaned_data['organisation_groups']:
+            organisations += [
+                f'{organisation.pk}' for organisation in
+                group.organisations.all()
+            ]
         data = {
-            "table": mv,
+            "table": 'mv_well',
             "organisations": ','.join(organisations)
         }
         sql = pref.well_and_monitoring_data_layer_sql.format(**data)
@@ -99,17 +116,12 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
     )
     loop = 1
 
-    def clean_well_type(self):
-        """Well type."""
-        well_type = self.cleaned_data['well_type']
+    def clean_name(self):
+        """Validate name."""
+        # Get the layer
         pref = SitePreference.objects.first()
-        target_layer = None
-        if well_type == WELL_AND_MONITORING_DATA:
-            self.target_layer = pref.well_and_monitoring_data_layer
-            target_layer = self.target_layer.__str__()
-        elif well_type == GGMN:
-            self.target_layer = pref.ggmn_layer
-            target_layer = self.target_layer.__str__()
+        self.target_layer = pref.well_and_monitoring_data_layer
+        target_layer = self.target_layer.__str__()
 
         # Check target layer on geoserver
         self.layer = None
@@ -119,10 +131,8 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
             raise forms.ValidationError(
                 f'{target_layer} does not found. Please contact admin.'
             )
-        return well_type
 
-    def clean_name(self):
-        """Validate name."""
+        # Get the name
         name = self.cleaned_data['name']
         layer = self.layer
         if layer:
@@ -223,18 +233,12 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
 
     class Meta:
         model = GroundwaterLayer
-        exclude = ('layer', 'organisations')
+        exclude = ('layer', 'organisations', 'organisation_groups')
 
 
 class EditGroundwaterLayerForm(_BaseGroundwaterLayerForm):
     """Edit groundwater layer."""
     layer = None
-    well_type = forms.ChoiceField(
-        choices=(
-            (WELL_AND_MONITORING_DATA, WELL_AND_MONITORING_DATA),
-            (GGMN, GGMN)
-        )
-    )
     selected_orgs = forms.ModelMultipleChoiceField(
         Organisation.objects.all(),
         label='Organisations',
@@ -246,7 +250,7 @@ class EditGroundwaterLayerForm(_BaseGroundwaterLayerForm):
 
     class Meta:
         model = GroundwaterLayer
-        exclude = ('layer', 'organisations', 'name')
+        exclude = ('layer', 'name', 'organisations', 'organisation_groups')
 
     def run(self):
         """Run it for duplication data."""

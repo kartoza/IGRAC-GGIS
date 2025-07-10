@@ -24,48 +24,61 @@ class SitePreference(Preferences):
         related_name='preference_well_and_monitoring_data_layer',
         on_delete=models.SET_NULL
     )
-    ggmn_layer = models.OneToOneField(
-        Dataset,
-        null=True, blank=True,
-        related_name='preference_ggmn_layer',
-        on_delete=models.SET_NULL
-    )
     well_and_monitoring_data_layer_sql = models.TextField(
         default="""
-            select 
-                id, ggis_uid, original_id, name, feature_type,purpose, 
-                status, organisation,
-                 
-                number_of_measurements_level as "groundwater_level_data", 
-                number_of_measurements_quality as "groundwater_quality_data", 
-                number_of_measurements_yield as "abstraction_discharge",
-                
-                country, year_of_drilling, aquifer_name, aquifer_type,manager, 
-                detail, location, 
-                created_at, created_by, last_edited_at, last_edited_by,
-                
-                first_time_measurement,
-                last_time_measurement,
-                is_groundwater_level,
-                is_groundwater_quality 
-             from {table} 
-             where organisation_id IN ({organisations}) 
-             order by created_at DESC        
-        """
+                select id,
+                       ggis_uid,
+                       original_id,
+                       name,
+                       feature_type,
+                       purpose,
+                       status,
+                       organisation,
+
+                       number_of_measurements_level   as "groundwater_level_data",
+                       number_of_measurements_quality as "groundwater_quality_data",
+                       number_of_measurements_yield   as "abstraction_discharge",
+
+                       country,
+                       year_of_drilling,
+                       aquifer_name,
+                       aquifer_type,
+                       manager,
+                       detail,
+                       location,
+                       created_at,
+                       created_by,
+                       last_edited_at,
+                       last_edited_by,
+
+                       first_time_measurement         as first_recorded_measurement,
+                       last_time_measurement          as last_recorded_measurement,
+                       is_groundwater_level           as groundwater_level,
+                       is_groundwater_quality         as groundwater_quality,
+                       ground_surface_elevation,
+                       ground_surface_elevation_unit,
+                       dem_elevation,
+                       dem_elevation_unit
+                from {table}
+                where organisation_id IN ({organisations})
+                order by created_at DESC
+                """
     )
     download_readme_text = models.TextField(
         blank=True,
         null=True,
         help_text='Readme text to be included in the download zip file.'
     )
-    ggmn_download_readme_text = models.TextField(
-        blank=True,
-        null=True,
-        help_text='Readme text to be included in the download zip file of GGMN data type.'
-    )
     banner = models.ImageField(
         upload_to='images',
         null=True, blank=True,
+    )
+
+    # Legacy
+    legacy_ggmn_download_readme_text = models.TextField(
+        blank=True,
+        null=True,
+        help_text='Readme text to be included in the download zip file of GGMN data type.'
     )
 
     @property

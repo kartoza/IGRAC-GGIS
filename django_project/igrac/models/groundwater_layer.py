@@ -1,6 +1,6 @@
 from django.contrib.gis.db import models
 from django.contrib.postgres.fields import ArrayField
-from django.db.models.signals import post_delete, post_save
+from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
 from geonode.layers.models import Dataset
@@ -13,12 +13,19 @@ class GroundwaterLayer(models.Model):
         Dataset,
         on_delete=models.CASCADE
     )
-    organisations = ArrayField(models.IntegerField())
-    is_ggmn_layer = models.BooleanField(
-        default=False,
+    organisations = ArrayField(
+        models.IntegerField(),
         help_text=(
-            'Indicate that this layer is ggmn layer. '
-            'It will be used to construct the data to be downloaded.'
+            'Organisations for this layer that '
+            'will be used to filter the well data.'
+        )
+    )
+    organisation_groups = ArrayField(
+        models.IntegerField(),
+        default=[],
+        help_text=(
+            'Organisations group for this layer that '
+            'will be used to filter the well data.'
         )
     )
 
@@ -32,8 +39,7 @@ class GroundwaterLayer(models.Model):
     def assign_template(self, target_layer=None):
         """Assign template."""
         pref = SitePreference.objects.first()
-        if not target_layer:
-            target_layer = pref.ggmn_layer
+        target_layer = pref.well_and_monitoring_data_layer
         layer = self.layer
         layer.use_featureinfo_custom_template = target_layer.use_featureinfo_custom_template
         layer.featureinfo_custom_template = target_layer.featureinfo_custom_template
@@ -46,18 +52,3 @@ def groundwater_layer_deleted(
 ):
     if instance.layer:
         instance.layer.delete()
-
-
-@receiver(post_save, sender=GroundwaterLayer)
-def groundwater_layer_saved(
-        sender, instance: GroundwaterLayer, using, **kwargs
-):
-    from gwml2.tasks.data_file_cache.country_recache import (
-        generate_data_all_country_cache
-    )
-    from gwml2.tasks.data_file_cache.organisation_cache import (
-        generate_data_all_organisation_cache
-    )
-    if instance.is_ggmn_layer:
-        generate_data_all_country_cache.delay()
-        generate_data_all_organisation_cache.delay()
