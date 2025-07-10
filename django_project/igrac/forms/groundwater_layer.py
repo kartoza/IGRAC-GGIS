@@ -25,6 +25,7 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
     """Base groundwater layer form."""
     selected_orgs = forms.ModelMultipleChoiceField(
         Organisation.objects.all(),
+        required=False,
         label='Organisations',
         widget=FilteredSelectMultiple('organisations', False),
         help_text=(
@@ -33,6 +34,7 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
     )
     selected_org_group = forms.ModelMultipleChoiceField(
         OrganisationGroup.objects.all(),
+        required=False,
         label='Organisation groups',
         widget=FilteredSelectMultiple('organisation groups', False),
         help_text=(
@@ -60,11 +62,18 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = self.cleaned_data
-        organisations = cleaned_data['selected_orgs']
-        cleaned_data['organisations'] = organisations
+        try:
+            organisations = cleaned_data['selected_orgs']
+            cleaned_data['organisations'] = organisations
+        except KeyError:
+            cleaned_data['organisations'] = Organisation.objects.none()
 
-        organisation_groups = cleaned_data['selected_org_group']
-        cleaned_data['organisation_groups'] = organisation_groups
+        try:
+            organisation_groups = cleaned_data['selected_org_group']
+            cleaned_data['organisation_groups'] = organisation_groups
+        except KeyError:
+            cleaned_data[
+                'organisation_groups'] = OrganisationGroup.objects.none()
 
         try:
             dataset = self.run()
@@ -239,14 +248,6 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
 class EditGroundwaterLayerForm(_BaseGroundwaterLayerForm):
     """Edit groundwater layer."""
     layer = None
-    selected_orgs = forms.ModelMultipleChoiceField(
-        Organisation.objects.all(),
-        label='Organisations',
-        widget=FilteredSelectMultiple('organisations', False),
-        help_text=(
-            'Organisation that will used to filter the data. '
-        )
-    )
 
     class Meta:
         model = GroundwaterLayer
@@ -254,47 +255,4 @@ class EditGroundwaterLayerForm(_BaseGroundwaterLayerForm):
 
     def run(self):
         """Run it for duplication data."""
-        layer = None
-        if self.instance.layer:
-            layer = gs_catalog.get_layer(self.instance.layer.__str__())
-        if not layer:
-            raise Exception(
-                f'{self.instance.layer.name} does not found. Please contact admin.'
-            )
-
-        # Fetch the xml
-        workspace = layer.resource.workspace.name
-        store = layer.resource.store.name
-        upload_url = layer.resource.href
-
-        # Fetch xml data
-        xml_url = layer.resource.href
-        xml = requests.get(
-            xml_url,
-            auth=(gs_catalog.username, gs_catalog.password)
-        ).content
-
-        # Update xml to new data
-        tree = ET.ElementTree(ET.fromstring(xml))
-        self.update_sql(tree)
-
-        # Change xml to string
-        xml = ET.tostring(
-            tree.getroot(), encoding='utf8', method='xml'
-        )
-
-        # POST data
-        headers = {"content-type": "text/xml"}
-        r = requests.put(
-            upload_url,
-            data=xml,
-            auth=(gs_catalog.username, gs_catalog.password),
-            headers=headers,
-        )
-
-        # Need to handle the response
-        if r.status_code == 200:
-            call_command('updatelayers', filter=layer.name)
-            return self.instance.layer
-        else:
-            raise Exception(r.content)
+        return self.instance.update_layer()

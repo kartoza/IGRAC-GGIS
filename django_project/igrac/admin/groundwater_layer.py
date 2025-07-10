@@ -2,7 +2,9 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.utils.html import format_html
 
-from gwml2.models.well_management.organisation import Organisation
+from gwml2.models.well_management.organisation import (
+    Organisation, OrganisationGroup
+)
 from igrac.forms.groundwater_layer import (
     CreateGroundwaterLayerForm, EditGroundwaterLayerForm
 )
@@ -16,7 +18,7 @@ def reassign_template(modeladmin, request, queryset):
 
 @admin.register(GroundwaterLayer)
 class GroundwaterLayerAdmin(admin.ModelAdmin):
-    list_display = ('layer', '_organisations')
+    list_display = ('layer', '_organisations', '_organisation_groups')
     add_form = CreateGroundwaterLayerForm
     change_form = EditGroundwaterLayerForm
 
@@ -44,6 +46,17 @@ class GroundwaterLayerAdmin(admin.ModelAdmin):
                 f'<span style="display:inline-block; background:#ddd; margin:2px; padding: 4px 6px">{org.name}</span>'
                 for org in
                 Organisation.objects.filter(id__in=obj.organisations)
+            ])
+        )
+
+    def _organisation_groups(self, obj: GroundwaterLayer):
+        return format_html(
+            ''.join([
+                f'<span style="display:inline-block; background:#ddd; margin:2px; padding: 4px 6px">{org.name}</span>'
+                for org in
+                OrganisationGroup.objects.filter(
+                    id__in=obj.organisation_groups
+                )
             ])
         )
 

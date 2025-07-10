@@ -45,6 +45,85 @@ class GroundwaterLayer(models.Model):
         layer.featureinfo_custom_template = target_layer.featureinfo_custom_template
         layer.save()
 
+    def update_sql(self, tree):
+        """Return sql."""
+        from gwml2.models import OrganisationGroup, Organisation
+        pref = SitePreference.objects.first()
+        organisations = []
+        if self.organisations:
+            organisations += [
+                f'{organisation.pk}' for organisation in
+                Organisation.objects.filter(id__in=self.organisations)
+            ]
+        for group in OrganisationGroup.objects.filter(
+                id__in=self.organisation_groups
+        ):
+            organisations += [
+                f'{organisation.pk}' for organisation in
+                group.organisations.all()
+            ]
+        data = {
+            "table": 'mv_well',
+            "organisations": ','.join(organisations)
+        }
+        sql = pref.well_and_monitoring_data_layer_sql.format(**data)
+        tree.find('metadata/entry/virtualTable/sql').text = sql
+        return tree
+
+    def update_layer(self):
+        """Update layer."""
+        import xml.etree.ElementTree as ET
+
+        import requests
+        from django.core.management import call_command
+
+        from geonode.geoserver.helpers import gs_catalog
+
+        layer = None
+        if self.layer:
+            layer = gs_catalog.get_layer(self.layer.__str__())
+        if not layer:
+            raise Exception(
+                f'{self.layer.name} does not found. Please contact admin.'
+            )
+
+        # Fetch the xml
+        workspace = layer.resource.workspace.name
+        store = layer.resource.store.name
+        upload_url = layer.resource.href
+
+        # Fetch xml data
+        xml_url = layer.resource.href
+        xml = requests.get(
+            xml_url,
+            auth=(gs_catalog.username, gs_catalog.password)
+        ).content
+
+        # Update xml to new data
+        tree = ET.ElementTree(ET.fromstring(xml))
+        tree = self.update_sql(tree)
+
+        # Change xml to string
+        xml = ET.tostring(
+            tree.getroot(), encoding='utf8', method='xml'
+        )
+
+        # POST data
+        headers = {"content-type": "text/xml"}
+        r = requests.put(
+            upload_url,
+            data=xml,
+            auth=(gs_catalog.username, gs_catalog.password),
+            headers=headers,
+        )
+
+        # Need to handle the response
+        if r.status_code == 200:
+            call_command('updatelayers', filter=layer.name)
+            return self.layer
+        else:
+            raise Exception(r.content)
+
 
 @receiver(post_delete, sender=GroundwaterLayer)
 def groundwater_layer_deleted(
