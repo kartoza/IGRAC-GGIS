@@ -18,9 +18,38 @@ def reassign_template(modeladmin, request, queryset):
 
 @admin.register(GroundwaterLayer)
 class GroundwaterLayerAdmin(admin.ModelAdmin):
-    list_display = ('layer', '_organisations', '_organisation_groups')
+    list_display = (
+        'layer', '_organisations', '_organisation_groups', 'additional_sql'
+    )
     add_form = CreateGroundwaterLayerForm
     change_form = EditGroundwaterLayerForm
+
+    def get_fieldsets(self, request, obj=None):
+        """Return fieldsets."""
+        if obj is None:
+            return (
+                (
+                    '',
+                    {
+                        'fields': (
+                            'name', 'selected_orgs', 'selected_org_group',
+                            'additional_sql'
+                        ),
+                    }
+                ),
+            )
+        else:
+            return (
+                (
+                    '',
+                    {
+                        'fields': (
+                            'selected_orgs', 'selected_org_group',
+                            'additional_sql'
+                        ),
+                    }
+                ),
+            )
 
     def get_form(self, request, obj=None, **kwargs):
         if not obj:

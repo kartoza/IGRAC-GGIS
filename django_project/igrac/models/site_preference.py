@@ -60,7 +60,7 @@ class SitePreference(Preferences):
                        dem_elevation,
                        dem_elevation_unit
                 from {table}
-                where organisation_id IN ({organisations})
+                where organisation_id IN ({organisations}) {additional_sql}
                 order by created_at DESC
                 """
     )

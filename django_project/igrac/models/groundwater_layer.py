@@ -1,3 +1,5 @@
+import xml.etree.ElementTree as ET
+
 from django.contrib.gis.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.db.models.signals import post_delete
@@ -28,6 +30,13 @@ class GroundwaterLayer(models.Model):
             'will be used to filter the well data.'
         )
     )
+    additional_sql = models.TextField(
+        blank=True,
+        help_text=(
+            'Additional sql that will be added to the sql '
+            'that will be used to filter the well data.'
+        )
+    )
 
     def __str__(self):
         return self.layer.__str__()
@@ -45,10 +54,12 @@ class GroundwaterLayer(models.Model):
         layer.featureinfo_custom_template = target_layer.featureinfo_custom_template
         layer.save()
 
-    def update_sql(self, tree):
-        """Return sql."""
+    @property
+    def all_organisations(self):
+        """Return all organisations from organisations and organisation_groups.
+
+        """
         from gwml2.models import OrganisationGroup, Organisation
-        pref = SitePreference.objects.first()
         organisations = []
         if self.organisations:
             organisations += [
@@ -62,18 +73,28 @@ class GroundwaterLayer(models.Model):
                 f'{organisation.pk}' for organisation in
                 group.organisations.all()
             ]
+        return organisations
+
+    @staticmethod
+    def update_sql(
+            tree: ET, organisations: list[int], additional_sql: str) -> ET:
+        """Return sql."""
+        pref = SitePreference.objects.first()
+        if additional_sql:
+            additional_sql = 'AND ' + additional_sql + ''
+        else:
+            additional_sql = ''
         data = {
             "table": 'mv_well',
-            "organisations": ','.join(organisations)
+            "organisations": ','.join(organisations),
+            "additional_sql": additional_sql
         }
         sql = pref.well_and_monitoring_data_layer_sql.format(**data)
         tree.find('metadata/entry/virtualTable/sql').text = sql
         return tree
 
-    def update_layer(self):
+    def update_layer(self, organisations: list, additional_sql: str):
         """Update layer."""
-        import xml.etree.ElementTree as ET
-
         import requests
         from django.core.management import call_command
 
@@ -101,7 +122,9 @@ class GroundwaterLayer(models.Model):
 
         # Update xml to new data
         tree = ET.ElementTree(ET.fromstring(xml))
-        tree = self.update_sql(tree)
+        tree = GroundwaterLayer.update_sql(
+            tree, organisations, additional_sql
+        )
 
         # Change xml to string
         xml = ET.tostring(

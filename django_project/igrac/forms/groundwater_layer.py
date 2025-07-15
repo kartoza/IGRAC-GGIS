@@ -95,9 +95,10 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
         instance.save()
         return instance
 
-    def update_sql(self, tree):
-        """Return sql."""
-        pref = SitePreference.objects.first()
+    @property
+    def all_organisations(self):
+        """Return all organisations from organisations and organisation_groups.
+        """
         organisations = [
             f'{organisation.pk}' for organisation in
             self.cleaned_data['organisations']
@@ -107,12 +108,7 @@ class _BaseGroundwaterLayerForm(forms.ModelForm):
                 f'{organisation.pk}' for organisation in
                 group.organisations.all()
             ]
-        data = {
-            "table": 'mv_well',
-            "organisations": ','.join(organisations)
-        }
-        sql = pref.well_and_monitoring_data_layer_sql.format(**data)
-        tree.find('metadata/entry/virtualTable/sql').text = sql
+        return organisations
 
 
 class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
@@ -211,7 +207,11 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
             'metadata/entry/virtualTable/name').text = target_layer_name
         tree.find('title').text = name
 
-        self.update_sql(tree)
+        GroundwaterLayer.update_sql(
+            tree,
+            organisations=self.all_organisations,
+            additional_sql=self.cleaned_data['additional_sql']
+        )
 
         # Change xml to sting
         xml = ET.tostring(
@@ -255,4 +255,7 @@ class EditGroundwaterLayerForm(_BaseGroundwaterLayerForm):
 
     def run(self):
         """Run it for duplication data."""
-        return self.instance.update_layer()
+        return self.instance.update_layer(
+            organisations=self.all_organisations,
+            additional_sql=self.cleaned_data['additional_sql']
+        )
