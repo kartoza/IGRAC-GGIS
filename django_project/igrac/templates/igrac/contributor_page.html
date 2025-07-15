@@ -13,62 +13,60 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <main class="content">
-        <div class="contributor-list">
-            {% if organisations %}
-                {% for organisation in organisations %}
-                    <div class="contributor-card">
-                        <div>
-                            <b>{{ organisation.name }}</b>
-                        </div>
-                        <br/>
-                        {% if organisation.description %}
-                            <div>{{ organisation.description }}</div>
-                            <br/>
-                        {% endif %}
-                        {# links #}
-                        {% if organisation.links %}
-                            <div>
-                                <b>Relevant links:</b>
-                                {% for link in organisation.links %}
-                                    <div>
-                                        <a href="{{ link.url }}"
-                                           target="_blank">
-                                            {{ link.name }}
-                                        </a>
-                                    </div>
-                                {% endfor %}
-                                <br/>
-                            </div>
-                        {% endif %}
-                        {% if organisation.data_types %}
-                            <div>
-                                <b>Data type: </b>{{ organisation.data_types }}
-                            </div>
-                        {% endif %}
-                        {% if organisation.time_range %}
-                            <div>
-                                <b>Time range: </b>
-                                {{ organisation.time_range }}
-                            </div>
-                        {% endif %}
-                        {% if organisation.license_data %}
-                            <div>
-                                <b>License: </b>
-                                <a href="{{ organisation.license_data.url }}"
-                                   target="_blank">
-                                    {{ organisation.license_data.name }}
-                                </a>
-                            </div>
-                        {% endif %}
+<main class="content">
+    <div class="contributor-list">
+        {% if organisations %}
+            {% for organisation in organisations %}
+                <div class="contributor-card">
+                    <div>
+                        <b>{{ organisation.name }}</b>
                     </div>
-                {% endfor %}
-            {% else %}
-                <p>No contributor found.</p>
-            {% endif %}
-        </div>
-    </main>
-</div>
+                    <br/>
+                    {% if organisation.description %}
+                        <div>{{ organisation.description }}</div>
+                        <br/>
+                    {% endif %}
+                    {# links #}
+                    {% if organisation.links %}
+                        <div>
+                            <b>Relevant links:</b>
+                            {% for link in organisation.links %}
+                                <div>
+                                    <a href="{{ link.url }}"
+                                       target="_blank">
+                                        {{ link.name }}
+                                    </a>
+                                </div>
+                            {% endfor %}
+                            <br/>
+                        </div>
+                    {% endif %}
+                    {% if organisation.data_types %}
+                        <div>
+                            <b>Data type: </b>{{ organisation.data_types }}
+                        </div>
+                    {% endif %}
+                    {% if organisation.time_range %}
+                        <div>
+                            <b>Time range: </b>
+                            {{ organisation.time_range }}
+                        </div>
+                    {% endif %}
+                    {% if organisation.license_data %}
+                        <div>
+                            <b>License: </b>
+                            <a href="{{ organisation.license_data.url }}"
+                               target="_blank">
+                                {{ organisation.license_data.name }}
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No contributor found.</p>
+        {% endif %}
+    </div>
+</main>
 </body>
 </html>
