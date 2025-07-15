@@ -10,6 +10,7 @@ from wagtailautocomplete.urls.admin import (
     urlpatterns as autocomplete_wagtail_urls
 )
 
+from igrac.api_views.contributor import GroundwaterResourceContributorPage
 from igrac.api_views.featured import FeaturedMaps
 from igrac.api_views.wagtail_page import (
     PageContent, GeonodeBaseResourcePageContent
@@ -52,6 +53,12 @@ urlpatterns = [
     ),
     re_path(r'^groundwater/', include('gwml2.urls')),
 
+    # Contributors
+    re_path(
+        r'^contributors/resource/(?P<id>[^/]+)/(?P<resource_type>[\w\+%_& ]+)/',
+        view=GroundwaterResourceContributorPage.as_view(),
+        name='contributor_geonode_resource'
+    ),
     # Wagtail
     re_path(
         r'^cms/resource/(?P<id>[^/]+)/(?P<resource_type>[\w\+%_& ]+)/body/',

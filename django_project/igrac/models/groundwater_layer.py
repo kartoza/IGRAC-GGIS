@@ -1,6 +1,8 @@
+import xml.etree.ElementTree as ET
+
 from django.contrib.gis.db import models
 from django.contrib.postgres.fields import ArrayField
-from django.db.models.signals import post_delete, post_save
+from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
 from geonode.layers.models import Dataset
@@ -13,12 +15,26 @@ class GroundwaterLayer(models.Model):
         Dataset,
         on_delete=models.CASCADE
     )
-    organisations = ArrayField(models.IntegerField())
-    is_ggmn_layer = models.BooleanField(
-        default=False,
+    organisations = ArrayField(
+        models.IntegerField(),
         help_text=(
-            'Indicate that this layer is ggmn layer. '
-            'It will be used to construct the data to be downloaded.'
+            'Organisations for this layer that '
+            'will be used to filter the well data.'
+        )
+    )
+    organisation_groups = ArrayField(
+        models.IntegerField(),
+        default=[],
+        help_text=(
+            'Organisations group for this layer that '
+            'will be used to filter the well data.'
+        )
+    )
+    additional_sql = models.TextField(
+        blank=True,
+        help_text=(
+            'Additional sql that will be added to the sql '
+            'that will be used to filter the well data.'
         )
     )
 
@@ -32,12 +48,104 @@ class GroundwaterLayer(models.Model):
     def assign_template(self, target_layer=None):
         """Assign template."""
         pref = SitePreference.objects.first()
-        if not target_layer:
-            target_layer = pref.ggmn_layer
+        target_layer = pref.well_and_monitoring_data_layer
         layer = self.layer
         layer.use_featureinfo_custom_template = target_layer.use_featureinfo_custom_template
         layer.featureinfo_custom_template = target_layer.featureinfo_custom_template
         layer.save()
+
+    @property
+    def all_organisations(self):
+        """Return all organisations from organisations and organisation_groups.
+
+        """
+        from gwml2.models import OrganisationGroup, Organisation
+        organisations = []
+        if self.organisations:
+            organisations += [
+                f'{organisation.pk}' for organisation in
+                Organisation.objects.filter(id__in=self.organisations)
+            ]
+        for group in OrganisationGroup.objects.filter(
+                id__in=self.organisation_groups
+        ):
+            organisations += [
+                f'{organisation.pk}' for organisation in
+                group.organisations.all()
+            ]
+        return organisations
+
+    @staticmethod
+    def update_sql(
+            tree: ET, organisations: list[int], additional_sql: str) -> ET:
+        """Return sql."""
+        pref = SitePreference.objects.first()
+        if additional_sql:
+            additional_sql = 'AND ' + additional_sql + ''
+        else:
+            additional_sql = ''
+        data = {
+            "table": 'mv_well',
+            "organisations": ','.join(organisations),
+            "additional_sql": additional_sql
+        }
+        sql = pref.well_and_monitoring_data_layer_sql.format(**data)
+        tree.find('metadata/entry/virtualTable/sql').text = sql
+        return tree
+
+    def update_layer(self, organisations: list, additional_sql: str):
+        """Update layer."""
+        import requests
+        from django.core.management import call_command
+
+        from geonode.geoserver.helpers import gs_catalog
+
+        layer = None
+        if self.layer:
+            layer = gs_catalog.get_layer(self.layer.__str__())
+        if not layer:
+            raise Exception(
+                f'{self.layer.name} does not found. Please contact admin.'
+            )
+
+        # Fetch the xml
+        workspace = layer.resource.workspace.name
+        store = layer.resource.store.name
+        upload_url = layer.resource.href
+
+        # Fetch xml data
+        xml_url = layer.resource.href
+        xml = requests.get(
+            xml_url,
+            auth=(gs_catalog.username, gs_catalog.password)
+        ).content
+
+        # Update xml to new data
+        tree = ET.ElementTree(ET.fromstring(xml))
+        tree = GroundwaterLayer.update_sql(
+            tree, organisations, additional_sql
+        )
+
+        # Change xml to string
+        xml = ET.tostring(
+            tree.getroot(), encoding='utf8', method='xml'
+        )
+
+        # POST data
+        headers = {"content-type": "text/xml"}
+        r = requests.put(
+            upload_url,
+            data=xml,
+            auth=(gs_catalog.username, gs_catalog.password),
+            headers=headers,
+        )
+
+        # Need to handle the response
+        if r.status_code == 200:
+            call_command('updatelayers', filter=layer.name)
+            return self.layer
+        else:
+            raise Exception(r.content)
 
 
 @receiver(post_delete, sender=GroundwaterLayer)
@@ -46,18 +154,3 @@ def groundwater_layer_deleted(
 ):
     if instance.layer:
         instance.layer.delete()
-
-
-@receiver(post_save, sender=GroundwaterLayer)
-def groundwater_layer_saved(
-        sender, instance: GroundwaterLayer, using, **kwargs
-):
-    from gwml2.tasks.data_file_cache.country_recache import (
-        generate_data_all_country_cache
-    )
-    from gwml2.tasks.data_file_cache.organisation_cache import (
-        generate_data_all_organisation_cache
-    )
-    if instance.is_ggmn_layer:
-        generate_data_all_country_cache.delay()
-        generate_data_all_organisation_cache.delay()
