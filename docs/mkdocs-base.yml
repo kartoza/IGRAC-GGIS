@@ -49,3 +49,6 @@ nav:
       - administration/index.md
       - Geonode Popup: administration/geonode_popup.md
       - Contributors: administration/contributors.md
+  - Harvester:
+      - harvester/index.md
+      - SGU (Geological Survey of Sweden): harvester/sgu.md
