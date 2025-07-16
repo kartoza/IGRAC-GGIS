@@ -48,3 +48,4 @@ nav:
   - Administration:
       - administration/index.md
       - Geonode Popup: administration/geonode_popup.md
+      - Contributors: administration/contributors.md
