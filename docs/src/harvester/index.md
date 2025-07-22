@@ -15,3 +15,4 @@ This section explains how the **Harvester** system works.
 The Harvester is responsible for pulling well data from third-party sources.
 
 - [SGU (Sweden)](./sgu.md): https://www.sgu.se/
+- [Hubeau (France)](./hubeau.md): https://hubeau.eaufrance.fr/api/v1/
