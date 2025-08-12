@@ -727,3 +727,7 @@ form .row {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
+
+#fg-viewportFilter-button {
+    height: 30px;
+}
