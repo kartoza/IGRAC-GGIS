@@ -143,7 +143,7 @@ if MAPSTORE_BASELAYERS:
 if 'gwml2' in INSTALLED_APPS:
     CELERY_BEAT_SCHEDULE['run_all_harvester'] = {
         'task': 'gwml2.tasks.harvester.run_all_harvester',
-        'schedule': crontab(minute=0, hour='*/3'),
+        'schedule': crontab(minute="0", hour='*/3'),
     }
     CELERY_BEAT_SCHEDULE['clean_download_file'] = {
         'task': 'gwml2.tasks.clean.clean_download_file',
@@ -152,6 +152,12 @@ if 'gwml2' in INSTALLED_APPS:
     CELERY_BEAT_SCHEDULE['resume_all_uploader'] = {
         'task': 'gwml2.tasks.upload_session.resume_all_uploader',
         'schedule': crontab(minute='*/5'),
+    }
+    CELERY_BEAT_SCHEDULE['well_quality_control'] = {
+        'task': 'gwml2.tasks.well.run_well_quality_control',
+        'schedule': crontab(
+            minute="0", hour="0", day_of_month="1", month_of_year="1"
+        ),
     }
 
 GWML2_FOLDER = os.getenv(
