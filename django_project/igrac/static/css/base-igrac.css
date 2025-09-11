@@ -731,3 +731,16 @@ form .row {
 #fg-viewportFilter-button {
     height: 30px;
 }
+
+.msgapi .gn-embed .ms-cascade-story .ms-section .ms-geo-carousel,
+.msgapi .ms-cascade-story .ms-section .ms-geo-carousel {
+    box-shadow: unset;
+    margin-bottom: 0;
+}
+
+.msgapi .gn-embed .ms-geostory-navigation .ms-geostory-navigation-bar {
+    height: fit-content;
+}
+.msgapi .gn-embed .ms-geostory-navigation .ms-horizontal-menu {
+    min-height: 30px;
+}
