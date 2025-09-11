@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load base_tags %}
+{% load client_lib_tags %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'css/default.css' %}?{{ IGRAC_VERSION.name }}"
+          rel="stylesheet"/>
+    <link href="{% static 'css/base-igrac.css' %}?{{ IGRAC_VERSION.name }}"
+          rel="stylesheet"/>
+    <style>
+        #paneltbar {
+            margin-top: 90px !important;
+        }
+    </style>
+
+    {% get_geoapp_embed %}
+{% endblock %}
