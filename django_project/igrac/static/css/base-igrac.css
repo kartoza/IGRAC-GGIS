@@ -744,3 +744,11 @@ form .row {
 .msgapi .gn-embed .ms-geostory-navigation .ms-horizontal-menu {
     min-height: 30px;
 }
+.gn-menu-list .dropdown-menu a[download] {
+  background-color: unset !important;
+  border: unset !important;
+  text-align: left;
+}
+.gn-menu-list .dropdown-menu a[download]:hover {
+    background-color: #ff6b0d !important;
+}

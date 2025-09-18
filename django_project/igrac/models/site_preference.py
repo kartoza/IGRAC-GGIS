@@ -1,5 +1,6 @@
 from importlib.metadata import version, PackageNotFoundError
 
+from django.conf import settings
 from django.db import models
 from preferences.models import Preferences
 
@@ -130,3 +131,8 @@ class SitePreference(Preferences):
             'drilling_and_construction.xlsx',
             'drilling and construction'
         )
+
+    @property
+    def google_analytic_key(self):
+        """Return google analytic key."""
+        return settings.GOOGLE_ANALYTIC_KEY

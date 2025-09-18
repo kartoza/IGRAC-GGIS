@@ -29,8 +29,8 @@ services:
     <<: *default-common-django
     entrypoint: [ "/entrypoint.sh" ]
     command: 'uwsgi --ini /uwsgi.conf'
-#    volumes:
-#      - ./volumes/statics:/home/web/statics:rw
+    volumes:
+      - ./volumes/statics:/home/web/statics:rw
     ports:
       - "3000:8080"
 
