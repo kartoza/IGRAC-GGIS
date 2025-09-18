@@ -89,7 +89,7 @@ services:
     image: kartoza/postgis:16
     environment:
       # database info, ${variables} are read from .env
-      - POSTGRES_DBNAME=${GEONODE_DATABASE},${GEONODE_GEODATABASE},groundwater
+      - POSTGRES_DBNAME=${GEONODE_DATABASE},${GEONODE_GEODATABASE},groundwater,metabase
       - POSTGRES_USER=${GEONODE_DATABASE_USER}
       - POSTGRES_PASSWORD=${GEONODE_DATABASE_PASSWORD}
     volumes:
@@ -126,6 +126,7 @@ services:
       - geoserver
       - db
       - celery
+      - metabase
     ports:
       # for django test server
       - "3002:8080"
@@ -162,6 +163,21 @@ services:
       - MINIO_ROOT_USER=minio-user
       - MINIO_ROOT_PASSWORD=minio-password
       - MINIO_DEFAULT_BUCKETS=ggis
+
+  metabase:
+    image: metabase/metabase:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - MB_DB_TYPE=postgres
+      - MB_DB_DBNAME=metabase
+      - MB_DB_HOST=db
+      - MB_DB_PORT=5432
+      - MB_DB_USER=${GEONODE_DATABASE_USER}
+      - MB_DB_PASS=${GEONODE_DATABASE_PASSWORD}
+    depends_on:
+      - db
+    restart: always
 
 volumes:
   database:
