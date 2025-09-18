@@ -11,5 +11,6 @@ class CustomPreferencesAdmin(PreferencesAdmin):
     readonly_fields = (
         'geonode_version', 'geonode_mapstore_client_version',
         'igrac_version', 'igrac_commit', 'gwml2_version',
+        'google_analytic_key'
 
     )
