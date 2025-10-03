@@ -190,3 +190,6 @@ MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP = set(
     + ast.literal_eval(
         os.getenv("MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP ", "[]"))
 )
+
+# DEEP_PL API KEY
+DEEPL_API_KEY = os.getenv('DEEPL_API_KEY', None)
