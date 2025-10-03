@@ -152,7 +152,7 @@ services:
       - "5001:80"
 
   minio:
-    image: docker.io/bitnami/minio:latest
+    image: bitnamilegacy/minio:latest
     ports:
       - '9000:9000'
       - '9001:9001'
