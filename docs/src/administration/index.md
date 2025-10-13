@@ -17,3 +17,4 @@ This section explains specific IGRAC tasks:
   such as datasets, maps, documents, or geostories.
 - [Contributors](./contributors.md): Explanation of the contributors feature
   and how to configure it.
+- [Cache Management](./cache.md): Overview of the IGRAC cache system, including cache types, Django Admin access, and manual cache generation.
