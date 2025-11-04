@@ -139,6 +139,17 @@ if MAPSTORE_BASELAYERS:
         "thumbURL": "%sstatic/img/positron.png" % SITEURL,
         "visibility": False
     })
+    MAPSTORE_BASELAYERS.insert(len(MAPSTORE_BASELAYERS) - 1, {
+        "type": "wms",
+        "title": "Natural Earth",
+        "format": "image/jpeg",
+        "id": "NaturalEarth",
+        "name": "geonode:NE1_HR_LC_SR_W",
+        "url": "https://ggis.un-igrac.org/geoserver/wms",
+        "group": "background",
+        "thumbURL": f"https://www.naturalearthdata.com/wp-content/uploads/2009/09/ne1_lc_sr_h20.jpg",
+        "visibility": False,
+    })
 
 if 'gwml2' in INSTALLED_APPS:
     CELERY_BEAT_SCHEDULE['run_all_harvester'] = {
