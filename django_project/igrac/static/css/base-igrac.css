@@ -752,3 +752,8 @@ form .row {
 .gn-menu-list .dropdown-menu a[download]:hover {
     background-color: #ff6b0d !important;
 }
+
+.ms-template-viewer .row {
+    padding: 3px 10px;
+    border-bottom: 1px solid #aaaaaa;
+}
