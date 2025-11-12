@@ -27,7 +27,8 @@ def deepl_translater(text, source_lang=None, target_lang="EN"):
 
     data = {
         "text": text,
-        "target_lang": target_lang
+        "target_lang": target_lang,
+        "model_type": "quality_optimized"
     }
     if source_lang:
         data["source_lang"] = source_lang
