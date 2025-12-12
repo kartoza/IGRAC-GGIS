@@ -34,9 +34,7 @@ class GroundwaterResourceContributorPage(APIView):
             )
 
         organisations = []
-        for layer in GroundwaterLayer.objects.filter(
-                layer__in=dataset_ids
-        ):
+        for layer in GroundwaterLayer.objects.filter(layer__in=dataset_ids):
             organisations += layer.all_organisations
 
         if not organisations:
@@ -50,9 +48,8 @@ class GroundwaterResourceContributorPage(APIView):
             'igrac/contributor_page.html',
             {
                 'organisations': OrganisationContributorSerializer(
-                    Organisation.objects.filter(
-                        id__in=organisations
-                    ).order_by('name'),
+                    Organisation.objects.filter(id__in=organisations).filter(
+                        active=True).order_by('name'),
                     many=True
                 ).data,
             }
