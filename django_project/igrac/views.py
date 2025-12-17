@@ -14,6 +14,10 @@ from igrac.models.map_slug import MapSlugMapping
 from igrac.models.registration_page import RegistrationPage
 from igrac.utilities import get_related_documents
 
+import jwt
+import os
+import time
+
 
 class RegistrationNotFound(Exception):
     pass
@@ -21,6 +25,23 @@ class RegistrationNotFound(Exception):
 
 class RegistrationNotValid(Exception):
     pass
+
+
+class DashboardView(TemplateView):
+    template_name = 'metabase_dashboard.html'
+    def get_context_data(self, **kwargs):
+        METABASE_SITE_URL = os.getenv("METABASE_SITE_URL")
+        METABASE_SECRET_KEY = os.getenv("METABASE_SECRET_KEY")
+        context = super().get_context_data(**kwargs)
+        dashboard_id = kwargs.get('dashboard', 3)
+        payload = {
+            "resource": {"dashboard": dashboard_id},
+            "params": {},
+            "exp": round(time.time()) + (10 * 60) # 10 minutes expiration
+        }
+        token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
+        context['iframe_url'] = f"{METABASE_SITE_URL}/embed/dashboard/{token}#bordered=true&titled=true"
+        return context
 
 
 class CustomSignupView(SignupView):
