@@ -2,7 +2,7 @@
 FROM geonode/geonode:latest-ubuntu-22.04 AS prod
 MAINTAINER Irwan Fathurrahman <irwan@kartoza.com>
 
-ARG CACHE_BUSTER=13.01.2026
+ARG CACHE_BUSTER=14.01.2026
 
 # Set the locale
 RUN locale-gen C.UTF-8
