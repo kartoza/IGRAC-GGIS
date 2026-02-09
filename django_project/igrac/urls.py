@@ -21,7 +21,7 @@ from igrac.g3p import (
     G3PTimeseriesChartIframe
 )
 from igrac.views import (
-    MapSlugMetadataDetail, MapMetadataDetail, CustomSignupView
+    MapSlugMetadataDetail, MapMetadataDetail, CustomSignupView, DashboardView
 )
 from .views import map_view_with_slug
 
@@ -35,6 +35,11 @@ urlpatterns = [
         r'^maps/(?P<id>[^/]+)/metadata_detail/article$',
         MapMetadataDetail.as_view(),
         name='map_view_metadata_detail'
+    ),
+    re_path(
+        r'^metabase_dashboard/(?P<dashboard>[^/]+)/$',
+        DashboardView.as_view(),
+        name='dashboard'
     ),
     re_path(
         r'^view/(?P<slug>[^/]+)/$',
