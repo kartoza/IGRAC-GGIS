@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install --no-cache-dir mkdocs-material mkdocs-video qrcode
+          pip install --no-cache-dir mkdocs-material mkdocs-video qrcode mkdocstrings[python] mkdocs-redirects
 
 
       - name: Deploy to GitHub Pages
