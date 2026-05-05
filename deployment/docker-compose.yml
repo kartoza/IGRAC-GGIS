@@ -127,6 +127,7 @@ services:
       - db
       - celery
       - metabase
+      - istsos
     ports:
       # for django test server
       - "3002:8080"
