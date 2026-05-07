@@ -1,26 +1,39 @@
-name: Publish docs via GitHub Pages
+name: 📖 Build MKDocs And Publish To Github Pages
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
     name: Deploy docs
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
+      - name: Checkout main branch
         uses: actions/checkout@v4
-        
-      - name: Create Mkdocs Config 🚀
-        working-directory: ./docs
-        run: ./create-mkdocs-html-config.sh   
-        
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install --no-cache-dir mkdocs-material mkdocs-video qrcode mkdocstrings[python] mkdocs-redirects
+            pip install --upgrade pip
+            pip install --no-cache-dir -r docs/requirements.txt
 
+      - name: Verify installed packages
+        run: |
+          pip list | grep mkdocs || echo "MkDocs is NOT installed!"
+          pip list | grep mkdocs-video || echo "mkdocs-video is NOT installed!"
+
+      - name: Create MkDocs Config 🚀
+        working-directory: ./docs
+        run: ./create-mkdocs-html-config.sh
+
+      - name: Build MkDocs Site (Explicit Config Path)
+        run: mkdocs build --clean --config-file ./docs/mkdocs.yml
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
