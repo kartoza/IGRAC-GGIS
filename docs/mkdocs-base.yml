@@ -61,4 +61,18 @@ nav:
       - Cache Management: administration/cache.md
   - Harvester:
       - harvester/index.md
-      - SGU (Geological Survey of Sweden): harvester/sgu.md
+      - SGU (Sweden): harvester/sgu.md
+      - Hubeau (France): harvester/hubeau.md
+      - CIDA / USGS (USA): harvester/cida.md
+      - eHYD (Austria): harvester/ehyd.md
+      - SNET (El Salvador): harvester/el_salvador.md
+      - Lower Saxony (Germany): harvester/lower_saxony.md
+      - Miljødirektoratet (Norway): harvester/miljodirektoratet.md
+      - HydAPI / NVE (Norway): harvester/hydapi.md
+      - BRO (Netherlands): harvester/netherlands.md
+      - RWB (Rwanda): harvester/rwanda.md
+      - Keskkonnaportaal (Estonia): harvester/estonia.md
+      - Azul BDH (Argentina): harvester/azul_bdh.md
+      - EPA Hydronet (Ireland): harvester/epawebapp.md
+      - GIN GW-Info (International): harvester/gin_gw_info.md
+      - GNS CRI (New Zealand): harvester/gns_cri.md
