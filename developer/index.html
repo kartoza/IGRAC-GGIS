@@ -9,32 +9,32 @@
         <meta name="description" content="Project technical and user documentation.">
       
       
-        <meta name="author" content="Kartoza">
+        <meta name="author" content="Irwan Fathurrahman">
       
       
       
-        <link rel="prev" href="../contributors/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../../harvester/">
+        <link rel="next" href="project_structure/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/logo.png">
+      <link rel="icon" href="../assets/logo.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Documentation - The Global Groundwater Information System (GGIS)</title>
+        <title>Developer Documentation - The Global Groundwater Information System (GGIS)</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,11 +53,11 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../../css/extra.css">
+      <link rel="stylesheet" href="../css/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cache-management" class="md-skip">
+        <a href="#developer-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -98,9 +98,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="The Global Groundwater Information System (GGIS)" class="md-header__button md-logo" aria-label="The Global Groundwater Information System (GGIS)" data-md-component="logo">
+    <a href=".." title="The Global Groundwater Information System (GGIS)" class="md-header__button md-logo" aria-label="The Global Groundwater Information System (GGIS)" data-md-component="logo">
       
-  <img src="../../img/un-igrac-white.svg" alt="logo">
+  <img src="../img/un-igrac-white.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Documentation
+              Developer Documentation
             
           </span>
         </div>
@@ -229,7 +229,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href=".." class="md-tabs__link">
         
   
   
@@ -246,11 +246,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../developer/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -268,13 +270,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../administration/" class="md-tabs__link">
           
   
   
@@ -296,7 +296,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../harvester/" class="md-tabs__link">
+        <a href="../harvester/" class="md-tabs__link">
           
   
   
@@ -338,9 +338,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="The Global Groundwater Information System (GGIS)" class="md-nav__button md-logo" aria-label="The Global Groundwater Information System (GGIS)" data-md-component="logo">
+    <a href=".." title="The Global Groundwater Information System (GGIS)" class="md-nav__button md-logo" aria-label="The Global Groundwater Information System (GGIS)" data-md-component="logo">
       
-  <img src="../../img/un-igrac-white.svg" alt="logo">
+  <img src="../img/un-igrac-white.svg" alt="logo">
 
     </a>
     The Global Groundwater Information System (GGIS)
@@ -367,7 +367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -391,6 +391,8 @@
       
   
   
+    
+  
   
   
     
@@ -418,18 +420,21 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../developer/" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   
@@ -447,13 +452,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link md-nav__link--active" for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -473,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developer/project_structure/" class="md-nav__link">
+      <a href="project_structure/" class="md-nav__link">
         
   
   
@@ -501,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developer/deployment/" class="md-nav__link">
+      <a href="deployment/" class="md-nav__link">
         
   
   
@@ -529,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developer/geonode/" class="md-nav__link">
+      <a href="geonode/" class="md-nav__link">
         
   
   
@@ -557,7 +562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developer/gwml2/" class="md-nav__link">
+      <a href="gwml2/" class="md-nav__link">
         
   
   
@@ -585,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developer/igrac/" class="md-nav__link">
+      <a href="igrac/" class="md-nav__link">
         
   
   
@@ -613,7 +618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developer/igrac_api_and_istsos/" class="md-nav__link">
+      <a href="igrac_api_and_istsos/" class="md-nav__link">
         
   
   
@@ -641,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developer/documentation/" class="md-nav__link">
+      <a href="documentation/" class="md-nav__link">
         
   
   
@@ -673,8 +678,6 @@
       
   
   
-    
-  
   
   
     
@@ -694,21 +697,18 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../administration/" class="md-nav__link ">
               
   
   
@@ -726,13 +726,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -752,7 +752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../geonode_popup/" class="md-nav__link">
+      <a href="../administration/geonode_popup/" class="md-nav__link">
         
   
   
@@ -780,7 +780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contributors/" class="md-nav__link">
+      <a href="../administration/contributors/" class="md-nav__link">
         
   
   
@@ -805,37 +805,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Cache Management
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../administration/cache/" class="md-nav__link">
         
   
   
@@ -851,98 +824,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cache-types-and-purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cache Types and Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#django-admin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Django Admin
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Django Admin">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#well-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Well Cache
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#country-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Country Cache
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#organisation-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Organisation Cache
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1013,7 +894,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../harvester/" class="md-nav__link ">
+            <a href="../harvester/" class="md-nav__link ">
               
   
   
@@ -1057,7 +938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/sgu/" class="md-nav__link">
+      <a href="../harvester/sgu/" class="md-nav__link">
         
   
   
@@ -1085,7 +966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/hubeau/" class="md-nav__link">
+      <a href="../harvester/hubeau/" class="md-nav__link">
         
   
   
@@ -1113,7 +994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/cida/" class="md-nav__link">
+      <a href="../harvester/cida/" class="md-nav__link">
         
   
   
@@ -1141,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/ehyd/" class="md-nav__link">
+      <a href="../harvester/ehyd/" class="md-nav__link">
         
   
   
@@ -1169,7 +1050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/el_salvador/" class="md-nav__link">
+      <a href="../harvester/el_salvador/" class="md-nav__link">
         
   
   
@@ -1197,7 +1078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/lower_saxony/" class="md-nav__link">
+      <a href="../harvester/lower_saxony/" class="md-nav__link">
         
   
   
@@ -1225,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/miljodirektoratet/" class="md-nav__link">
+      <a href="../harvester/miljodirektoratet/" class="md-nav__link">
         
   
   
@@ -1253,7 +1134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/hydapi/" class="md-nav__link">
+      <a href="../harvester/hydapi/" class="md-nav__link">
         
   
   
@@ -1281,7 +1162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/netherlands/" class="md-nav__link">
+      <a href="../harvester/netherlands/" class="md-nav__link">
         
   
   
@@ -1309,7 +1190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/rwanda/" class="md-nav__link">
+      <a href="../harvester/rwanda/" class="md-nav__link">
         
   
   
@@ -1337,7 +1218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/estonia/" class="md-nav__link">
+      <a href="../harvester/estonia/" class="md-nav__link">
         
   
   
@@ -1365,7 +1246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/azul_bdh/" class="md-nav__link">
+      <a href="../harvester/azul_bdh/" class="md-nav__link">
         
   
   
@@ -1393,7 +1274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/epawebapp/" class="md-nav__link">
+      <a href="../harvester/epawebapp/" class="md-nav__link">
         
   
   
@@ -1421,7 +1302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/gin_gw_info/" class="md-nav__link">
+      <a href="../harvester/gin_gw_info/" class="md-nav__link">
         
   
   
@@ -1449,7 +1330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../harvester/gns_cri/" class="md-nav__link">
+      <a href="../harvester/gns_cri/" class="md-nav__link">
         
   
   
@@ -1504,74 +1385,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#contents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        Contents
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cache-types-and-purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cache Types and Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#django-admin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Django Admin
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Django Admin">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#well-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Well Cache
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#country-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Country Cache
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#organisation-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Organisation Cache
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1595,161 +1415,21 @@
   
 
 
-<div><h1 id="cache-management">Cache Management<a class="headerlink" href="#cache-management" title="Permanent link">¶</a></h1>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
-<p>The IGRAC system uses several cache types to improve performance and reduce load times. Caching allows data such as wells, countries, and organisations to be served quickly to users.</p>
-<p>However, cache generation can be time-consuming and may occasionally fail, leading to outdated or missing data. To address this, clients can manually trigger cache generation directly via the Django Admin interface.</p>
-<p><br></p>
-<h2 id="cache-types-and-purpose">Cache Types and Purpose<a class="headerlink" href="#cache-types-and-purpose" title="Permanent link">¶</a></h2>
-<p><br></p>
-<table>
-<thead>
-<tr>
-<th><strong>Cache Category</strong></th>
-<th><strong>Cache Type</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Well Cache</strong></td>
-<td><em>Measurement Cache</em></td>
-<td>Stores measurement data for generating well graphs quickly.</td>
-</tr>
-<tr>
-<td></td>
-<td><em>Data Cache</em></td>
-<td>Contains downloadable well data files (e.g., <code>.ods</code> format).</td>
-</tr>
-<tr>
-<td></td>
-<td><em>Metadata Cache</em></td>
-<td>Holds metadata such as the number of measurements, types of wells, and related summary information.</td>
-</tr>
-<tr>
-<td><strong>Country Cache</strong></td>
-<td><em>Data Cache</em></td>
-<td>Zipped file containing data cache of wells for a specific country.</td>
-</tr>
-<tr>
-<td><strong>Organisation Cache</strong></td>
-<td><em>Data Cache</em></td>
-<td>Zipped file containing data cache of wells for a specific organisation.</td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-<h2 id="django-admin">Django Admin<a class="headerlink" href="#django-admin" title="Permanent link">¶</a></h2>
-<p>All cache types can be viewed and managed through the <strong>Django Admin Interface</strong>.</p>
-<p>Cache generation can be triggered manually, allowing users to refresh their own data caches without waiting for automated background jobs or developer intervention.</p>
-<p><br></p>
-<h3 id="well-cache">Well Cache<a class="headerlink" href="#well-cache" title="Permanent link">¶</a></h3>
-<p><strong>URL:</strong> <a href="https://ggis.un-igrac.org/en-us/admin/gwml2/wellcacheindicator/">Well Cache Admin</a></p>
-<p><br></p>
-<p>Each well cache record includes:</p>
+<div><h1 id="developer-documentation">Developer Documentation<a class="headerlink" href="#developer-documentation" title="Permanent link">¶</a></h1>
+<p>GGIS is a groundwater information system built on top of <strong>GeoNode</strong>, extended with a dedicated
+well and monitoring data platform, a SOS API layer, and an automated harvester system.</p>
+<p>This section contains everything a developer needs to understand, run, and contribute to the project.</p>
+<hr>
+<h2 id="contents">Contents<a class="headerlink" href="#contents" title="Permanent link">¶</a></h2>
 <ul>
-<li>
-<p><strong><code>Time when measurement cache generated</code></strong></p>
-<p>Timestamp when the measurement cache was last created.</p>
-<p><br></p>
-</li>
-<li>
-<p><strong><code>Time when data cache generated</code></strong></p>
-<p>Timestamp when the data cache was last created.</p>
-<p><br></p>
-</li>
-<li>
-<p><strong><code>Time when metadata generated</code></strong></p>
-<p>Timestamp when the metadata cache was last created.</p>
-<p><br></p>
-</li>
-<li>
-<p><strong><code>Data cache information</code></strong></p>
-<p>Timestamp of the actual cache file creation, used to verify that all cache files are properly generated.</p>
-</li>
-</ul>
-<p><br></p>
-<p><img alt="Well Cache" src="../img/cache/cache-1.png"></p>
-<p><br></p>
-<p><strong>To generate a cache:</strong></p>
-<ol>
-<li>
-<p>Select one or more wells from the list.</p>
-</li>
-<li>
-<p>From the dropdown at the bottom-left, select <strong><code>Generate data cache</code></strong>.</p>
-</li>
-<li>
-<p>Click <strong>Go</strong>.</p>
-</li>
-</ol>
-<p><br></p>
-<p><img alt="Generate Well Cache" src="../img/cache/cache-2.png"></p>
-<p><br></p>
-<h3 id="country-cache">Country Cache<a class="headerlink" href="#country-cache" title="Permanent link">¶</a></h3>
-<p><strong>URL:</strong> <a href="https://ggis.un-igrac.org/en-us/admin/gwml2/country/">Country Cache Admin</a></p>
-<p><br></p>
-<p>Each country record includes:</p>
-<ul>
-<li>
-<p><strong><code>Time when data cache generated</code></strong></p>
-<p>Timestamp when the data cache was last created.</p>
-<p><br></p>
-</li>
-<li>
-<p><strong><code>Data cache information</code></strong></p>
-<p>Timestamp of the corresponding cache file creation.</p>
-</li>
-</ul>
-<p><br></p>
-<p><strong>To generate a cache:</strong></p>
-<ol>
-<li>
-<p>Select one or more countries from the list.</p>
-</li>
-<li>
-<p>From the dropdown at the bottom-left, select <strong><code>Generate data cache</code></strong>.</p>
-</li>
-<li>
-<p>Click <strong>Go</strong>.</p>
-</li>
-</ol>
-<p><br></p>
-<p><img alt="Generate Country Cache" src="../img/cache/cache-3.png"></p>
-<p><br></p>
-<h3 id="organisation-cache">Organisation Cache<a class="headerlink" href="#organisation-cache" title="Permanent link">¶</a></h3>
-<p><strong>URL:</strong> <a href="https://ggis.un-igrac.org/en-us/admin/gwml2/country/">Organisation Cache Admin</a></p>
-<p><br></p>
-<p>Each organisation record includes:</p>
-<ul>
-<li>
-<p><strong><code>Time when data cache generated</code></strong></p>
-<p>Timestamp when the data cache was last created.</p>
-<p><br></p>
-</li>
-<li>
-<p><strong><code>Data cache information</code></strong></p>
-<p>Timestamp of the cache file creation.</p>
-</li>
-</ul>
-<p><br></p>
-<p><strong>To generate a cache:</strong></p>
-<ol>
-<li>
-<p>Select one or more organisations from the list.</p>
-</li>
-<li>
-<p>From the dropdown at the bottom-left, select <strong><code>Generate data cache</code></strong>.</p>
-</li>
-<li>
-<p>Click <strong>Go</strong>.</p>
-</li>
-</ol>
-<p><br></p>
-<p><img alt="Generate Organisation Cache" src="../img/cache/cache-4.png"></p>
-<p><br></p>
-<p>The IGRAC cache system improves data delivery efficiency by pre-generating downloadable files and metadata. Manual cache regeneration empowers clients to refresh outdated caches, ensuring up-to-date and reliable data access without waiting for scheduled background updates.</p>
-<p><br></p></div>
+<li><a href="project_structure/">Project Structure</a> — repository layout, Django apps overview, and submodules</li>
+<li><a href="deployment/">Deployment</a> — how to run the stack locally, Docker services, Make commands, and management commands</li>
+<li><a href="geonode/">GeoNode Customisation</a> — IGRAC forks of the GeoNode backend and Mapstore client</li>
+<li><a href="gwml2/">gwml2</a> — well and monitoring database app (data models, harvesters, forms, download, upload, QC)</li>
+<li><a href="igrac/">igrac App</a> — main GGIS GeoNode app (UI customisations, models, admin, management commands)</li>
+<li><a href="igrac_api_and_istsos/">igrac_api and istSOS</a> — SOS 1.0.0 API gateway and istSOS integration</li>
+<li><a href="documentation/">Documentation</a> — how to run and contribute to this documentation site</li>
+</ul></div>
 
 
 
@@ -1830,14 +1510,14 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.annotate", "content.tabs.link", "header.autohide", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.annotate", "content.tabs.link", "header.autohide", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
       
-        <script src="../../js/tablesort.js"></script>
+        <script src="../js/tablesort.js"></script>
       
     
   </body>
