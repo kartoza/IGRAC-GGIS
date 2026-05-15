@@ -45,6 +45,15 @@ markdown_extensions:
 
 nav:
   - Introduction: index.md
+  - Developer:
+      - developer/index.md
+      - Project Structure: developer/project_structure.md
+      - Deployment: developer/deployment.md
+      - GeoNode Customisation: developer/geonode.md
+      - gwml2: developer/gwml2.md
+      - igrac App: developer/igrac.md
+      - igrac_api and istSOS: developer/igrac_api_and_istsos.md
+      - Documentation: developer/documentation.md
   - Administration:
       - administration/index.md
       - Geonode Popup: administration/geonode_popup.md
