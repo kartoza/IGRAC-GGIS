@@ -17,7 +17,7 @@ RUN apt-get install -y libreoffice
 
 WORKDIR /
 
-ENV GEONODE_VERSION 4.4.3.igrac
+ENV GEONODE_VERSION 4.4.4.igrac
 RUN rm -r /usr/src/geonode
 RUN git clone --branch $GEONODE_VERSION --single-branch https://github.com/kartoza/geonode.git geonode
 
@@ -38,7 +38,7 @@ WORKDIR /home/web/django_project
 RUN rm -rf /home/web/django_project/gwml2
 
 # Installing gwml2
-ENV GWML2_VERSION 4.12.39
+ENV GWML2_VERSION 4.12.40
 RUN git clone --branch $GWML2_VERSION https://github.com/kartoza/IGRAC-WellAndMonitoringDatabase.git /home/web/django_project/gwml2
 RUN echo $GWML2_VERSION > /home/web/django_project/gwml2/version.txt
 
