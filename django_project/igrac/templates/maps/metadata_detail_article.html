@@ -155,8 +155,10 @@
 
     <dl class="dl-horizontal">
 
-        <dt>{% trans "Spatial Extent" %}</dt>
-        <dd>{% if resource.scale %} {{ resource.scale }} {% else %} --- {% endif %}</dd>
+        {% if resource.scale %}
+            <dt>{% trans "Scale" %}</dt>
+            <dd>{{ resource.scale }}</dd>
+        {% endif %}
 
         <dt>{% trans "Projection System" %}</dt>
         <dd>{{ resource.srid }}</dd>
