@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../deployment/">
+        <link rel="prev" href="../harvester/cida/">
       
       
-        <link rel="next" href="geonode/">
+        <link rel="next" href="../../administration/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Project Structure - The Global Groundwater Information System (GGIS)</title>
+        <title>Quality Control - The Global Groundwater Information System (GGIS)</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-structure" class="md-skip">
+        <a href="#quality-control" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Project Structure
+              Quality Control
             
           </span>
         </div>
@@ -521,8 +521,6 @@
                 
   
   
-    
-  
   
   
     
@@ -549,15 +547,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../project_structure/" class="md-nav__link ">
               
   
   
@@ -575,13 +573,13 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -601,7 +599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="geonode/" class="md-nav__link">
+      <a href="../project_structure/geonode/" class="md-nav__link">
         
   
   
@@ -629,7 +627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="gwml2/" class="md-nav__link">
+      <a href="../project_structure/gwml2/" class="md-nav__link">
         
   
   
@@ -657,7 +655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="igrac/" class="md-nav__link">
+      <a href="../project_structure/igrac/" class="md-nav__link">
         
   
   
@@ -685,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="igrac_api_and_istsos/" class="md-nav__link">
+      <a href="../project_structure/igrac_api_and_istsos/" class="md-nav__link">
         
   
   
@@ -713,7 +711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="documentation/" class="md-nav__link">
+      <a href="../project_structure/documentation/" class="md-nav__link">
         
   
   
@@ -1269,10 +1267,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../quality_control/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Control
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1288,6 +1313,142 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-gap-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Gap Check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-gap-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level Gap Check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strange-value-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strange Value Check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#site-preferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Site Preferences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-quality-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Quality Control
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Quality Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#management-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Management Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatically
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1489,10 +1650,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#built-on-geonode" class="md-nav__link">
+  <a href="#model-fields" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Built on GeoNode
+        Model Fields
       
     </span>
   </a>
@@ -1500,10 +1661,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#repository-layout" class="md-nav__link">
+  <a href="#time-gap-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Repository Layout
+        Time Gap Check
       
     </span>
   </a>
@@ -1511,10 +1672,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment" class="md-nav__link">
+  <a href="#level-gap-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        deployment/
+        Level Gap Check
       
     </span>
   </a>
@@ -1522,10 +1683,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#django_project" class="md-nav__link">
+  <a href="#strange-value-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        django_project/
+        Strange Value Check
       
     </span>
   </a>
@@ -1533,10 +1694,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#geonode-submodule" class="md-nav__link">
+  <a href="#site-preferences" class="md-nav__link">
     <span class="md-ellipsis">
       
-        geonode/ (submodule)
+        Site Preferences
       
     </span>
   </a>
@@ -1544,24 +1705,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#docs" class="md-nav__link">
+  <a href="#running-quality-control" class="md-nav__link">
     <span class="md-ellipsis">
       
-        docs/
+        Running Quality Control
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Quality Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#playwright" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#management-command" class="md-nav__link">
     <span class="md-ellipsis">
       
-        playwright/
+        Management Command
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatically
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1585,124 +1785,160 @@
   
 
 
-<div><h1 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">¶</a></h1>
-<h2 id="built-on-geonode">Built on GeoNode<a class="headerlink" href="#built-on-geonode" title="Permanent link">¶</a></h2>
-<p>GGIS is built on top of <strong>GeoNode</strong>, an open-source geospatial content management system.
-GeoNode provides the foundational infrastructure: user management, map/layer/document publishing,
-GeoServer integration, and the Mapstore2-based map viewer.</p>
-<p>IGRAC uses a forked version of GeoNode (<code>4.4.3.igrac</code>) that contains IGRAC-specific patches and
-customisations. This fork lives at
-<a href="https://github.com/kartoza/geonode/tree/4.4.3.igrac">github.com/kartoza/geonode — branch 4.4.3.igrac</a>
-and is included in this repository as a Git submodule.</p>
-<p>The <code>igrac</code> Django app is itself a GeoNode app — it registers against GeoNode's extension
-points and overrides templates, signals, and settings. However it contains a large amount of
-GGIS-specific logic that goes well beyond what a typical GeoNode installation provides.</p>
-<p>On top of GeoNode, GGIS adds:</p>
+<div><h1 id="quality-control">Quality Control<a class="headerlink" href="#quality-control" title="Permanent link">¶</a></h1>
+<blockquote>
+<p>🚀 Introduced in <code>gwml2 v4.12.4</code> — <a href="https://github.com/kartoza/IGRAC-WellAndMonitoringDatabase/releases/tag/4.12.4">August 13, 2025</a></p>
+</blockquote>
+<p>Well quality control is implemented via the <code>WellQualityControl</code> model in
+<a href="https://github.com/kartoza/IGRAC-GGIS/blob/main/django_project/gwml2/models/well_quality_control.py"><code>gwml2/models/well_quality_control.py</code></a>. Each well has a one-to-one
+<code>WellQualityControl</code> record that is created automatically when a new <code>Well</code> is
+saved (via a <code>post_save</code> signal).</p>
+<p>Calling <code>WellQualityControl.run()</code> executes all three checks sequentially.
+Each check is skipped if it has already been run (its <code>_generated_time</code> field
+is already set), so repeated calls are safe and cheap.</p>
+<hr>
+<h2 id="model-fields">Model Fields<a class="headerlink" href="#model-fields" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>groundwater_level_time_gap</code></td>
+<td>JSON</td>
+<td>Measurement pairs where the time gap exceeds the configured threshold</td>
+</tr>
+<tr>
+<td><code>groundwater_level_time_gap_generated_time</code></td>
+<td>DateTime</td>
+<td>Timestamp of last time-gap check</td>
+</tr>
+<tr>
+<td><code>groundwater_level_value_gap</code></td>
+<td>JSON</td>
+<td>Measurement pairs where the level jump exceeds the configured threshold</td>
+</tr>
+<tr>
+<td><code>groundwater_level_value_gap_generated_time</code></td>
+<td>DateTime</td>
+<td>Timestamp of last level-gap check</td>
+</tr>
+<tr>
+<td><code>groundwater_level_strange_value</code></td>
+<td>JSON</td>
+<td>Measurements matching the strange-value SQL filter</td>
+</tr>
+<tr>
+<td><code>groundwater_level_strange_value_generated_time</code></td>
+<td>DateTime</td>
+<td>Timestamp of last strange-value check</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="time-gap-check">Time Gap Check<a class="headerlink" href="#time-gap-check" title="Permanent link">¶</a></h2>
+<p><strong>Method:</strong> <code>gap_time_quality()</code> — <a href="https://github.com/kartoza/IGRAC-GGIS/blob/main/django_project/gwml2/models/well_quality_control.py#L60"><code>well_quality_control.py:60</code></a></p>
+<p>Finds the longest gap in days between consecutive level measurements using a
+<code>LAG()</code> window function over <code>well_level_measurement</code>, partitioned by
+<code>well_id</code> and <code>parameter_id</code>. If the largest gap meets or exceeds the threshold,
+the result is saved to <code>groundwater_level_time_gap</code>.</p>
+<p><strong>Result shape (JSON):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"parameter_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">"current"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-15 00:00:00"</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-01 00:00:00"</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">"gap"</span><span class="p">:</span><span class="w"> </span><span class="mf">1110.0</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Threshold:</strong> <code>SitePreference.groundwater_level_quality_control_days_gap</code>
+— configurable via Site Preferences, default <strong>1095 days</strong>.</p>
+<hr>
+<h2 id="level-gap-check">Level Gap Check<a class="headerlink" href="#level-gap-check" title="Permanent link">¶</a></h2>
+<p><strong>Method:</strong> <code>gap_level_quality()</code> — <a href="https://github.com/kartoza/IGRAC-GGIS/blob/main/django_project/gwml2/models/well_quality_control.py#L92"><code>well_quality_control.py:92</code></a></p>
+<p>Finds the largest jump in <code>value_in_m</code> between consecutive level measurements
+using a <code>LAG()</code> window function, ordered by time. If the largest jump meets or
+exceeds the threshold, the result is saved to <code>groundwater_level_value_gap</code>.</p>
+<p><strong>Result shape (JSON):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"parameter_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-06-01 00:00:00"</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"current"</span><span class="p">:</span><span class="w"> </span><span class="mf">45.2</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">"previous"</span><span class="p">:</span><span class="w"> </span><span class="mf">-5.1</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">"gap"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.3</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Threshold:</strong> <code>SitePreference.groundwater_level_quality_control_level_gap</code>
+— configurable via Site Preferences, default <strong>50 metres</strong>.</p>
+<hr>
+<h2 id="strange-value-check">Strange Value Check<a class="headerlink" href="#strange-value-check" title="Permanent link">¶</a></h2>
+<p><strong>Method:</strong> <code>strange_value_quality()</code> — <a href="https://github.com/kartoza/IGRAC-GGIS/blob/main/django_project/gwml2/models/well_quality_control.py#L124"><code>well_quality_control.py:124</code></a></p>
+<p>Queries <code>well_level_measurement</code> using a raw SQL <code>WHERE</code> clause from
+<code>SitePreference.groundwater_level_strange_value_filter</code>. All matching rows
+are saved to <code>groundwater_level_strange_value</code>.</p>
+<p><strong>Result shape (JSON — list):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">[</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"parameter_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-10 00:00:00"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"parameter_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-05 00:00:00"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">-9999</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">]</span>
+</code></pre></div>
+<p><strong>Filter:</strong> <code>SitePreference.groundwater_level_strange_value_filter</code>
+— configurable via Site Preferences, default <code>value_in_m IN (0, -9999)</code>.</p>
+<hr>
+<h2 id="site-preferences">Site Preferences<a class="headerlink" href="#site-preferences" title="Permanent link">¶</a></h2>
+<p>All thresholds and filters are configured in the Django admin under
+<strong>Site Preferences</strong> (<a href="https://github.com/kartoza/IGRAC-GGIS/blob/main/django_project/gwml2/models/site_preference.py"><code>gwml2/models/site_preference.py</code></a>):</p>
+<table>
+<thead>
+<tr>
+<th>Preference</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>groundwater_level_quality_control_days_gap</code></td>
+<td><code>1095</code></td>
+<td>Max allowed gap in days between measurements</td>
+</tr>
+<tr>
+<td><code>groundwater_level_quality_control_level_gap</code></td>
+<td><code>50</code></td>
+<td>Max allowed jump in metres between measurements</td>
+</tr>
+<tr>
+<td><code>groundwater_level_strange_value_filter</code></td>
+<td><code>value_in_m IN (0, -9999)</code></td>
+<td>PostgreSQL <code>WHERE</code> fragment to match erroneous values</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="running-quality-control">Running Quality Control<a class="headerlink" href="#running-quality-control" title="Permanent link">¶</a></h2>
+<h3 id="automatic">Automatic<a class="headerlink" href="#automatic" title="Permanent link">¶</a></h3>
+<p>Quality control runs automatically in two situations:</p>
 <ul>
-<li>A full <strong>well and monitoring database</strong> (the <code>gwml2</code> app, also a submodule).</li>
-<li><strong>IGRAC-specific UI</strong> customisations, models, admin pages, and REST API endpoints.</li>
-<li>An <strong>istSOS 2</strong> integration for serving sensor observation data (OGC SOS 1.0.0).</li>
-<li>A <strong>Harvester</strong> system for pulling well data from third-party national APIs.</li>
+<li><strong>On well creation</strong> — a <code>post_save</code> signal (<a href="https://github.com/kartoza/IGRAC-GGIS/blob/main/django_project/gwml2/models/well_quality_control.py#L146"><code>well_quality_control.py:146</code></a>) creates a <code>WellQualityControl</code> record for every new <code>Well</code>.</li>
+<li><strong>Via Celery task</strong> — the <code>run_well_quality_control</code> task (<a href="https://github.com/kartoza/IGRAC-GGIS/blob/main/django_project/gwml2/tasks/well_quality_control.py"><code>tasks/well_quality_control.py</code></a>) runs on the <code>update</code> queue and triggers the management command internally.</li>
 </ul>
-<hr>
-<h2 id="repository-layout">Repository Layout<a class="headerlink" href="#repository-layout" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>IGRAC-GGIS/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── deployment/       # Infrastructure: Docker Compose, Nginx, GeoServer, Makefile
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── django_project/   # Django source code (IGRAC apps)
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── docs/             # MkDocs documentation (this site)
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── geonode/          # GeoNode fork (Git submodule)
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── istsos2/          # istSOS 2 fork (Git submodule)
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── playwright/       # End-to-end browser tests
+<h3 id="management-command">Management Command<a class="headerlink" href="#management-command" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>python<span class="w"> </span>manage.py<span class="w"> </span>generate_well_quality_control
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python<span class="w"> </span>manage.py<span class="w"> </span>generate_well_quality_control<span class="w"> </span>--ids<span class="w"> </span><span class="m">123</span>,456<span class="w"> </span>--force
 </code></pre></div>
-<hr>
-<h2 id="deployment"><code>deployment/</code><a class="headerlink" href="#deployment" title="Permanent link">¶</a></h2>
-<p>Everything needed to run the stack via Docker Compose.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>deployment/
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── docker/                              # Build context for the Django image
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── Dockerfile                       # Multi-stage: prod → dev
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   ├── entrypoint.sh                    # Container startup script
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   ├── initialize.py                    # Runs migrations and fixtures on startup
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── REQUIREMENTS.txt                 # Production Python dependencies
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── REQUIREMENTS-DEV.txt             # Extra dev dependencies (e.g. debugpy)
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   └── uwsgi.conf                       # uWSGI configuration for production
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├── docker-mapstore/
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   └── Dockerfile                       # Mapstore2 frontend image
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├── geoserver/
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   ├── Dockerfile                       # GeoServer image customisation
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   ├── entrypoint.sh                    # GeoServer startup script
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   └── download.properties              # GeoServer download configuration
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>├── istsos/
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   ├── Dockerfile                       # istSOS container image
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   └── services/                        # Pre-configured istSOS service definitions
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>├── nginx/
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── sites-enabled/                   # Nginx virtual host configs
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   └── pages/                           # Static error pages served by Nginx
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>├── backups/                             # Database backup scripts/config
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>├── volumes/                             # Runtime data (gitignored)
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── statics/                         # Django collected statics and media
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   └── logs/                            # Nginx and app logs
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>├── docker-compose.yml                   # Base service definitions
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>├── docker-compose.override.template.yml # Minimal override template
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>├── docker-compose.override.local.template.yml  # Local dev override template
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>├── image-index.yml                      # Pinned image versions
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>└── Makefile                             # Developer shortcut commands
-</code></pre></div>
-<hr>
-<h2 id="django_project"><code>django_project/</code><a class="headerlink" href="#django_project" title="Permanent link">¶</a></h2>
-<p>The Django application. IGRAC extends GeoNode by adding its own Django apps here.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>django_project/
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── core/             # Project-level Django configuration
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   ├── settings/
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   │   ├── base.py   # Shared settings (extends GeoNode settings)
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   │   ├── prod.py   # Production overrides
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│   │   ├── dev.py    # Development overrides
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│   │   └── test.py   # Test overrides
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   ├── api/          # Core API utilities
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│   ├── views/        # Core views (e.g. health check)
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│   ├── urls.py       # Root URL configuration
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   └── wsgi.py       # WSGI entry point
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>├── gwml2/            # Well and monitoring database app (Git submodule)
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>├── igrac/            # Main IGRAC app — UI, models, admin
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>├── igrac_api/        # REST/SOS API — proxies requests to istSOS
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>├── version/          # Version tracking scripts and files
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>└── manage.py         # Django management entry point
-</code></pre></div>
-<p>Each app is documented in detail on its own page:</p>
-<ul>
-<li><a href="geonode/">GeoNode Customisation</a> — IGRAC forks of the GeoNode backend and Mapstore client</li>
-<li><a href="gwml2/">GWML2 — Well and Monitoring Database</a> — data models, harvesters, forms, download, upload, QC</li>
-<li><a href="igrac/">Igrac — Main GGIS App</a> — UI customisations, models, admin, management commands</li>
-<li><a href="igrac_api_and_istsos/">Igrac API and istSOS</a> — SOS 1.0.0 API gateway and istSOS integration</li>
-<li><a href="documentation/">Documentation</a> — how to run and contribute to this documentation site</li>
-</ul>
-<hr>
-<h2 id="geonode-submodule"><code>geonode/</code> (submodule)<a class="headerlink" href="#geonode-submodule" title="Permanent link">¶</a></h2>
-<p>Kartoza's fork of GeoNode, pinned to the <code>4.4.3.igrac</code> branch.
-Source: <a href="https://github.com/kartoza/geonode/tree/4.4.3.igrac">github.com/kartoza/geonode</a></p>
-<p>This submodule is mounted into the Docker image at build time (see <code>deployment/docker/Dockerfile</code>).
-Do not edit files inside this directory directly — changes belong in the upstream fork.</p>
-<hr>
-<h2 id="docs"><code>docs/</code><a class="headerlink" href="#docs" title="Permanent link">¶</a></h2>
-<p>MkDocs documentation project (this site). See <a href="documentation/">Documentation</a> for details
-on structure, how to run it locally, and how to add new pages.</p>
-<hr>
-<h2 id="playwright"><code>playwright/</code><a class="headerlink" href="#playwright" title="Permanent link">¶</a></h2>
-<p>End-to-end browser tests run against a live staging environment.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>playwright/
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>└── staging-tests/
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    ├── tests/
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    │   ├── landingPage.spec.ts
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    │   ├── maps.spec.ts
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    │   ├── dashboards.spec.ts
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    │   ├── documents.spec.ts
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    │   ├── geostories.spec.ts
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    │   ├── data-map-layers.spec.ts
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    │   └── well-and-monitoring-data.spec.ts
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    ├── playwright.config.ts
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    └── run-tests.sh
-</code></pre></div>
-<p>Tests cover the main user-facing pages: landing page, maps, dashboards, documents,
-geostories, data/map layers, and the well and monitoring data portal.</p></div>
+<p>Use <code>--force</code> to re-run checks even if they have already been generated.</p>
+<h3 id="admin-action">Admin Action<a class="headerlink" href="#admin-action" title="Permanent link">¶</a></h3>
+<p>In the Django admin, go to <strong>Gwml2 → Well Quality Controls</strong>, select one or more wells, then choose <strong>Force generate</strong> from the actions dropdown.</p>
+<p><img alt="Quality Control Action" src="../../_assets/img/quality-control-action.png"></p>
+<h3 id="programmatically">Programmatically<a class="headerlink" href="#programmatically" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">gwml2.models.well_quality_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">WellQualityControl</span>  <span class="c1"># well_quality_control.py</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">qc</span> <span class="o">=</span> <span class="n">WellQualityControl</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">well_id</span><span class="o">=&lt;</span><span class="n">well_id</span><span class="o">&gt;</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">qc</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></div>
 
 
 
