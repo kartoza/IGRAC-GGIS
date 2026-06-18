@@ -477,13 +477,10 @@ form .row {
     overflow-y: auto !important;
 }
 
-.gn-search-bar-li {
-    padding-right: 1rem !important;
-}
-
 #gn-search-bar {
     border-width: 1px;
     box-shadow: unset;
+    margin-left: 0 !important;
 }
 
 .gn-user-menu-dropdown button {

@@ -91,6 +91,19 @@ def get_igrac_base_left_topbar_menu(context):
             } if user.is_superuser else None,
         ]
     }
+    if not user.is_authenticated:
+        users['items'].extend(
+            [
+                {
+                    "type": "divider"
+                },
+                {
+                    "label": "Sign in",
+                    "type": "link",
+                    "href": "/account/login/?next=/"
+                }
+            ]
+        )
     if user.is_authenticated and not Configuration.load().read_only:
         users['items'].extend([
             {
@@ -212,6 +225,10 @@ def get_igrac_base_right_topbar_menu(context):
 @register.simple_tag(takes_context=True)
 def get_igrac_user_menu(context):
     profile = get_user_menu(context)
+    profile = [
+        item for item in profile if
+        item.get('label') not in ['Register', 'Sign in']
+    ]
 
     user = context.get('request').user
     if user.is_authenticated:
