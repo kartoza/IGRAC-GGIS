@@ -25,14 +25,12 @@ docs/
 │   ├── administration/         # Admin guides
 │   ├── developer/              # Developer guides (you are here)
 │   └── harvester/              # Harvester integration guides
-├── assets/                     # Shared images and static files
-├── templates/                  # MkDocs HTML template overrides
+├── src/_assets/                # Shared CSS and images
 ├── mkdocs-base.yml             # Shared MkDocs config (nav, extensions)
 ├── mkdocs-html.yml             # HTML build config (inherits base)
-├── mkdocs-pdf.yml              # PDF build config (inherits base)
 ├── mkdocs.yml                  # Default config used by mkdocs serve
 ├── build-docs-html.sh          # Script to build the HTML site
-├── build-docs-pdf.sh           # Script to build the PDF
+├── Makefile                    # Developer shortcut commands
 └── requirements.txt            # Python dependencies for building docs
 ```
 
@@ -78,5 +76,3 @@ on every push to `main`.
 ## Navigation Config
 
 Navigation is defined in `docs/mkdocs-base.yml` under the `nav:` key.
-Both the HTML and PDF builds inherit from this file, so a single edit keeps both outputs
-in sync.

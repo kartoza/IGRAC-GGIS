@@ -3,7 +3,7 @@ PYTHON := $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
 MKDOCS := $(VENV)/bin/mkdocs
 
-.PHONY: venv activate install serve build-html build-pdf clean help
+.PHONY: venv activate install serve build-html clean help
 
 help:
 	@echo "Usage: make <target>"
@@ -14,7 +14,6 @@ help:
 	@echo "  install     Install Python dependencies into the virtual environment"
 	@echo "  serve       Run live-reload dev server at http://localhost:8000"
 	@echo "  build-html  Build static HTML site to docs/site/"
-	@echo "  build-pdf   Build PDF document"
 	@echo "  clean       Remove generated site/ directory"
 
 venv:
@@ -35,9 +34,6 @@ serve: install
 
 build-html: install
 	bash build-docs-html.sh
-
-build-pdf: install
-	bash build-docs-pdf.sh
 
 clean:
 	rm -rf site/
