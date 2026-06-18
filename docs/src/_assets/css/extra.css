@@ -21,6 +21,10 @@
 
 /* On mobile, always show the page title (second topic) instead of site name */
 @media screen and (max-width: 76.1875em) {
+  .md-nav__source {
+    display: none;
+  }
+
   .md-header__topic:first-child {
     opacity: 0;
     transform: translateY(-100%);
@@ -29,6 +33,31 @@
   .md-header__topic:last-child {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Copyright in mobile nav drawer */
+.md-nav__copyright {
+  display: none;
+}
+
+@media screen and (max-width: 76.1875em) {
+  footer {
+    display: none;
+  }
+
+  .md-nav__copyright {
+    display: block;
+    padding: 1rem;
+    font-size: 0.65rem;
+    color: var(--md-footer-fg-color--light);
+    background-color: var(--md-footer-bg-color);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+  }
+
+  .md-nav__copyright .highlight {
+    color: var(--md-footer-fg-color);
   }
 }
 
@@ -45,7 +74,7 @@
 
   .md-nav--primary .md-nav__title {
     white-space: unset !important;
-    height: 6.6rem !important;
+    height: 7.1rem !important;
     line-height: 1.5 !important;
     padding-top: 80px !important;
   }

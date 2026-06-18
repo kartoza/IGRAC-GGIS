@@ -1,6 +1,7 @@
 # Configuration
 theme:
   name: material
+  custom_dir: overrides
   language: en
   direction: ltr
   logo: _assets/img/un-igrac-white.svg
