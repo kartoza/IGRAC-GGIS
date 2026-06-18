@@ -42,4 +42,11 @@
   .md-main__inner {
     margin-top: 0 !important;
   }
+
+  .md-nav--primary .md-nav__title {
+    white-space: unset !important;
+    height: 6.6rem !important;
+    line-height: 1.5 !important;
+    padding-top: 80px !important;
+  }
 }
