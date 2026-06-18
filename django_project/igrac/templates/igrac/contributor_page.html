@@ -61,6 +61,31 @@
                             </a>
                         </div>
                     {% endif %}
+                    {% if organisation.count_stations or organisation.count_stations_level or organisation.count_stations_quality or organisation.count_springs %}
+                        <br/>
+                        <div>
+                            {% if organisation.count_stations %}
+                                <div>
+                                    <b>Number of stations: </b>{{ organisation.count_stations }}
+                                </div>
+                            {% endif %}
+                            {% if organisation.count_stations_level %}
+                                <div>
+                                    <b>Number of stations with groundwater level data: </b>{{ organisation.count_stations_level }}
+                                </div>
+                            {% endif %}
+                            {% if organisation.count_stations_quality %}
+                                <div>
+                                    <b>Number of stations with groundwater quality data: </b>{{ organisation.count_stations_quality }}
+                                </div>
+                            {% endif %}
+                            {% if organisation.count_springs %}
+                                <div>
+                                    <b>Number of springs: </b>{{ organisation.count_springs }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         {% else %}
