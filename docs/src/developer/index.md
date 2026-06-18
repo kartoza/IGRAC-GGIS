@@ -20,10 +20,5 @@ This section contains everything a developer needs to understand, run, and contr
 
 ## Contents
 
-- [Project Structure](./project_structure.md) — repository layout, Django apps overview, and submodules
 - [Deployment](./deployment.md) — how to run the stack locally, Docker services, Make commands, and management commands
-- [GeoNode Customisation](./geonode.md) — IGRAC forks of the GeoNode backend and Mapstore client
-- [gwml2](./gwml2.md) — well and monitoring database app (data models, harvesters, forms, download, upload, QC)
-- [igrac App](./igrac.md) — main GGIS GeoNode app (UI customisations, models, admin, management commands)
-- [igrac_api and istSOS](./igrac_api_and_istsos.md) — SOS 1.0.0 API gateway and istSOS integration
-- [Documentation](./documentation.md) — how to run and contribute to this documentation site
+- [Project Structure](./project_structure/index.md) — repository layout, Django apps overview, and submodules

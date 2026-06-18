@@ -1,9 +1,10 @@
 # Configuration
 theme:
   name: material
+  custom_dir: overrides
   language: en
   direction: ltr
-  logo: img/un-igrac-white.svg
+  logo: _assets/img/un-igrac-white.svg
   include_search_page: false
   search_index_only: true
   features:
@@ -24,13 +25,13 @@ theme:
     - toc.follow
   palette:
     - scheme: default
-      primary: blue
+      primary: custom
       accent: grey
       toggle:
         icon: material/brightness-4
         name: Switch to dark mode
     - scheme: slate
-      primary: blue
+      primary: custom
       accent: grey
       toggle:
         icon: material/brightness-6
@@ -38,7 +39,7 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  favicon: assets/logo.png
+  favicon: _assets/img/favicon.svg
   icon:
     logo: material/book
 
@@ -48,11 +49,11 @@ extra:
       link: https://github.com/kartoza
 
 extra_css:
-  - css/extra.css
+  - _assets/css/extra.css
 
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
-  - js/tablesort.js
+  - _assets/js/tablesort.js
 
 # Needed for the hooks below to work
 plugins:
@@ -88,11 +89,4 @@ plugins:
       #'old.md': 'new.md'
       #'old/file.md': 'new/file.md'
       #'some_file.md': 'http://external.url.com/foobar'
-
-# Hook to add a uuid to every anchor
-# see also hook.py and https://github.com/squidfunk/mkdocs-material/discussions/3758#discussioncomment-4397373
-# Note that although the above link implies you can use UUIDs, you have to use numeric IDS not UUIDS
-#hooks:
-#  - ./uuid_redirects_hook.py
-#  - ./python_manual_hook.py
 

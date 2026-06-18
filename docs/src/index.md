@@ -15,7 +15,7 @@ context_id: nDU6LLGiXPTLADXY
 GGIS is a groundwater information system developed for and funded by UN-IGRAC. The GGIS is an interactive portal for sharing data and information on groundwater resources around the world. It gives access to map layers, documents, and well and monitoring data. It also contains several thematic map viewers.
 
 
-![image](./img/home-page.png)
+![image](./_assets/img/home-page.png)
 
 
-You can visit the live site here: https://ggis.un-igrac.org
+You can visit the live site here: [https://ggis.un-igrac.org](https://ggis.un-igrac.org)

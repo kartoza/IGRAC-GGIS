@@ -21,8 +21,8 @@ It displays a list of organizations along with their metadata.
 
 Contributors are based on the IGRAC layers in Django.  
 
-- **Production**: https://ggis.un-igrac.org/en-us/admin/igrac/groundwaterlayer/  
-- **Staging**: https://igrac.sta.do.kartoza.com/en-us/admin/igrac/groundwaterlayer/  
+- **Production**: [https://ggis.un-igrac.org/en-us/admin/igrac/groundwaterlayer/](https://ggis.un-igrac.org/en-us/admin/igrac/groundwaterlayer/)
+- **Staging**: [https://igrac.sta.do.kartoza.com/en-us/admin/igrac/groundwaterlayer/](https://igrac.sta.do.kartoza.com/en-us/admin/igrac/groundwaterlayer/)
 
 These layers represent well and monitoring data, and their variants.  
 Contributors are linked to these layers through the organizations and organization groups associated with them.
@@ -31,8 +31,8 @@ Contributors are linked to these layers through the organizations and organizati
 
 To manage contributor content, update the related organizations:
 
-- **Production**: https://ggis.un-igrac.org/en-us/admin/gwml2/organisation/  
-- **Staging**: https://igrac.sta.do.kartoza.com/en-us/admin/gwml2/organisation/
+- **Production**: [https://ggis.un-igrac.org/en-us/admin/gwml2/organisation/](https://ggis.un-igrac.org/en-us/admin/gwml2/organisation/)
+- **Staging**: [https://igrac.sta.do.kartoza.com/en-us/admin/gwml2/organisation/](https://igrac.sta.do.kartoza.com/en-us/admin/gwml2/organisation/)
 
 ![image](./img/contributors/step%204.png)
 

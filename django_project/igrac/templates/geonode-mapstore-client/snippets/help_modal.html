@@ -1,0 +1,78 @@
+{% if HELP_PAGE_URL %}
+<style>
+    .help-modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+    }
+    .help-modal-overlay.open {
+        display: flex;
+    }
+    .help-modal {
+        background: #fff;
+        width: 80%;
+        max-width: 900px;
+        height: 80vh;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .help-modal-body {
+        flex: 1;
+        overflow: hidden;
+    }
+    .help-modal-body iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    .help-modal-footer {
+        padding: 10px 16px;
+        border-top: 1px solid #e0e0e0;
+        background: #f9f9f9;
+        font-size: 0.875rem;
+        color: #555;
+        text-align: center;
+    }
+    .help-modal-footer a {
+        color: #08384F;
+        font-weight: 500;
+        text-decoration: none;
+    }
+    .help-modal-footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<li>
+    <a class="nav-link btn btn-primary" onclick="document.getElementById('help-modal-overlay').classList.add('open')" style="cursor:pointer;">
+        Help
+    </a>
+</li>
+
+<div id="help-modal-overlay" class="help-modal-overlay">
+    <div class="help-modal">
+        <div class="help-modal-body">
+            <iframe src="{{ HELP_PAGE_URL }}"></iframe>
+        </div>
+        <div class="help-modal-footer">
+            For full documentation, visit
+            <a href="{{ HELP_PAGE_URL }}" target="_blank" rel="noopener">the documentation site</a>.
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('help-modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+});
+</script>
+{% endif %}

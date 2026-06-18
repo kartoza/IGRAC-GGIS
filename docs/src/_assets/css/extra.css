@@ -1,0 +1,81 @@
+/* Dark mode: links use secondary color, white on hover */
+[data-md-color-scheme="slate"] {
+  --md-typeset-a-color: #00777D;
+}
+
+/* Custom primary color — matches GGIS website palette */
+:root {
+  --md-primary-fg-color: #08384F;
+  --md-primary-fg-color--light: #00777D;
+  --md-primary-fg-color--dark: #08384F;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+  --md-accent-fg-color: #00A5B6;
+  --md-accent-fg-color--transparent: rgba(0, 165, 182, 0.1);
+}
+
+/* This needs to fix logo aligment */
+.md-header__button.md-logo {
+  margin-top: -8px;
+}
+
+/* On mobile, always show the page title (second topic) instead of site name */
+@media screen and (max-width: 76.1875em) {
+  .md-nav__source {
+    display: none;
+  }
+
+  .md-header__topic:first-child {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  .md-header__topic:last-child {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Copyright in mobile nav drawer */
+.md-nav__copyright {
+  display: none;
+}
+
+@media screen and (max-width: 76.1875em) {
+  footer {
+    display: none;
+  }
+
+  .md-nav__copyright {
+    display: block;
+    padding: 1rem;
+    font-size: 0.65rem;
+    color: var(--md-footer-fg-color--light);
+    background-color: var(--md-footer-bg-color);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+  }
+
+  .md-nav__copyright .highlight {
+    color: var(--md-footer-fg-color);
+  }
+}
+
+/* Responsive video height on mobile */
+@media screen and (max-width: 76.1875em) {
+  .video-container iframe {
+    width: 100% !important;
+    height: 54.7vw !important;
+  }
+
+  .md-main__inner {
+    margin-top: 0 !important;
+  }
+
+  .md-nav--primary .md-nav__title {
+    white-space: unset !important;
+    height: 7.1rem !important;
+    line-height: 1.5 !important;
+    padding-top: 80px !important;
+  }
+}

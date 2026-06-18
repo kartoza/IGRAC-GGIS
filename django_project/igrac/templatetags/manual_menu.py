@@ -247,7 +247,7 @@ def get_igrac_user_menu(context):
 
             if user.is_superuser:
                 try:
-                    if item['label'] == 'Help':
+                    if item['label'] == 'Inbox':
                         profile[0]['items'].insert(
                             idx + 1,
                             {
