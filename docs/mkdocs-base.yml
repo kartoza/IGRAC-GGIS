@@ -73,6 +73,7 @@ nav:
           - (Rwanda) RWB: developer/harvester/rwanda.md
           - (Sweden) SGU: developer/harvester/sgu.md
           - (USA) CIDA / USGS: developer/harvester/cida.md
+      - Quality Control: developer/quality_control.md
   - Administration:
       - administration/index.md
       - Geonode Popup: administration/geonode_popup.md
