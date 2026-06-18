@@ -754,3 +754,8 @@ form .row {
     padding: 3px 10px;
     border-bottom: 1px solid #aaaaaa;
 }
+
+/* Modal header */
+.modal-header {
+  padding: 12px 16px !important;
+}

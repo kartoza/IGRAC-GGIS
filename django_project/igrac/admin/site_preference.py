@@ -58,6 +58,39 @@ class CustomPreferencesAdmin(PreferencesAdmin):
         'igrac_version', 'igrac_commit', 'gwml2_version',
         'google_analytic_key', 'istsos_views'
     )
+    fieldsets = (
+        ('Versions', {
+            'fields': (
+                'geonode_version',
+                'geonode_mapstore_client_version',
+                'gwml2_version',
+                'igrac_version',
+                'igrac_commit',
+            )
+        }),
+        ('General', {
+            'fields': (
+                'banner',
+                'manual_page_link',
+                'google_analytic_key',
+                'help_page_url'
+            )
+        }),
+        ('Well & Monitoring Data Layer', {
+            'fields': (
+                'well_and_monitoring_data_layer',
+                'well_and_monitoring_data_layer_sql',
+            )
+        }),
+        ('Readme', {
+            'fields': (
+                'download_readme_text',
+            )
+        }),
+        ('ISTSOS', {
+            'fields': ('istsos_views',)
+        }),
+    )
 
     def get_urls(self):
         urls = super().get_urls()
@@ -77,25 +110,30 @@ class CustomPreferencesAdmin(PreferencesAdmin):
             )
         if not any(n == name for n, _ in ISTSOS_OBJECTS):
             return JsonResponse(
-                {'success': False, 'message': f'Unknown object: {name}'}, status=400
+                {'success': False, 'message': f'Unknown object: {name}'},
+                status=400
             )
         try:
             statements = _get_create_sql(name)
         except FileNotFoundError:
             return JsonResponse(
-                {'success': False, 'message': 'views.sql not found'}, status=500
+                {'success': False, 'message': 'views.sql not found'},
+                status=500
             )
         if not statements:
             return JsonResponse(
-                {'success': False, 'message': f'No CREATE statement found for {name}'},
+                {'success': False,
+                 'message': f'No CREATE statement found for {name}'},
                 status=404
             )
         try:
-            with connections[settings.GWML2_DATABASE_CONFIG].cursor() as cursor:
+            with connections[
+                settings.GWML2_DATABASE_CONFIG].cursor() as cursor:
                 for sql in statements:
                     cursor.execute(sql)
         except Exception as e:
-            return JsonResponse({'success': False, 'message': str(e)}, status=500)
+            return JsonResponse({'success': False, 'message': str(e)},
+                                status=500)
 
         return JsonResponse(
             {'success': True, 'message': f'istsos.{name} created successfully'}
@@ -105,7 +143,8 @@ class CustomPreferencesAdmin(PreferencesAdmin):
         """List istsos objects ordered as in default.sql with existence check."""
         existing = set()
         try:
-            with connections[settings.GWML2_DATABASE_CONFIG].cursor() as cursor:
+            with connections[
+                settings.GWML2_DATABASE_CONFIG].cursor() as cursor:
                 cursor.execute(
                     "SELECT table_name FROM information_schema.views "
                     "WHERE table_schema = 'istsos'"
@@ -149,15 +188,15 @@ class CustomPreferencesAdmin(PreferencesAdmin):
             )
 
         table = (
-            '<table style="border-collapse:collapse;margin-top:4px;">'
-            '<thead><tr>'
-            '<th style="padding:4px 8px;text-align:left;border-bottom:1px solid #ccc;">#</th>'
-            '<th style="padding:4px 8px;text-align:left;border-bottom:1px solid #ccc;">Name</th>'
-            '<th style="padding:4px 8px;text-align:left;border-bottom:1px solid #ccc;">Type</th>'
-            '<th style="padding:4px 8px;text-align:left;border-bottom:1px solid #ccc;">Status</th>'
-            '</tr></thead>'
-            '<tbody>' + ''.join(rows) + '</tbody>'
-            '</table>'
+                '<table style="border-collapse:collapse;margin-top:4px;">'
+                '<thead><tr>'
+                '<th style="padding:4px 8px;text-align:left;border-bottom:1px solid #ccc;">#</th>'
+                '<th style="padding:4px 8px;text-align:left;border-bottom:1px solid #ccc;">Name</th>'
+                '<th style="padding:4px 8px;text-align:left;border-bottom:1px solid #ccc;">Type</th>'
+                '<th style="padding:4px 8px;text-align:left;border-bottom:1px solid #ccc;">Status</th>'
+                '</tr></thead>'
+                '<tbody>' + ''.join(rows) + '</tbody>'
+                                            '</table>'
         )
 
         js = """<script>

@@ -34,6 +34,22 @@
         height: 100%;
         border: none;
     }
+    .help-modal-footer {
+        padding: 10px 16px;
+        border-top: 1px solid #e0e0e0;
+        background: #f9f9f9;
+        font-size: 0.875rem;
+        color: #555;
+        text-align: center;
+    }
+    .help-modal-footer a {
+        color: #08384F;
+        font-weight: 500;
+        text-decoration: none;
+    }
+    .help-modal-footer a:hover {
+        text-decoration: underline;
+    }
 </style>
 
 <li>
@@ -46,6 +62,10 @@
     <div class="help-modal">
         <div class="help-modal-body">
             <iframe src="{{ HELP_PAGE_URL }}"></iframe>
+        </div>
+        <div class="help-modal-footer">
+            For full documentation, visit
+            <a href="{{ HELP_PAGE_URL }}" target="_blank" rel="noopener">the documentation site</a>.
         </div>
     </div>
 </div>

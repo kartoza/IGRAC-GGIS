@@ -74,12 +74,13 @@ class SitePreference(Preferences):
         upload_to='images',
         null=True, blank=True,
     )
-
-    # Legacy
-    legacy_ggmn_download_readme_text = models.TextField(
-        blank=True,
-        null=True,
-        help_text='Readme text to be included in the download zip file of GGMN data type.'
+    help_page_url = models.URLField(
+        null=True, blank=True,
+        default='https://kartoza.github.io/IGRAC-GGIS/tutorial/',
+        help_text=(
+            'Link to help page url from github docs. '
+            'It will do crawling from the page and show it as popup.'
+        )
     )
 
     @property

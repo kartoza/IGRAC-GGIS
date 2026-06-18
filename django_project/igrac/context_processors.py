@@ -14,7 +14,8 @@ def extra_context(request):
     defaults = dict(
         DEFAULT_GROUP_FILTER=get_default_filter_by_group(request.user),
         GOOGLE_ANALYTIC_KEY=settings.GOOGLE_ANALYTIC_KEY,
-        BANNER_URL=banner_url
+        BANNER_URL=banner_url,
+        HELP_PAGE_URL=pref.help_page_url if pref else None,
     )
 
     return defaults
