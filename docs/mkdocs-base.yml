@@ -7,7 +7,7 @@ repo_name: "IGRAC-GGIS"
 repo_url: "https://github.com/kartoza/IGRAC-GGIS"
 edit_uri: "https://github.com/kartoza/IGRAC-GGIS/edit/main/docs/src/"
 
-copyright: Kartoza and Contributors
+copyright: IGRAC, Kartoza and Contributors
 
 markdown_extensions:
   - pymdownx.superfences
