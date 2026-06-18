@@ -1,5 +1,5 @@
 ---
-title: Miljødirektoratet (Norway)
+title: Norway — Miljødirektoratet
 summary: GGIS
 author: Irwan Fathurrahman
 date: 2026-05-15
@@ -9,7 +9,7 @@ contact:
 license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 ---
 
-# Miljødirektoratet — Norway (Water Quality)
+# Norway — Miljødirektoratet
 
 - **Source:** Norwegian Environment Agency (Miljødirektoratet) — Vannmiljø API
 - **API:** `https://vannmiljoapi.miljodirektoratet.no/api/`

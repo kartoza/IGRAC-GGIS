@@ -1,31 +1,31 @@
 ---
-title: Documentation
+title: France — Hubeau
 summary: GGIS
 author: Irwan Fathurrahman
 date: 2025-07-16
 some_url: https://github.com/kartoza/IGRAC-GGIS
 copyright: Copyright 2025, Kartoza
 contact:
-license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.  
+license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 ---
 
-# Hubeau
+# France — Hubeau
 
-**HUBEAU** is a harvester used to collect groundwater data  
-from [https://hubeau.eaufrance.fr/api/v1/](https://hubeau.eaufrance.fr/api/v1/).  
+**HUBEAU** is a harvester used to collect groundwater data
+from [https://hubeau.eaufrance.fr/api/v1/](https://hubeau.eaufrance.fr/api/v1/).
 The data is categorized into three types: **Water Level**, **Water Quality**
 
 ---
 
 ## Water Level
 
-Water level data can be referenced from Hubeaus’s API page:  
+Water level data can be referenced from Hubeaus’s API page:
 👉 [
 `https://hubeau.eaufrance.fr/api/v1/niveaux_nappes/`](https://hubeau.eaufrance.fr/api/v1/niveaux_nappes/)
 
 ### Getting Stations
 
-The list of wells to be fetched is available via this API:  
+The list of wells to be fetched is available via this API:
 👉 [
 `https://hubeau.eaufrance.fr/api/v1/niveaux_nappes/stations`](https://hubeau.eaufrance.fr/api/v1/niveaux_nappes/stations)
 

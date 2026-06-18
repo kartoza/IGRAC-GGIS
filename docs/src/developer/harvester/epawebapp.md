@@ -1,5 +1,5 @@
 ---
-title: GNS CRI (New Zealand)
+title: Ireland — EPA Hydronet
 summary: GGIS
 author: Irwan Fathurrahman
 date: 2026-05-15
@@ -9,18 +9,17 @@ contact:
 license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 ---
 
-# GNS CRI — New Zealand
+# Ireland — EPA Hydronet
 
-- **Source:** GNS Science (Crown Research Institute) — Groundwater
-- **API:** `https://data.gns.cri.nz` / `https://ggw.gns.cri.nz`
-- **Class:** `gwml2.harvesters.harvester.gns_cri.GnsCri`
+- **Source:** Environmental Protection Agency (EPA) Ireland — Hydronet
+- **API:** `https://epawebapp.epa.ie/Hydronet/output/`
+- **Class:** `gwml2.harvesters.harvester.epawebapp.Epawebapp`
 
 ## Data Collected
 
-- Well general information
 - Water level measurements
 
 ## Notes
 
-Station metadata is fetched via a WFS endpoint returning CSV. Measurements are fetched
-from a separate GGW (Groundwater) endpoint per station.
+Data is returned as ZIP files containing CSV. The harvester downloads, extracts, and
+parses the CSV content for each station.

@@ -24,13 +24,13 @@ theme:
     - toc.follow
   palette:
     - scheme: default
-      primary: blue
+      primary: custom
       accent: grey
       toggle:
         icon: material/brightness-4
         name: Switch to dark mode
     - scheme: slate
-      primary: blue
+      primary: custom
       accent: grey
       toggle:
         icon: material/brightness-6

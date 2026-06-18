@@ -1,5 +1,5 @@
 ---
-title: igrac_api and istSOS
+title: Igrac API and istSOS
 summary: GGIS
 author: Irwan Fathurrahman
 date: 2026-05-15

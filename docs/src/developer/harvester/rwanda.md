@@ -1,5 +1,5 @@
 ---
-title: SNET (El Salvador)
+title: Rwanda — RWB
 summary: GGIS
 author: Irwan Fathurrahman
 date: 2026-05-15
@@ -9,11 +9,11 @@ contact:
 license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 ---
 
-# SNET — El Salvador
+# Rwanda — RWB
 
-- **Source:** SNET (Servicio Nacional de Estudios Territoriales)
-- **API:** `https://srt.snet.gob.sv/apidoa/api/sihi/DataPozos/`
-- **Class:** `gwml2.harvesters.harvester.el_savador.base.ElSavadorHarvester`
+- **Source:** Rwanda Water Board (RWB)
+- **API:** `https://www.waterapi.rwb.rw/`
+- **Class:** `gwml2.harvesters.harvester.rwanda.base.RwandaHarvester`
 
 ## Data Collected
 
@@ -22,4 +22,5 @@ license: This program is free software; you can redistribute it and/or modify it
 
 ## Notes
 
-Requires an API key configured as a `HarvesterAttribute` with the name `api-key`.
+Stations are fetched via `getLocationData`. Measurements are retrieved via
+`getTimeSeriesDescriptionList` and `getTimeSeriesData`.

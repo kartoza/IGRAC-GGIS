@@ -1,18 +1,18 @@
 ---
-title: Documentation
+title: Sweden — SGU
 summary: GGIS
 author: Irwan Fathurrahman
 date: 2025-07-16
 some_url: https://github.com/kartoza/IGRAC-GGIS
 copyright: Copyright 2025, Kartoza
 contact:
-license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.  
+license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 ---
 
-# SGU
+# Sweden — SGU
 
-**SGU** is a harvester used to collect groundwater data  
-from [SGU Sweden](https://www.sgu.se/).  
+**SGU** is a harvester used to collect groundwater data
+from [SGU Sweden](https://www.sgu.se/).
 The data is categorized into three types: **Water Level**, **Water Quality**,
 and **Springs**.
 
@@ -20,13 +20,13 @@ and **Springs**.
 
 ## Water Level
 
-Water level data can be referenced from SGU’s main page:  
+Water level data can be referenced from SGU’s main page:
 👉 [
 `https://www.sgu.se/grundvatten/grundvattennivaer/matstationer`](https://www.sgu.se/grundvatten/grundvattennivaer/matstationer)
 
 ### Getting Stations
 
-The list of wells to be fetched is available via this API:  
+The list of wells to be fetched is available via this API:
 👉 [
 `https://apps.sgu.se/grundvattennivaer-rest/stationer`](https://apps.sgu.se/grundvattennivaer-rest/stationer)
 
@@ -46,7 +46,7 @@ https://resource.sgu.se/oppnadata/grundvatten/api/grundvattennivaer/nivaer/stati
 
 ## Water Quality
 
-Water quality data can be referenced from SGU’s main page:  
+Water quality data can be referenced from SGU’s main page:
 👉 [
 `https://www.sgu.se/grundvatten/miljoovervakning-av-grundvatten/kartvisare-och-diagram-for-miljoovervakning-av-grundvattenkemi/`](https://www.sgu.se/grundvatten/miljoovervakning-av-grundvatten/kartvisare-och-diagram-for-miljoovervakning-av-grundvattenkemi/)
 
@@ -270,13 +270,13 @@ exact value found in `paramnamn_kort`.
 
 ## Springs
 
-Springs data can be referenced from SGU’s main page:  
+Springs data can be referenced from SGU’s main page:
 👉 [
 `https://apps.sgu.se/kartvisare/kartvisare-kallor.html`](https://apps.sgu.se/kartvisare/kartvisare-kallor.html)
 
 ### Getting Stations
 
-The list of wells to be fetched is available via this API:  
+The list of wells to be fetched is available via this API:
 👉 [
 `https://api.sgu.se/oppnadata/kallor/ogc/features/v1/collections/kallor/items?f=application%2Fvnd.ogc.fg%2Bjson`](https://api.sgu.se/oppnadata/kallor/ogc/features/v1/collections/kallor/items?f=application%2Fvnd.ogc.fg%2Bjson)
 

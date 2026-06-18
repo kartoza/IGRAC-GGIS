@@ -1,5 +1,5 @@
 ---
-title: GIN GW-Info (International)
+title: International — GIN GW-Info
 summary: GGIS
 author: Irwan Fathurrahman
 date: 2026-05-15
@@ -9,7 +9,7 @@ contact:
 license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 ---
 
-# GIN GW-Info — International
+# International — GIN GW-Info
 
 - **Source:** Groundwater Information Network (GIN)
 - **API:** `https://gin.gw-info.net/GinService/sos/gw` (OGC SOS 2.0)

@@ -1,5 +1,5 @@
 ---
-title: Azul BDH (Argentina)
+title: El Salvador — SNET
 summary: GGIS
 author: Irwan Fathurrahman
 date: 2026-05-15
@@ -9,11 +9,11 @@ contact:
 license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 ---
 
-# Azul BDH — Argentina
+# El Salvador — SNET
 
-- **Source:** Azul BDH (Base de Datos Hidrológica)
-- **Website:** http://www.azul.bdh.org.ar/bdh3/leaflet/index.html
-- **Class:** `gwml2.harvesters.harvester.azul_bdh.AzulBdh`
+- **Source:** SNET (Servicio Nacional de Estudios Territoriales)
+- **API:** `https://srt.snet.gob.sv/apidoa/api/sihi/DataPozos/`
+- **Class:** `gwml2.harvesters.harvester.el_savador.base.ElSavadorHarvester`
 
 ## Data Collected
 
@@ -22,4 +22,4 @@ license: This program is free software; you can redistribute it and/or modify it
 
 ## Notes
 
-The harvester scrapes HTML pages using BeautifulSoup in addition to JSON API calls.
+Requires an API key configured as a `HarvesterAttribute` with the name `api-key`.

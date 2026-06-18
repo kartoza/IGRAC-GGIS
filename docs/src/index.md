@@ -18,4 +18,4 @@ GGIS is a groundwater information system developed for and funded by UN-IGRAC. T
 ![image](./img/home-page.png)
 
 
-You can visit the live site here: https://ggis.un-igrac.org
+You can visit the live site here: [https://ggis.un-igrac.org](https://ggis.un-igrac.org)

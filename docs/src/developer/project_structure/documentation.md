@@ -9,7 +9,7 @@ contact:
 license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 ---
 
-# Documentation (`docs/`)
+# `docs/` — Documentation
 
 The documentation for GGIS is built with **MkDocs** using the Material theme.
 The source lives in the `docs/` directory of the repository.

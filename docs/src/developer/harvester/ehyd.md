@@ -1,5 +1,5 @@
 ---
-title: eHYD (Austria)
+title: Austria — eHYD
 summary: GGIS
 author: Irwan Fathurrahman
 date: 2026-05-15
@@ -9,10 +9,10 @@ contact:
 license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 ---
 
-# eHYD — Austria
+# Austria — eHYD
 
 - **Source:** eHYD (Austrian Hydrographical Central Office)
-- **Website:** https://ehyd.gv.at
+- **Website:** [https://ehyd.gv.at](https://ehyd.gv.at)
 - **Class:** `gwml2.harvesters.harvester.ehyd.file_base.FileBase`
 
 ## Data Collected

@@ -47,32 +47,33 @@ nav:
   - Introduction: index.md
   - Developer:
       - developer/index.md
-      - Project Structure: developer/project_structure.md
       - Deployment: developer/deployment.md
-      - GeoNode Customisation: developer/geonode.md
-      - gwml2: developer/gwml2.md
-      - igrac App: developer/igrac.md
-      - igrac_api and istSOS: developer/igrac_api_and_istsos.md
-      - Documentation: developer/documentation.md
+      - Project Structure:
+          - developer/project_structure/index.md
+          - GeoNode Customisation: developer/project_structure/geonode.md
+          - GWML2: developer/project_structure/gwml2.md
+          - Igrac App: developer/project_structure/igrac.md
+          - Igrac API and istSOS: developer/project_structure/igrac_api_and_istsos.md
+          - Documentation: developer/project_structure/documentation.md
+      - Harvester:
+          - developer/harvester/index.md
+          - (Argentina) Azul BDH: developer/harvester/azul_bdh.md
+          - (Austria) eHYD: developer/harvester/ehyd.md
+          - (El Salvador) SNET: developer/harvester/el_salvador.md
+          - (Estonia) Keskkonnaportaal: developer/harvester/estonia.md
+          - (France) Hubeau: developer/harvester/hubeau.md
+          - (Germany) Lower Saxony: developer/harvester/lower_saxony.md
+          - (International) GIN GW-Info: developer/harvester/gin_gw_info.md
+          - (Ireland) EPA Hydronet: developer/harvester/epawebapp.md
+          - (Netherlands) BRO: developer/harvester/netherlands.md
+          - (New Zealand) GNS CRI: developer/harvester/gns_cri.md
+          - (Norway) HydAPI / NVE: developer/harvester/hydapi.md
+          - (Norway) Miljødirektoratet: developer/harvester/miljodirektoratet.md
+          - (Rwanda) RWB: developer/harvester/rwanda.md
+          - (Sweden) SGU: developer/harvester/sgu.md
+          - (USA) CIDA / USGS: developer/harvester/cida.md
   - Administration:
       - administration/index.md
       - Geonode Popup: administration/geonode_popup.md
       - Contributors: administration/contributors.md
       - Cache Management: administration/cache.md
-  - Harvester:
-      - harvester/index.md
-      - SGU (Sweden): harvester/sgu.md
-      - Hubeau (France): harvester/hubeau.md
-      - CIDA / USGS (USA): harvester/cida.md
-      - eHYD (Austria): harvester/ehyd.md
-      - SNET (El Salvador): harvester/el_salvador.md
-      - Lower Saxony (Germany): harvester/lower_saxony.md
-      - Miljødirektoratet (Norway): harvester/miljodirektoratet.md
-      - HydAPI / NVE (Norway): harvester/hydapi.md
-      - BRO (Netherlands): harvester/netherlands.md
-      - RWB (Rwanda): harvester/rwanda.md
-      - Keskkonnaportaal (Estonia): harvester/estonia.md
-      - Azul BDH (Argentina): harvester/azul_bdh.md
-      - EPA Hydronet (Ireland): harvester/epawebapp.md
-      - GIN GW-Info (International): harvester/gin_gw_info.md
-      - GNS CRI (New Zealand): harvester/gns_cri.md

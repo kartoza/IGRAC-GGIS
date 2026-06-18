@@ -112,9 +112,11 @@ django_project/
 
 Each app is documented in detail on its own page:
 
-- [gwml2 — Well and Monitoring Database](./gwml2.md)
-- [igrac — Main GGIS App](./igrac.md)
-- [igrac_api and istSOS](./igrac_api_and_istsos.md)
+- [GeoNode Customisation](./geonode.md) — IGRAC forks of the GeoNode backend and Mapstore client
+- [GWML2 — Well and Monitoring Database](./gwml2.md) — data models, harvesters, forms, download, upload, QC
+- [Igrac — Main GGIS App](./igrac.md) — UI customisations, models, admin, management commands
+- [Igrac API and istSOS](./igrac_api_and_istsos.md) — SOS 1.0.0 API gateway and istSOS integration
+- [Documentation](./documentation.md) — how to run and contribute to this documentation site
 
 ---
 

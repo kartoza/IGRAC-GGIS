@@ -1,5 +1,5 @@
 ---
-title: Lower Saxony (Germany)
+title: Germany — Lower Saxony
 summary: GGIS
 author: Irwan Fathurrahman
 date: 2026-05-15
@@ -9,7 +9,7 @@ contact:
 license: This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 ---
 
-# Lower Saxony — Germany
+# Germany — Lower Saxony
 
 - **Source:** NLWKN (Niedersächsischer Landesbetrieb für Wasserwirtschaft, Küsten- und Naturschutz)
 - **API:** `https://bis.azure-api.net/GrundwasserstandonlinePublic/REST/`
