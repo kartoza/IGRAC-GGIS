@@ -31,3 +31,15 @@
     transform: translateY(0);
   }
 }
+
+/* Responsive video height on mobile */
+@media screen and (max-width: 76.1875em) {
+  .video-container iframe {
+    width: 100% !important;
+    height: 54.7vw !important;
+  }
+
+  .md-main__inner {
+    margin-top: 0 !important;
+  }
+}
