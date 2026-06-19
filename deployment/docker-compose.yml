@@ -15,6 +15,7 @@ x-common-django:
   restart: on-failure
   depends_on:
     - db
+    - flower
 
 services:
   # Vanilla RabbitMQ service. This is needed by celery
@@ -113,6 +114,17 @@ services:
     depends_on:
       - rabbitmq
 
+  # Flower: Celery monitoring UI — accessible only via Django proxy (/flower/)
+  flower:
+    <<: *default-common-django
+    entrypoint: [ ]
+    command: 'celery -A geonode.celery_app:app flower --port=5555 --url_prefix=flower'
+    environment:
+      - FLOWER_UNAUTHENTICATED_API=true
+    depends_on:
+      - rabbitmq
+      - celery
+
   # django application for development
   dev:
     <<: *default-common-django
@@ -127,6 +139,7 @@ services:
       - db
       - celery
       - metabase
+      - flower
     ports:
       # for django test server
       - "3002:8080"

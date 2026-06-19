@@ -12,6 +12,7 @@ from wagtailautocomplete.urls.admin import (
 
 from igrac.api_views.contributor import GroundwaterResourceContributorPage
 from igrac.api_views.featured import FeaturedMaps
+from igrac.api_views.flower import FlowerProxyView
 from igrac.api_views.wagtail_page import (
     PageContent, GeonodeBaseResourcePageContent
 )
@@ -120,5 +121,10 @@ urlpatterns = [
         r'^g3p/(?P<name>[^/]+)/(?P<ylabel>[^/]+)/(?P<xlabel>[^/]+)/(?P<id>[^/]+)/chart',
         G3PTimeseriesChart.as_view(),
         name='g3p-timeseries-chart'
+    ),
+    re_path(
+        r'^flower/(?P<path>.*)$',
+        FlowerProxyView.as_view(),
+        name='flower-proxy'
     ),
 ]
