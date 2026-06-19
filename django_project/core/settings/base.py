@@ -204,3 +204,6 @@ MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP = set(
 
 # DEEP_PL API KEY
 DEEPL_API_KEY = os.getenv('DEEPL_API_KEY', None)
+
+# Flower url
+FLOWER_INTERNAL_URL = os.getenv('FLOWER_INTERNAL_URL', "http://flower:5555")
