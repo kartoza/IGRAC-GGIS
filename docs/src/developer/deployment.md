@@ -147,17 +147,6 @@ Generates download cache for wells.
                   drilling_and_construction, monitor
 ```
 
-### `generate_well_measurement_cache`
-
-Generates measurement graph cache for wells.
-
-```
---id                ID of the well to process
---measurement_name  WellLevelMeasurement | WellQualityMeasurement | WellYieldMeasurement
---from_id           Start ID for batch processing
---country_code      Filter wells by country
-```
-
 ### `generate_data_countries_cache`
 
 Generates download cache for countries.

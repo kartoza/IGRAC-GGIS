@@ -184,7 +184,6 @@ See the [Harvester documentation](../harvester/index.md) for the full list and c
 | Command | Description |
 |---------|-------------|
 | `generate_data_wells_cache` | Regenerate download cache for wells |
-| `generate_well_measurement_cache` | Regenerate measurement graph cache |
 | `generate_data_countries_cache` | Regenerate country-level download cache |
 | `generate_data_organisations_cache` | Regenerate organisation-level download cache |
 | `generate_well_quality_control` | Run QC checks across wells |
