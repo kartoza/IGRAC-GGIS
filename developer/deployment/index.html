@@ -656,17 +656,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#generate_well_measurement_cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        generate_well_measurement_cache
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#generate_data_countries_cache" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1819,17 +1808,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#generate_well_measurement_cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        generate_well_measurement_cache
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#generate_data_countries_cache" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2075,40 +2053,33 @@ for the public URL.</p>
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>                  general_information, hydrogeology, management,
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>                  drilling_and_construction, monitor
 </code></pre></div>
-<h3 id="generate_well_measurement_cache"><code>generate_well_measurement_cache</code><a class="headerlink" href="#generate_well_measurement_cache" title="Permanent link">¶</a></h3>
-<p>Generates measurement graph cache for wells.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>--id                ID of the well to process
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>--measurement_name  WellLevelMeasurement | WellQualityMeasurement | WellYieldMeasurement
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>--from_id           Start ID for batch processing
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>--country_code      Filter wells by country
-</code></pre></div>
 <h3 id="generate_data_countries_cache"><code>generate_data_countries_cache</code><a class="headerlink" href="#generate_data_countries_cache" title="Permanent link">¶</a></h3>
 <p>Generates download cache for countries.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>--country_code   Country code to regenerate
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>--country_code   Country code to regenerate
 </code></pre></div>
 <h3 id="generate_data_organisations_cache"><code>generate_data_organisations_cache</code><a class="headerlink" href="#generate_data_organisations_cache" title="Permanent link">¶</a></h3>
 <p>Generates download cache for organisations.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>--id        ID of the organisation to process
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>--from_id   Start ID for batch processing
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>--id        ID of the organisation to process
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>--from_id   Start ID for batch processing
 </code></pre></div>
 <h3 id="update_measurement_type"><code>update_measurement_type</code><a class="headerlink" href="#update_measurement_type" title="Permanent link">¶</a></h3>
 <p>Updates the measurement type of wells.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>--form   Start ID for batch processing
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>--form   Start ID for batch processing
 </code></pre></div>
 <h3 id="update_number_of_measurements_well"><code>update_number_of_measurements_well</code><a class="headerlink" href="#update_number_of_measurements_well" title="Permanent link">¶</a></h3>
 <p>Updates the measurement count for wells.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>--form   Start ID for batch processing
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>--form   Start ID for batch processing
 </code></pre></div>
 <hr>
 <h2 id="updating-submodules">Updating Submodules<a class="headerlink" href="#updating-submodules" title="Permanent link">¶</a></h2>
 <p>The project uses two Git submodules: <code>geonode</code> and <code>gwml2</code>.</p>
 <p>To pull the latest changes for both:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--remote
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--remote
 </code></pre></div>
 <p>To update a specific submodule to a new tag, edit the <code>GWML2_VERSION</code> or <code>GEONODE_VERSION</code>
 build arg in <code>deployment/docker/Dockerfile</code>, then rebuild:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>make<span class="w"> </span>build
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>make<span class="w"> </span>deploy
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>make<span class="w"> </span>build
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>make<span class="w"> </span>deploy
 </code></pre></div></div>
 
 
