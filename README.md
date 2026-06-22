@@ -57,19 +57,6 @@ For generating cache of wells for download file.
 --generator : ['general_information','hydrogeology','management','drilling_and_construction','monitor'] in comma separator
 ```
 
-## generate_well_measurement_cache
-
-For generating cache of wells for measurements for graph.
-
-### Parameters
-
-```
---id : id of well that will be checked
---measurement_name : name of measurement: WellLevelMeasurement, WellQualityMeasurement, WellYieldMeasurement
---from_id : id start of well to be checked
---country_code : country that will be used to filter the wells
-```
-
 ## generate_data_countries_cache
 
 For generating cache of country for download file.
