@@ -8,7 +8,6 @@ from core.middleware import (
     gwml2_version, igrac_version, geonode_version, igrac_commit
 )
 from geonode.layers.models import Dataset
-from gwml2.utils.template_check import compare_ods_xlsx_template
 
 
 class SitePreference(Preferences):
@@ -110,28 +109,6 @@ class SitePreference(Preferences):
     def gwml2_version(self):
         """Return the GWML2 version."""
         return gwml2_version()
-
-    @property
-    def wells_sync(self):
-        """Return if wells synced."""
-        return compare_ods_xlsx_template(
-            'wells.xlsx', 'General Information'
-        )
-
-    @property
-    def monitoring_data_sync(self):
-        """Return if monitoring_data synced."""
-        return compare_ods_xlsx_template(
-            'monitoring_data.xlsx', 'Monitoring data'
-        )
-
-    @property
-    def drilling_and_construction_sync(self):
-        """Return if drilling_and_construction synced."""
-        return compare_ods_xlsx_template(
-            'drilling_and_construction.xlsx',
-            'drilling and construction'
-        )
 
     @property
     def google_analytic_key(self):
