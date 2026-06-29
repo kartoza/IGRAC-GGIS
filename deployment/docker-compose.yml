@@ -35,6 +35,18 @@ services:
     ports:
       - "3000:8080"
 
+  # mcp server
+  mcp:
+    <<: *default-common-django
+    entrypoint: [ ]
+    command: >
+      python manage.py mcp_server
+      --transport sse --host 0.0.0.0 --port 3006
+    environment:
+      - DJANGO_SETTINGS_MODULE=core.settings.mcp
+    ports:
+      - "3006:3006"
+
   nginx:
     image: nginx:1.17-alpine
     hostname: nginx
