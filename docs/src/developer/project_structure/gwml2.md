@@ -144,7 +144,7 @@ Export of well data and measurements in multiple formats (CSV, Excel, etc.).
 Downloads are backed by a **cache layer** — on first request the data is generated and stored,
 subsequent requests serve the cached file.
 
-Cache is managed by Celery tasks in `tasks/data_file_cache/`:
+Cache is managed by Celery tasks in `tasks/well_file_cache/`:
 
 - `wells_cache.py` — per-well general/section cache files
 - `organisation_cache.py` — per-organisation aggregate cache
