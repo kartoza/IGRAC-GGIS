@@ -2162,7 +2162,7 @@ in <code>views/form_group/</code>:</p>
 <p>Export of well data and measurements in multiple formats (CSV, Excel, etc.).
 Downloads are backed by a <strong>cache layer</strong> — on first request the data is generated and stored,
 subsequent requests serve the cached file.</p>
-<p>Cache is managed by Celery tasks in <code>tasks/data_file_cache/</code>:</p>
+<p>Cache is managed by Celery tasks in <code>tasks/well_file_cache/</code>:</p>
 <ul>
 <li><code>wells_cache.py</code> — per-well general/section cache files</li>
 <li><code>organisation_cache.py</code> — per-organisation aggregate cache</li>
