@@ -45,7 +45,9 @@ markdown_extensions:
 
 nav:
   - Introduction: index.md
-  - Tutorials: tutorial/index.md
+  - Tutorials:
+      - tutorial/index.md
+      - Download Wells: tutorial/download_wells/index.md
   - Developer:
       - developer/index.md
       - Deployment: developer/deployment.md
