@@ -1,3 +1,4 @@
+{% load formatting %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,22 +67,22 @@
                         <div>
                             {% if organisation.count_stations %}
                                 <div>
-                                    <b>Number of stations: </b>{{ organisation.count_stations }}
+                                    <b>Number of stations: </b>{{ organisation.count_stations|thousands }}
                                 </div>
                             {% endif %}
                             {% if organisation.count_stations_level %}
                                 <div>
-                                    <b>Number of stations with groundwater level data: </b>{{ organisation.count_stations_level }}
+                                    <b>Number of stations with groundwater level data: </b>{{ organisation.count_stations_level|thousands }}
                                 </div>
                             {% endif %}
                             {% if organisation.count_stations_quality %}
                                 <div>
-                                    <b>Number of stations with groundwater quality data: </b>{{ organisation.count_stations_quality }}
+                                    <b>Number of stations with groundwater quality data: </b>{{ organisation.count_stations_quality|thousands }}
                                 </div>
                             {% endif %}
                             {% if organisation.count_springs %}
                                 <div>
-                                    <b>Number of springs: </b>{{ organisation.count_springs }}
+                                    <b>Number of springs: </b>{{ organisation.count_springs|thousands }}
                                 </div>
                             {% endif %}
                         </div>
