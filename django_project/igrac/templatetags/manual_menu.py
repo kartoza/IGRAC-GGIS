@@ -143,6 +143,11 @@ def get_igrac_base_left_topbar_menu(context):
                 } if not is_mobile else None,
                 {
                     "type": "link",
+                    "href": "/catalogue/#/?f=dashboard",
+                    "label": "Dashboards"
+                } if not is_mobile else None,
+                {
+                    "type": "link",
                     "href": "/services/",
                     "label": "Remote Services"
                 } if is_logged_in else None,
@@ -199,13 +204,13 @@ def get_igrac_base_left_topbar_menu(context):
         },
         {
             "type": "link",
-            "href": "/catalogue/#/?f=dashboard",
-            "label": "Dashboards"
+            "href": "/catalogue/#/?f=geostory",
+            "label": "GeoStories"
         },
         {
             "type": "link",
-            "href": "/catalogue/#/?f=geostory",
-            "label": "GeoStories"
+            "href": "/groundwater/dashboard/view",
+            "label": "Dashboard"
         },
         users,
         {
