@@ -47,6 +47,7 @@ nav:
   - Introduction: index.md
   - Tutorials:
       - tutorial/index.md
+      - Dashboard: tutorial/dashboard/index.md
       - Download Wells: tutorial/download_wells/index.md
   - Developer:
       - developer/index.md
