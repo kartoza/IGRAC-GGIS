@@ -196,7 +196,10 @@ MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP = set(
         "generate_data_wells_cache",
         "generate_uploader_report",
         "generate_data_cache_information",
-        "generate_dem_well_value"
+        "generate_dem_well_value",
+        "generate_organisations_metadata_cache",
+        "generate_countries_metadata_cache",
+        "clean_well_quality_control_duplicate"
     ]
     + ast.literal_eval(
         os.getenv("MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP ", "[]"))
