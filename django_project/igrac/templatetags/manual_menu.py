@@ -199,6 +199,11 @@ def get_igrac_base_left_topbar_menu(context):
         },
         {
             "type": "link",
+            "href": "/groundwater/dashboard/view",
+            "label": "Dashboard"
+        },
+        {
+            "type": "link",
             "href": "/catalogue/#/?f=map",
             "label": "Maps"
         },
@@ -206,13 +211,8 @@ def get_igrac_base_left_topbar_menu(context):
             "type": "link",
             "href": "/catalogue/#/?f=geostory",
             "label": "GeoStories"
-        },
-        {
-            "type": "link",
-            "href": "/groundwater/dashboard/view",
-            "label": "Dashboard"
-        },
-        users,
+        } if is_logged_in else None,
+        users if is_logged_in else None,
         {
             "type": "link",
             "href": "/about",
