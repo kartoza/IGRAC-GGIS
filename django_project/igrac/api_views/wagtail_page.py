@@ -2,6 +2,7 @@ from django.core.exceptions import FieldError
 from django.http import HttpResponse, Http404, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
+from wagtail.rich_text import expand_db_html
 
 from igrac.models.wagtail_page.geonode import GeonodePage
 
@@ -29,7 +30,9 @@ class GeonodeBaseResourcePageContent(APIView):
             if not pages.exists():
                 raise Http404()
             return HttpResponse(
-                '<hr/>'.join([page.body for page in pages]),
+                '<hr/>'.join(
+                    [expand_db_html(page.body) for page in pages]
+                ),
                 content_type='text/html'
             )
         except FieldError:

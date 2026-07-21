@@ -759,3 +759,8 @@ form .row {
 .modal-header {
   padding: 12px 16px !important;
 }
+
+.gn-igrac-geonode-resource-page-modal a:focus,
+.gn-igrac-geonode-resource-page-modal a:focus-visible {
+    outline: unset !important;
+}
