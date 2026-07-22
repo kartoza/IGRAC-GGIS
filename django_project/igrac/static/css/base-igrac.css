@@ -764,3 +764,19 @@ form .row {
 .gn-igrac-geonode-resource-page-modal a:focus-visible {
     outline: unset !important;
 }
+
+/* For side panel of geonode mapstore */
+.igrac-dl-btn {
+    background-color: #6CCCE1 !important;
+    color: #08384F !important;
+    padding: 0 !important;
+    height: 34px !important;
+    width: 65px !important;
+    font-size: 18px !important;
+}
+
+.igrac-select-well-container .btn-primary {
+    width: 30px !important;
+    height: 30px !important;
+    box-sizing: border-box !important;
+}
