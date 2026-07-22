@@ -3,8 +3,8 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'gwml2/css/measurements-chart.css' %}">
-    <link rel="stylesheet" href="{% static 'gwml2/css/measurements-chart-page.css' %}">
+    <link rel="stylesheet" href="{% static 'gwml2/css/measurements-chart.css' %}?v={{ IGRAC_VERSION.name }}">
+    <link rel="stylesheet" href="{% static 'gwml2/css/measurements-chart-page.css' %}?v={{ IGRAC_VERSION.name }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 
     <script src="{% static "lib/js/moment-with-locales.js" %}"></script>
@@ -17,7 +17,7 @@
     <script src="{% static "js/highcharts/9.1.2/stock/indicators/indicators.js" %}"></script>
     <script src="{% static "js/highcharts/9.1.2/stock/indicators/trendline.js" %}"></script>
 
-    <script src="{% static 'gwml2/js/unit-converter.js' %}"></script>
+    <script src="{% static 'gwml2/js/unit-converter.js' %}?v={{ IGRAC_VERSION.name }}"></script>
     <script src="{% static 'js/g3p-timeseries-chart.js' %}"></script>
 </head>
 <body>
