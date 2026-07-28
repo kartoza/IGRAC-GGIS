@@ -164,6 +164,15 @@ if 'gwml2' in INSTALLED_APPS:
         'task': 'gwml2.tasks.upload_session.resume_all_uploader',
         'schedule': crontab(minute='*/5'),
     }
+    CELERY_BEAT_SCHEDULE[
+        'generate_organisation_country_quality_control_cache'
+    ] = {
+        'task': (
+            'gwml2.tasks.'
+            'generate_organisation_country_quality_control_cache'
+        ),
+        'schedule': crontab(minute="0", hour="0"),
+    }
     CELERY_BEAT_SCHEDULE['well_quality_control'] = {
         'task': 'gwml2.tasks.well.run_well_quality_control',
         'schedule': crontab(
