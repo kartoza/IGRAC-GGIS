@@ -1,3 +1,4 @@
+import re
 import time
 import xml.etree.ElementTree as ET
 
@@ -17,6 +18,10 @@ from igrac.models.groundwater_layer import GroundwaterLayer
 from igrac.models.site_preference import SitePreference
 
 User = get_user_model()
+
+# GeoServer layer name doubles as an unquoted SQL identifier (the
+# virtual table name), so only allow characters safe there.
+LAYER_NAME_RE = re.compile(r'^[A-Za-z_][A-Za-z0-9 _-]*$')
 
 
 # TODO:
@@ -123,6 +128,14 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
 
     def clean_name(self):
         """Validate name."""
+        name = self.cleaned_data['name']
+        if not LAYER_NAME_RE.match(name):
+            raise forms.ValidationError(
+                'Name can only contain letters, numbers, spaces, '
+                'underscores (_) and hyphens (-), and must start with '
+                'a letter or underscore.'
+            )
+
         # Get the layer
         pref = SitePreference.objects.first()
         self.target_layer = pref.well_and_monitoring_data_layer
@@ -137,8 +150,6 @@ class CreateGroundwaterLayerForm(_BaseGroundwaterLayerForm):
                 f'{target_layer} does not found. Please contact admin.'
             )
 
-        # Get the name
-        name = self.cleaned_data['name']
         layer = self.layer
         if layer:
             workspace = layer.resource.workspace.name
