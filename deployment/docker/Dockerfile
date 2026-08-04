@@ -2,7 +2,7 @@
 FROM geonode/geonode:latest-ubuntu-22.04 AS prod
 MAINTAINER Irwan Fathurrahman <irwan@kartoza.com>
 
-ARG CACHE_BUSTER=02.07.2026
+ARG CACHE_BUSTER=04.07.2026
 
 # Set the locale
 RUN locale-gen C.UTF-8
@@ -38,7 +38,7 @@ WORKDIR /home/web/django_project
 RUN rm -rf /home/web/django_project/gwml2
 
 # Installing gwml2
-ENV GWML2_VERSION 4.18.1
+ENV GWML2_VERSION 4.18.2
 RUN git clone --branch $GWML2_VERSION https://github.com/kartoza/IGRAC-WellAndMonitoringDatabase.git /home/web/django_project/gwml2
 RUN echo $GWML2_VERSION > /home/web/django_project/gwml2/version.txt
 
