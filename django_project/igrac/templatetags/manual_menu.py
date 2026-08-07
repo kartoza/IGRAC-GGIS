@@ -142,9 +142,20 @@ def get_igrac_base_left_topbar_menu(context):
                     "label": "Documents"
                 } if not is_mobile else None,
                 {
-                    "type": "link",
-                    "href": "/catalogue/#/?f=dashboard",
-                    "label": "Dashboards"
+                    "label": 'Dashboard',
+                    "type": "dropdown",
+                    "items": [
+                        {
+                            "type": "link",
+                            "href": "/groundwater/dashboard/view?data-type=ggmn",
+                            "label": "GGMN"
+                        },
+                        {
+                            "type": "link",
+                            "href": "/groundwater/dashboard/view?data-type=observations_repository",
+                            "label": "Groundwater Observations Repository"
+                        },
+                    ]
                 } if not is_mobile else None,
                 {
                     "type": "link",
@@ -198,9 +209,20 @@ def get_igrac_base_left_topbar_menu(context):
             ]
         },
         {
-            "type": "link",
-            "href": "/groundwater/dashboard/view",
-            "label": "Dashboard"
+            "label": 'Dashboard',
+            "type": "dropdown",
+            "items": [
+                {
+                    "type": "link",
+                    "href": "/groundwater/dashboard/view?data-type=ggmn",
+                    "label": "GGMN"
+                },
+                {
+                    "type": "link",
+                    "href": "/groundwater/dashboard/view?data-type=observations_repository",
+                    "label": "Groundwater Observations Repository"
+                },
+            ]
         },
         {
             "type": "link",
