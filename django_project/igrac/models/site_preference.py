@@ -8,6 +8,7 @@ from core.middleware import (
     gwml2_version, igrac_version, geonode_version, igrac_commit
 )
 from geonode.layers.models import Dataset
+from igrac.models.wagtail_page.geonode import GeonodePage
 
 
 class SitePreference(Preferences):
@@ -80,6 +81,20 @@ class SitePreference(Preferences):
             'Link to help page url from github docs. '
             'It will do crawling from the page and show it as popup.'
         )
+    )
+
+    # dashboard popup
+    dashboard_repository_popup = models.ForeignKey(
+        GeonodePage,
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='dashboard_repository_popup'
+    )
+    dashboard_ggmn_popup = models.ForeignKey(
+        GeonodePage,
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='dashboard_ggmn_popup'
     )
 
     @property

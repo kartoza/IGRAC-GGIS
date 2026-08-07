@@ -76,6 +76,12 @@ class CustomPreferencesAdmin(PreferencesAdmin):
                 'help_page_url'
             )
         }),
+        ('Dashboard', {
+            'fields': (
+                'dashboard_repository_popup',
+                'dashboard_ggmn_popup'
+            )
+        }),
         ('Well & Monitoring Data Layer', {
             'fields': (
                 'well_and_monitoring_data_layer',
