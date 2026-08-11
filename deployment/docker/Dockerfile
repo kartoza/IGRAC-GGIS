@@ -2,7 +2,7 @@
 FROM geonode/geonode:latest-ubuntu-22.04 AS prod
 MAINTAINER Irwan Fathurrahman <irwan@kartoza.com>
 
-ARG CACHE_BUSTER=07.08.2026
+ARG CACHE_BUSTER=11.08.2026
 
 # Set the locale
 RUN locale-gen C.UTF-8
@@ -38,7 +38,7 @@ WORKDIR /home/web/django_project
 RUN rm -rf /home/web/django_project/gwml2
 
 # Installing gwml2
-ENV GWML2_VERSION 4.18.3
+ENV GWML2_VERSION 4.18.4
 RUN git clone --branch $GWML2_VERSION https://github.com/kartoza/IGRAC-WellAndMonitoringDatabase.git /home/web/django_project/gwml2
 RUN echo $GWML2_VERSION > /home/web/django_project/gwml2/version.txt
 
@@ -65,6 +65,12 @@ RUN pip install -r /REQUIREMENTS-DEV.txt
 # Sudo is needed by pycharm when it tries to pip install packages
 RUN apt-get update && apt-get install -y openssh-server sudo
 RUN mkdir -p /var/run/sshd
+
+# Some apt-installed tools (e.g. devscripts) leave behind dist-packages
+# egg-info with non-PEP440 versions (e.g. "2.22.1ubuntu1"), which crashes
+# `pip list`/`pip freeze` on newer pip and breaks PyCharm's remote
+# interpreter package detection.
+RUN rm -rf /usr/lib/python3/dist-packages/devscripts-*.egg-info
 RUN echo 'root:docker' | chpasswd
 RUN sed -i 's/^PermitRootLogin */#PermitRootLogin /' /etc/ssh/sshd_config
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
