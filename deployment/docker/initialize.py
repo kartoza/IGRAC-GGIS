@@ -33,9 +33,9 @@ from oauthlib.common import generate_token
 from oauth2_provider.models import AccessToken, get_application_model
 
 # Getting the secrets
-admin_username = os.getenv('ADMIN_USERNAME')
-admin_password = os.getenv('ADMIN_PASSWORD')
-admin_email = os.getenv('ADMIN_EMAIL')
+admin_username = os.getenv("ADMIN_USERNAME")
+admin_password = os.getenv("ADMIN_PASSWORD")
+admin_email = os.getenv("ADMIN_EMAIL")
 
 #########################################################
 # 1. Waiting for PostgreSQL
@@ -59,9 +59,9 @@ connection.close()
 
 print("-----------------------------------------------------")
 print("2. Running the migrations")
-call_command('makemigrations')
-call_command('migrate', '--noinput')
-call_command('migrate', app_label='gwml2', database='gwml2')
+call_command("makemigrations")
+call_command("migrate", "--noinput")
+call_command("migrate", app_label="gwml2", database="gwml2")
 
 #########################################################
 # 3. Creating superuser if it doesn't exist
@@ -75,14 +75,12 @@ try:
     superuser.is_active = True
     superuser.email = admin_email
     superuser.save()
-    print('superuser successfully updated')
+    print("superuser successfully updated")
 except get_user_model().DoesNotExist:
     superuser = get_user_model().objects.create_superuser(
-        admin_username,
-        admin_email,
-        admin_password
+        admin_username, admin_email, admin_password
     )
-    print('superuser successfully created')
+    print("superuser successfully created")
 
 #########################################################
 # 4. Create an OAuth2 provider to use authorisations keys
@@ -94,40 +92,35 @@ print("4. Create/update an OAuth2 provider to use authorisations keys")
 Application = get_application_model()
 app, created = Application.objects.get_or_create(
     pk=1,
-    name='GeoServer',
-    client_type='confidential',
-    authorization_grant_type='authorization-code',
+    name="GeoServer",
+    client_type="confidential",
+    authorization_grant_type="authorization-code",
 )
 app.skip_authorization = True
-_host = os.getenv('HTTPS_HOST', "") if os.getenv('HTTPS_HOST',
-                                                 "") != "" else os.getenv(
-    'HTTP_HOST')
-_port = os.getenv('HTTPS_PORT') if os.getenv('HTTPS_HOST',
-                                             "") != "" else os.getenv(
-    'HTTP_PORT', '80')
+_host = os.getenv("HTTPS_HOST", "") if os.getenv("HTTPS_HOST", "") != "" else os.getenv("HTTP_HOST")
+_port = (
+    os.getenv("HTTPS_PORT") if os.getenv("HTTPS_HOST", "") != "" else os.getenv("HTTP_PORT", "80")
+)
 # default port is 80
-_protocols = {
-    "80": "http://",
-    "443": "https://"
-}
+_protocols = {"80": "http://", "443": "https://"}
 if _port not in _protocols:
     redirect_uris = [
-        'http://{}:{}/geoserver'.format(_host, _port),
-        'http://{}:{}/geoserver/index.html'.format(_host, _port),
+        "http://{}:{}/geoserver".format(_host, _port),
+        "http://{}:{}/geoserver/index.html".format(_host, _port),
     ]
 else:
     # Make sure protocol string match with GeoServer Redirect URL's protocol string
     redirect_uris = [
-        '{}{}/geoserver'.format(_protocols[_port], _host),
-        '{}{}/geoserver/index.html'.format(_protocols[_port], _host),
+        "{}{}/geoserver".format(_protocols[_port], _host),
+        "{}{}/geoserver/index.html".format(_protocols[_port], _host),
     ]
 
 app.redirect_uris = "\n".join(redirect_uris)
 app.save()
 if created:
-    print('oauth2 provider successfully created')
+    print("oauth2 provider successfully created")
 else:
-    print('oauth2 provider successfully updated')
+    print("oauth2 provider successfully updated")
 
 #########################################################
 # 5. Loading fixtures
@@ -142,11 +135,10 @@ import ast
 
 # To conform with original behaviour of GeoNode, we need to set it to True
 # as default value
-_load_initial_fixtures = ast.literal_eval(
-    os.getenv('INITIAL_FIXTURES', 'True'))
+_load_initial_fixtures = ast.literal_eval(os.getenv("INITIAL_FIXTURES", "True"))
 if _load_initial_fixtures:
-    call_command('loaddata', 'initial_data')
-    call_command('update_fixtures')
+    call_command("loaddata", "initial_data")
+    call_command("update_fixtures")
 
 #########################################################
 # 6. Running updatemaplayerip
@@ -169,7 +161,7 @@ static_root = settings.STATIC_ROOT
 if os.path.isdir(static_root):
     shutil.rmtree(static_root)
     os.makedirs(static_root, exist_ok=True)
-call_command('collectstatic', '--noinput', verbosity=0)
+call_command("collectstatic", "--noinput", verbosity=0)
 
 #########################################################
 # 8. Waiting for GeoServer
@@ -177,8 +169,7 @@ call_command('collectstatic', '--noinput', verbosity=0)
 
 print("-----------------------------------------------------")
 print("8. Waiting for GeoServer")
-_geoserver_host = os.getenv('GEOSERVER_LOCATION',
-                            'http://geoserver:8080/geoserver')
+_geoserver_host = os.getenv("GEOSERVER_LOCATION", "http://geoserver:8080/geoserver")
 for _ in range(60 * 5):
     try:
         requests.head("{}".format(_geoserver_host))
@@ -195,30 +186,31 @@ else:
 print("-----------------------------------------------------")
 print("9. Securing GeoServer")
 
-geoserver_admin_username = os.getenv('GEOSERVER_ADMIN_USER')
-geoserver_admin_password = os.getenv('GEOSERVER_ADMIN_PASSWORD')
+geoserver_admin_username = os.getenv("GEOSERVER_ADMIN_USER")
+geoserver_admin_password = os.getenv("GEOSERVER_ADMIN_PASSWORD")
 
 # Getting the old password
 try:
-    r1 = requests.get('{}/rest/security/masterpw.json'.format(_geoserver_host),
-                      auth=(
-                          geoserver_admin_username, geoserver_admin_password))
+    r1 = requests.get(
+        "{}/rest/security/masterpw.json".format(_geoserver_host),
+        auth=(geoserver_admin_username, geoserver_admin_password),
+    )
 except requests.exceptions.ConnectionError:
-    print(
-        "Unable to connect to GeoServer. Make sure GeoServer is started and accessible.")
+    print("Unable to connect to GeoServer. Make sure GeoServer is started and accessible.")
     exit(1)
 r1.raise_for_status()
 old_password = json.loads(r1.text)["oldMasterPassword"]
 
-if old_password == 'M(cqp{V1':
+if old_password == "M(cqp{V1":
     print("Randomizing master password")
     new_password = uuid.uuid4().hex
-    data = json.dumps(
-        {"oldMasterPassword": old_password, "newMasterPassword": new_password})
-    r2 = requests.put('{}/rest/security/masterpw.json'.format(_geoserver_host),
-                      data=data,
-                      headers={'Content-Type': 'application/json'}, auth=(
-            geoserver_admin_username, geoserver_admin_password))
+    data = json.dumps({"oldMasterPassword": old_password, "newMasterPassword": new_password})
+    r2 = requests.put(
+        "{}/rest/security/masterpw.json".format(_geoserver_host),
+        data=data,
+        headers={"Content-Type": "application/json"},
+        auth=(geoserver_admin_username, geoserver_admin_password),
+    )
     r2.raise_for_status()
 else:
     print("Master password was already changed. No changes made.")
@@ -232,7 +224,7 @@ print("10. Test User Model")
 
 
 def make_token_expiration(seconds=86400):
-    _expire_seconds = getattr(settings, 'ACCESS_TOKEN_EXPIRE_SECONDS', seconds)
+    _expire_seconds = getattr(settings, "ACCESS_TOKEN_EXPIRE_SECONDS", seconds)
     _expire_time = datetime.datetime.now(timezone.get_current_timezone())
     _expire_delta = datetime.timedelta(seconds=_expire_seconds)
     return _expire_time + _expire_delta
@@ -241,10 +233,8 @@ def make_token_expiration(seconds=86400):
 user = get_user_model().objects.get(username=admin_username)
 expires = make_token_expiration()
 (access_token, created) = AccessToken.objects.get_or_create(
-    user=user,
-    application=app,
-    expires=expires,
-    token=generate_token())
+    user=user, application=app, expires=expires, token=generate_token()
+)
 
 #########################################################
 # 11. Restart harvesters and uploads
@@ -259,5 +249,5 @@ try:
     Functions().restart_harvesters()
     Functions().restart_uploads()
 except Exception as e:
-    print(f'{e}')
+    print(f"{e}")
     pass

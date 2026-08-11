@@ -179,6 +179,13 @@ if 'gwml2' in INSTALLED_APPS:
             minute="0", hour="0", day_of_month="1", month_of_year="1"
         ),
     }
+    CELERY_BEAT_SCHEDULE['clean_old_upload_session_row_status'] = {
+        'task': (
+            'gwml2.tasks.upload_session.'
+            'clean_old_upload_session_row_status'
+        ),
+        'schedule': crontab(minute="0", hour="1"),
+    }
 
 GWML2_FOLDER = os.getenv(
     'GWML_FOLDER', os.path.join(PROJECT_ROOT, 'gwml2-file')

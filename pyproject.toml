@@ -1,0 +1,75 @@
+[tool.ruff]
+# Core style
+line-length = 100
+indent-width = 4
+
+# Target Python version (adjust as needed)
+target-version = "py311"
+
+# Project hygiene - exclude directories and files
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "./venv",
+    "venv",
+    ".tox",
+    ".mypy_cache",
+    ".pytest_cache",
+    "node_modules",
+    "build",
+    "dist",
+    "*/core/settings/utils.py",
+    "*/core/settings/",
+    "*.egg-info",
+    "*/static/*",
+    "*/media/*",
+]
+
+[tool.ruff.lint]
+# Select the same rule categories as flake8 config
+select = [
+    "E", # pycodestyle errors
+    "F", # Pyflakes
+    "W", # pycodestyle warnings
+    "C90", # mccabe complexity
+    "D", # pydocstyle (docstrings)
+]
+extend-select = ["I"]
+
+# Ignore the same rules as flake8 extend-ignore (excluding W503 which doesn't exist in Ruff)
+ignore = [
+    "E203", # Whitespace before ':' (not needed with Ruff formatter)
+    "D200", # One-line docstring should fit on one line
+    "D212", # Multi-line docstring summary should start at the first line
+    "D411", # Missing blank line before section
+    "D415", # First line should end with a period, question mark, or exclamation point
+    "D203", # 1 blank line required before class docstring
+    "D100", # Missing docstring in public module
+    "D104", # Missing docstring in public package
+    "D101", # Missing docstring in public class
+]
+
+# Complexity settings (equivalent to flake8 max-complexity)
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+# Docstring settings (equivalent to flake8-docstrings)
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+# Per-file ignores (equivalent to flake8 per-file-ignores)
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"core/settings/*.py" = ["F401", "F403", "F405", "D100"]
+"*/migrations/*" = ["D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107"]
+
+[tool.ruff.format]
+# Formatting options
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.isort]
+known-first-party = ["core", "gwml2", "igrac", "igrac_api"]
