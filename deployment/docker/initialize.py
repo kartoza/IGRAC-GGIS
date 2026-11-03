@@ -157,10 +157,10 @@ print("6. Running updatemaplayerip - skip")
 
 print("-----------------------------------------------------")
 print("7. Collecting static files")
-static_root = settings.STATIC_ROOT
-if os.path.isdir(static_root):
-    shutil.rmtree(static_root)
-    os.makedirs(static_root, exist_ok=True)
+# static_root = settings.STATIC_ROOT
+# if os.path.isdir(static_root):
+#     shutil.rmtree(static_root)
+#     os.makedirs(static_root, exist_ok=True)
 call_command("collectstatic", "--noinput", verbosity=0)
 
 #########################################################
