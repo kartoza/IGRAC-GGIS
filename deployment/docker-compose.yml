@@ -88,6 +88,7 @@ services:
   db:
     # use geonode official postgis 10 image
     image: kartoza/postgis:16
+    shm_size: 1g
     environment:
       # database info, ${variables} are read from .env
       - POSTGRES_DBNAME=${GEONODE_DATABASE},${GEONODE_GEODATABASE},groundwater
