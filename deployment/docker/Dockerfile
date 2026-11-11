@@ -2,7 +2,7 @@
 FROM geonode/geonode:latest-ubuntu-22.04 AS prod
 MAINTAINER Irwan Fathurrahman <irwan@kartoza.com>
 
-ARG CACHE_BUSTER=09.11.2026
+ARG CACHE_BUSTER=11.11.2026
 RUN echo "Cache buster: $CACHE_BUSTER"
 
 # Set the locale

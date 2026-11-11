@@ -150,6 +150,35 @@ if MAPSTORE_BASELAYERS:
         "thumbURL": f"https://www.naturalearthdata.com/wp-content/uploads/2009/09/ne1_lc_sr_h20.jpg",
         "visibility": False,
     })
+    MAPSTORE_BASELAYERS.insert(len(MAPSTORE_BASELAYERS) - 1, {
+        "type": "tileprovider",
+        "title": "UN Clear Map",
+        "name": "UN Clear Map",
+        "provider": "custom",
+        "url": (
+            "https://geoservices.un.org/arcgis/rest/services/"
+            "ClearMap_WebTopo/MapServer/tile/{z}/{y}/{x}"
+        ),
+        # Clear Map real tiles exist only up to zoom 6
+        "maxZoom": 6,
+        "maxNativeZoom": 6,
+        "options": {
+            "attribution": (
+                '<a href="https://www.un.org/geospatial/en/mapsgeo/webservices" target="_blank">'
+                'UN Clear Map - United Nations Geospatial</a>. '
+                'The boundaries and names shown and the designations used '
+                'on this map do not imply official endorsement or acceptance by the United Nations.'
+            ),
+            "maxZoom": 6,
+            "maxNativeZoom": 6,
+        },
+        "group": "background",
+        "thumbURL": (
+            "https://www.un.org/geospatial/sites/default/files/styles/"
+            "image_cropped_xl/public/02_webservices.jpg.webp"
+        ),
+        "visibility": False,
+    })
 
 if 'gwml2' in INSTALLED_APPS:
     CELERY_BEAT_SCHEDULE['run_all_harvester'] = {
