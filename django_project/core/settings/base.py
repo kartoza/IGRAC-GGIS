@@ -144,7 +144,7 @@ if MAPSTORE_BASELAYERS:
         "title": "Natural Earth",
         "format": "image/jpeg",
         "id": "NaturalEarth",
-        "name": "geonode:NE1_HR_LC_SR_W",
+        "name": "geonode:natural_earth_with_boundaries",
         "url": "https://ggis.un-igrac.org/geoserver/wms",
         "group": "background",
         "thumbURL": f"https://www.naturalearthdata.com/wp-content/uploads/2009/09/ne1_lc_sr_h20.jpg",
@@ -179,6 +179,12 @@ if MAPSTORE_BASELAYERS:
         ),
         "visibility": False,
     })
+    MAPSTORE_BASELAYERS = [
+        map for map in MAPSTORE_BASELAYERS if map["title"] not in [
+            "OpenTopoMap", "Sentinel-2 cloudless - https://s2maps.eu", "Empty Background",
+            "CartoDB - Positron"
+        ]
+    ]
 
 if 'gwml2' in INSTALLED_APPS:
     CELERY_BEAT_SCHEDULE['run_all_harvester'] = {
