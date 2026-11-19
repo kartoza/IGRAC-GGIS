@@ -780,3 +780,51 @@ form .row {
     height: 30px !important;
     box-sizing: border-box !important;
 }
+
+/* For attributions */
+#mapstore-map-footer-container {
+    display: flex;
+    align-items: center;
+}
+#mapstore-map-footer-container #footer-attribution-container {
+    flex-grow: 1;
+}
+#mapstore-map-footer-container #footer-attribution-container .ol-attribution {
+    width: unset;
+    position: relative;
+}
+#mapstore-map-footer-container #mapstore-scalebox .control-label {
+    height: unset;
+}
+#mapstore-map-footer-container #mapstore-scalebox #scaleBox {
+    margin-bottom: unset;
+    margin-top: unset;
+}
+#mapstore-map-footer-container #mapstore-mouseposition {
+    height: unset;
+    padding: 0;
+}
+#mapstore-map-footer-container #mapstore-mouseposition button {
+    float: unset;
+    border: 1px solid var(--secondary);
+}
+#mapstore-map-footer-container #mapstore-mouseposition button span {
+    color: var(--secondary);
+}
+#mapstore-map-footer-container #mapstore-mouseposition button:hover span {
+    color: white;
+}
+#mapstore-map-footer-container #mapstore-mouseposition > div,
+#mapstore-map-footer-container #mapstore-mouseposition label {
+    margin-bottom: unset;
+}
+#mapstore-map-footer-container .mapstore-mouse-coordinates {
+    display: flex;
+    align-items: center;
+}
+#mapstore-map-footer-container .mapstore-mouse-coordinates label {
+    margin-left: 0.5rem;
+}
+#mapstore-map-footer-container #mapstore-mouseposition .mapstore-mouse-coordinates h5 {
+    padding: 2px 4px;
+}
