@@ -139,7 +139,7 @@ if MAPSTORE_BASELAYERS:
         "thumbURL": "%sstatic/img/positron.png" % SITEURL,
         "visibility": False
     })
-    MAPSTORE_BASELAYERS.insert(len(MAPSTORE_BASELAYERS) - 1, {
+    MAPSTORE_BASELAYERS.insert(0, {
         "type": "wms",
         "title": "Natural Earth",
         "format": "image/jpeg",
@@ -148,7 +148,13 @@ if MAPSTORE_BASELAYERS:
         "url": "https://ggis.un-igrac.org/geoserver/wms",
         "group": "background",
         "thumbURL": f"https://www.naturalearthdata.com/wp-content/uploads/2009/09/ne1_lc_sr_h20.jpg",
-        "visibility": False,
+        "visibility": True,
+        "credits": {
+            "title": (
+                '<b>Country borders:</b> The United Nations Clear Map (2018); '
+                '<b>Background:</b> Natural Earth'
+            ),
+        },
     })
     MAPSTORE_BASELAYERS.insert(len(MAPSTORE_BASELAYERS) - 1, {
         "type": "tileprovider",
@@ -165,7 +171,7 @@ if MAPSTORE_BASELAYERS:
         "options": {
             "attribution": (
                 '<a href="https://www.un.org/geospatial/en/mapsgeo/webservices" target="_blank">'
-                'UN Clear Map - United Nations Geospatial</a>. '
+                'UN Clear Map</a>. '
                 'The boundaries and names shown and the designations used '
                 'on this map do not imply official endorsement or acceptance by the United Nations.'
             ),
@@ -185,6 +191,10 @@ if MAPSTORE_BASELAYERS:
             "CartoDB - Positron"
         ]
     ]
+    # Only Natural Earth is visible by default
+    for _layer in MAPSTORE_BASELAYERS:
+        if _layer.get("group") == "background":
+            _layer["visibility"] = _layer.get("id") == "NaturalEarth"
 
 if 'gwml2' in INSTALLED_APPS:
     CELERY_BEAT_SCHEDULE['run_all_harvester'] = {
