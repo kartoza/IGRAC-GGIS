@@ -800,6 +800,9 @@ form .row {
     margin-bottom: unset;
     margin-top: unset;
 }
+#mapstore-map-footer-container #mapstore-scalebox .form-inline {
+    margin-bottom: unset;
+}
 #mapstore-map-footer-container #mapstore-mouseposition {
     height: unset;
     padding: 0;
@@ -808,8 +811,14 @@ form .row {
     float: unset;
     border: 1px solid var(--secondary);
 }
+#mapstore-map-footer-container #mapstore-mouseposition button.btn-success {
+    background: var(--secondary);
+}
 #mapstore-map-footer-container #mapstore-mouseposition button span {
     color: var(--secondary);
+}
+#mapstore-map-footer-container #mapstore-mouseposition button.btn-success span {
+    color: white;
 }
 #mapstore-map-footer-container #mapstore-mouseposition button:hover span {
     color: white;
@@ -827,4 +836,7 @@ form .row {
 }
 #mapstore-map-footer-container #mapstore-mouseposition .mapstore-mouse-coordinates h5 {
     padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
