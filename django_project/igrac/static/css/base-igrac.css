@@ -803,23 +803,32 @@ form .row {
 #mapstore-map-footer-container #mapstore-scalebox .form-inline {
     margin-bottom: unset;
 }
+#mapstore-map-footer-container .ms-prj-selector,
 #mapstore-map-footer-container #mapstore-mouseposition {
     height: unset;
     padding: 0;
 }
+#mapstore-map-footer-container .ms-prj-selector button {
+    margin-top: 0;
+}
+#mapstore-map-footer-container .ms-prj-selector button,
 #mapstore-map-footer-container #mapstore-mouseposition button {
     float: unset;
     border: 1px solid var(--secondary);
 }
+#mapstore-map-footer-container .ms-prj-selector button.btn-success,
 #mapstore-map-footer-container #mapstore-mouseposition button.btn-success {
     background: var(--secondary);
 }
+#mapstore-map-footer-container .ms-prj-selector button span,
 #mapstore-map-footer-container #mapstore-mouseposition button span {
     color: var(--secondary);
 }
+#mapstore-map-footer-container .ms-prj-selector button.btn-success span,
 #mapstore-map-footer-container #mapstore-mouseposition button.btn-success span {
     color: white;
 }
+#mapstore-map-footer-container .ms-prj-selector button:hover span,
 #mapstore-map-footer-container #mapstore-mouseposition button:hover span {
     color: white;
 }
@@ -839,4 +848,24 @@ form .row {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#mapstore-map-footer-container .ms-prj-selector .dropdown-menu,
+#mapstore-map-footer-container .ms-prj-selector .list-group {
+    padding: 0;
+    background: white;
+    color: var(--secondary);
+}
+#mapstore-map-footer-container .ms-prj-selector button {
+    color: var(--secondary);
+}
+#mapstore-map-footer-container .ms-prj-selector button.active {
+    background-color: var(--secondary) !important;
+    color: white;
+}
+#mapstore-map-footer-container .ms-prj-selector button:hover {
+    color: white;
+}
+#mapstore-map-footer-container .ms-prj-selector .dropdown-menu > input,
+#mapstore-map-footer-container .ms-prj-selector .dropdown-menu .ms-prj-header {
+    display: none;
 }
