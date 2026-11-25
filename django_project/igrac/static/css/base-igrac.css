@@ -858,6 +858,9 @@ form .row {
 #mapstore-map-footer-container .ms-prj-selector button {
     color: var(--secondary);
 }
+#mapstore-map-footer-container .ms-prj-selector button:focus:hover {
+    background-color: var(--secondary);
+}
 #mapstore-map-footer-container .ms-prj-selector button.active {
     background-color: var(--secondary) !important;
     color: white;
